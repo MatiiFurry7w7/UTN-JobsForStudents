@@ -44,7 +44,7 @@
 
         //PRIVATE -------------------------------------------------
 
-        //Save array to file
+        //Save array 
         private function saveData(){
             //Array to save each Student data
             $encodingArray = array();
@@ -70,7 +70,7 @@
             }
         }
 
-        //Load array from file
+        //Load array
         private function loadData(){
             //Clear the actual array list
             $this->studentList = array();
@@ -78,17 +78,14 @@
             require_once ROOT."Config/Connection.php";
 
             try{
-                $query = $connection->prepare("SELECT studentId, userName, userPassword FROM students");
+                $query = $connection->prepare("SELECT * FROM students");
                 $query->execute();
     
                 $result = $query->fetchAll();
     
                 foreach($result as $eachValue){
-                    $Student = new Student();
-                    $Student->setStudentId($eachValue['studentId']);
-                    $Student->setUserName($eachValue['userName']);
-                    $Student->setUserPassword($eachValue['userPassword']);
-                    
+                    $Student = new Student($eachValue['studentId'], $eachValue['firstName'], $eachValue['lastName'], $eachValue['email'], $eachValue['phoneNumber'], $eachValue['gender'], $eachValue['dNI'], $eachValue['birthDate']);
+
                     array_push($this->studentList, $Student);
                 }
             }catch(PDOException $e){

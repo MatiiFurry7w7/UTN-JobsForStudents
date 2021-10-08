@@ -2,9 +2,14 @@
     namespace Controllers;
 
     use DAO\StudentDAO as StudentDAO;
+    use Models\AcademicStatus as AcademicStatus;
     use Models\Student as Student;
 
-    class StudentController
+    //WONT USE THESE
+    use Models\Dedication as Dedication;
+    use Models\Industry as Industry;
+
+class StudentController
     {
         private $studentDAO;
 
@@ -31,6 +36,16 @@
             foreach($studentList as $eachStudent){
                 echo "<br>".$eachStudent;
             }
+        }
+
+        public function TEST(){
+            $matiMercado = new Student(1, "Matias", "Mercado", "mati@hotmail.com", 152431512, "Masculine", 43444555, "01/01/2001");
+            $matiMercado->setAcademicStatus(new AcademicStatus(8.77, 43444555));
+            $matiMercado->setCareer("Analista en Sistemas");
+            echo $matiMercado;
+
+            echo "<br><br> Dedication Example: ".Dedication::FULLTIME;
+            echo "<br><br> Industry Example: ".Industry::IT;
         }
     }
 ?> 
