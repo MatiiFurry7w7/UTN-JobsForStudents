@@ -14,3 +14,20 @@
         <script src="<?php echo JS_PATH;?>bootstrap.min.js"></script>
  </head>
 <body>
+    <div class="wrapper row1">
+      <header id="header" class="clear"> 
+          <div class="row" style="margin-right: 0px;">
+              <a href="<?php echo FRONT_ROOT ?>Home/Index">
+                <div class="column">
+                  <img id="tiltedLogo" src="<?php echo IMG_PATH ?>tiltedLogo.png" alt="">
+                </div>
+              </a>
+              <div class="column">
+                <div id="vLine"></div>
+              </div>
+              <div class="column">
+                <h2 id="jfsText"> Jobs for UTN Students</h2>
+              </div>
+          </div>
+      </header>
+    </div>

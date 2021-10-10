@@ -3,7 +3,7 @@
         include_once('nav-bar.php');
 ?>
 <div class="wrapper row3">
-<table>
+<table id="studentsTable">
         <tr id="tableIndex">
                 <td style='width: 10px;'>ID</td>
                 <td>DNI</td>
