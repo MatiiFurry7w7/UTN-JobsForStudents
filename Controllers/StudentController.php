@@ -31,11 +31,7 @@ class StudentController
         public function List(){
             $studentList = $this->studentDAO->getAll();
 
-            //require_once(VIEWS_PATH."student-list.php");
-
-            foreach($studentList as $eachStudent){
-                echo "<br>".$eachStudent;
-            }
+            require_once(VIEWS_PATH."student-list.php");
         }
 
         public function TEST(){
@@ -45,7 +41,7 @@ class StudentController
             echo $matiMercado;
 
             echo "<br><br> Dedication Example: ".Dedication::FULLTIME;
-            echo "<br><br> Industry Example: ".Industry::IT;
+            echo "<br> Industry Example: ".Industry::IT;
         }
     }
 ?> 

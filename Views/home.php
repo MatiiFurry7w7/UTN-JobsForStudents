@@ -3,7 +3,7 @@
   include_once('nav-bar.php');
 ?>
 
-  home.php
+HOME
 
 <?php
   include_once('footer.php');
