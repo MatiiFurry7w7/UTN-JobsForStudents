@@ -3,36 +3,36 @@
 class Appointment{
 
   private $cv;
-  private $date_appointment;
-  private $reference_url;
+  private $dateAppointment;
+  private $referenceURL;
 
-  Public function __construct($cv, $date_appointment, $reference_url){
+  Public function __construct($cv, $dateAppointment, $referenceURL){
     $this->cv= $cv;
-    $this->date_appointment = $date_appointment;
-    $this->reference_url = $reference_url;
+    $this->dateAppointment = $dateAppointment;
+    $this->referenceURL = $referenceURL;
 }
 
 
-  public function getDate_appointment()
+  public function getdateAppointment()
   {
-    return $this->date_appointment;
+    return $this->dateAppointment;
   }
 
-  public function setDate_appointment($date_appointment)
+  public function setdateAppointment($dateAppointment)
   {
-    $this->date_appointment = $date_appointment;
+    $this->dateAppointment = $dateAppointment;
 
     return $this;
   }
 
-  public function getReference_url()
+  public function getreferenceURL()
   {
-    return $this->reference_url;
+    return $this->referenceURL;
   }
 
-  public function setReference_url($reference_url)
+  public function setreferenceURL($referenceURL)
   {
-    $this->reference_url = $reference_url;
+    $this->referenceURL = $referenceURL;
 
     return $this;
   }
@@ -51,8 +51,8 @@ class Appointment{
 
   public function __tostring(){
     return "<br>CV: ".$this->cv.
-           "<br>Date appointment: ".$this->date_appointment.
-           "<br>Reference url: ".$this->reference_url;
+           "<br>Date appointment: ".$this->dateAppointment.
+           "<br>Reference url: ".$this->referenceURL;
   }
 }
 
