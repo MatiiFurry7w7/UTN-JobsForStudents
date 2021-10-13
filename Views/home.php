@@ -16,7 +16,7 @@
       </tr>
       <tr>
         <td><label for="userPassword">Password</label></td>
-        <td><input class="inputText" type="text" name="userPassword" required></td>
+        <td><input class="inputText" type="password" name="userPassword" required></td>
       </tr>
       <tr>
       <td colspan="2"><center><button id="buttonSubmit" type="submit" class="btn btn-primary">Log In</button></center></td>

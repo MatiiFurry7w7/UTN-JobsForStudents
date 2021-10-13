@@ -15,20 +15,20 @@
         private $administrator; //relation one to one
 
         //CONSTRUCTOR
-        public function __construct($companyId, $name, $cuit, $description, $website, $address, $aboutUs, $active) {
-            $this->companyId = $companyId;
-            $this->name = $name;
-            $this->cuit = $cuit;
-            $this->description = $description;
-            $this->website = $website;
-            $this->address = $address;
-            $this->aboutUs = $aboutUs;
-            $this->active = $active;
-        }
+        // public function __construct($companyId, $name, $cuit, $description, $website, $address, $aboutUs, $active) {
+        //     $this->companyId = $companyId;
+        //     $this->name = $name;
+        //     $this->cuit = $cuit;
+        //     $this->description = $description;
+        //     $this->website = $website;
+        //     $this->address = $address;
+        //     $this->aboutUs = $aboutUs;
+        //     $this->active = $active;
+        // }
 
         //GETTERS & SETTERS
         public function getCompanyId() {
-            return $this->id;
+            return $this->companyId;
         }
 
         public function setCompanyId($companyId) {
@@ -129,8 +129,8 @@
                     "<br>-------------------------------".$this->industries.
                     "<br>Job Offer: ".
                     "<br>-------------------------------".$this->jobOffer.
-                    "<br>Administrator: "
-                    ."<br>-------------------------------"..$this->administrator;
+                    "<br>Administrator: ".
+                    "<br>-------------------------------".$this->administrator;
         }
     }
 ?>
