@@ -30,19 +30,18 @@
             return $this->companyList;
         }
 
-        public function DeleteByName($name)
+        public function DeleteById($id)
         {
             $this->RetrieveData();
 
             if(!empty($this->companyList)){
                 foreach($this->companyList as $company){
-                    if(strcmp($company->getName(), $name) == 0){
+                    if($company->getCompanyId() == $id){
                         $index = array_search($company, $this->companyList);
                         unset($this->companyList[$index]);
                     }
                 }
             }
-
             $this->SaveData();
         }
 

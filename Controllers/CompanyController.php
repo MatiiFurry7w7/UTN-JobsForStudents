@@ -39,8 +39,8 @@
             $this->ShowAddView();
         }
 
-        public function Remove($removedName){
-            $this->companyDAO->DeleteByName($removedName);
+        public function Remove($removedId){
+            $this->companyDAO->DeleteById($removedId);
             $this->ShowListView();
         }
 
