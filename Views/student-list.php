@@ -15,7 +15,7 @@
                 <td>Email</td>
         </tr>
 <?php
-        foreach($studentList as $eachStudent){
+        /*foreach($studentList as $eachStudent){
                 echo "<tr>
                         <td style='width: 10px; text-align: center;'>".$eachStudent->getStudentId()."</td>
                         <td>".$eachStudent->getDNI()."</td>
@@ -26,7 +26,7 @@
                         <td>".$eachStudent->getPhoneNumber()."</td>
                         <td>".$eachStudent->getEmail()."</td>
                      </tr>";
-        }
+        }*/
 ?>
         </table>
 </div>

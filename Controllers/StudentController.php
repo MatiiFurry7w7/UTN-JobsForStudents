@@ -14,7 +14,7 @@ class StudentController
         private $studentDAO;
 
         public function __construct(){
-            $this->studentDAO = new StudentDAO();
+            //$this->studentDAO = new StudentDAO();
         }
 
         public function Add($userName, $userPassword){
@@ -29,7 +29,7 @@ class StudentController
         }
 
         public function List(){
-            $studentList = $this->studentDAO->getAll();
+            $studentList = NULL; //$this->studentDAO->getAll();
 
             require_once(VIEWS_PATH."student-list.php");
         }
@@ -38,6 +38,7 @@ class StudentController
             $matiMercado = new Student(1, "Matias", "Mercado", "mati@hotmail.com", 152431512, "Masculine", 43444555, "01/01/2001");
             $matiMercado->setAcademicStatus(new AcademicStatus(8.77, 43444555));
             $matiMercado->setCareer("Analista en Sistemas");
+
             echo $matiMercado;
 
             echo "<br><br> Dedication Example: ".Dedication::FULLTIME;
