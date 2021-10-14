@@ -1,1 +1,12 @@
-[]
+[
+    {
+        "companyId": 1,
+        "name": "MC Donalds",
+        "cuit": "30-71045525-9",
+        "description": "Food restaurant",
+        "website": "https:\/\/www.mcdonalds.com.ar",
+        "address": "Constituci\u00f3n 3950",
+        "aboutUs": "Since 1948.",
+        "active": null
+    }
+]
