@@ -45,6 +45,21 @@
             $this->SaveData();
         }
 
+        public function FindById($id)
+        {
+            $this->RetrieveData();
+
+            if(!empty($this->companyList)){
+                foreach($this->companyList as $company){
+                    if($company->getCompanyId() == $id){
+                        $index = array_search($company, $this->companyList);
+                        $modifyCompany = $this->companyList[$index];
+                    }
+                }
+            }
+            return $modifyCompany;
+        }
+
         private function SaveData()
         {
             $arrayToEncode = array();

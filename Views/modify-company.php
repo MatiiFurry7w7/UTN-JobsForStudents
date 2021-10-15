@@ -20,25 +20,25 @@
       <tbody>
         <tr>
           <td>
-              <input type="text" name="name" placeholder="" required>
+              <input type="text" name="name" placeholder="<?php echo $company->getName();?>" required>
           </td>
           <td>
-              <input type="text" name="cuit" style='width:50px;' required>
+              <input type="text" name="cuit" placeholder="<?php echo $company->getCuit();?>" required>
           </td>
           <td>
-              <input type="text" name="description" required>
+              <input type="text" name="description" placeholder="<?php echo $company->getDescription();?>" required>
           </td>
           <td>
-              <input type="text" name="website" required>
+              <input type="text" name="website" placeholder="<?php echo $company->getWebsite();?>" required>
           </td>
           <td>
-              <input type="text" name="street" required>
+              <input type="text" name="street" placeholder="<?php echo $company->getStreet();?>" required>
           </td> 
           <td>
-              <input type="text" name="number" required>
+              <input type="text" name="number" placeholder="<?php echo $company->getNumber();?>" required>
           </td>
           <td>
-              <input type="text" name="aboutUs" required>
+              <input type="text" name="aboutUs" placeholder="<?php echo $company->getAboutUs();?>" required>
           </td>
           <td>
               <input type="radio" name="isActive" value="true" checked required>Active
