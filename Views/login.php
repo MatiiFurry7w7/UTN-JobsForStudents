@@ -5,7 +5,7 @@
 
 <center>
 <div>
-  <form action="<?php echo FRONT_ROOT ?>Student/Login" method="POST">
+  <form action="<?php echo FRONT_ROOT ?>Student/LogIn" method="POST">
     <table id="loginForm">
       <tr>
         <th colspan="2"><center><h4>Log In</h4></center></th>

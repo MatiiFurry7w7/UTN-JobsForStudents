@@ -49,10 +49,10 @@ class StudentController
 
             $this->studentDAO->add($newStudent);
 
-            header('location: '.FRONT_ROOT.'Student/List');
+            header('location: '.FRONT_ROOT.'Student/ListView');
         }
 
-        public function List(){
+        public function ListView(){
             $studentList = $this->studentDAO->getAll();
 
             require_once(VIEWS_PATH."student-list.php");
