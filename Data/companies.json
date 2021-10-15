@@ -1,49 +1,5 @@
 [
     {
-        "companyId": 1,
-        "name": "MC Donalds",
-        "cuit": "30-71045525-9",
-        "description": "Food restaurant",
-        "website": "https:\/\/www.mcdonalds.com.ar",
-        "street": null,
-        "number": null,
-        "aboutUs": "Since 1948.",
-        "active": null
-    },
-    {
-        "companyId": 2,
-        "name": "Globant",
-        "cuit": "123654779",
-        "description": "Company",
-        "website": "www.globant.com",
-        "street": null,
-        "number": null,
-        "aboutUs": "Globant",
-        "active": "true"
-    },
-    {
-        "companyId": 3,
-        "name": "Globant",
-        "cuit": "123456",
-        "description": "Globant",
-        "website": "www.globant.com",
-        "street": null,
-        "number": null,
-        "aboutUs": "Globant",
-        "active": "true"
-    },
-    {
-        "companyId": 4,
-        "name": "adf",
-        "cuit": "a14687416",
-        "description": "arf",
-        "website": "afdg",
-        "street": null,
-        "number": null,
-        "aboutUs": "adfg",
-        "active": "false"
-    },
-    {
         "companyId": 5,
         "name": "asdf",
         "cuit": "56874",
@@ -53,28 +9,6 @@
         "number": null,
         "aboutUs": "lb",
         "active": ""
-    },
-    {
-        "companyId": 6,
-        "name": "adf",
-        "cuit": "+984dfg",
-        "description": "+84",
-        "website": "yigubpyu",
-        "street": null,
-        "number": null,
-        "aboutUs": "upihnbp",
-        "active": "1"
-    },
-    {
-        "companyId": 7,
-        "name": "dfgbh",
-        "cuit": "zdfb",
-        "description": "dfb",
-        "website": "zfdb",
-        "street": null,
-        "number": null,
-        "aboutUs": "dzfb",
-        "active": true
     },
     {
         "companyId": 8,

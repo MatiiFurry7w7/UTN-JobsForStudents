@@ -3,7 +3,7 @@
   include_once('nav-bar.php');
 ?>
 <div class="wrapper row3">
-  <form action="<?php echo FRONT_ROOT ?>Company/Remove" method="post">
+
     <table id="studentsTable">
       <thead>
         <tr id="tableIndex">
@@ -32,7 +32,8 @@
                   <td><?php echo $company->getNumber() ?></td>
                   <td><?php echo $company->getAboutUs() ?></td>
                   <td>
-                    <button class="btn btn-danger" type="submit" name="removedId" value="<?php echo $company->getCompanyId() ?>"> Remove </button>
+                  <button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>Company/Remove?removeId=<?php echo $company->getCompanyId() ?>'">Remove</button>
+                  <button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>Company/Modify?modifyId=<?php echo $company->getCompanyId() ?>'">Modify</button>
                   </td>
                 </tr>
               <?php
@@ -41,7 +42,7 @@
           ?>
       </tbody>
     </table>
-  </form> 
+
 </div>
 <?php
   include_once('footer.php');

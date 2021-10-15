@@ -44,14 +44,15 @@
 
             $this->ShowAddView();
         }
-
-        public function Remove($removedId){
-            $this->companyDAO->DeleteById($removedId);
+        
+        public function Remove($removeId){
+            $this->companyDAO->DeleteById($removeId);
             $this->ShowListView();
         }
 
-        public function Modify(){
-            
+        public function Modify($modifyId){
+            $company = $this->companyDAO->FindById($modifyId);
+
             require_once(VIEWS_PATH."modify-company.php");
         }
 
