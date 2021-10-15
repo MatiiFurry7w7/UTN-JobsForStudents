@@ -14,12 +14,6 @@
             <h6><a id="link" href="https://www.linkedin.com/company/utnmardelplata">Linkedin</a></h6>
           </div>
           <div id="footerColumn" class="column">
-            <h5>External Links</h5>
-              <h6><a id="link" href="">LINK</a></h6>
-              <h6><a id="link" href="">LINK</a></h6>
-              <h6><a id="link" href="">LINK</a></h6>
-          </div>
-          <div id="footerColumn" class="column">
             <h5>Contact Us</h5>
             <h6>(0223) 480 - 5049</h6>
             <h6>campus@mdp.utn.edu.a</h6>
