@@ -1,14 +1,27 @@
 <?php namespace Models;
 
 class Career{
-
+    private $careerId;
     private $title;
     private $description;
     private $active = true;
 
-    Public function __construct($title, $description){
+    Public function __construct($careerId, $title, $description){
+        $this->careerId= $careerId;
         $this->title= $title;
         $this->description = $description;
+    }
+
+    public function getCareerId()
+    {
+        return $this->careerId;
+    }
+
+    public function setCareerId($careerId)
+    {
+        $this->careerId = $careerId;
+
+        return $this;
     }
     
     public function gettitle()

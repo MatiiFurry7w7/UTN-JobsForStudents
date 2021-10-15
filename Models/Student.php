@@ -12,8 +12,7 @@
         private $career;
         private $academicStatus;
 
-        public function __construct($studentId, $firstName, $lastName, $email, $phoneNumber, $gender, $dNI, $birthDate){
-            $this->studentId = $studentId;
+        public function __construct($firstName, $lastName, $email, $phoneNumber, $gender, $dNI, $birthDate){
             $this->firstName = $firstName;
             $this->lastName = $lastName;
             $this->email = $email;

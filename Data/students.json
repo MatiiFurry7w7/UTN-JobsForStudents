@@ -1,0 +1,28 @@
+[
+    {
+        "studentId": 1,
+        "careerId": "N\/A",
+        "firstName": "Pinku",
+        "lastName": "Protogen",
+        "dni": "43555666",
+        "fileNumber": "N\/A",
+        "gender": "Protogen",
+        "birthDate": "31\/12\/9999",
+        "email": "pinku@protomail.com",
+        "phoneNumber": "9999999999",
+        "active": true
+    },
+    {
+        "studentId": 2,
+        "careerId": "N\/A",
+        "firstName": "Martin",
+        "lastName": "Juarez",
+        "dni": "43777888",
+        "fileNumber": "N\/A",
+        "gender": "Masculine",
+        "birthDate": "30\/6\/2000",
+        "email": "mJuarez@hotmail.com",
+        "phoneNumber": "2235556666",
+        "active": true
+    }
+]

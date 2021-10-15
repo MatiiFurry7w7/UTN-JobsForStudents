@@ -3,7 +3,8 @@
 
     use DAO\StudentDAO as StudentDAO;
     use Models\AcademicStatus as AcademicStatus;
-    use Models\Student as Student;
+use Models\Career;
+use Models\Student as Student;
 
     //WONT USE THESE
     use Models\Dedication as Dedication;
@@ -14,35 +15,56 @@ class StudentController
         private $studentDAO;
 
         public function __construct(){
-            //$this->studentDAO = new StudentDAO();
+            $this->studentDAO = new StudentDAO();
         }
 
-        public function Add($userName, $userPassword){
-            $newStudent = new Student();
-            
-            $newStudent->setUserName($userName);
-            $newStudent->setUserPassword($userPassword);
-    
+        public function LogInView(){
+            session_destroy();
+            require_once(VIEWS_PATH."login.php");
+        }
+
+        public function LogIn($username){
+            //ALL VALIDATIONS IN HERE!!
+                $_SESSION['currentUser'] = $username;
+            //
+            header('location: '.FRONT_ROOT.'Home/Index');
+        }
+
+        public function AddView(){
+            require_once(VIEWS_PATH."add-student.php");
+        }
+
+        public function Add($firstName, $lastName, $email, $phoneNumber, $gender, $dNI, $birthDate){
+            $newStudent = new Student($firstName, $lastName, $email, $phoneNumber, $gender, $dNI, $birthDate);
+
+            $studentList = $this->studentDAO->getAll();
+            $this->setIdByLastId($studentList, $newStudent);
+
+            //DEFAULT VALUES, CHANGE LATER!
+            $newAcademicStatus = new AcademicStatus(true, "N/A", "N/A");
+            $newStudent->setAcademicStatus($newAcademicStatus);
+
+            $newCareer = new Career("N/A", "N/A", "N/A");
+            $newStudent->setCareer($newCareer);
+
             $this->studentDAO->add($newStudent);
 
-            $this->List();
+            header('location: '.FRONT_ROOT.'Student/List');
         }
 
         public function List(){
-            $studentList = NULL; //$this->studentDAO->getAll();
+            $studentList = $this->studentDAO->getAll();
 
             require_once(VIEWS_PATH."student-list.php");
         }
 
-        public function TEST(){
-            $matiMercado = new Student(1, "Matias", "Mercado", "mati@hotmail.com", 152431512, "Masculine", 43444555, "01/01/2001");
-            $matiMercado->setAcademicStatus(new AcademicStatus(8.77, 43444555));
-            $matiMercado->setCareer("Analista en Sistemas");
-
-            echo $matiMercado;
-
-            echo "<br><br> Dedication Example: ".Dedication::FULLTIME;
-            echo "<br> Industry Example: ".Industry::IT;
+        private function setIdByLastId($studentList, $student){
+            if(empty($studentList)){
+                $student->setstudentId(1); 
+             } else {
+                 $lastId = end($studentList)->getStudentId();
+                 $student->setStudentId($lastId + 1);
+             }
         }
     }
 ?> 
