@@ -3,7 +3,7 @@
   include_once('nav-bar.php');
 ?>
 <div class="wrapper row3">
-  <form action="<?php echo FRONT_ROOT ?>Company/Add" method="post">
+  <form action="<?php echo FRONT_ROOT ?>Company/Modify" method="post">
     <table id="studentsTable">
       <thead>
         <tr id="tableIndex">
@@ -20,7 +20,7 @@
       <tbody>
         <tr>
           <td>
-              <input type="text" name="name" required>
+              <input type="text" name="name" placeholder="" required>
           </td>
           <td>
               <input type="text" name="cuit" style='width:50px;' required>
@@ -48,7 +48,7 @@
       </tbody>
     </table>
     <div>
-      <input type="submit" class="btn" value="Add"/>
+      <input type="submit" class="btn" value="Modify"/>
     </div>
   </form>
 </div>

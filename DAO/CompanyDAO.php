@@ -56,7 +56,8 @@
                 $valuesArray["cuit"] = $company->getCuit();
                 $valuesArray["description"] = $company->getDescription();
                 $valuesArray["website"] = $company->getWebsite();
-                $valuesArray["address"] = $company->getAddress();
+                $valuesArray["street"] = $company->getStreet();
+                $valuesArray["number"] = $company->getNumber();
                 $valuesArray["aboutUs"] = $company->getAboutUs();
                 $valuesArray["active"] = $company->getActive();
                 //industries
@@ -90,7 +91,8 @@
                     $company->setCuit($valuesArray["cuit"]);
                     $company->setDescription($valuesArray["description"]);
                     $company->setWebsite($valuesArray["website"]);
-                    $company->setAddress($valuesArray["address"]);
+                    $company->setStreet($valuesArray["street"]);
+                    $company->setNumber($valuesArray["number"]);
                     $company->setAboutUs($valuesArray["aboutUs"]);
                     $company->setActive($valuesArray["active"]);
                     //industries

@@ -7,7 +7,8 @@
         private $cuit;
         private $description;
         private $website;
-        private $address;
+        private $street;
+        private $number;
         private $aboutUs;
         private $active;
         private $industries; //relation one to many
@@ -15,8 +16,7 @@
         private $administrator; //relation one to one
 
         //CONSTRUCTOR
-        // public function __construct($companyId, $name, $cuit, $description, $website, $address, $aboutUs, $active) {
-        //     $this->companyId = $companyId;
+        // public function __construct($name, $cuit, $description, $website, $address, $aboutUs, $active) {
         //     $this->name = $name;
         //     $this->cuit = $cuit;
         //     $this->description = $description;
@@ -67,12 +67,20 @@
             $this->website = $website;
         }
 
-        public function getAddress() {
-            return $this->address;
+        public function getStreet() {
+            return $this->street;
         }
 
-        public function setAddress($address) {
-            $this->address = $address;
+        public function setStreet($street) {
+            $this->street = $street;
+        }
+
+        public function getNumber() {
+            return $this->number;
+        }
+
+        public function setNumber($number) {
+            $this->number = $number;
         }
 
         public function getAboutUs() {

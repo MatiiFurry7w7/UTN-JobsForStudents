@@ -11,26 +11,32 @@
             <td>CUIT</td>
             <td>Description</td>
             <td>Website</td>
-            <td>Address</td>
+            <td>Street</td>
+            <td>Number</td>
             <td>About Us</td>
+            <!--solo ver boton remove/modify sólo para administradores-->
+            <td></td>
         </tr>
       </thead>
       <tbody>
         <?php
           foreach($companyList as $company){
-                ?>
-                    <tr>
-                      <td><?php echo $company->getName() ?></td>
-                      <td><?php echo $company->getCuit() ?></td>
-                      <td><?php echo $company->getDescription() ?></td>
-                      <td><?php echo $company->getWebsite() ?></td>
-                      <td><?php echo $company->getAddress() ?></td>
-                      <td><?php echo $company->getAboutUs() ?></td>
-                      <td>
-                      <button type="submit" name="removedId" value="<?php echo $company->getCompanyId() ?>"> Remove </button>
-                      </td>
-                    </tr>
-                <?php
+            if($company->getActive() == true){
+              ?>
+                <tr>
+                  <td><?php echo $company->getName() ?></td>
+                  <td><?php echo $company->getCuit() ?></td>
+                  <td><?php echo $company->getDescription() ?></td>
+                  <td><a style="text-decoration: none; color:black;" href="<?php echo $company->getWebsite() ?>"><?php echo $company->getWebsite() ?></a></td>
+                  <td><?php echo $company->getStreet() ?></td>
+                  <td><?php echo $company->getNumber() ?></td>
+                  <td><?php echo $company->getAboutUs() ?></td>
+                  <td>
+                    <button class="btn btn-danger" type="submit" name="removedId" value="<?php echo $company->getCompanyId() ?>"> Remove </button>
+                  </td>
+                </tr>
+              <?php
+            }     
           }
           ?>
       </tbody>

@@ -21,8 +21,9 @@
             require_once(VIEWS_PATH."company-list.php");
         }
 
-        public function Add($name, $cuit, $description, $website, $address, $aboutUs){
+        public function Add($name, $cuit, $description, $website, $street, $number, $aboutUs, $active){
             $company = new Company();
+            
             $companyList = $this->companyDAO->GetAll();
 
             $this->setIdByLastId($companyList, $company);
@@ -31,8 +32,13 @@
             $company->setCuit($cuit);
             $company->setDescription($description);
             $company->setWebsite($website);
-            $company->setAddress($address);
+            $company->setStreet($street);
+            $company->setNumber($number);
             $company->setAboutUs($aboutUs);
+            
+            $active = $this->activeToBoolean($active);
+
+            $company->setActive($active);
 
             $this->companyDAO->Add($company);
 
@@ -44,6 +50,11 @@
             $this->ShowListView();
         }
 
+        public function Modify(){
+            
+            require_once(VIEWS_PATH."modify-company.php");
+        }
+
         private function setIdByLastId($companyList, $company){
             if(empty($companyList)){
                 $company->setCompanyId(1); 
@@ -51,6 +62,15 @@
                  $lastId = end($companyList)->getCompanyId();
                  $company->setCompanyId($lastId + 1);
              }
+        }
+
+        private function activeToBoolean($active){
+            if($active == "true"){
+                $active = true;
+            } else {
+                $active = false;
+            }
+            return $active;
         }
     }
 ?>
