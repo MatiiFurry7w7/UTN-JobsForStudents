@@ -33,7 +33,7 @@
                   <td><?php echo $company->getAboutUs() ?></td>
                   <td>
                   <button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>Company/Remove?removeId=<?php echo $company->getCompanyId() ?>'">Remove</button>
-                  <button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>Company/Modify?modifyId=<?php echo $company->getCompanyId() ?>'">Modify</button>
+                  <button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>Company/ModifyView?modifyId=<?php echo $company->getCompanyId() ?>'">Modify</button>
                   </td>
                 </tr>
               <?php

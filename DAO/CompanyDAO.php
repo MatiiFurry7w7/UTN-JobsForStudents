@@ -60,6 +60,19 @@
             return $modifyCompany;
         }
 
+        public function ModifyById($id, $name, $cuit, $description, $website, $street, $number, $aboutUs, $active)
+        {
+            $modifyCompany = $this->FindById($id);
+            $modifyCompany->setName($name);
+            $modifyCompany->setCuit($cuit);
+            $modifyCompany->setDescription($description);
+            $modifyCompany->setWebsite($website);
+            $modifyCompany->setStreet($street);
+            $modifyCompany->setNumber($number);
+            $modifyCompany->setAboutUs($aboutUs);
+            $modifyCompany->setActive($active);      
+        }
+
         private function SaveData()
         {
             $arrayToEncode = array();

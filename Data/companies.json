@@ -1,57 +1,13 @@
 [
     {
-        "companyId": 5,
-        "name": "asdf",
-        "cuit": "56874",
-        "description": ",gjhv",
-        "website": "lhb",
-        "street": null,
-        "number": null,
-        "aboutUs": "lb",
-        "active": ""
-    },
-    {
-        "companyId": 8,
-        "name": "asdf",
-        "cuit": "asdf",
-        "description": "adsf",
-        "website": "adfs",
-        "street": null,
-        "number": null,
-        "aboutUs": "adf",
-        "active": "true"
-    },
-    {
-        "companyId": 9,
-        "name": "adf",
-        "cuit": "adgf",
-        "description": "afds",
-        "website": "vhylbi",
-        "street": null,
-        "number": null,
-        "aboutUs": "ib\u00f1",
-        "active": "true"
-    },
-    {
-        "companyId": 10,
-        "name": "adf",
-        "cuit": "adgf",
-        "description": "azsdgf",
-        "website": "asdgfv",
-        "street": null,
-        "number": null,
-        "aboutUs": "sadgf",
+        "companyId": 1,
+        "name": "Globant",
+        "cuit": "1236547989",
+        "description": "empresa",
+        "website": "www.globant.com",
+        "street": "Colon",
+        "number": "132",
+        "aboutUs": "Somos Globant",
         "active": true
-    },
-    {
-        "companyId": 11,
-        "name": "gfbhn",
-        "cuit": "xfgbn",
-        "description": "xgfhbn",
-        "website": "xfgbh n",
-        "street": "xsfgbn",
-        "number": "fgnb",
-        "aboutUs": "xfgvbn",
-        "active": false
     }
 ]
