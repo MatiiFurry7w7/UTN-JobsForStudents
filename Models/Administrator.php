@@ -6,18 +6,18 @@ class Administrator{
     private $password;
     private $username;
 
-    Public function __construct($id, $password, $username){
-        $this->$id= $id;
+    Public function __construct(/*$id,*/ $password, $username){
+        //$this->$id= $id;
         $this->$password= $password;
         $this->$username= $username;
     }
 
-    public function getid()
+    public function getAdministratorId()
     {
         return $this->id;
     }
 
-    public function setid($id)
+    public function setAdministratorId($id)
     {
         $this->id = $id;
 
