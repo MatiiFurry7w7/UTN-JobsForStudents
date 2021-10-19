@@ -3,7 +3,7 @@
   include_once('nav-bar.php');
 ?>
 
-  <center style="margin-top: 30px;"><h1>HELLO! <?php echo $_SESSION['currentUser'] ?></h1></center>
+<h5 style="margin-top: 30px;">WELLCOME <?php echo $_SESSION['currentUser'] ?></h5>
 
 <?php
   include_once('footer.php');

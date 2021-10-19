@@ -51,6 +51,48 @@ class StudentDAO implements IStudentDAO{
             return $this->studentList;            
         }
 
+        //TEST
+        public function loadFromAPI(){
+            //Empty List
+            $this->studentList = array();
+
+            //CURL
+            $url = curl_init();
+            //Sets URL
+            curl_setopt($url, CURLOPT_URL, 'https://utn-students-api.herokuapp.com/api/Student');
+            //Sets Header key
+            curl_setopt($url, CURLOPT_HTTPHEADER, array('x-api-key:4f3bceed-50ba-4461-a910-518598664c08'));
+            curl_setopt($url, CURLOPT_RETURNTRANSFER, 1);
+
+            $response = curl_exec($url);
+            $toJson = json_decode($response);
+
+            foreach($toJson as $each){
+                //$career = GETCAREERBYID
+                $newStudent = new Student
+                ($each->firstName, 
+                $each->lastName,
+                $each->email,
+                $each->phoneNumber,
+                $each->gender,
+                $each->dni,
+                $each->birthDate);
+                $newStudent->setStudentId($each->studentId);
+
+                //FIX CAREER
+                $newCareer = new Career($each->careerId, "FOO", "BAR");
+                $newStudent->setCareer($newCareer);
+
+                $newAcademicStatus = new AcademicStatus($each->active, "N/A", $each->fileNumber);
+                $newStudent->setAcademicStatus($newAcademicStatus);
+
+                array_push($this->studentList, $newStudent);
+            }
+
+            //Save changes
+            $this->saveData();
+        }
+
         //PRIVATE -------------------------------------------------
 
         //Save array to file
@@ -59,18 +101,18 @@ class StudentDAO implements IStudentDAO{
             $encodingArray = array();
 
             //Each Student->value will be saved in the encoding array
-            foreach($this->studentList as $eachStudent){
-                $arrayValue['studentId'] = $eachStudent->getStudentId();
-                $arrayValue['careerId'] = $eachStudent->getCareer()->getCareerId();
-                $arrayValue['firstName'] = $eachStudent->getFirstName();
-                $arrayValue['lastName'] = $eachStudent->getLastName();
-                $arrayValue['dni'] = $eachStudent->getDNI();
-                $arrayValue['fileNumber'] = $eachStudent->getAcademicStatus()->getFileNumber();
-                $arrayValue['gender'] = $eachStudent->getGender();
-                $arrayValue['birthDate'] = $eachStudent->getBirthDate();
-                $arrayValue['email'] = $eachStudent->getEmail();
-                $arrayValue['phoneNumber'] = $eachStudent->getPhoneNumber();
-                $arrayValue['active'] = $eachStudent->getAcademicStatus()->getActive();
+            foreach($this->studentList as $each){
+                $arrayValue['studentId'] = $each->getStudentId();
+                $arrayValue['careerId'] = $each->getCareer()->getCareerId();
+                $arrayValue['firstName'] = $each->getFirstName();
+                $arrayValue['lastName'] = $each->getLastName();
+                $arrayValue['dni'] = $each->getDNI();
+                $arrayValue['fileNumber'] = $each->getAcademicStatus()->getFileNumber();
+                $arrayValue['gender'] = $each->getGender();
+                $arrayValue['birthDate'] = $each->getBirthDate();
+                $arrayValue['email'] = $each->getEmail();
+                $arrayValue['phoneNumber'] = $each->getPhoneNumber();
+                $arrayValue['active'] = $each->getAcademicStatus()->getActive();
 
                 array_push($encodingArray, $arrayValue);
             }
@@ -117,6 +159,5 @@ class StudentDAO implements IStudentDAO{
                 }
             }
         }
-
     }
 ?>

@@ -3,12 +3,8 @@
 
     use DAO\StudentDAO as StudentDAO;
     use Models\AcademicStatus as AcademicStatus;
-use Models\Career;
-use Models\Student as Student;
-
-    //WONT USE THESE
-    use Models\Dedication as Dedication;
-    use Models\Industry as Industry;
+    use Models\Career;
+    use Models\Student as Student;
 
 class StudentController
     {
@@ -25,8 +21,13 @@ class StudentController
 
         public function LogIn($username){
             //ALL VALIDATIONS IN HERE!!
-                $_SESSION['currentUser'] = $username;
-            //
+            $studentList = $this->studentDAO->getAll();
+            foreach($studentList as $eachStudent){
+                if($eachStudent->getEmail() == $username){
+                    $_SESSION['currentUser'] = $eachStudent;
+                }
+            }
+            
             header('location: '.FRONT_ROOT.'Home/Index');
         }
 
@@ -65,6 +66,13 @@ class StudentController
                  $lastId = end($studentList)->getStudentId();
                  $student->setStudentId($lastId + 1);
              }
+        }
+
+        //DELETES THE LIST AND FILLS WITH THE API DATA
+        public function updateFromAPI(){
+            $this->studentDAO->loadFromAPI();
+
+            header('location_ '.FRONT_ROOT.'Home/Index');
         }
     }
 ?> 
