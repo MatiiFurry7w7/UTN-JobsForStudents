@@ -68,6 +68,25 @@ class StudentController
              }
         }
 
+        private function getStudentById($id){
+            $studentList = $this->studentDAO->getAll();
+
+            $student = null;
+
+            foreach($studentList as $eachStudent){
+                if($eachStudent->getStudentId() == $id)
+                    $student = $eachStudent;
+            }
+
+            return $student;
+        }
+
+        public function ProfileView($studentId){
+            $student = $this->getStudentById($studentId);
+
+            require_once(VIEWS_PATH."student-profile.php");
+        }
+
         //DELETES THE LIST AND FILLS WITH THE API DATA
         public function updateFromAPI(){
             $this->studentDAO->loadFromAPI();
