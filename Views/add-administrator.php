@@ -10,12 +10,12 @@
             <th colspan="2"><center><h4>Adding Administrator</h4></center></th>
           </tr>
           <tr>
-            <td style="width: 200px;"><label for="firstName">Username</label></td> 
-            <td style="width: 10px;"><input type="text" name="firstName"></td>
+            <td style="width: 200px;"><label for="userName">Username</label></td> 
+            <td style="width: 10px;"><input type="text" name="userName"></td>
           </tr>            
           <tr>
-            <td><label for="lastName">Password</label></td>
-            <td><input type="text" name="lastName"></td>
+            <td><label for="passWord">Password</label></td>
+            <td><input type="password" name="passWord"></td>
           </tr>     
           <tr>
             <td colspan="2"><button type="submit" class="btn btn-primary">Add</button></td>

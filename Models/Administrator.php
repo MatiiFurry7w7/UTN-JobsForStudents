@@ -6,8 +6,7 @@ class Administrator{
     private $password;
     private $username;
 
-    Public function __construct(/*$id,*/ $password, $username){
-        //$this->$id= $id;
+    Public function __construct( $password, $username){
         $this->$password= $password;
         $this->$username= $username;
     }

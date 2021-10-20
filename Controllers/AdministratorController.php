@@ -29,8 +29,8 @@
             require_once(VIEWS_PATH."add-Administrator.php");
         }
 
-        public function Add($id, $password, $username){
-            $newAdministrator = new Administrator($id, $password, $username);
+        public function Add($password, $username){
+            $newAdministrator = new Administrator( $username, $password);
 
             $AdministratorList = $this->administratorDao->getAll();
             $this->setIdByLastId($AdministratorList, $newAdministrator);
