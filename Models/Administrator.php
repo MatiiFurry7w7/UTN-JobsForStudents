@@ -7,8 +7,8 @@ class Administrator{
     private $username;
 
     Public function __construct($username, $password){
-        $this->$password= $password;
-        $this->$username= $username;
+        $this->password= $password;
+        $this->username= $username;
     }
 
     public function getAdministratorId()
@@ -48,7 +48,8 @@ class Administrator{
     }
 
     public function __tostring(){
-        return "<br>username: ".$this->username.
+        return "<br>Username: ".$this->username.
+               "<br>Password: ".$this->password.
                "<br>ID: ".$this->id;
     }
 }

@@ -2,13 +2,13 @@
         include_once('header.php');
         include_once('nav-bar.php');
 ?>
+<center>
 <div class="wrapper row3">
 <table id="AdministratorsTable">
         <tr id="tableIndex">
                 <td style='width: 10px;'>ID</td>
                 <td>UserName</td>
                 <td>Password</td>
-                <td>ID</td>
                 <td><button class="btn btn-primary" onclick="window.location.href='<?php echo FRONT_ROOT ?>Administrator/AddView'">Add</button>
         </tr>
         <?php
@@ -22,6 +22,7 @@
         <?php } ?>
         </table>
 </div>
+</center>
 <?php
         include_once('footer.php');
 ?>
