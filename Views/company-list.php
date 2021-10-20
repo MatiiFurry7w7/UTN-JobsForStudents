@@ -16,6 +16,7 @@
             <td>About Us</td>
             <!--solo ver boton remove/modify sólo para administradores-->
             <td></td>
+            <td></td>
         </tr>
       </thead>
       <tbody>
@@ -31,10 +32,8 @@
                   <td><?php echo $company->getStreet() ?></td>
                   <td><?php echo $company->getNumber() ?></td>
                   <td><?php echo $company->getAboutUs() ?></td>
-                  <td>
-                  <button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>Company/Remove?removeId=<?php echo $company->getCompanyId() ?>'">Remove</button>
-                  <button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>Company/ModifyView?modifyId=<?php echo $company->getCompanyId() ?>'">Modify</button>
-                  </td>
+                  <td><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>Company/Remove?removeId=<?php echo $company->getCompanyId() ?>'">Remove</button></td>
+                  <td><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>Company/ModifyView?modifyId=<?php echo $company->getCompanyId() ?>'">Modify</button></td>
                 </tr>
               <?php
             }     
@@ -42,7 +41,8 @@
           ?>
       </tbody>
     </table>
-
+    <br>
+    <button class="btn btn-success" onclick="window.location.href='<?php echo FRONT_ROOT ?>Company/ShowAddView'" style="float: right;" >Go to Add View</button>
 </div>
 <?php
   include_once('footer.php');

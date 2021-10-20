@@ -60,9 +60,10 @@
             return $modifyCompany;
         }
 
-        public function ModifyById($id, $name, $cuit, $description, $website, $street, $number, $aboutUs, $active)
+        public function ModifyById($companyId, $name, $cuit, $description, $website, $street, $number, $aboutUs, $active)
         {
-            $modifyCompany = $this->FindById($id);
+            $modifyCompany = $this->FindById($companyId);
+
             $modifyCompany->setName($name);
             $modifyCompany->setCuit($cuit);
             $modifyCompany->setDescription($description);
