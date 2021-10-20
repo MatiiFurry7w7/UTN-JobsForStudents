@@ -16,7 +16,7 @@
                 echo "<tr>
                         <td style='max-width: 10px; text-align: center;'>".$eachAdministrator->getAdministratorId()."</td>
                         <td style='max-width: 100px;'>".$eachAdministrator->getUserName()."</td>
-                        <td style='max-width: 230px;'>".$eachAdministrator->getPassWord()."</td>"; ?>
+                        <td style='max-width: 230px;'>".$eachAdministrator->getpassword()."</td>"; ?>
                         <td><button class="btn btn-warning" onclick="window.location.href='<?php echo FRONT_ROOT ?>Administrator/ProfileView?AdministratorId=<?php echo $eachAdministrator->getAdministratorId()?>'">Profile</button>                     
                 </tr>
         <?php } ?>

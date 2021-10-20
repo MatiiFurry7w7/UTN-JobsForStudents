@@ -6,7 +6,7 @@ class Administrator{
     private $password;
     private $username;
 
-    Public function __construct( $password, $username){
+    Public function __construct($username, $password){
         $this->$password= $password;
         $this->$username= $username;
     }
@@ -23,12 +23,12 @@ class Administrator{
         return $this;
     }
 
-    public function getPassWord()
+    public function getpassword()
     {
         return $this->password;
     }
 
-    public function setPassWord($password)
+    public function setpassword($password)
     {
         $this->password = $password;
 
