@@ -86,7 +86,9 @@
             $modifyCompany->setStreet($street);
             $modifyCompany->setNumber($number);
             $modifyCompany->setAboutUs($aboutUs);
-            $modifyCompany->setActive($active);      
+            $modifyCompany->setActive($active);
+
+            $this->SaveData();
         }
 
         private function SaveData()
