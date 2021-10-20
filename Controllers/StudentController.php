@@ -91,7 +91,7 @@ class StudentController
         public function updateFromAPI(){
             $this->studentDAO->loadFromAPI();
 
-            header('location_ '.FRONT_ROOT.'Home/Index');
+            header('location:'.echo FRONT_ROOT.'Student/ListView');
         }
     }
 ?> 
