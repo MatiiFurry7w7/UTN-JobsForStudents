@@ -35,12 +35,12 @@ class Administrator{
         return $this;
     }
 
-    public function getUserName()
+    public function getusername()
     {
         return $this->username;
     }
 
-    public function setUserName($username)
+    public function setusername($username)
     {
         $this->username = $username;
 
