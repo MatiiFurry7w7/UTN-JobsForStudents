@@ -15,7 +15,7 @@
             require_once(VIEWS_PATH."add-company.php");
         }
 
-        public function ShowListView(){
+        public function ShowListView($searchedCompany = ""){
             $companyList = $this->companyDAO->GetAll();
 
             require_once(VIEWS_PATH."company-list.php");
@@ -56,9 +56,9 @@
             require_once(VIEWS_PATH."modify-company.php");
         }
 
-        public function ModifyCompany($id, $name, $cuit, $description, $website, $street, $number, $aboutUs, $active){
-            //no se recibe el if
-            $this->companyDAO->ModifyById($id, $name, $cuit, $description, $website, $street, $number, $aboutUs, $active);
+        public function ModifyACompany($companyId, $name, $cuit, $description, $website, $street, $number, $aboutUs, $active){
+            //no recibe el id
+            $this->companyDAO->ModifyById($companyId, $name, $cuit, $description, $website, $street, $number, $aboutUs, $active);
             
             $this->ShowListView();
         }

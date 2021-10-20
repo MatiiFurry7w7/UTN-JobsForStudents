@@ -45,6 +45,21 @@
             $this->SaveData();
         }
 
+        public function SearchByName($name)
+        {
+            $this->RetrieveData();
+
+            if(!empty($this->companyList)){
+                foreach($this->companyList as $company){
+                    if($company->getName() == $name){
+                        $index = array_search($company, $this->companyList);
+                        $searchedCompany = $this->companyList[$index];
+                    }
+                }
+            } 
+            return $searchedCompany;
+        }
+
         public function FindById($id)
         {
             $this->RetrieveData();
@@ -60,9 +75,10 @@
             return $modifyCompany;
         }
 
-        public function ModifyById($id, $name, $cuit, $description, $website, $street, $number, $aboutUs, $active)
+        public function ModifyById($companyId, $name, $cuit, $description, $website, $street, $number, $aboutUs, $active)
         {
-            $modifyCompany = $this->FindById($id);
+            $modifyCompany = $this->FindById($companyId);
+
             $modifyCompany->setName($name);
             $modifyCompany->setCuit($cuit);
             $modifyCompany->setDescription($description);

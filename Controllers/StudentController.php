@@ -19,11 +19,11 @@ class StudentController
             require_once(VIEWS_PATH."login.php");
         }
 
-        public function LogIn($username){
+        public function LogIn($userName){
             //ALL VALIDATIONS IN HERE!!
             $studentList = $this->studentDAO->getAll();
             foreach($studentList as $eachStudent){
-                if($eachStudent->getEmail() == $username){
+                if($eachStudent->getEmail() == $userName){
                     $_SESSION['currentUser'] = $eachStudent;
                 }
             }

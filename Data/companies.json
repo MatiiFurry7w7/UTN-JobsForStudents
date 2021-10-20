@@ -1,13 +1,24 @@
 [
     {
         "companyId": 1,
-        "name": "Globant",
-        "cuit": "1236547989",
-        "description": "empresa",
-        "website": "www.globant.com",
-        "street": "Colon",
-        "number": "132",
-        "aboutUs": "Somos Globant",
+        "name": "Lobo Marino",
+        "cuit": "123456789",
+        "description": "Empresa",
+        "website": "www.lobomarino.com",
+        "street": "Av. Luro",
+        "number": "123",
+        "aboutUs": "Empresa",
+        "active": true
+    },
+    {
+        "companyId": 2,
+        "name": "Carpincho",
+        "cuit": "123456789",
+        "description": "Empresa",
+        "website": "www.carpincho.com",
+        "street": "Puan",
+        "number": "123",
+        "aboutUs": "Empresa",
         "active": true
     }
 ]
