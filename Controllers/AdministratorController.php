@@ -1,16 +1,16 @@
 <?php
     namespace Controllers;
 
-    use DAO\AdministratorDAO as AdministratorDAO;
+    use DAO\administratorDAO as administratorDAO;
     
     use Models\Administrator as Administrator;
 
     class AdministratorController
     {
-        private $administratorDao;
+        private $administratorDAO;
 
         public function __construct(){
-            $this->administratorDao = new AdministratorDAO();
+            $this->administratorDAO = new administratorDAO();
         }
 
         public function LogInView(){
@@ -29,13 +29,13 @@
             require_once(VIEWS_PATH."add-Administrator.php");
         }
 
-        public function Add($password, $username){
-            $newAdministrator = new Administrator( $username, $password);
+        public function Add($username, $password){
+            $newAdministrator = new Administrator($username, $password);
 
-            $AdministratorList = $this->administratorDao->getAll();
+            $AdministratorList = $this->administratorDAO->getAll();
             $this->setIdByLastId($AdministratorList, $newAdministrator);
 
-            $this->administratorDao->add($newAdministrator);
+            $this->administratorDAO->add($newAdministrator);
 
             header('location: '.FRONT_ROOT.'Administrator/ListView');
         }
@@ -49,7 +49,7 @@
         }
         public function ListView(){
             
-            $AdministratorList = $this->administratorDao->getAll();
+            $AdministratorList = $this->administratorDAO->getAll();
 
             require_once(VIEWS_PATH."Administrator-list.php");
         }
