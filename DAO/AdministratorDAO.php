@@ -23,9 +23,9 @@ class AdministratorDAO implements IAdministratorDAO{
         public function deleteById($id){
             $this->loadData();
             if(!empty($this->administratorList)){
-                foreach($this->administratorList as $Administrator){
-                    if($Administrator->getAdministratorId() == $id){
-                        $index = array_search($Administrator, $this->administratorList);
+                foreach($this->administratorList as $administrator){
+                    if($administrator->getAdministratorId() == $id){
+                        $index = array_search($administrator, $this->administratorList);
                         unset($this->administratorList[$index]);
                     }
                 }
@@ -43,9 +43,9 @@ class AdministratorDAO implements IAdministratorDAO{
             $encodingArray = array();
 
             foreach($this->administratorList as $eachAdministrator){
-                $arrayValue['AdministratorId'] = $eachAdministrator->getAdministratorId();
-                $arrayValue['password'] = $eachAdministrator->getpassword();
-                $arrayValue['username'] = $eachAdministrator->getusername();
+                $arrayValue['administratorId'] = $eachAdministrator->getAdministratorId();
+                $arrayValue['password'] = $eachAdministrator->getPassword();
+                $arrayValue['userName'] = $eachAdministrator->getUserName();
 
                 array_push($encodingArray, $arrayValue);
             }
@@ -67,13 +67,13 @@ class AdministratorDAO implements IAdministratorDAO{
                 
                 foreach($decodingArray as $eachValue){
                     $password = $eachValue["password"];
-                    $username = $eachValue["username"];
+                    $userName = $eachValue["userName"];
 
-                    $Administrator = new Administrator($username, $password);
+                    $administrator = new Administrator($userName, $password);
 
-                    $Administrator->setAdministratorId($eachValue['AdministratorId']);
+                    $administrator->setAdministratorId($eachValue['administratorId']);
 
-                    array_push($this->administratorList, $Administrator);
+                    array_push($this->administratorList, $administrator);
                 }
             }
         }

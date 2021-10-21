@@ -23,24 +23,24 @@ class Administrator{
         return $this;
     }
 
-    public function getpassword()
+    public function getPassword()
     {
         return $this->password;
     }
 
-    public function setpassword($password)
+    public function setpPssword($password)
     {
         $this->password = $password;
 
         return $this;
     }
 
-    public function getusername()
+    public function getUserName()
     {
         return $this->username;
     }
 
-    public function setusername($username)
+    public function setUserName($username)
     {
         $this->username = $username;
 
