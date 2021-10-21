@@ -2,24 +2,31 @@
     namespace Models;
 
     class jobPosition {
-        private $idJobPosition;
+        private $jobPositionId;
+        private $careerId;
         private $description;
-        private $title;
 
         //CONSTRUCTOR
-        public function __construct($idJobPosition, $description, $title) { 
-            $this->idJobPosition = $idJobPosition;
-            $this->description = $description;
-            $this->title = $title;
-        }
+        // public function __construct($careerId, $description) { 
+        //     $this->careerId = $careerId;
+        //     $this->description = $description;
+        // }
 
         //GETTERS & SETTERS
-        public function getIdJobPosition() {
-            return $this->idJobPosition;
+        public function getJobPositionId() {
+            return $this->jobPositionId;
         }
 
-        public function setIdJobPosition($idJobPosition) {
-            $this->idJobPosition = $idJobPosition;
+        public function setJobPositionId($jobPositionId) {
+            $this->jobPositionId = $jobPositionId;
+        }
+
+        public function getCareerId() {
+            return $this->careerId;
+        }
+
+        public function setCareerId($careerId) {
+            $this->careerId = $careerId;
         }
 
         public function getDescription() {
@@ -30,19 +37,11 @@
             $this->description = $description;
         }
 
-        public function getTitle() {
-            return $this->title;
-        }
-
-        public function setTitle($title) {
-            $this->title = $title;
-        }
-
         //TO STRING METHOD
         public function __toString() {
-            return  "<br>ID: ".$this->idJobPosition.
-                    "<br>Description: ".$this->description.
-                    "<br>Title: ".$this->title;
+            return  "<br>ID: ".$this->jobPositionId.
+                    "<br>Career ID: ".$this->careerId.
+                    "<br>Description: ".$this->description;
         }
     }
 ?>
