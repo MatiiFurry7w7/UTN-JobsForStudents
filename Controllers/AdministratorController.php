@@ -18,40 +18,40 @@
             require_once(VIEWS_PATH."login.php");
         }
 
-        public function LogIn($username){
+        public function LogIn($userName){
             
-                $_SESSION['currentUser'] = $username;
+                $_SESSION['currentUser'] = $userName;
             
             header('location: '.FRONT_ROOT.'Home/Index');
         }
 
         public function AddView(){
-            require_once(VIEWS_PATH."add-Administrator.php");
+            require_once(VIEWS_PATH."add-administrator.php");
         }
 
-        public function Add($username, $password){
-            $newAdministrator = new Administrator($username, $password);
+        public function Add($userName, $password){
+            $newAdministrator = new Administrator($userName, $password);
 
-            $AdministratorList = $this->administratorDAO->getAll();
-            $this->setIdByLastId($AdministratorList, $newAdministrator);
+            $administratorList = $this->administratorDAO->getAll();
+            $this->setIdByLastId($administratorList, $newAdministrator);
 
             $this->administratorDAO->add($newAdministrator);
 
-            header('location: '.FRONT_ROOT.'Administrator/ListView');
+            header('location: '.FRONT_ROOT.'administrator/ListView');
         }
-        private function setIdByLastId($AdministratorList, $Administrator){
-            if(empty($AdministratorList)){
-                $Administrator->setAdministratorId(1); 
+        private function setIdByLastId($administratorList, $administrator){
+            if(empty($administratorList)){
+                $administrator->setAdministratorId(1); 
              } else {
-                 $lastId = end($AdministratorList)->getAdministratorId();
-                 $Administrator->setAdministratorId($lastId + 1);
+                 $lastId = end($administratorList)->getAdministratorId();
+                 $administrator->setAdministratorId($lastId + 1);
              }
         }
         public function ListView(){
             
-            $AdministratorList = $this->administratorDAO->getAll();
+            $administratorList = $this->administratorDAO->getAll();
 
-            require_once(VIEWS_PATH."Administrator-list.php");
+            require_once(VIEWS_PATH."administrator-list.php");
         }
 
       

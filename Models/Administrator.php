@@ -2,23 +2,23 @@
 
 class Administrator{
 
-    private $id;
+    private $adminId;
+    private $userName;
     private $password;
-    private $username;
 
-    Public function __construct($username, $password){
+    Public function __construct($userName, $password){
+        $this->userName= $userName;
         $this->password= $password;
-        $this->username= $username;
     }
 
     public function getAdministratorId()
     {
-        return $this->id;
+        return $this->adminId;
     }
 
-    public function setAdministratorId($id)
+    public function setAdministratorId($adminId)
     {
-        $this->id = $id;
+        $this->adminId = $adminId;
 
         return $this;
     }
@@ -28,7 +28,7 @@ class Administrator{
         return $this->password;
     }
 
-    public function setpPssword($password)
+    public function setPassword($password)
     {
         $this->password = $password;
 
@@ -37,18 +37,18 @@ class Administrator{
 
     public function getUserName()
     {
-        return $this->username;
+        return $this->userName;
     }
 
-    public function setUserName($username)
+    public function setUserName($userName)
     {
-        $this->username = $username;
+        $this->userName = $userName;
 
         return $this;
     }
 
     public function __tostring(){
-        return "<br>Username: ".$this->username.
+        return "<br>Username: ".$this->userName.
                "<br>Password: ".$this->password.
                "<br>ID: ".$this->id;
     }
