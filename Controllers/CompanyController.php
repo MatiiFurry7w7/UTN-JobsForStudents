@@ -80,5 +80,47 @@
             }
             return $active;
         }
+
+        private function showCompany($company) {
+            ?>
+            <tr>
+              <td><?php echo $company->getName() ?></td>
+              <td><?php echo $company->getCuit() ?></td>
+              <td><?php echo $company->getDescription() ?></td>
+              <td><a style="text-decoration: none; color:black;" href="<?php echo $company->getWebsite() ?>"><?php echo $company->getWebsite() ?></a></td>
+              <td><?php echo $company->getStreet() ?></td>
+              <td><?php echo $company->getNumber() ?></td>
+              <td><?php echo $company->getAboutUs() ?></td>
+            <?php
+                if($_SESSION['currentUser'] instanceof Administrator) {
+                ?>
+                    <td><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>Company/Remove?removeId=<?php echo $company->getCompanyId() ?>'">Remove</button></td>
+                    <td><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>Company/ModifyView?modifyId=<?php echo $company->getCompanyId() ?>'">Modify</button></td>
+                <?php
+                }
+                ?>
+              </tr>
+            <?php
+        } 
+
+        public function companyFilter($searchedCompany, $companyList) {
+            $i = 0;
+            if($searchedCompany != ""){
+                foreach($companyList as $company){
+                    if(strpos($company->getName(), $searchedCompany) !== false && $company->getActive() == true){
+                        $i++;
+                        $this->showCompany($company);
+                    }
+                }
+            }else{
+                foreach($companyList as $company){
+                if($company->getActive() == true){
+                    $i++;
+                    $this->showCompany($company);
+                }     
+                }   
+            }
+            echo "<br><b>There are ".$i." Result/s!</b>";
+        }
     }
 ?>

@@ -130,7 +130,6 @@
 
                 foreach($arrayToDecode as $valuesArray)
                 {
-                    
                     $company = new Company();
                     $company->setCompanyId($valuesArray["companyId"]);
                     $company->setName($valuesArray["name"]);
