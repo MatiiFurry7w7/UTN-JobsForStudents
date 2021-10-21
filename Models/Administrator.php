@@ -48,9 +48,9 @@ class Administrator{
     }
 
     public function __tostring(){
-        return "<br>Username: ".$this->userName.
-               "<br>Password: ".$this->password.
-               "<br>ID: ".$this->id;
+        return "<br>ID: ".$this->adminId.
+               "<br>Username: ".$this->userName.
+               "<br>Password: ".$this->password;
     }
 }
 
