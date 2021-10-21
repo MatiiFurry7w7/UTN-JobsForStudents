@@ -3,6 +3,7 @@
 
     use DAO\CompanyDAO as CompanyDAO;
     use Models\Company as Company;
+    use Models\Administrator as Administrator;
 
     class CompanyController{
         private $companyDAO;

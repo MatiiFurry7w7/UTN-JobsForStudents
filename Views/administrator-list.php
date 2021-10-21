@@ -12,7 +12,7 @@
                 <td><button class="btn btn-primary" onclick="window.location.href='<?php echo FRONT_ROOT ?>Administrator/AddView'">Add</button>
         </tr>
         <?php
-        foreach($AdministratorList as $eachAdministrator){
+        foreach($administratorList as $eachAdministrator){
                 echo "<tr>
                         <td style='max-width: 10px; text-align: center;'>".$eachAdministrator->getAdministratorId()."</td>
                         <td style='max-width: 100px;'>".$eachAdministrator->getUserName()."</td>

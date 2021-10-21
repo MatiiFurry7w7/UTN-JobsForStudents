@@ -18,7 +18,7 @@
         }
         public function LogIn($userName){
             session_destroy();
-            
+
             $loginUser = null;
 
             //Login if Student
@@ -45,10 +45,8 @@
         }
 
         //DELETES THE LIST AND FILLS WITH THE API DATA
-        public function updateFromAPI(){
+        private function updateFromAPI(){
             $this->studentDAO->loadFromAPI();
-
-            header("location: ".FRONT_ROOT."Home/Index");
         }
     }
 ?> 
