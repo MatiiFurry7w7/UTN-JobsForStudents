@@ -69,7 +69,7 @@ class AdministratorDAO implements IAdministratorDAO{
                     $password = $eachValue["password"];
                     $username = $eachValue["username"];
 
-                    $Administrator = new Administrator($password, $username);
+                    $Administrator = new Administrator($username, $password);
 
                     $Administrator->setAdministratorId($eachValue['AdministratorId']);
 

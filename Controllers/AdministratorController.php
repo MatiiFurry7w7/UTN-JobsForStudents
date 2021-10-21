@@ -1,7 +1,7 @@
 <?php
     namespace Controllers;
 
-    use DAO\administratorDAO as administratorDAO;
+    use DAO\AdministratorDAO as AdministratorDAO;
     
     use Models\Administrator as Administrator;
 
@@ -10,7 +10,7 @@
         private $administratorDAO;
 
         public function __construct(){
-            $this->administratorDAO = new administratorDAO();
+            $this->administratorDAO = new AdministratorDAO();
         }
 
         public function LogInView(){
