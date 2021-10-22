@@ -13,36 +13,36 @@ class Appointment{
 }
 
 
-  public function getdateAppointment()
+  public function getDateAppointment()
   {
     return $this->dateAppointment;
   }
 
-  public function setdateAppointment($dateAppointment)
+  public function setDateAppointment($dateAppointment)
   {
     $this->dateAppointment = $dateAppointment;
 
     return $this;
   }
 
-  public function getreferenceURL()
+  public function getReferenceURL()
   {
     return $this->referenceURL;
   }
 
-  public function setreferenceURL($referenceURL)
+  public function setReferenceURL($referenceURL)
   {
     $this->referenceURL = $referenceURL;
 
     return $this;
   }
 
-  public function getCv()
+  public function getCV()
   {
     return $this->cv;
   }
 
-  public function setCv($cv)
+  public function setCV($cv)
   {
     $this->cv = $cv;
 

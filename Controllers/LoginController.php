@@ -32,7 +32,7 @@
             if($loginUser == null){
                 foreach($this->administratorDAO->getAll() as $eachAdmin){
                     //echo "<br>".$eachAdmin->getusername()." == ".$userName."<br>";
-                    if($eachAdmin->getusername() == $userName)
+                    if($eachAdmin->getUserName() == $userName)
                        $loginUser = $eachAdmin;
                 }
             }
