@@ -45,9 +45,10 @@
                 }
             }
 
-            session_start();
-            if($loginUser != null)
+            if($loginUser != null){
+                session_start();
                 $_SESSION['currentUser'] = $loginUser;
+            }
                         
             header("location: ".FRONT_ROOT."Home/Index");
         }
