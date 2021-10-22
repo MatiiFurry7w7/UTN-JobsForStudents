@@ -5,7 +5,7 @@
 
     interface IJobPositionDAO
     {
-        public function Add(JobPosition $JobPosition);
+        public function Add(JobPosition $jobPosition);
         public function GetAll();
         public function DeleteById($id);
     }

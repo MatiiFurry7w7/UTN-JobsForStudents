@@ -5,7 +5,7 @@
 
     interface ICareerDAO
     {
-        public function Add(Career $Career);
+        public function Add(Career $career);
         public function GetAll();
         public function DeleteById($id);
     }
