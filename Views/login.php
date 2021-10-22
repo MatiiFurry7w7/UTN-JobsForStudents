@@ -5,7 +5,7 @@
 
 <center>
 <div>
-  <form action="<?php echo FRONT_ROOT ?>Student/LogIn" method="POST">
+  <form action="<?php echo FRONT_ROOT ?>Login/LogIn" method="POST">
     <table id="loginForm">
       <tr>
         <th colspan="2"><center><h4>Log In</h4></center></th>
@@ -16,7 +16,7 @@
       </tr>
       <tr>
         <td><label for="userPassword">Password</label></td>
-        <td><input class="inputText" type="password" name="userPassword" required disabled placeholder="Disabled"></td>
+        <td><input class="inputText" type="password" name="userPassword" required disabled placeholder="disabled..."></td>
       </tr>
       <tr>
       <td colspan="2"><center><button id="buttonSubmit" type="submit" class="btn btn-primary">Log In</button></center></td>

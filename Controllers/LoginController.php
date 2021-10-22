@@ -16,24 +16,32 @@
             $this->studentDAO = new StudentDAO();
             $this->administratorDAO = new administratorDAO();
         }
+
+        public function LogInView(){
+            session_destroy();
+            require_once(VIEWS_PATH."login.php");
+        }
+
         public function LogIn($userName){
             session_destroy();
 
             $loginUser = null;
 
-            //Login if Student
-            foreach($this->studentDAO->getAll() as $eachStudent){
-                //echo "<br>".$eachStudent->getEmail()." == ".$userName."<br>";
-                if($eachStudent->getEmail() == $userName)
-                   $loginUser = $eachStudent;
-            }
-
             //Login if Admin
+            foreach($this->administratorDAO->getAll() as $eachAdmin){
+                //echo "<br>".$eachAdmin->getusername()." == ".$userName."<br>";
+                if($eachAdmin->getUserName() == $userName)
+                   $loginUser = $eachAdmin;
+            }
+            
+            //Login if Student
             if($loginUser == null){
-                foreach($this->administratorDAO->getAll() as $eachAdmin){
-                    //echo "<br>".$eachAdmin->getusername()." == ".$userName."<br>";
-                    if($eachAdmin->getUserName() == $userName)
-                       $loginUser = $eachAdmin;
+                //Update from API before checking Student
+                $this->updateFromAPI();
+                foreach($this->studentDAO->getAll() as $eachStudent){
+                    //echo "<br>".$eachStudent->getEmail()." == ".$userName."<br>";
+                    if($eachStudent->getEmail() == $userName)
+                       $loginUser = $eachStudent;
                 }
             }
 
@@ -46,6 +54,7 @@
 
         //DELETES THE LIST AND FILLS WITH THE API DATA
         private function updateFromAPI(){
+            echo "Loading from API...";
             $this->studentDAO->loadFromAPI();
         }
     }
