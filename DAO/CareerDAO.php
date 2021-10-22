@@ -1,7 +1,7 @@
 <?php
     namespace DAO;
 
-    use Models\career as Career;
+    use Models\Career as Career;
     use DAO\IcareerDAO as IcareerDAO;
 
 class CareerDAO implements ICareerDAO {
@@ -13,7 +13,7 @@ class CareerDAO implements ICareerDAO {
             $this->fileName = dirname(__DIR__)."\Data\careers.json";
         }
 
-        public function Add(career $career) {
+        public function Add(Career $career) {
             $this->RetrieveData();
 
             array_push($this->careerList, $career);
@@ -96,7 +96,7 @@ class CareerDAO implements ICareerDAO {
                 $arrayToDecode = ($jsonContent) ? json_decode($jsonContent, true) : array();
                 
                 foreach($arrayToDecode as $valuesArray) {
-                    $career = new career();
+                    $career = new Career();
 
                     $career->setcareerId($valuesArray["careerId"]);
                     $career->setTitle($valuesArray["title"]);
