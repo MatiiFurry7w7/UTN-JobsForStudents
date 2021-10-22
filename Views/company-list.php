@@ -27,7 +27,7 @@
             <td>About Us</td>
             <!--solo ver boton remove/modify sólo para administradores-->
             <?php
-              if($_SESSION['currentUser'] instanceof Administrator) {
+              if($this->isAdmin()) {
               ?>
                 <td></td>
                 <td></td>
@@ -44,7 +44,7 @@
     </table>
     <br>
     <?php
-      if($_SESSION['currentUser'] instanceof Administrator) {
+      if($this->isAdmin()) {
       ?>
         <button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>Company/ShowAddView'" style="float: right;" >Go to Add View</button>
       <?php
