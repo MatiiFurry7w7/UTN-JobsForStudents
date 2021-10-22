@@ -21,7 +21,7 @@
             require_once(VIEWS_PATH."career-list.php");
         }
 
-        public function Add($carrerId, $description){
+        public function Add($carrerId, $description, $title){
             $career = new Career();
             
             $careerList = $this->careerDAO->GetAll();
@@ -30,6 +30,8 @@
 
             $career->setCareerId($carrerId);
             $career->setDescription($description);
+            $career->setTitle($title);
+            $career->setActive(true);
             
             $this->careerDAO->Add($career);
 
@@ -40,8 +42,8 @@
             if(empty($careerList)){
                 $career->setcareerId(1); 
              } else {
-                 $lastId = end($careerList)->getcareerId();
-                 $career->setcareerId($lastId + 1);
+                 $lastId = end($careerList)->getCareerId();
+                 $career->setCareerId($lastId + 1);
              }
         }
 
