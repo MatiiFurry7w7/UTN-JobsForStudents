@@ -14,10 +14,10 @@ class JobPositionDAO implements IJobPositionDAO {
             $this->fileName = dirname(__DIR__)."\Data\jobPositions.json";
         }
 
-        public function Add(JobPosition $JobPosition) {
+        public function Add(JobPosition $jobPosition) {
             $this->RetrieveData();
 
-            array_push($this->jobPositionList, $JobPosition);
+            array_push($this->jobPositionList, $jobPosition);
 
             $this->SaveData();
         }
@@ -48,7 +48,7 @@ class JobPositionDAO implements IJobPositionDAO {
             //CURL
             $url = curl_init();
             //Sets URL
-            curl_setopt($url, CURLOPT_URL, 'https://utn-students-api.herokuapp.com/api/JobPosition');
+            curl_setopt($url, CURLOPT_URL, 'https://utn-students-api.herokuapp.com/api/jobPosition');
             //Sets Header key
             curl_setopt($url, CURLOPT_HTTPHEADER, array('x-api-key:4f3bceed-50ba-4461-a910-518598664c08'));
             curl_setopt($url, CURLOPT_RETURNTRANSFER, 1);

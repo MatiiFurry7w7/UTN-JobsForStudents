@@ -93,7 +93,7 @@
               <td><?php echo $company->getNumber() ?></td>
               <td><?php echo $company->getAboutUs() ?></td>
             <?php
-                if($_SESSION['currentUser'] instanceof Administrator) {
+                if($this->isAdmin()) {
                 ?>
                     <td><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>Company/Remove?removeId=<?php echo $company->getCompanyId() ?>'">Remove</button></td>
                     <td><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>Company/ModifyView?modifyId=<?php echo $company->getCompanyId() ?>'">Modify</button></td>
@@ -115,13 +115,23 @@
                 }
             }else{
                 foreach($companyList as $company){
-                if($company->getActive() == true){
-                    $i++;
-                    $this->showCompany($company);
-                }     
+                    if($company->getActive() == true){
+                        $i++;
+                        $this->showCompany($company);
+                    }     
                 }   
             }
             echo "<br><b>There are ".$i." Result/s!</b>";
+        }
+
+        public function isAdmin() {
+            $isAdmin = false;
+
+            if($_SESSION['currentUser'] instanceof Administrator) {
+                $isAdmin = true;
+            }
+
+            return $isAdmin;
         }
     }
 ?>
