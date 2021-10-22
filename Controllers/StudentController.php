@@ -14,23 +14,6 @@ class StudentController
             $this->studentDAO = new StudentDAO();
         }
 
-        public function LogInView(){
-            session_destroy();
-            require_once(VIEWS_PATH."login.php");
-        }
-
-        public function LogIn($userName){
-            //ALL VALIDATIONS IN HERE!!
-            $studentList = $this->studentDAO->getAll();
-            foreach($studentList as $eachStudent){
-                if($eachStudent->getEmail() == $userName){
-                    $_SESSION['currentUser'] = $eachStudent;
-                }
-            }
-            
-            header('location: '.FRONT_ROOT.'Home/Index');
-        }
-
         public function AddView(){
             require_once(VIEWS_PATH."add-student.php");
         }
