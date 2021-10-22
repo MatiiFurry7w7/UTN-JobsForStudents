@@ -22,7 +22,10 @@
       <td colspan="2"><center><button id="buttonSubmit" type="submit" class="btn btn-primary">Log In</button></center></td>
       </tr>
     </table>
-    
+    <?php
+      if($message != "")
+        echo "<p id='errorMessage'>Error: ".$message." </p>";
+    ?>
   </form>
 </div>
 </center>

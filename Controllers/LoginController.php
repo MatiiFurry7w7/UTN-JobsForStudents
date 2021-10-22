@@ -17,13 +17,15 @@
             $this->administratorDAO = new administratorDAO();
         }
 
-        public function LogInView(){
+        public function LogInView($message = ""){
             session_destroy();
             require_once(VIEWS_PATH."login.php");
+            
         }
 
         public function LogIn($userName){
             session_destroy();
+            session_start();
 
             $loginUser = null;
 
@@ -45,17 +47,16 @@
                 }
             }
 
-            if($loginUser != null){
-                session_start();
+            if($loginUser == null){
+                $this->LogInView("Those login credentials doesn't exist in our database!");
+            }else{
                 $_SESSION['currentUser'] = $loginUser;
+                header("location: ".FRONT_ROOT."Home/Index");
             }
-                        
-            header("location: ".FRONT_ROOT."Home/Index");
         }
 
         //DELETES THE LIST AND FILLS WITH THE API DATA
         private function updateFromAPI(){
-            echo "Loading from API...";
             $this->studentDAO->loadFromAPI();
         }
     }

@@ -6,7 +6,7 @@
     use Models\AcademicStatus as AcademicStatus;
     use Models\Career as Career;
 
-class StudentDAO implements IStudentDAO{
+    class StudentDAO implements IStudentDAO{
 
         private $studentList = array();
         private $dataFile;

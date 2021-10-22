@@ -125,6 +125,10 @@ li:hover{
     margin-top: 20px;
 }
 
+#AdministratorsTable{
+    margin-top: 20px;
+}
+
 th{
     border-radius: 10px 10px 0px 0px;
     margin-bottom: 20px;
@@ -146,6 +150,17 @@ tr{
     background-color: rgb(14, 77, 114);
     color: white;
 }
+
+#errorMessage{
+    padding: 2px;
+    border-radius: 3px;
+    width: 500px;
+    background-color: rgba(0, 0, 0, 0.671);
+    margin-top: 20px; 
+    color: rgb(224, 70, 70);
+    font-weight: bold;
+}
+
 
 /* -- FOOTER -- */
 #footer{
