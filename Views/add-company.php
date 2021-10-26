@@ -40,9 +40,9 @@
           </td>
         </tr>
         <tr>
-          <td style="width: 200px;"><label for="number">Number</label></td> 
+          <td style="width: 200px;"><label for="number_street">Number</label></td> 
           <td>
-            <input type="text" name="number" required>
+            <input type="text" name="number_street" required>
           </td>
         </tr>
         <tr>

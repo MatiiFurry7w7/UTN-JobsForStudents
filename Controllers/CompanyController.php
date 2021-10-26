@@ -22,7 +22,7 @@
             require_once(VIEWS_PATH."company-list.php");
         }
 
-        public function Add($name, $cuit, $description, $website, $street, $number, $aboutUs, $isActive){
+        public function Add($name, $cuit, $description, $website, $street, $number_street, $aboutUs, $isActive){
             $company = new Company();
             
             $companyList = $this->companyDAO->GetAll();
@@ -34,7 +34,7 @@
             $company->setDescription($description);
             $company->setWebsite($website);
             $company->setStreet($street);
-            $company->setNumber($number);
+            $company->setNumber($number_street);
             $company->setAboutUs($aboutUs);
             
             $active = $this->activeToBoolean($isActive);
@@ -108,14 +108,14 @@
             $i = 0;
             if($searchedCompany != ""){
                 foreach($companyList as $company){
-                    if(strpos($company->getName(), $searchedCompany) !== false && $company->getActive() == true){
+                    if(strpos($company->getName(), $searchedCompany) !== false && $company->getActive() == 0){
                         $i++;
                         $this->showCompany($company);
                     }
                 }
             }else{
                 foreach($companyList as $company){
-                    if($company->getActive() == true){
+                    if($company->getActive() == 0){
                         $i++;
                         $this->showCompany($company);
                     }     

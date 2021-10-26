@@ -35,7 +35,7 @@
           </tr>   
           <tr>
             <td><label for="birthDate">Birth date</label></td>
-            <td><input type="text" name="birthDate"></td>
+            <td><input type="date" name="birthDate"></td>
           </tr>   
           <tr>
             <td colspan="2"><button type="submit" class="btn btn-primary">Add</button></td>
