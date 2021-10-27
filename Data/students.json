@@ -1,7 +1,7 @@
 [
     {
         "studentId": 1,
-        "careerId": 2,
+        "careerId": null,
         "firstName": "Devlen",
         "lastName": "Douthwaite",
         "dni": "15-992-8607",
@@ -14,7 +14,7 @@
     },
     {
         "studentId": 2,
-        "careerId": 5,
+        "careerId": null,
         "firstName": "Wyatan",
         "lastName": "Lorant",
         "dni": "63-025-8112",
@@ -27,7 +27,7 @@
     },
     {
         "studentId": 3,
-        "careerId": 2,
+        "careerId": null,
         "firstName": "Alanson",
         "lastName": "Seemmonds",
         "dni": "06-684-0100",
@@ -40,7 +40,7 @@
     },
     {
         "studentId": 4,
-        "careerId": 5,
+        "careerId": null,
         "firstName": "Elvin",
         "lastName": "Diben",
         "dni": "25-552-7065",
@@ -53,7 +53,7 @@
     },
     {
         "studentId": 5,
-        "careerId": 2,
+        "careerId": null,
         "firstName": "Darsey",
         "lastName": "Hasely",
         "dni": "38-798-8629",
@@ -66,7 +66,7 @@
     },
     {
         "studentId": 6,
-        "careerId": 4,
+        "careerId": null,
         "firstName": "Whitby",
         "lastName": "Alelsandrowicz",
         "dni": "85-506-8427",
@@ -79,7 +79,7 @@
     },
     {
         "studentId": 7,
-        "careerId": 3,
+        "careerId": null,
         "firstName": "Kienan",
         "lastName": "Witheford",
         "dni": "03-800-8262",
@@ -92,7 +92,7 @@
     },
     {
         "studentId": 8,
-        "careerId": 5,
+        "careerId": null,
         "firstName": "Isidor",
         "lastName": "Aberdalgy",
         "dni": "26-149-2035",
@@ -105,7 +105,7 @@
     },
     {
         "studentId": 9,
-        "careerId": 5,
+        "careerId": null,
         "firstName": "Grier",
         "lastName": "Castle",
         "dni": "53-191-5001",
@@ -118,7 +118,7 @@
     },
     {
         "studentId": 10,
-        "careerId": 4,
+        "careerId": null,
         "firstName": "Son",
         "lastName": "Forrington",
         "dni": "62-447-4424",
@@ -131,7 +131,7 @@
     },
     {
         "studentId": 11,
-        "careerId": 2,
+        "careerId": null,
         "firstName": "Sapphire",
         "lastName": "Jantet",
         "dni": "86-635-3442",
@@ -144,7 +144,7 @@
     },
     {
         "studentId": 12,
-        "careerId": 3,
+        "careerId": null,
         "firstName": "Jori",
         "lastName": "Doring",
         "dni": "81-077-9856",
@@ -157,7 +157,7 @@
     },
     {
         "studentId": 13,
-        "careerId": 2,
+        "careerId": null,
         "firstName": "Jamey",
         "lastName": "Yaxley",
         "dni": "50-772-8315",
@@ -170,7 +170,7 @@
     },
     {
         "studentId": 14,
-        "careerId": 2,
+        "careerId": null,
         "firstName": "Sasha",
         "lastName": "Laxson",
         "dni": "05-910-7081",
@@ -183,7 +183,7 @@
     },
     {
         "studentId": 15,
-        "careerId": 5,
+        "careerId": null,
         "firstName": "Bartholomew",
         "lastName": "Van Daalen",
         "dni": "25-669-1408",
@@ -196,7 +196,7 @@
     },
     {
         "studentId": 16,
-        "careerId": 2,
+        "careerId": null,
         "firstName": "Annamaria",
         "lastName": "Crannage",
         "dni": "56-601-9741",
@@ -209,7 +209,7 @@
     },
     {
         "studentId": 17,
-        "careerId": 1,
+        "careerId": null,
         "firstName": "Frayda",
         "lastName": "Gorvette",
         "dni": "52-405-2882",
@@ -222,7 +222,7 @@
     },
     {
         "studentId": 18,
-        "careerId": 2,
+        "careerId": null,
         "firstName": "Ondrea",
         "lastName": "Webburn",
         "dni": "92-770-5792",
@@ -235,7 +235,7 @@
     },
     {
         "studentId": 19,
-        "careerId": 2,
+        "careerId": null,
         "firstName": "Talia",
         "lastName": "Petersen",
         "dni": "66-290-7595",
@@ -248,7 +248,7 @@
     },
     {
         "studentId": 20,
-        "careerId": 5,
+        "careerId": null,
         "firstName": "Judie",
         "lastName": "Brunton",
         "dni": "39-063-5733",
@@ -261,7 +261,7 @@
     },
     {
         "studentId": 21,
-        "careerId": 4,
+        "careerId": null,
         "firstName": "Lara",
         "lastName": "Syne",
         "dni": "58-550-2198",
@@ -274,7 +274,7 @@
     },
     {
         "studentId": 22,
-        "careerId": 4,
+        "careerId": null,
         "firstName": "Theda",
         "lastName": "Thompstone",
         "dni": "19-852-1865",
@@ -287,7 +287,7 @@
     },
     {
         "studentId": 23,
-        "careerId": 4,
+        "careerId": null,
         "firstName": "Marline",
         "lastName": "Vasilischev",
         "dni": "55-935-5268",
@@ -300,7 +300,7 @@
     },
     {
         "studentId": 24,
-        "careerId": 1,
+        "careerId": null,
         "firstName": "Kyrstin",
         "lastName": "Heisman",
         "dni": "56-875-3900",
@@ -313,7 +313,7 @@
     },
     {
         "studentId": 25,
-        "careerId": 1,
+        "careerId": null,
         "firstName": "Brande",
         "lastName": "Strivens",
         "dni": "10-415-4568",
@@ -326,7 +326,7 @@
     },
     {
         "studentId": 26,
-        "careerId": 2,
+        "careerId": null,
         "firstName": "Rhodia",
         "lastName": "Haller",
         "dni": "54-718-3009",
@@ -339,7 +339,7 @@
     },
     {
         "studentId": 27,
-        "careerId": 1,
+        "careerId": null,
         "firstName": "Russell",
         "lastName": "Geipel",
         "dni": "18-120-5229",
@@ -352,7 +352,7 @@
     },
     {
         "studentId": 28,
-        "careerId": 1,
+        "careerId": null,
         "firstName": "Hersch",
         "lastName": "Sellen",
         "dni": "85-567-9313",
@@ -365,7 +365,7 @@
     },
     {
         "studentId": 29,
-        "careerId": 4,
+        "careerId": null,
         "firstName": "Mace",
         "lastName": "Bromidge",
         "dni": "47-216-4336",
@@ -378,7 +378,7 @@
     },
     {
         "studentId": 30,
-        "careerId": 5,
+        "careerId": null,
         "firstName": "Harrison",
         "lastName": "Bettington",
         "dni": "75-405-0292",
@@ -391,7 +391,7 @@
     },
     {
         "studentId": 31,
-        "careerId": 3,
+        "careerId": null,
         "firstName": "Kasey",
         "lastName": "Littrik",
         "dni": "00-985-8419",
@@ -404,7 +404,7 @@
     },
     {
         "studentId": 32,
-        "careerId": 5,
+        "careerId": null,
         "firstName": "Irina",
         "lastName": "Simukov",
         "dni": "32-573-1282",
@@ -417,7 +417,7 @@
     },
     {
         "studentId": 33,
-        "careerId": 1,
+        "careerId": null,
         "firstName": "Cassie",
         "lastName": "Fysh",
         "dni": "35-351-0827",
@@ -430,7 +430,7 @@
     },
     {
         "studentId": 34,
-        "careerId": 2,
+        "careerId": null,
         "firstName": "Marris",
         "lastName": "Danzelman",
         "dni": "09-071-3281",
@@ -443,7 +443,7 @@
     },
     {
         "studentId": 35,
-        "careerId": 1,
+        "careerId": null,
         "firstName": "Wakefield",
         "lastName": "Dalla",
         "dni": "73-109-6355",
@@ -456,7 +456,7 @@
     },
     {
         "studentId": 36,
-        "careerId": 5,
+        "careerId": null,
         "firstName": "Peg",
         "lastName": "Johnes",
         "dni": "66-498-0795",
@@ -469,7 +469,7 @@
     },
     {
         "studentId": 37,
-        "careerId": 4,
+        "careerId": null,
         "firstName": "Kizzee",
         "lastName": "Offiler",
         "dni": "00-350-8372",
@@ -482,7 +482,7 @@
     },
     {
         "studentId": 38,
-        "careerId": 2,
+        "careerId": null,
         "firstName": "Beret",
         "lastName": "Poyner",
         "dni": "50-644-3386",
@@ -495,7 +495,7 @@
     },
     {
         "studentId": 39,
-        "careerId": 4,
+        "careerId": null,
         "firstName": "Obadias",
         "lastName": "Louys",
         "dni": "42-393-7383",
@@ -508,7 +508,7 @@
     },
     {
         "studentId": 40,
-        "careerId": 2,
+        "careerId": null,
         "firstName": "Sharia",
         "lastName": "Leary",
         "dni": "64-212-3162",
@@ -521,7 +521,7 @@
     },
     {
         "studentId": 41,
-        "careerId": 1,
+        "careerId": null,
         "firstName": "Bunny",
         "lastName": "Benham",
         "dni": "27-441-6898",
@@ -534,7 +534,7 @@
     },
     {
         "studentId": 42,
-        "careerId": 2,
+        "careerId": null,
         "firstName": "Gifford",
         "lastName": "McGarel",
         "dni": "24-962-3779",
@@ -547,7 +547,7 @@
     },
     {
         "studentId": 43,
-        "careerId": 5,
+        "careerId": null,
         "firstName": "Katharyn",
         "lastName": "O'Donoghue",
         "dni": "34-717-4988",
@@ -560,7 +560,7 @@
     },
     {
         "studentId": 44,
-        "careerId": 1,
+        "careerId": null,
         "firstName": "Alexi",
         "lastName": "Knowlys",
         "dni": "95-474-3336",
@@ -573,7 +573,7 @@
     },
     {
         "studentId": 45,
-        "careerId": 5,
+        "careerId": null,
         "firstName": "Marven",
         "lastName": "Spilsbury",
         "dni": "76-803-4887",
@@ -586,7 +586,7 @@
     },
     {
         "studentId": 46,
-        "careerId": 3,
+        "careerId": null,
         "firstName": "Esme",
         "lastName": "Atyeo",
         "dni": "96-988-1544",
@@ -599,7 +599,7 @@
     },
     {
         "studentId": 47,
-        "careerId": 2,
+        "careerId": null,
         "firstName": "Gunner",
         "lastName": "Hilland",
         "dni": "10-527-6911",
@@ -612,7 +612,7 @@
     },
     {
         "studentId": 48,
-        "careerId": 1,
+        "careerId": null,
         "firstName": "Dorie",
         "lastName": "Philot",
         "dni": "65-663-7022",
@@ -625,7 +625,7 @@
     },
     {
         "studentId": 49,
-        "careerId": 4,
+        "careerId": null,
         "firstName": "Yance",
         "lastName": "Raynham",
         "dni": "79-563-1656",
@@ -638,7 +638,7 @@
     },
     {
         "studentId": 50,
-        "careerId": 2,
+        "careerId": null,
         "firstName": "Gerick",
         "lastName": "Hruska",
         "dni": "57-616-0361",
@@ -651,7 +651,7 @@
     },
     {
         "studentId": 51,
-        "careerId": 5,
+        "careerId": null,
         "firstName": "Morgen",
         "lastName": "Labroue",
         "dni": "44-168-7059",
@@ -664,7 +664,7 @@
     },
     {
         "studentId": 52,
-        "careerId": 4,
+        "careerId": null,
         "firstName": "Calypso",
         "lastName": "Snelgar",
         "dni": "36-361-0619",
@@ -677,7 +677,7 @@
     },
     {
         "studentId": 53,
-        "careerId": 4,
+        "careerId": null,
         "firstName": "Zach",
         "lastName": "Jurek",
         "dni": "99-564-0350",
@@ -690,7 +690,7 @@
     },
     {
         "studentId": 54,
-        "careerId": 5,
+        "careerId": null,
         "firstName": "Darwin",
         "lastName": "Michurin",
         "dni": "53-383-1667",
@@ -703,7 +703,7 @@
     },
     {
         "studentId": 55,
-        "careerId": 1,
+        "careerId": null,
         "firstName": "Eba",
         "lastName": "Jeskins",
         "dni": "59-545-5484",
@@ -716,7 +716,7 @@
     },
     {
         "studentId": 56,
-        "careerId": 1,
+        "careerId": null,
         "firstName": "Weidar",
         "lastName": "Yaxley",
         "dni": "58-116-6555",
@@ -729,7 +729,7 @@
     },
     {
         "studentId": 57,
-        "careerId": 5,
+        "careerId": null,
         "firstName": "Thornie",
         "lastName": "Bassam",
         "dni": "62-194-8628",
@@ -742,7 +742,7 @@
     },
     {
         "studentId": 58,
-        "careerId": 2,
+        "careerId": null,
         "firstName": "Fran",
         "lastName": "Beardsley",
         "dni": "10-540-6091",
@@ -755,7 +755,7 @@
     },
     {
         "studentId": 59,
-        "careerId": 2,
+        "careerId": null,
         "firstName": "Balduin",
         "lastName": "Sooper",
         "dni": "29-897-9350",
@@ -768,7 +768,7 @@
     },
     {
         "studentId": 60,
-        "careerId": 4,
+        "careerId": null,
         "firstName": "Binky",
         "lastName": "Snoden",
         "dni": "78-390-7971",
@@ -781,7 +781,7 @@
     },
     {
         "studentId": 61,
-        "careerId": 5,
+        "careerId": null,
         "firstName": "Melody",
         "lastName": "Avrahamy",
         "dni": "60-142-1673",
@@ -794,7 +794,7 @@
     },
     {
         "studentId": 62,
-        "careerId": 2,
+        "careerId": null,
         "firstName": "Maryjane",
         "lastName": "Haestier",
         "dni": "76-067-9131",
@@ -807,7 +807,7 @@
     },
     {
         "studentId": 63,
-        "careerId": 1,
+        "careerId": null,
         "firstName": "Annissa",
         "lastName": "Dobing",
         "dni": "10-164-5517",
@@ -820,7 +820,7 @@
     },
     {
         "studentId": 64,
-        "careerId": 4,
+        "careerId": null,
         "firstName": "Gerry",
         "lastName": "Hullett",
         "dni": "86-004-0723",
@@ -833,7 +833,7 @@
     },
     {
         "studentId": 65,
-        "careerId": 5,
+        "careerId": null,
         "firstName": "Karlis",
         "lastName": "Izkovitz",
         "dni": "67-119-9198",
@@ -846,7 +846,7 @@
     },
     {
         "studentId": 66,
-        "careerId": 4,
+        "careerId": null,
         "firstName": "Tadeo",
         "lastName": "Shears",
         "dni": "74-609-6611",
@@ -859,7 +859,7 @@
     },
     {
         "studentId": 67,
-        "careerId": 3,
+        "careerId": null,
         "firstName": "Aymer",
         "lastName": "Bruineman",
         "dni": "98-226-6801",
@@ -872,7 +872,7 @@
     },
     {
         "studentId": 68,
-        "careerId": 4,
+        "careerId": null,
         "firstName": "Neel",
         "lastName": "Yven",
         "dni": "55-697-8917",
@@ -885,7 +885,7 @@
     },
     {
         "studentId": 69,
-        "careerId": 4,
+        "careerId": null,
         "firstName": "Star",
         "lastName": "Annis",
         "dni": "09-226-3608",
@@ -898,7 +898,7 @@
     },
     {
         "studentId": 70,
-        "careerId": 1,
+        "careerId": null,
         "firstName": "Giorgi",
         "lastName": "Brabyn",
         "dni": "34-540-7376",
@@ -911,7 +911,7 @@
     },
     {
         "studentId": 71,
-        "careerId": 1,
+        "careerId": null,
         "firstName": "Betsey",
         "lastName": "Glanfield",
         "dni": "88-525-8376",
@@ -924,7 +924,7 @@
     },
     {
         "studentId": 72,
-        "careerId": 4,
+        "careerId": null,
         "firstName": "Travus",
         "lastName": "Stuehmeier",
         "dni": "35-742-8601",
@@ -937,7 +937,7 @@
     },
     {
         "studentId": 73,
-        "careerId": 1,
+        "careerId": null,
         "firstName": "Tadio",
         "lastName": "Millmoe",
         "dni": "88-893-2722",
@@ -950,7 +950,7 @@
     },
     {
         "studentId": 74,
-        "careerId": 1,
+        "careerId": null,
         "firstName": "Antonie",
         "lastName": "Gannicleff",
         "dni": "27-309-8937",
@@ -963,7 +963,7 @@
     },
     {
         "studentId": 75,
-        "careerId": 1,
+        "careerId": null,
         "firstName": "Gonzalo",
         "lastName": "De Pietri",
         "dni": "68-043-2945",
@@ -976,7 +976,7 @@
     },
     {
         "studentId": 76,
-        "careerId": 5,
+        "careerId": null,
         "firstName": "Pammie",
         "lastName": "Friman",
         "dni": "37-754-2476",
@@ -989,7 +989,7 @@
     },
     {
         "studentId": 77,
-        "careerId": 2,
+        "careerId": null,
         "firstName": "Tracie",
         "lastName": "Vreiberg",
         "dni": "42-052-8183",
@@ -1002,7 +1002,7 @@
     },
     {
         "studentId": 78,
-        "careerId": 1,
+        "careerId": null,
         "firstName": "Trixy",
         "lastName": "Beagles",
         "dni": "25-872-3664",
@@ -1015,7 +1015,7 @@
     },
     {
         "studentId": 79,
-        "careerId": 4,
+        "careerId": null,
         "firstName": "Aidan",
         "lastName": "McGlashan",
         "dni": "18-411-2776",
@@ -1028,7 +1028,7 @@
     },
     {
         "studentId": 80,
-        "careerId": 4,
+        "careerId": null,
         "firstName": "Rudiger",
         "lastName": "Bainbridge",
         "dni": "62-199-1596",
@@ -1041,7 +1041,7 @@
     },
     {
         "studentId": 81,
-        "careerId": 5,
+        "careerId": null,
         "firstName": "Zaria",
         "lastName": "Shepley",
         "dni": "58-348-3702",
@@ -1054,7 +1054,7 @@
     },
     {
         "studentId": 82,
-        "careerId": 1,
+        "careerId": null,
         "firstName": "Linnie",
         "lastName": "Jocic",
         "dni": "62-388-7682",
@@ -1067,7 +1067,7 @@
     },
     {
         "studentId": 83,
-        "careerId": 1,
+        "careerId": null,
         "firstName": "Charleen",
         "lastName": "Waylen",
         "dni": "29-994-0636",
@@ -1080,7 +1080,7 @@
     },
     {
         "studentId": 84,
-        "careerId": 3,
+        "careerId": null,
         "firstName": "Kelbee",
         "lastName": "de Vaen",
         "dni": "38-139-8480",
@@ -1093,7 +1093,7 @@
     },
     {
         "studentId": 85,
-        "careerId": 4,
+        "careerId": null,
         "firstName": "Rafe",
         "lastName": "Reckhouse",
         "dni": "45-903-5831",
@@ -1106,7 +1106,7 @@
     },
     {
         "studentId": 86,
-        "careerId": 5,
+        "careerId": null,
         "firstName": "Beverie",
         "lastName": "Gilby",
         "dni": "21-203-5420",
@@ -1119,7 +1119,7 @@
     },
     {
         "studentId": 87,
-        "careerId": 1,
+        "careerId": null,
         "firstName": "Calli",
         "lastName": "Sutliff",
         "dni": "81-223-5987",
@@ -1132,7 +1132,7 @@
     },
     {
         "studentId": 88,
-        "careerId": 2,
+        "careerId": null,
         "firstName": "Milissent",
         "lastName": "Devil",
         "dni": "81-313-1293",
@@ -1145,7 +1145,7 @@
     },
     {
         "studentId": 89,
-        "careerId": 5,
+        "careerId": null,
         "firstName": "Ursuline",
         "lastName": "Eighteen",
         "dni": "46-217-6852",
@@ -1158,7 +1158,7 @@
     },
     {
         "studentId": 90,
-        "careerId": 5,
+        "careerId": null,
         "firstName": "Tildy",
         "lastName": "Turmall",
         "dni": "41-971-2001",
@@ -1171,7 +1171,7 @@
     },
     {
         "studentId": 91,
-        "careerId": 1,
+        "careerId": null,
         "firstName": "Bert",
         "lastName": "Blew",
         "dni": "39-342-8776",
@@ -1184,7 +1184,7 @@
     },
     {
         "studentId": 92,
-        "careerId": 4,
+        "careerId": null,
         "firstName": "Jennilee",
         "lastName": "Sabathe",
         "dni": "18-651-6841",
@@ -1197,7 +1197,7 @@
     },
     {
         "studentId": 93,
-        "careerId": 3,
+        "careerId": null,
         "firstName": "Ethelyn",
         "lastName": "Zipsell",
         "dni": "20-882-4129",
@@ -1210,7 +1210,7 @@
     },
     {
         "studentId": 94,
-        "careerId": 5,
+        "careerId": null,
         "firstName": "Skyler",
         "lastName": "Whiteside",
         "dni": "59-003-2764",
@@ -1223,7 +1223,7 @@
     },
     {
         "studentId": 95,
-        "careerId": 4,
+        "careerId": null,
         "firstName": "Franchot",
         "lastName": "Stave",
         "dni": "62-422-4180",
@@ -1236,7 +1236,7 @@
     },
     {
         "studentId": 96,
-        "careerId": 1,
+        "careerId": null,
         "firstName": "Bettine",
         "lastName": "Tonner",
         "dni": "20-726-8355",
@@ -1249,7 +1249,7 @@
     },
     {
         "studentId": 97,
-        "careerId": 4,
+        "careerId": null,
         "firstName": "Antons",
         "lastName": "Colaco",
         "dni": "09-249-2880",
@@ -1262,7 +1262,7 @@
     },
     {
         "studentId": 98,
-        "careerId": 5,
+        "careerId": null,
         "firstName": "Esdras",
         "lastName": "Dalgety",
         "dni": "89-007-8770",
@@ -1275,7 +1275,7 @@
     },
     {
         "studentId": 99,
-        "careerId": 4,
+        "careerId": null,
         "firstName": "Kathlin",
         "lastName": "Bonnett",
         "dni": "78-552-3269",
@@ -1288,7 +1288,7 @@
     },
     {
         "studentId": 100,
-        "careerId": 4,
+        "careerId": null,
         "firstName": "Fredia",
         "lastName": "Deave",
         "dni": "11-441-4898",
@@ -1301,7 +1301,7 @@
     },
     {
         "studentId": 101,
-        "careerId": 5,
+        "careerId": null,
         "firstName": "Read",
         "lastName": "Crimp",
         "dni": "87-834-8894",
@@ -1314,7 +1314,7 @@
     },
     {
         "studentId": 102,
-        "careerId": 1,
+        "careerId": null,
         "firstName": "Ermin",
         "lastName": "Goves",
         "dni": "42-485-4826",
@@ -1327,7 +1327,7 @@
     },
     {
         "studentId": 103,
-        "careerId": 2,
+        "careerId": null,
         "firstName": "Boyd",
         "lastName": "Scemp",
         "dni": "15-881-6261",
@@ -1340,7 +1340,7 @@
     },
     {
         "studentId": 104,
-        "careerId": 1,
+        "careerId": null,
         "firstName": "Kareem",
         "lastName": "Burn",
         "dni": "28-005-8149",
@@ -1353,7 +1353,7 @@
     },
     {
         "studentId": 105,
-        "careerId": 5,
+        "careerId": null,
         "firstName": "Leo",
         "lastName": "Spight",
         "dni": "17-631-6882",
@@ -1366,7 +1366,7 @@
     },
     {
         "studentId": 106,
-        "careerId": 5,
+        "careerId": null,
         "firstName": "Herve",
         "lastName": "Bradder",
         "dni": "18-818-7495",
@@ -1379,7 +1379,7 @@
     },
     {
         "studentId": 107,
-        "careerId": 4,
+        "careerId": null,
         "firstName": "Lynea",
         "lastName": "Hunn",
         "dni": "88-822-0968",
@@ -1392,7 +1392,7 @@
     },
     {
         "studentId": 108,
-        "careerId": 3,
+        "careerId": null,
         "firstName": "Bibbie",
         "lastName": "Hamilton",
         "dni": "84-349-3365",
@@ -1405,7 +1405,7 @@
     },
     {
         "studentId": 109,
-        "careerId": 1,
+        "careerId": null,
         "firstName": "Liana",
         "lastName": "Cockill",
         "dni": "26-554-7121",
@@ -1418,7 +1418,7 @@
     },
     {
         "studentId": 110,
-        "careerId": 4,
+        "careerId": null,
         "firstName": "Natty",
         "lastName": "Southwick",
         "dni": "50-122-3261",
@@ -1431,7 +1431,7 @@
     },
     {
         "studentId": 111,
-        "careerId": 3,
+        "careerId": null,
         "firstName": "Aluin",
         "lastName": "Petran",
         "dni": "69-860-0534",
@@ -1444,7 +1444,7 @@
     },
     {
         "studentId": 112,
-        "careerId": 2,
+        "careerId": null,
         "firstName": "Dudley",
         "lastName": "Shilburne",
         "dni": "96-041-8460",
@@ -1457,7 +1457,7 @@
     },
     {
         "studentId": 113,
-        "careerId": 2,
+        "careerId": null,
         "firstName": "Malvin",
         "lastName": "Delhay",
         "dni": "74-274-5418",
@@ -1470,7 +1470,7 @@
     },
     {
         "studentId": 114,
-        "careerId": 1,
+        "careerId": null,
         "firstName": "Melisent",
         "lastName": "Sket",
         "dni": "10-248-4079",
@@ -1483,7 +1483,7 @@
     },
     {
         "studentId": 115,
-        "careerId": 4,
+        "careerId": null,
         "firstName": "Mair",
         "lastName": "Kowalski",
         "dni": "65-226-9222",
@@ -1496,7 +1496,7 @@
     },
     {
         "studentId": 116,
-        "careerId": 2,
+        "careerId": null,
         "firstName": "Claudetta",
         "lastName": "Flewan",
         "dni": "07-965-3438",
@@ -1509,7 +1509,7 @@
     },
     {
         "studentId": 117,
-        "careerId": 1,
+        "careerId": null,
         "firstName": "Tirrell",
         "lastName": "Ethelston",
         "dni": "43-174-9121",
@@ -1522,7 +1522,7 @@
     },
     {
         "studentId": 118,
-        "careerId": 5,
+        "careerId": null,
         "firstName": "Darby",
         "lastName": "De Simoni",
         "dni": "93-158-6861",
@@ -1535,7 +1535,7 @@
     },
     {
         "studentId": 119,
-        "careerId": 2,
+        "careerId": null,
         "firstName": "Hannis",
         "lastName": "Antic",
         "dni": "73-517-4123",
@@ -1548,7 +1548,7 @@
     },
     {
         "studentId": 120,
-        "careerId": 2,
+        "careerId": null,
         "firstName": "Tadeo",
         "lastName": "Turbayne",
         "dni": "14-771-9346",
@@ -1561,7 +1561,7 @@
     },
     {
         "studentId": 121,
-        "careerId": 1,
+        "careerId": null,
         "firstName": "Filip",
         "lastName": "Bilam",
         "dni": "18-228-9435",
@@ -1574,7 +1574,7 @@
     },
     {
         "studentId": 122,
-        "careerId": 3,
+        "careerId": null,
         "firstName": "Betteanne",
         "lastName": "Honnicott",
         "dni": "98-149-3242",
@@ -1587,7 +1587,7 @@
     },
     {
         "studentId": 123,
-        "careerId": 5,
+        "careerId": null,
         "firstName": "Winny",
         "lastName": "Rawne",
         "dni": "11-079-3587",
@@ -1600,7 +1600,7 @@
     },
     {
         "studentId": 124,
-        "careerId": 5,
+        "careerId": null,
         "firstName": "Tomlin",
         "lastName": "Chessum",
         "dni": "34-259-8750",
@@ -1613,7 +1613,7 @@
     },
     {
         "studentId": 125,
-        "careerId": 2,
+        "careerId": null,
         "firstName": "Koralle",
         "lastName": "Iddison",
         "dni": "40-064-3739",
@@ -1626,7 +1626,7 @@
     },
     {
         "studentId": 126,
-        "careerId": 5,
+        "careerId": null,
         "firstName": "Cookie",
         "lastName": "Le Grice",
         "dni": "52-779-7702",
@@ -1639,7 +1639,7 @@
     },
     {
         "studentId": 127,
-        "careerId": 4,
+        "careerId": null,
         "firstName": "Dorthea",
         "lastName": "Kinkead",
         "dni": "69-441-2879",
@@ -1652,7 +1652,7 @@
     },
     {
         "studentId": 128,
-        "careerId": 5,
+        "careerId": null,
         "firstName": "Howey",
         "lastName": "Bruckstein",
         "dni": "36-375-1786",
@@ -1665,7 +1665,7 @@
     },
     {
         "studentId": 129,
-        "careerId": 4,
+        "careerId": null,
         "firstName": "Ignace",
         "lastName": "Mansfield",
         "dni": "43-252-7384",
@@ -1678,7 +1678,7 @@
     },
     {
         "studentId": 130,
-        "careerId": 5,
+        "careerId": null,
         "firstName": "Nehemiah",
         "lastName": "Metzke",
         "dni": "98-360-6184",
@@ -1691,7 +1691,7 @@
     },
     {
         "studentId": 131,
-        "careerId": 1,
+        "careerId": null,
         "firstName": "Lynea",
         "lastName": "Littlechild",
         "dni": "89-529-1236",
@@ -1704,7 +1704,7 @@
     },
     {
         "studentId": 132,
-        "careerId": 3,
+        "careerId": null,
         "firstName": "Velma",
         "lastName": "Iacofo",
         "dni": "84-140-0452",
@@ -1717,7 +1717,7 @@
     },
     {
         "studentId": 133,
-        "careerId": 5,
+        "careerId": null,
         "firstName": "Leland",
         "lastName": "Choulerton",
         "dni": "74-357-2371",
@@ -1730,7 +1730,7 @@
     },
     {
         "studentId": 134,
-        "careerId": 5,
+        "careerId": null,
         "firstName": "Rodrick",
         "lastName": "D'Alessio",
         "dni": "27-650-9424",
@@ -1743,7 +1743,7 @@
     },
     {
         "studentId": 135,
-        "careerId": 1,
+        "careerId": null,
         "firstName": "Rosalynd",
         "lastName": "Gouny",
         "dni": "76-645-7890",
@@ -1756,7 +1756,7 @@
     },
     {
         "studentId": 136,
-        "careerId": 3,
+        "careerId": null,
         "firstName": "Hermon",
         "lastName": "Crudgington",
         "dni": "02-484-6356",
@@ -1769,7 +1769,7 @@
     },
     {
         "studentId": 137,
-        "careerId": 5,
+        "careerId": null,
         "firstName": "Ranique",
         "lastName": "Bonus",
         "dni": "37-114-5910",
@@ -1782,7 +1782,7 @@
     },
     {
         "studentId": 138,
-        "careerId": 1,
+        "careerId": null,
         "firstName": "Genni",
         "lastName": "Fish",
         "dni": "73-715-2378",
@@ -1795,7 +1795,7 @@
     },
     {
         "studentId": 139,
-        "careerId": 2,
+        "careerId": null,
         "firstName": "Fredericka",
         "lastName": "Goodey",
         "dni": "92-340-3593",
@@ -1808,7 +1808,7 @@
     },
     {
         "studentId": 140,
-        "careerId": 1,
+        "careerId": null,
         "firstName": "Gabey",
         "lastName": "Scoggan",
         "dni": "37-206-0317",
@@ -1821,7 +1821,7 @@
     },
     {
         "studentId": 141,
-        "careerId": 2,
+        "careerId": null,
         "firstName": "Luciana",
         "lastName": "Penburton",
         "dni": "46-638-6239",
@@ -1834,7 +1834,7 @@
     },
     {
         "studentId": 142,
-        "careerId": 4,
+        "careerId": null,
         "firstName": "Eugen",
         "lastName": "Dunphy",
         "dni": "65-917-4177",
@@ -1847,7 +1847,7 @@
     },
     {
         "studentId": 143,
-        "careerId": 3,
+        "careerId": null,
         "firstName": "Gertrudis",
         "lastName": "McGillivray",
         "dni": "12-086-3270",
@@ -1860,7 +1860,7 @@
     },
     {
         "studentId": 144,
-        "careerId": 4,
+        "careerId": null,
         "firstName": "Yvor",
         "lastName": "Tucknott",
         "dni": "70-198-7705",
@@ -1873,7 +1873,7 @@
     },
     {
         "studentId": 145,
-        "careerId": 3,
+        "careerId": null,
         "firstName": "Adelle",
         "lastName": "Rilton",
         "dni": "67-791-3398",
@@ -1886,7 +1886,7 @@
     },
     {
         "studentId": 146,
-        "careerId": 3,
+        "careerId": null,
         "firstName": "Saudra",
         "lastName": "Strongman",
         "dni": "29-136-1427",
@@ -1899,7 +1899,7 @@
     },
     {
         "studentId": 147,
-        "careerId": 1,
+        "careerId": null,
         "firstName": "Gracie",
         "lastName": "Webb-Bowen",
         "dni": "83-459-8976",
@@ -1912,7 +1912,7 @@
     },
     {
         "studentId": 148,
-        "careerId": 3,
+        "careerId": null,
         "firstName": "Becki",
         "lastName": "Mullen",
         "dni": "68-837-1664",
@@ -1925,7 +1925,7 @@
     },
     {
         "studentId": 149,
-        "careerId": 2,
+        "careerId": null,
         "firstName": "Swen",
         "lastName": "Thirst",
         "dni": "43-665-3998",
@@ -1938,7 +1938,7 @@
     },
     {
         "studentId": 150,
-        "careerId": 3,
+        "careerId": null,
         "firstName": "Issie",
         "lastName": "Gainforth",
         "dni": "98-422-8559",
@@ -1951,7 +1951,7 @@
     },
     {
         "studentId": 151,
-        "careerId": 4,
+        "careerId": null,
         "firstName": "Kaycee",
         "lastName": "Morfell",
         "dni": "91-629-3136",
@@ -1964,7 +1964,7 @@
     },
     {
         "studentId": 152,
-        "careerId": 5,
+        "careerId": null,
         "firstName": "Jessie",
         "lastName": "Fakeley",
         "dni": "55-654-9243",
@@ -1977,7 +1977,7 @@
     },
     {
         "studentId": 153,
-        "careerId": 4,
+        "careerId": null,
         "firstName": "Dania",
         "lastName": "Lebbon",
         "dni": "09-468-6894",
@@ -1990,7 +1990,7 @@
     },
     {
         "studentId": 154,
-        "careerId": 2,
+        "careerId": null,
         "firstName": "Robinson",
         "lastName": "Delamere",
         "dni": "97-037-8971",
@@ -2003,7 +2003,7 @@
     },
     {
         "studentId": 155,
-        "careerId": 2,
+        "careerId": null,
         "firstName": "Letta",
         "lastName": "Costall",
         "dni": "80-792-0881",
@@ -2016,7 +2016,7 @@
     },
     {
         "studentId": 156,
-        "careerId": 2,
+        "careerId": null,
         "firstName": "Billie",
         "lastName": "Cherrett",
         "dni": "92-009-1789",
@@ -2029,7 +2029,7 @@
     },
     {
         "studentId": 157,
-        "careerId": 5,
+        "careerId": null,
         "firstName": "Mannie",
         "lastName": "Stone",
         "dni": "14-352-2736",
@@ -2042,7 +2042,7 @@
     },
     {
         "studentId": 158,
-        "careerId": 2,
+        "careerId": null,
         "firstName": "Yance",
         "lastName": "Henrique",
         "dni": "32-938-0805",
@@ -2055,7 +2055,7 @@
     },
     {
         "studentId": 159,
-        "careerId": 1,
+        "careerId": null,
         "firstName": "Willabella",
         "lastName": "Mc Harg",
         "dni": "40-113-7018",
@@ -2068,7 +2068,7 @@
     },
     {
         "studentId": 160,
-        "careerId": 1,
+        "careerId": null,
         "firstName": "Stoddard",
         "lastName": "Brittlebank",
         "dni": "94-833-3478",
@@ -2081,7 +2081,7 @@
     },
     {
         "studentId": 161,
-        "careerId": 3,
+        "careerId": null,
         "firstName": "Grayce",
         "lastName": "Autin",
         "dni": "60-273-7013",
@@ -2094,7 +2094,7 @@
     },
     {
         "studentId": 162,
-        "careerId": 2,
+        "careerId": null,
         "firstName": "Caritta",
         "lastName": "Vaudin",
         "dni": "39-815-8919",
@@ -2107,7 +2107,7 @@
     },
     {
         "studentId": 163,
-        "careerId": 3,
+        "careerId": null,
         "firstName": "Riki",
         "lastName": "Wasselin",
         "dni": "94-012-0879",
@@ -2120,7 +2120,7 @@
     },
     {
         "studentId": 164,
-        "careerId": 2,
+        "careerId": null,
         "firstName": "Betsy",
         "lastName": "Skrzynski",
         "dni": "09-812-0539",
@@ -2133,7 +2133,7 @@
     },
     {
         "studentId": 165,
-        "careerId": 5,
+        "careerId": null,
         "firstName": "Zachariah",
         "lastName": "Farrans",
         "dni": "51-857-0902",
@@ -2146,7 +2146,7 @@
     },
     {
         "studentId": 166,
-        "careerId": 2,
+        "careerId": null,
         "firstName": "Brewster",
         "lastName": "Pouton",
         "dni": "95-706-1796",
@@ -2159,7 +2159,7 @@
     },
     {
         "studentId": 167,
-        "careerId": 3,
+        "careerId": null,
         "firstName": "Sal",
         "lastName": "Goncaves",
         "dni": "87-220-5041",
@@ -2172,7 +2172,7 @@
     },
     {
         "studentId": 168,
-        "careerId": 4,
+        "careerId": null,
         "firstName": "Kareem",
         "lastName": "McIlmorow",
         "dni": "47-548-5627",
@@ -2185,7 +2185,7 @@
     },
     {
         "studentId": 169,
-        "careerId": 3,
+        "careerId": null,
         "firstName": "Jenda",
         "lastName": "Carlens",
         "dni": "63-318-6489",
@@ -2198,7 +2198,7 @@
     },
     {
         "studentId": 170,
-        "careerId": 2,
+        "careerId": null,
         "firstName": "Ruthy",
         "lastName": "Airdrie",
         "dni": "94-620-4481",
@@ -2211,7 +2211,7 @@
     },
     {
         "studentId": 171,
-        "careerId": 4,
+        "careerId": null,
         "firstName": "Araldo",
         "lastName": "Nannoni",
         "dni": "05-894-8126",
@@ -2224,7 +2224,7 @@
     },
     {
         "studentId": 172,
-        "careerId": 2,
+        "careerId": null,
         "firstName": "Angie",
         "lastName": "Dyas",
         "dni": "71-260-6905",
@@ -2237,7 +2237,7 @@
     },
     {
         "studentId": 173,
-        "careerId": 5,
+        "careerId": null,
         "firstName": "Sheelagh",
         "lastName": "Flindall",
         "dni": "49-368-8757",
@@ -2250,7 +2250,7 @@
     },
     {
         "studentId": 174,
-        "careerId": 5,
+        "careerId": null,
         "firstName": "Jarid",
         "lastName": "Tidridge",
         "dni": "13-917-7108",
@@ -2263,7 +2263,7 @@
     },
     {
         "studentId": 175,
-        "careerId": 2,
+        "careerId": null,
         "firstName": "Syman",
         "lastName": "Dowglass",
         "dni": "90-232-2089",
@@ -2276,7 +2276,7 @@
     },
     {
         "studentId": 176,
-        "careerId": 2,
+        "careerId": null,
         "firstName": "Norine",
         "lastName": "Brimelow",
         "dni": "31-723-5197",
@@ -2289,7 +2289,7 @@
     },
     {
         "studentId": 177,
-        "careerId": 3,
+        "careerId": null,
         "firstName": "Rudolf",
         "lastName": "Szymonwicz",
         "dni": "60-389-1389",
@@ -2302,7 +2302,7 @@
     },
     {
         "studentId": 178,
-        "careerId": 5,
+        "careerId": null,
         "firstName": "Ricky",
         "lastName": "Runnacles",
         "dni": "67-524-8267",
@@ -2315,7 +2315,7 @@
     },
     {
         "studentId": 179,
-        "careerId": 4,
+        "careerId": null,
         "firstName": "Kimberly",
         "lastName": "Piris",
         "dni": "74-384-3757",
@@ -2328,7 +2328,7 @@
     },
     {
         "studentId": 180,
-        "careerId": 1,
+        "careerId": null,
         "firstName": "Harman",
         "lastName": "Eckery",
         "dni": "73-212-2596",
@@ -2341,7 +2341,7 @@
     },
     {
         "studentId": 181,
-        "careerId": 1,
+        "careerId": null,
         "firstName": "Antoni",
         "lastName": "Braiden",
         "dni": "50-498-1142",
@@ -2354,7 +2354,7 @@
     },
     {
         "studentId": 182,
-        "careerId": 4,
+        "careerId": null,
         "firstName": "Sebastien",
         "lastName": "Blaisdell",
         "dni": "98-669-8860",
@@ -2367,7 +2367,7 @@
     },
     {
         "studentId": 183,
-        "careerId": 2,
+        "careerId": null,
         "firstName": "Aubrey",
         "lastName": "Evanson",
         "dni": "76-629-6090",
@@ -2380,7 +2380,7 @@
     },
     {
         "studentId": 184,
-        "careerId": 5,
+        "careerId": null,
         "firstName": "Rorke",
         "lastName": "Ramos",
         "dni": "85-144-7566",
@@ -2393,7 +2393,7 @@
     },
     {
         "studentId": 185,
-        "careerId": 1,
+        "careerId": null,
         "firstName": "Belle",
         "lastName": "Antoszczyk",
         "dni": "71-344-9034",
@@ -2406,7 +2406,7 @@
     },
     {
         "studentId": 186,
-        "careerId": 4,
+        "careerId": null,
         "firstName": "Rea",
         "lastName": "Langelaan",
         "dni": "75-497-0280",
@@ -2419,7 +2419,7 @@
     },
     {
         "studentId": 187,
-        "careerId": 5,
+        "careerId": null,
         "firstName": "Renato",
         "lastName": "Mitie",
         "dni": "42-179-9911",
@@ -2432,7 +2432,7 @@
     },
     {
         "studentId": 188,
-        "careerId": 3,
+        "careerId": null,
         "firstName": "Tod",
         "lastName": "Storry",
         "dni": "45-451-5867",
@@ -2445,7 +2445,7 @@
     },
     {
         "studentId": 189,
-        "careerId": 1,
+        "careerId": null,
         "firstName": "Frederich",
         "lastName": "Adelsberg",
         "dni": "45-650-3730",
@@ -2458,7 +2458,7 @@
     },
     {
         "studentId": 190,
-        "careerId": 3,
+        "careerId": null,
         "firstName": "Franciska",
         "lastName": "Degan",
         "dni": "77-753-5103",
@@ -2471,7 +2471,7 @@
     },
     {
         "studentId": 191,
-        "careerId": 5,
+        "careerId": null,
         "firstName": "Meridith",
         "lastName": "Langham",
         "dni": "48-779-5094",
@@ -2484,7 +2484,7 @@
     },
     {
         "studentId": 192,
-        "careerId": 1,
+        "careerId": null,
         "firstName": "Essa",
         "lastName": "Goldsworthy",
         "dni": "62-206-2472",
@@ -2497,7 +2497,7 @@
     },
     {
         "studentId": 193,
-        "careerId": 1,
+        "careerId": null,
         "firstName": "Paola",
         "lastName": "Maleby",
         "dni": "89-275-9899",
@@ -2510,7 +2510,7 @@
     },
     {
         "studentId": 194,
-        "careerId": 1,
+        "careerId": null,
         "firstName": "Sydelle",
         "lastName": "Avon",
         "dni": "20-444-0920",
@@ -2523,7 +2523,7 @@
     },
     {
         "studentId": 195,
-        "careerId": 1,
+        "careerId": null,
         "firstName": "Beaufort",
         "lastName": "Shorthill",
         "dni": "18-735-9079",
@@ -2536,7 +2536,7 @@
     },
     {
         "studentId": 196,
-        "careerId": 3,
+        "careerId": null,
         "firstName": "Ronnie",
         "lastName": "Gummie",
         "dni": "53-420-6421",
@@ -2549,7 +2549,7 @@
     },
     {
         "studentId": 197,
-        "careerId": 4,
+        "careerId": null,
         "firstName": "Tymon",
         "lastName": "Nazer",
         "dni": "40-384-7934",
@@ -2562,7 +2562,7 @@
     },
     {
         "studentId": 198,
-        "careerId": 1,
+        "careerId": null,
         "firstName": "Basilio",
         "lastName": "Merle",
         "dni": "85-589-1156",
@@ -2575,7 +2575,7 @@
     },
     {
         "studentId": 199,
-        "careerId": 2,
+        "careerId": null,
         "firstName": "Terra",
         "lastName": "Kitson",
         "dni": "03-745-8474",
@@ -2588,7 +2588,7 @@
     },
     {
         "studentId": 200,
-        "careerId": 3,
+        "careerId": null,
         "firstName": "Ellary",
         "lastName": "Cordelette",
         "dni": "16-890-1380",

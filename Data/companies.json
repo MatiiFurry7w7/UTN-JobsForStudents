@@ -1,24 +1,24 @@
 [
     {
-        "companyId": 1,
-        "name": "Lobe Marine",
-        "cuit": "123456789",
+        "companyId": 2,
+        "name": "Globant",
+        "cuit": "12365489",
         "description": "Empresa",
-        "website": "www.lobomarino.com",
-        "street": "Av. Luro",
+        "website": "https:\/\/www.globant.com",
+        "street": "Col\u00f3n",
         "number": "123",
         "aboutUs": "Empresa",
         "active": true
     },
     {
-        "companyId": 2,
-        "name": "Carpincho",
-        "cuit": "123456789",
-        "description": "Empresa",
-        "website": "www.carpincho.com",
-        "street": "Puan",
-        "number": "123",
-        "aboutUs": "Empresa",
-        "active": true
+        "companyId": 3,
+        "name": "Test",
+        "cuit": "12354687",
+        "description": "empresa",
+        "website": "www.globant.com",
+        "street": "Garay",
+        "number": "3214",
+        "aboutUs": "321566",
+        "active": "true"
     }
 ]

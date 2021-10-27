@@ -79,5 +79,89 @@
                 throw $ex;
             }
         }
+
+        public function DeleteById($companyId)
+        {
+            try
+            {
+                $query = "DELETE FROM ".$this->tableName." WHERE companyId = :companyId;";
+
+                $parameters["companyId"] = $companyId;
+
+                $this->connection = Connection::GetInstance();
+
+                $this->connection->ExecuteNonQuery($query, $parameters);
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
+        }
+
+        public function FindById($companyId)
+        {
+            try
+            {
+                $query = "SELECT * FROM ".$this->tableName.' WHERE (companyId = :companyId);';
+
+                $this->connection = Connection::GetInstance();
+                
+                $parameters["companyId"] = $companyId;
+
+                $result = $this->connection->Execute($query, $parameters);
+
+                $company = new Company();
+                $company->setCompanyId($result[0]["companyId"]);
+                $company->setName($result[0]["name"]);
+                $company->setCuit($result[0]["cuit"]);
+                $company->setDescription($result[0]["description"]);
+                $company->setWebsite($result[0]["website"]);
+                $company->setStreet($result[0]["street"]);
+                $company->setNumber($result[0]["number_street"]);
+                $company->setAboutUs($result[0]["aboutUs"]);
+                $company->setActive($result[0]["active"]);
+                //industries
+                //jobOffer
+                //administrator
+                
+                return $company;
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
+        }
+
+        public function ModifyById($companyId, $name, $cuit, $description, $website, $street, $number, $aboutUs, $active)
+        {
+            {
+                try
+                {
+                    $query = "UPDATE ".$this->tableName." SET name=:name, cuit=:cuit, description=:description, website=:website, street=:street, number_street=:number_street, aboutUs=:aboutUs, active=:active 
+                    WHERE companyId=:companyId;";
+
+                    $parameters["companyId"] = $companyId;
+                    $parameters["name"] = $name;
+                    $parameters["cuit"] = $cuit;
+                    $parameters["description"] = $description;
+                    $parameters["website"] = $website;
+                    $parameters["street"] = $street;
+                    $parameters["number_street"] = $number;
+                    $parameters["aboutUs"] = $aboutUs;
+                    $parameters["active"] = $active;
+                    //industries
+                    //jobOffer
+                    //administrator
+    
+                    $this->connection = Connection::GetInstance();
+    
+                    $this->connection->ExecuteNonQuery($query, $parameters);
+                }
+                catch(Exception $ex)
+                {
+                    throw $ex;
+                }
+            }
+        }
     }
 ?>

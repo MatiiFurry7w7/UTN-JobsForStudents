@@ -1,45 +1,65 @@
 <?php
     namespace DAO;
 
+    use \Exception as Exception;
     use Models\JobPosition as JobPosition;
     use DAO\IJobPositionDAO as IJobPositionDAO;
     use Models\Career as Career;
 
 class JobPositionDAO implements IJobPositionDAO {
 
-        private $jobPositionList = array();
-        private $fileName; 
-
-        public function __construct() {
-            $this->fileName = dirname(__DIR__)."\Data\jobPositions.json";
-        }
+        private $connection;
+        private $tableName = "jobPositions";
 
         public function Add(JobPosition $jobPosition) {
-            $this->RetrieveData();
+            try
+            {
+                $query = "INSERT INTO ".$this->tableName." (jobPositionId, careerId, description) 
+                    VALUES (:jobPositionId, :careerId, :description);";
 
-            array_push($this->jobPositionList, $jobPosition);
+                $parameters["jobPositionId"] = $jobPosition->getJobPositionId();
+                $parameters["careerId"] = $jobPosition->getCareerId();
+                $parameters["description"] = $jobPosition->getDescription();
 
-            $this->SaveData();
-        }
-        
-        public function DeleteById($id) {
-            $this->RetrieveData();
+                $this->connection = Connection::GetInstance();
 
-            if(!empty($this->jobPositionList)){
-                foreach($this->jobPositionList as $jobPosition){
-                    if($jobPosition->getJobPositionId() == $id){
-                        $index = array_search($jobPosition, $this->jobPositionList);
-                        unset($this->jobPositionList[$index]);
-                    }
-                }
+                $this->connection->ExecuteNonQuery($query, $parameters);
             }
-            $this->SaveData();
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
         }
 
-        public function GetAll() {
-            $this->RetrieveData();
+        public function GetAll()
+        {
+            try
+            {
+                $jobPositionList = array();
 
-            return $this->jobPositionList;            
+                $query = "SELECT * FROM ".$this->tableName;
+
+                $this->connection = Connection::GetInstance();
+
+                $resultSet = $this->connection->Execute($query);
+                
+                foreach ($resultSet as $row)
+                {                
+                    $jobPosition = new JobPosition();
+                    
+                    $jobPosition->setJobPositionId($row["jobPositionId"]);
+                    $jobPosition->setCareerId($row["careerId"]);
+                    $jobPosition->setDescription($row["description"]);
+        
+                    array_push($jobPositionList, $jobPosition);
+                }
+                
+                return $jobPositionList;
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
         }
 
         public function LoadFromAPI() {
@@ -63,45 +83,7 @@ class JobPositionDAO implements IJobPositionDAO {
                 $newJobPosition->setCareerId($jobPosition->careerId);
                 $newJobPosition->setDescription($jobPosition->description);
 
-                array_push($this->jobPositionList, $newJobPosition);
-            }
-
-            $this->SaveData();
-        }
-
-        private function SaveData() {
-            $arrayToEncode = array();
-
-            foreach($this->jobPositionList as $jobPosition){
-                $valuesArray['jobPositionId'] = $jobPosition->getJobPositionId();
-                $valuesArray['careerId'] = $jobPosition->getCareerId();
-                $valuesArray['description'] = $jobPosition->getDescription();
-
-                array_push($arrayToEncode, $valuesArray);
-            }
-
-            $jsonContent = json_encode($arrayToEncode, JSON_PRETTY_PRINT);
-
-            file_put_contents($this->fileName, $jsonContent);
-        }
-
-        private function RetrieveData() {
-            $this->jobPositionList = array();
-
-            if(file_exists($this->fileName)) { 
-                $jsonContent = file_get_contents($this->fileName);
-
-                $arrayToDecode = ($jsonContent) ? json_decode($jsonContent, true) : array();
-                
-                foreach($arrayToDecode as $valuesArray) {
-                    $jobPosition = new JobPosition();
-
-                    $jobPosition->setJobPositionId($valuesArray["jobPositionId"]);
-                    $jobPosition->setCareerId($valuesArray["careerId"]);
-                    $jobPosition->setDescription($valuesArray["description"]);
-
-                    array_push($this->jobPositionList, $jobPosition);
-                }
+                $this->Add($newJobPosition);
             }
         }
     }

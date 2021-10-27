@@ -36,9 +36,6 @@
             $company->setStreet($street);
             $company->setNumber($number_street);
             $company->setAboutUs($aboutUs);
-            
-            $active = $this->activeToBoolean($isActive);
-
             $company->setActive($isActive);
 
             $this->companyDAO->Add($company);
@@ -58,7 +55,6 @@
         }
 
         public function ModifyACompany($companyId, $name, $cuit, $description, $website, $street, $number, $aboutUs, $active){
-            $active = $this->activeToBoolean($active);
             $this->companyDAO->ModifyById($companyId, $name, $cuit, $description, $website, $street, $number, $aboutUs, $active);
             
             $this->ShowListView();

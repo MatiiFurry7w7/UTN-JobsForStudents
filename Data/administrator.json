@@ -1,0 +1,12 @@
+[
+    {
+        "administratorId": 1,
+        "password": "123",
+        "userName": "Juan Perez"
+    },
+    {
+        "administratorId": 2,
+        "password": "12365478899",
+        "userName": "Mat\u00edas"
+    }
+]

@@ -14,3 +14,10 @@ create table companies
 	aboutUs varchar(100), 
 	active boolean
 );
+
+create table jobPositions
+(
+	jobPositionId int, 
+	careerId int,
+	description varchar(100)
+);

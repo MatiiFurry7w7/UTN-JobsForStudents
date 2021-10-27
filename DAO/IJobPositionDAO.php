@@ -7,6 +7,5 @@
     {
         public function Add(JobPosition $jobPosition);
         public function GetAll();
-        public function DeleteById($id);
     }
 ?>
