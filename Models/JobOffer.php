@@ -15,18 +15,18 @@
         private $appointment; //relation one to one
         private $jobPosition; //relation one to one
 
-        //CONSTRUCTOR
-        public function __construct($idJobOffer, $title, $publishedDate, $finishDate, $task, $skills, $active, $remote, $salary) {
-            $this->idJobOffer = $idJobOffer;
-            $this->title = $title;
-            $this->publishedDate = $publishedDate;
-            $this->finishedDate = $finishedDate;
-            $this->task = $task;
-            $this->skills = $skills;
-            $this->active = $active;
-            $this->remote = $remote;
-            $this->salary = $salary;
-        }
+        // //CONSTRUCTOR
+        // public function __construct($idJobOffer, $title, $publishedDate, $finishDate, $task, $skills, $active, $remote, $salary) {
+        //     $this->idJobOffer = $idJobOffer;
+        //     $this->title = $title;
+        //     $this->publishedDate = $publishedDate;
+        //     $this->finishedDate = $finishedDate;
+        //     $this->task = $task;
+        //     $this->skills = $skills;
+        //     $this->active = $active;
+        //     $this->remote = $remote;
+        //     $this->salary = $salary;
+        // }
         //GETTERS & SETTERS
         public function getIdJobOffer() {
             return $this->idJobOffer;

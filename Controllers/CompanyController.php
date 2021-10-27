@@ -27,19 +27,29 @@
             
             $companyList = $this->companyDAO->GetAll();
 
-            $this->setIdByLastId($companyList, $company);
+            foreach($companyList as $eachCompany) {
+                if($eachCompany->getName() == $name || $eachCompany->getCuit() == $cuit){
+                    $company = $eachCompany;
+                }
+            }
 
-            $company->setName($name);
-            $company->setCuit($cuit);
-            $company->setDescription($description);
-            $company->setWebsite($website);
-            $company->setStreet($street);
-            $company->setNumber($number_street);
-            $company->setAboutUs($aboutUs);
-            $company->setActive($isActive);
+            if(!$company){
+                $company->setName($name);
+                $company->setCuit($cuit);
+                $company->setDescription($description);
+                $company->setWebsite($website);
+                $company->setStreet($street);
+                $company->setNumber($number_street);
+                $company->setAboutUs($aboutUs);
+                $company->setActive($isActive);
 
-            $this->companyDAO->Add($company);
-
+                $this->companyDAO->Add($company);
+            } else {
+                ?>
+                    <script>alert('The company already exists!');</script>
+                <?php
+            }
+            
             $this->ShowAddView();
         }
 

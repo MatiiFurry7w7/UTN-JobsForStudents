@@ -15,10 +15,9 @@
         {
             try
             {
-                $query = "INSERT INTO ".$this->tableName." (companyId, name, cuit, description, website, street, number_street, aboutUs, active) 
-                    VALUES (:companyId, :name, :cuit, :description, :website, :street, :number_street, :aboutUs, :active);";
+                $query = "INSERT INTO ".$this->tableName." (name, cuit, description, website, street, number_street, aboutUs, active) 
+                    VALUES (:name, :cuit, :description, :website, :street, :number_street, :aboutUs, :active);";
 
-                $parameters["companyId"] = $company->getCompanyId();
                 $parameters["name"] = $company->getName();
                 $parameters["cuit"] = $company->getCuit();
                 $parameters["description"] = $company->getDescription();
