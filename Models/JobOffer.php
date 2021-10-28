@@ -3,7 +3,7 @@
 
     class JobOffer {
 
-        private $idJobOffer;
+        private $JobOfferId;
         private $title;
         private $publishedDate;
         private $finishDate;
@@ -28,12 +28,12 @@
         //     $this->salary = $salary;
         // }
         //GETTERS & SETTERS
-        public function getIdJobOffer() {
-            return $this->idJobOffer;
+        public function getJobOfferId() {
+            return $this->jobOfferId;
         }
 
-        public function setId($idJobOffer) {
-            $this->idJobOffer = $idJobOffer;
+        public function setJobOfferId($jobOfferId) {
+            $this->jobOfferId = $jobOfferId;
         }
 
         public function getTitle() {
@@ -129,7 +129,7 @@
                     "<br>Salary: ".$this->salary.
                     "<br>Appointment: ".
                     "<br>-------------------------------".$this->appointment.
-                    "<br>Job Position: "
+                    "<br>Job Position: ".
                     "<br>-------------------------------".$this->jobPosition;
         }
     }

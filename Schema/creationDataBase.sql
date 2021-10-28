@@ -1,7 +1,10 @@
+-- CREATION OF THE DATABASE "JOBSFORSTUDENTS" 
 create database JobsForStudents;
 
+-- TO USE THIS DATABASE
 use JobsForStudents;
 
+-- CREATION OF TABLE: COMPANIES
 create table companies
 (
 	companyId int auto_increment primary key, 
@@ -15,6 +18,7 @@ create table companies
 	active boolean
 );
 
+-- CREATION OF TABLE: JOBPOSITIONS
 create table jobPositions
 (
 	jobPositionId int, 
@@ -22,10 +26,25 @@ create table jobPositions
 	description varchar(100)
 );
 
-create table carrers
+-- CREATION OF TABLE: CAREERS
+create table careers
 (
 	careerId int auto_increment primary key, 
 	title varchar(50), 
 	description varchar(100),
 	active boolean
+);
+
+-- CREATION OF TABLE: JOBOFFERS
+create table jobOffers
+(
+	jobOfferId int auto_increment primary key,
+	title varchar(50),
+	publishedDate date,
+	finishDate date,
+	task varchar(100),
+	skills varchar(100),
+	active boolean,
+	remote boolean,
+	salary int
 );
