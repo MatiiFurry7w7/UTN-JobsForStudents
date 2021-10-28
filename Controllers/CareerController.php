@@ -21,21 +21,36 @@
             require_once(VIEWS_PATH."career-list.php");
         }
 
-        public function Add($carrerId, $description, $title){
+        public function Add($careerId, $title, $description, $isActive){
             $career = new Career();
             
             $careerList = $this->careerDAO->GetAll();
 
-            $this->setIdByLastId($careerList, $career);
+            foreach($careerList as $eachCareer) {
+                if($eachCareer->getTitle() == $title){
+                    $career = $eachCareer;
+                }
+            }
 
-            $career->setCareerId($carrerId);
-            $career->setDescription($description);
-            $career->setTitle($title);
-            $career->setActive(true);
-            
-            $this->careerDAO->Add($career);
+            if(!$career){
+                $career->setCareerId($careerId);
+                $career->setDescription($description);
+                $career->setTitle($title);
+                $career->setActive($isActive);
+
+                $this->careerDAO->Add($career);
+            }else {
+                ?>
+                    <script>alert('The career already exists!');</script>
+                <?php
+            }
 
             $this->ShowAddView();
+        }
+
+        public function Remove($removeId){
+            $this->careerDAO->DeleteById($removeId);
+            $this->ShowListView();
         }
 
         private function setIdByLastId($careerList, $career){

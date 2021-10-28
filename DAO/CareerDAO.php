@@ -3,43 +3,84 @@
 
     use Models\Career as Career;
     use DAO\IcareerDAO as IcareerDAO;
+    use \Exception as Exception;
 
-class CareerDAO implements ICareerDAO {
+class CareerDAO implements IcareerDAO {
 
-        private $careerList = array();
-        private $fileName; 
-
-        public function __construct() {
-            $this->fileName = dirname(__DIR__)."\Data\careers.json";
-        }
+        private $connection;
+        private $tableName = "careers";
 
         public function Add(Career $career) {
-            $this->RetrieveData();
+            try
+            {
+                $query = "INSERT INTO ".$this->tableName." (careerId, title, description, active) 
+                    VALUES (:careerId, :title, :description, :active);";
 
-            array_push($this->careerList, $career);
+                $parameters["careerId"] = $career->getCareerId();
+                $parameters["title"] = $career->getTitle();
+                $parameters["description"] = $career->getDescription();
+                $parameters["active"] = $career->getActive();
 
-            $this->SaveData();
-        }
-        
-        public function DeleteById($id) {
-            $this->RetrieveData();
+                $this->connection = Connection::GetInstance();
 
-            if(!empty($this->careerList)){
-                foreach($this->careerList as $career){
-                    if($career->getCareerId() == $id){
-                        $index = array_search($career, $this->careerList);
-                        unset($this->careerList[$index]);
-                    }
-                }
+                $this->connection->ExecuteNonQuery($query, $parameters);
             }
-            $this->SaveData();
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
         }
 
-        public function GetAll() {
-            $this->RetrieveData();
+        public function GetAll()
+        {
+            try
+            {
+                $careerList = array();
 
-            return $this->careerList;            
+                $query = "SELECT * FROM ".$this->tableName;
+
+                $this->connection = Connection::GetInstance();
+
+                $resultSet = $this->connection->Execute($query);
+                
+                foreach ($resultSet as $row)
+                {                
+                    $career = new career();
+                    
+                    $career->setCareerId($row["careerId"]);
+                    $career->setTitle($row["title"]);
+                    $career->setDescription($row["description"]);
+                    $career->setDescription($row["active"]);
+        
+                    array_push($careerList, $career);
+                }
+                
+                return $careerList;
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
         }
+
+        public function DeleteById($careerId)
+        {
+            try
+            {
+                $query = "DELETE FROM ".$this->tableName." WHERE careerId = :careerId;";
+
+                $parameters["careerId"] = $careerId;
+
+                $this->connection = Connection::GetInstance();
+
+                $this->connection->ExecuteNonQuery($query, $parameters);
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
+        }
+
 
         public function LoadFromAPI() {
             $this->careerList = array();
@@ -47,7 +88,7 @@ class CareerDAO implements ICareerDAO {
             //CURL
             $url = curl_init();
             //Sets URL
-            curl_setopt($url, CURLOPT_URL, 'https://utn-students-api.herokuapp.com/api/Career');
+            curl_setopt($url, CURLOPT_URL, 'https://utn-students-api.herokuapp.com/api/career');
             //Sets Header key
             curl_setopt($url, CURLOPT_HTTPHEADER, array('x-api-key:4f3bceed-50ba-4461-a910-518598664c08'));
             curl_setopt($url, CURLOPT_RETURNTRANSFER, 1);
@@ -57,14 +98,14 @@ class CareerDAO implements ICareerDAO {
 
             foreach($toJson as $career) {
                 
-                $newCareer = new Career();
+                $newcareer = new career();
 
-                $newCareer->setCareerId($career->careerId);
-                $newCareer->setTitle($career->title);
-                $newCareer->setDescription($career->description);
-                $newCareer->setActive($career->active);
+                $newcareer->setcareerId($career->careerId);
+                $newcareer->setTitle($career->title);
+                $newcareer->setDescription($career->description);
+                $newcareer->setActive($career->active);
 
-                array_push($this->careerList, $newCareer);
+                array_push($this->careerList, $newcareer);
             }
 
             $this->SaveData();
@@ -96,7 +137,7 @@ class CareerDAO implements ICareerDAO {
                 $arrayToDecode = ($jsonContent) ? json_decode($jsonContent, true) : array();
                 
                 foreach($arrayToDecode as $valuesArray) {
-                    $career = new Career();
+                    $career = new career();
 
                     $career->setcareerId($valuesArray["careerId"]);
                     $career->setTitle($valuesArray["title"]);
@@ -108,4 +149,41 @@ class CareerDAO implements ICareerDAO {
             }
         }
     }
+         
+        /*
+        private $careerList = array();
+        private $fileName;
+
+          public function __construct() {
+            $this->fileName = dirname(__DIR__)."\Data\careers.json";
+        }
+
+        public function Add(career $career) {
+            $this->RetrieveData();
+
+            array_push($this->careerList, $career);
+
+            $this->SaveData();
+        }
+
+        public function GetAll() {
+            $this->RetrieveData();
+
+            return $this->careerList;            
+        }
+
+        public function DeleteById($id) {
+            $this->RetrieveData();
+
+            if(!empty($this->careerList)){
+                foreach($this->careerList as $career){
+                    if($career->getcareerId() == $id){
+                        $index = array_search($career, $this->careerList);
+                        unset($this->careerList[$index]);
+                    }
+                }
+            }
+            $this->SaveData();
+        }
+        */
 ?>

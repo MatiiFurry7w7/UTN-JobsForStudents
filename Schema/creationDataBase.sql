@@ -21,3 +21,11 @@ create table jobPositions
 	careerId int,
 	description varchar(100)
 );
+
+create table carrers
+(
+	careerId int auto_increment primary key, 
+	title varchar(50), 
+	description varchar(100),
+	active boolean
+);
