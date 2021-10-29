@@ -4,6 +4,7 @@
     use Models\Career as Career;
     use DAO\IcareerDAO as IcareerDAO;
     use \Exception as Exception;
+    use DAO\Connection as Connection;
 
 class CareerDAO implements IcareerDAO {
 

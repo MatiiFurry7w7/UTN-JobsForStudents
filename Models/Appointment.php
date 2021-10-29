@@ -2,17 +2,16 @@
 
 class Appointment{
 
-  private $cv;
+  private $cv; //<------------------ adjuntar CV por datafile
   private $dateAppointment;
   private $referenceURL;
   //AGREGAR JOBOFFER Y STUDENT 
 
-  Public function __construct($cv, $dateAppointment, $referenceURL){
+  /*Public function __construct($cv, $dateAppointment, $referenceURL){
     $this->cv= $cv;
     $this->dateAppointment = $dateAppointment;
     $this->referenceURL = $referenceURL;
-}
-
+ }*/
 
   public function getDateAppointment()
   {

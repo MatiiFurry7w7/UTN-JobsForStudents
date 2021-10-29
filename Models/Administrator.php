@@ -6,10 +6,10 @@ class Administrator{
     private $userName;
     private $password;
 
-    Public function __construct($userName, $password){
+    /*Public function __construct($userName, $password){
         $this->userName= $userName;
         $this->password= $password;
-    }
+    }*/
 
     public function getAdministratorId()
     {

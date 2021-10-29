@@ -48,3 +48,19 @@ create table jobOffers
 	remote boolean,
 	salary int
 );
+
+-- CREATION OF TABLE: ADMINISTRATOR
+create table administrator
+(
+	administratorId int auto_increment primary key, 
+	userName varchar(50), 
+	password varchar(50),
+);
+
+/*-- CREATION OF TABLE: APPOINTMENT
+create table appointment
+(
+	appointmentId int auto_increment primary key, 
+	dateAppointment varchar(50), 
+	referenceURL varchar(100),
+);*/
