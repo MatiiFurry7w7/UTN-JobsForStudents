@@ -5,22 +5,13 @@
         private $firstName;
         private $lastName;
         private $email;
+        private $password;
         private $phoneNumber;
         private $gender;
         private $dNI;
         private $birthDate;
         private $career;
         private $academicStatus;
-
-        public function __construct($firstName, $lastName, $email, $phoneNumber, $gender, $dNI, $birthDate){
-            $this->firstName = $firstName;
-            $this->lastName = $lastName;
-            $this->email = $email;
-            $this->phoneNumber = $phoneNumber;
-            $this->gender = $gender;
-            $this->dNI = $dNI;
-            $this->birthDate = $birthDate;
-        }
 
         //GET/SET
         public function getStudentId(){
@@ -53,6 +44,14 @@
 
         public function setEmail($email){
             $this->email = $email;
+        }
+
+        public function getPassword(){
+            return $this->password;
+        }
+
+        public function setPassword($password){
+            $this->password = $password;
         }
 
         public function getPhoneNumber(){

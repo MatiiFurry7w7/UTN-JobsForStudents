@@ -50,11 +50,18 @@ create table jobOffers
 );
 
 -- CREATION OF TABLE: ADMINISTRATOR
-create table administrator
+create table administrators
 (
 	administratorId int auto_increment primary key, 
 	userName varchar(50), 
-	password varchar(50),
+	password varchar(50)
+);
+
+-- CREATION OF TABLE: STUDENTS
+create table students(
+	studentId int auto_increment primary key, 
+	email varchar(50), 
+	password varchar(50)
 );
 
 /*-- CREATION OF TABLE: APPOINTMENT

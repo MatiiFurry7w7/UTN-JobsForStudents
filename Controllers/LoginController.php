@@ -20,10 +20,9 @@
         public function LogInView($message = ""){
             session_destroy();
             require_once(VIEWS_PATH."login.php");
-            
         }
 
-        public function LogIn($userName){
+        public function LogIn($userName, $userPassword){
             session_destroy();
             session_start();
 
@@ -38,12 +37,28 @@
             
             //Login if Student
             if($loginUser == null){
-                //Update from API before checking Student
-                $this->updateFromAPI();
+                $UTNAPILIST = $this->studentDAO->loadFromAPI();
+
                 foreach($this->studentDAO->getAll() as $eachStudent){
-                    //echo "<br>".$eachStudent->getEmail()." == ".$userName."<br>";
-                    if($eachStudent->getEmail() == $userName)
-                       $loginUser = $eachStudent;
+                    if($eachStudent->getEmail() == $userName && $eachStudent->getPassword() == $userPassword)
+                        foreach($UTNAPILIST as $eachUTNStudent)
+                            if($eachStudent->getEmail() == $eachUTNStudent->email){
+                                if($eachUTNStudent->active == true){
+                                    $eachStudent->setFirstName($eachUTNStudent->firstName);
+                                    $eachStudent->setLastName($eachUTNStudent->lastName);
+                                    $eachStudent->setPhoneNumber($eachUTNStudent->phoneNumber);
+                                    $eachStudent->setGender($eachUTNStudent->gender);
+                                    $eachStudent->setDNI($eachUTNStudent->dni);
+                                    $eachStudent->setBirthDate($eachUTNStudent->birthDate);
+                                    $eachStudent->setCareer($eachUTNStudent->careerId);
+                                    $eachStudent->setAcademicStatus($eachUTNStudent->fileNumber);
+
+                                    $loginUser = $eachStudent;
+                                }
+                                else
+                                    $this->LogInView("That student is not active!");
+
+                            }
                 }
             }
 
@@ -53,11 +68,6 @@
                 $_SESSION['currentUser'] = $loginUser;
                 header("location: ".FRONT_ROOT."Home/Index");
             }
-        }
-
-        //DELETES THE LIST AND FILLS WITH THE API DATA
-        private function updateFromAPI(){
-            $this->studentDAO->loadFromAPI();
         }
     }
 ?> 

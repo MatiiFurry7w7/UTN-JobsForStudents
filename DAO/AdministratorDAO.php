@@ -8,8 +8,8 @@
 
 class AdministratorDAO implements IAdministratorDAO{
 
-        private $administratorList = array();
-        private $dataFile;
+        private $connection;
+        private $tableName = "administrators";
 
         public function __construct(){
             $this->dataFile = dirname(__DIR__)."\Data\administrator.json";

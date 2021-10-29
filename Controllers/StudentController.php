@@ -13,31 +13,77 @@ class StudentController
         public function __construct(){
             $this->studentDAO = new StudentDAO();
         }
-
-        public function AddView(){
+        
+        public function RegisterView($message = ""){
+            session_destroy();
             require_once(VIEWS_PATH."add-student.php");
         }
 
-        public function Add($firstName, $lastName, $email, $phoneNumber, $gender, $dNI, $birthDate){
-            $newStudent = new Student($firstName, $lastName, $email, $phoneNumber, $gender, $dNI, $birthDate);
-
+        public function Add($dNI, $fileNumber, $email, $password){
+            $newStudent = NULL;
             $studentList = $this->studentDAO->getAll();
-            $this->setIdByLastId($studentList, $newStudent);
 
-            //DEFAULT VALUES, CHANGE LATER!
-            $newAcademicStatus = new AcademicStatus(true, "N/A", "N/A");
-            $newStudent->setAcademicStatus($newAcademicStatus);
+            //If already registered
+            $found = false;
+            if($studentList){
+                foreach($this->studentDAO->getAll() as $eachStudent){
+                    if($eachStudent->getEmail() == $email){
+                        $message = "You´re already registered!";
+                        $found = true;
+                    }
+                }
+            }
 
-            $newCareer = new Career("N/A", "N/A", "N/A");
-            $newStudent->setCareer($newCareer);
+            //If not registered
+            if(!$found){
+                $UTNAPILIST = $this->studentDAO->loadFromAPI();
 
-            $this->studentDAO->add($newStudent);
+                //Check if UTN student exists..
+                foreach($UTNAPILIST as $eachUTNStudent){
+                    if($eachUTNStudent->dni == $dNI &&
+                       $eachUTNStudent->fileNumber == $fileNumber &&
+                       $eachUTNStudent->email == $email){
+                            $newStudent = $eachUTNStudent;
+                       }
+                }
 
-            header('location: '.FRONT_ROOT.'Student/ListView');
+                //If UTN student exists
+                if($newStudent){
+                    //..but is not active
+                    if($newStudent->active == false)
+                        $message = "Can´t register!, that student is not active in UTN!";
+                    //..and if is active
+                    else{
+                        $newStudent = new Student();
+                        $newStudent->setEmail($email);
+                        $newStudent->setPassword($password);
+        
+                        $this->studentDAO->add($newStudent);
+                        $message = "Register complete!";
+                    }
+                //If UTN student does not exist
+                }else{
+                    $message = "That information doesn´t match with any UTN student!";
+                }
+            }
+            $this->RegisterView($message);
         }
 
         public function ListView(){
+            $UTNAPILIST = $this->studentDAO->loadFromAPI();
             $studentList = $this->studentDAO->getAll();
+            $newStudentList = array();
+
+            foreach($studentList as $eachStudent){
+                foreach($UTNAPILIST as $eachUTNStudent){
+                    if($eachStudent->getEmail() == $eachUTNStudent->email){
+                        $this->APIStudentToStudent($eachUTNStudent, $eachStudent);
+                        array_push($newStudentList, $eachStudent);
+                    }
+                }
+            }
+
+            $studentList = $newStudentList;
 
             require_once(VIEWS_PATH."student-list.php");
         }
@@ -64,17 +110,34 @@ class StudentController
             return $student;
         }
 
-        public function ProfileView($studentId){
-            $student = $this->getStudentById($studentId);
+        public function ProfileView($email){
+            $UTNAPILIST = $this->studentDAO->loadFromAPI();
+            $studentList = $this->studentDAO->getAll();
+
+            $student = new Student();
+
+            foreach($studentList as $eachStudent){
+                foreach($UTNAPILIST as $eachUTNStudent){
+                    if($email == $eachUTNStudent->email && $eachUTNStudent->email == $eachStudent->getEmail()){
+                        $this->APIStudentToStudent($eachUTNStudent, $student);
+                        $student->setStudentId($eachStudent->getStudentId());
+                    }
+                }
+            }
 
             require_once(VIEWS_PATH."student-profile.php");
         }
 
-        //DELETES THE LIST AND FILLS WITH THE API DATA
-        public function updateFromAPI(){
-            $this->studentDAO->loadFromAPI();
-
-            $this->ListView();
+        private function APIStudentToStudent($from, Student $to){
+            $to->setCareer($from->careerId);
+            $to->setFirstName($from->firstName);
+            $to->setLastName($from->lastName);
+            $to->setDNI($from->dni);
+            $to->setAcademicStatus($from->fileNumber);
+            $to->setPhoneNumber($from->phoneNumber);
+            $to->setGender($from->gender);
+            $to->setEmail($from->email);
+            $to->setBirthDate($from->birthDate);
         }
     }
 ?> 
