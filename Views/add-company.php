@@ -50,7 +50,19 @@
           <td>
             <input type="text" name="aboutUs" required>
           </td>
-        </tr>    
+        </tr>   
+        <tr>
+          <td style="width: 200px;"><label for="industry">Industry</label></td> 
+          <td>
+              <select name="industry">  
+                <?php
+                  foreach($industryList as $industry) {
+                    ?><option value="<?php echo $industry?>" ><?php echo $industry?></option><?php 
+                  }
+                ?>
+              </select>
+          </td>
+        </tr>  
         <tr>
           <td style="width: 200px;"><label for="active">Active</label></td> 
           <td>

@@ -5,6 +5,7 @@ class Appointment{
   private $cv;
   private $dateAppointment;
   private $referenceURL;
+  //AGREGAR JOBOFFER Y STUDENT 
 
   Public function __construct($cv, $dateAppointment, $referenceURL){
     $this->cv= $cv;

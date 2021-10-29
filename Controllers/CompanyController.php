@@ -4,6 +4,7 @@
     use DAO\CompanyDAO as CompanyDAO;
     use Models\Company as Company;
     use Models\Administrator as Administrator;
+    use Models\Industry as Industry;
 
     class CompanyController{
         private $companyDAO;
@@ -13,6 +14,7 @@
         }
 
         public function ShowAddView(){
+            $industryList = Industry::GetAll();
             require_once(VIEWS_PATH."add-company.php");
         }
 

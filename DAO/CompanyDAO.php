@@ -52,26 +52,28 @@
 
                 $resultSet = $this->connection->Execute($query);
                 
-                foreach ($resultSet as $row)
-                {                
-                    $company = new Company();
-                    $company->setCompanyId($row["companyId"]);
-                    $company->setName($row["name"]);
-                    $company->setCuit($row["cuit"]);
-                    $company->setDescription($row["description"]);
-                    $company->setWebsite($row["website"]);
-                    $company->setStreet($row["street"]);
-                    $company->setNumber($row["number_street"]);
-                    $company->setAboutUs($row["aboutUs"]);
-                    $company->setActive($row["active"]);
-                    //industries
-                    //jobOffer
-                    //administrator
-        
-                    array_push($companyList, $company);
+                if($resultSet){
+                    foreach ($resultSet as $row)
+                    {                
+                        $company = new Company();
+                        $company->setCompanyId($row["companyId"]);
+                        $company->setName($row["name"]);
+                        $company->setCuit($row["cuit"]);
+                        $company->setDescription($row["description"]);
+                        $company->setWebsite($row["website"]);
+                        $company->setStreet($row["street"]);
+                        $company->setNumber($row["number_street"]);
+                        $company->setAboutUs($row["aboutUs"]);
+                        $company->setActive($row["active"]);
+                        //industries
+                        //jobOffer
+                        //administrator
+            
+                        array_push($companyList, $company);
+                    }
+                    return $companyList;
                 }
                 
-                return $companyList;
             }
             catch(Exception $ex)
             {
@@ -107,23 +109,25 @@
                 
                 $parameters["companyId"] = $companyId;
 
-                $result = $this->connection->Execute($query, $parameters);
+                $result = $this->connection->Execute($query, $parameters)[0];
 
-                $company = new Company();
-                $company->setCompanyId($result[0]["companyId"]);
-                $company->setName($result[0]["name"]);
-                $company->setCuit($result[0]["cuit"]);
-                $company->setDescription($result[0]["description"]);
-                $company->setWebsite($result[0]["website"]);
-                $company->setStreet($result[0]["street"]);
-                $company->setNumber($result[0]["number_street"]);
-                $company->setAboutUs($result[0]["aboutUs"]);
-                $company->setActive($result[0]["active"]);
-                //industries
-                //jobOffer
-                //administrator
+                if($result) {
+                    $company = new Company();
+                    $company->setCompanyId($result["companyId"]);
+                    $company->setName($result["name"]);
+                    $company->setCuit($result["cuit"]);
+                    $company->setDescription($result["description"]);
+                    $company->setWebsite($result["website"]);
+                    $company->setStreet($result["street"]);
+                    $company->setNumber($result["number_street"]);
+                    $company->setAboutUs($result["aboutUs"]);
+                    $company->setActive($result["active"]);
+                    //industries
+                    //jobOffer
+                    //administrator
                 
-                return $company;
+                    return $company;
+                }
             }
             catch(Exception $ex)
             {

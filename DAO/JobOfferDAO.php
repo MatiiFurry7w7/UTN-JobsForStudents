@@ -50,26 +50,27 @@
                 $this->connection = Connection::GetInstance();
 
                 $resultSet = $this->connection->Execute($query);
-                
-                foreach ($resultSet as $row)
-                {                
-                    $jobOffer = new JobOffer();
-                    $jobOffer->setJobOfferId($row["jobOfferId"]);
-                    $jobOffer->setTitle($row["title"]);
-                    $jobOffer->setPublishedDate($row["publishedDate"]);
-                    $jobOffer->setFinishDate($row["finishDate"]);
-                    $jobOffer->setTask($row["task"]);
-                    $jobOffer->setSkills($row["skills"]);
-                    $jobOffer->setActive($row["active"]);
-                    $jobOffer->setRemote($row["remote"]);
-                    $jobOffer->setSalary($row["salary"]);
-                    //appointment
-                    //jobPosition
-        
-                    array_push($jobOfferList, $jobOffer);
+
+                if($resultSet) {
+                    foreach ($resultSet as $row)
+                    {                
+                        $jobOffer = new JobOffer();
+                        $jobOffer->setJobOfferId($row["jobOfferId"]);
+                        $jobOffer->setTitle($row["title"]);
+                        $jobOffer->setPublishedDate($row["publishedDate"]);
+                        $jobOffer->setFinishDate($row["finishDate"]);
+                        $jobOffer->setTask($row["task"]);
+                        $jobOffer->setSkills($row["skills"]);
+                        $jobOffer->setActive($row["active"]);
+                        $jobOffer->setRemote($row["remote"]);
+                        $jobOffer->setSalary($row["salary"]);
+                        //appointment
+                        //jobPosition
+            
+                        array_push($jobOfferList, $jobOffer);
+                    }
+                    return $jobOfferList;
                 }
-                
-                return $jobOfferList;
             }
             catch(Exception $ex)
             {
@@ -105,22 +106,24 @@
                 
                 $parameters["jobOfferId"] = $jobOfferId;
 
-                $result = $this->connection->Execute($query, $parameters);
+                $result = $this->connection->Execute($query, $parameters)[0];
 
-                $jobOffer = new JobOffer();
-                $jobOffer->setJobOfferId($result[0]["jobOfferId"]);
-                $jobOffer->setTitle($result[0]["title"]);
-                $jobOffer->setPublishedDate($result[0]["publishedDate"]);
-                $jobOffer->setFinishDate($result[0]["finishDate"]);
-                $jobOffer->setTask($result[0]["task"]);
-                $jobOffer->setSkills($result[0]["skills"]);
-                $jobOffer->setActive($result[0]["active"]);
-                $jobOffer->setRemote($result[0]["remote"]);
-                $jobOffer->setSalary($result[0]["salary"]);
-                //appointment
-                //jobPosition
-                
-                return $jobOffer;
+                if($result) {
+                    $jobOffer = new JobOffer();
+                    $jobOffer->setJobOfferId($result["jobOfferId"]);
+                    $jobOffer->setTitle($result["title"]);
+                    $jobOffer->setPublishedDate($result["publishedDate"]);
+                    $jobOffer->setFinishDate($result["finishDate"]);
+                    $jobOffer->setTask($result["task"]);
+                    $jobOffer->setSkills($result["skills"]);
+                    $jobOffer->setActive($result["active"]);
+                    $jobOffer->setRemote($result["remote"]);
+                    $jobOffer->setSalary($result["salary"]);
+                    //appointment
+                    //jobPosition
+                    
+                    return $jobOffer;
+                }
             }
             catch(Exception $ex)
             {

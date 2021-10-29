@@ -21,5 +21,13 @@
         const MINING = "Mining";
         const WWW = "Worldwide web";
         const ELECTRONICS = "Electronics";
+
+        public static function GetAll() {
+            return array(Industry::TEXTIL, Industry::AEROSPACE, Industry::TRANSPORT, Industry::IT, Industry::COMPUTER, 
+                        Industry::TELECOMMUNICATION, Industry::AGRICULTURE, Industry::CONSTRUCTION, Industry::EDUCATION, 
+                        Industry::PHARMACEUTICAL, Industry::FOOD, Industry::HEALTHCARE, Industry::HOSPITALITY, 
+                        Industry::ENTERTAINMENT, Industry::NEWSMEDIA, Industry::ENERGY, Industry::MANUFACTURING, 
+                        Industry::MUSIC, Industry::MINING,Industry::WWW, Industry::ELECTRONICS);
+        }
     };
 ?>

@@ -14,6 +14,7 @@
         private $salary;
         private $appointment; //relation one to one
         private $jobPosition; //relation one to one
+        //AGREGAR DEDICATION Y ADMINISTRADOR QUE LO AGREGA
 
         // //CONSTRUCTOR
         // public function __construct($idJobOffer, $title, $publishedDate, $finishDate, $task, $skills, $active, $remote, $salary) {
