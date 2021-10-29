@@ -53,15 +53,6 @@
             $this->ShowListView();
         }
 
-        private function setIdByLastId($careerList, $career){
-            if(empty($careerList)){
-                $career->setcareerId(1); 
-             } else {
-                 $lastId = end($careerList)->getCareerId();
-                 $career->setCareerId($lastId + 1);
-             }
-        }
-
         //DELETES THE LIST AND FILLS WITH THE API DATA
         public function UpdateFromAPI() {
             $this->careerDAO->LoadFromAPI();

@@ -64,10 +64,14 @@ create table students(
 	password varchar(50)
 );
 
-/*-- CREATION OF TABLE: APPOINTMENT
-create table appointment
-(
-	appointmentId int auto_increment primary key, 
-	dateAppointment varchar(50), 
+-- CREATION OF TABLE: APPOINTMENT
+create table appointments(
+	studentId int not null , 
+	jobOfferId int not null,   
+	cv varchar(50),
+	dateAppointment dateTime,
 	referenceURL varchar(100),
-);*/
+	foreign key (studentId) references students(studentId),
+	foreign key (jobOfferId) references jobOffers(jobOfferId),
+	constraint appointments primary key (studentId, jobOfferId)
+);
