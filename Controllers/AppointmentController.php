@@ -55,7 +55,7 @@
             //header('location: '.FRONT_ROOT.'appointment/ListView');
         }
 
-        public function Remove($removeId){
+        public function Remove($removeId){  //<--------------------------------------- Podriamos crear una variable en student que se llame jobOfferActive para utilizarlo como booleanos y asi podes limitarlo a 1 solo jobOffer por estudiante
             $this->appointmentDAO->DeleteById($removeId);
             $this->ListView();
         }
