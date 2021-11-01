@@ -36,7 +36,7 @@
             require_once(VIEWS_PATH."administrator-list.php");
         }
 
-        public function Add($administratorId, $userName, $passWord){
+        public function Add($administratorId, $userName, $password){
 
             $administrator = new Administrator();
             
@@ -51,7 +51,7 @@
             if(!$administrator){
                 $administrator->setAdministratorId($administratorId);
                 $administrator->setUserName($userName);
-                $administrator->setPassword($passWord);
+                $administrator->setPassword($password);
                 
                 $this->administratorDAO->Add($administrator);
             }else {
