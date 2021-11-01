@@ -14,20 +14,9 @@
         private $salary;
         private $appointment; //relation one to one
         private $jobPosition; //relation one to one
-        //AGREGAR DEDICATION Y ADMINISTRADOR QUE LO AGREGA
-
-        // //CONSTRUCTOR
-        // public function __construct($idJobOffer, $title, $publishedDate, $finishDate, $task, $skills, $active, $remote, $salary) {
-        //     $this->idJobOffer = $idJobOffer;
-        //     $this->title = $title;
-        //     $this->publishedDate = $publishedDate;
-        //     $this->finishedDate = $finishedDate;
-        //     $this->task = $task;
-        //     $this->skills = $skills;
-        //     $this->active = $active;
-        //     $this->remote = $remote;
-        //     $this->salary = $salary;
-        // }
+        private $dedication;
+        private $administrator;
+       
         //GETTERS & SETTERS
         public function getJobOfferId() {
             return $this->jobOfferId;
@@ -115,6 +104,26 @@
 
         public function setJobPosition($jobPosition) {
             $this->jobPosition = $jobPosition;
+        }
+
+        public function getDedication()
+        {
+            return $this->dedication;
+        }
+
+        public function setDedication($dedication)
+        {
+            $this->dedication = $dedication;
+        }
+
+        public function getAdministrator()
+        {
+            return $this->administrator;
+        }
+
+        public function setAdministrator($administrator)
+        {
+            $this->administrator = $administrator;
         }
 
         //TO STRING METHOD

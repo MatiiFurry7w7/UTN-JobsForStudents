@@ -47,10 +47,35 @@
             <td><label for="salary">Salary</label></td>
             <td><input type="text" name="salary" required></td>
           </tr> 
+          <tr>
+            <td style="width: 200px;"><label for="jobPositionId">Job Position</label></td> 
+            <td>
+                <select name="jobPositionId">  
+                  <?php
+                    foreach($jobPositionList as $jobPosition) {
+                      ?><option value="<?php echo $jobPosition->getJobPositionId()?>" ><?php echo $jobPosition->getDescription()?></option><?php 
+                    }
+                  ?>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 200px;"><label for="dedication">Dedication</label></td> 
+            <td>
+                <select name="dedication">  
+                  <?php
+                    foreach($dedicationList as $dedication) {
+                      ?><option value="<?php echo $dedication?>" ><?php echo $dedication?></option><?php 
+                    }
+                  ?>
+                </select>
+            </td>
+          </tr>
     </table>
     <div>
         <input type="submit" class="btn btn-success" value="Add"/>
     </div>
+    <input type="hidden" name="administratorId" value="<?php echo $admin->getAdministratorId() ?>">
   </form>
 </div>
 </center>

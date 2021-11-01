@@ -11,7 +11,7 @@
         private $number;
         private $aboutUs;
         private $active;
-        private $industries; //relation one to many
+        private $industry; //relation one to many
         private $jobOffer; //relation one to many
         private $administrator; //relation one to one
 
@@ -99,12 +99,12 @@
             $this->active = $active;
         }
 
-        public function getIndustries() {
-            return $this->industries;
+        public function getIndustry() {
+            return $this->industry;
         }
 
-        public function setIndustries($industries) {
-            $this->industries = $industries;
+        public function setIndustry($industry) {
+            $this->industry = $industry;
         }
 
         public function getJobOffer() {

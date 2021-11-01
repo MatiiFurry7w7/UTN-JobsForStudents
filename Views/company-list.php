@@ -25,6 +25,7 @@
             <td>Street</td>
             <td>Number</td>
             <td>About Us</td>
+            <td>Industry</td>
             <!--solo ver boton remove/modify sólo para administradores-->
             <?php
               if($this->isAdmin()) {

@@ -15,8 +15,8 @@
         {
             try
             {
-                $query = "INSERT INTO ".$this->tableName." (title, publishedDate, finishDate, task, skills, active, remote, salary) 
-                    VALUES (:title, :publishedDate, :finishDate, :task, :skills, :active, :remote, :salary);";
+                $query = "INSERT INTO ".$this->tableName." (title, publishedDate, finishDate, task, skills, active, remote, salary, jobPositionId, dedication, administratorId) 
+                    VALUES (:title, :publishedDate, :finishDate, :task, :skills, :active, :remote, :salary, :jobPositionId, :dedication, :administratorId);";
 
                 $parameters["title"] = $jobOffer->getTitle();
                 $parameters["publishedDate"] = $jobOffer->getPublishedDate();
@@ -27,7 +27,9 @@
                 $parameters["remote"] = $jobOffer->getRemote();
                 $parameters["salary"] = $jobOffer->getSalary();
                 //appointment
-                //jobPosition
+                $parameters["jobPositionId"] = $jobOffer->getJobPosition();
+                $parameters["dedication"] = $jobOffer->getDedication();
+                $parameters["administratorId"] = $jobOffer->getAdministrator();
 
                 $this->connection = Connection::GetInstance();
 
@@ -65,7 +67,9 @@
                         $jobOffer->setRemote($row["remote"]);
                         $jobOffer->setSalary($row["salary"]);
                         //appointment
-                        //jobPosition
+                        $jobOffer->setJobPosition($row["jobPositionId"]);
+                        $jobOffer->setDedication($row["dedication"]);
+                        $jobOffer->setAdministrator($row["administratorId"]);
             
                         array_push($jobOfferList, $jobOffer);
                     }
@@ -120,7 +124,9 @@
                     $jobOffer->setRemote($result["remote"]);
                     $jobOffer->setSalary($result["salary"]);
                     //appointment
-                    //jobPosition
+                    $jobOffer->setJobPosition($result["jobPositionId"]);
+                    $jobOffer->setDedication($result["dedication"]);
+                    $jobOffer->setAdministrator($result["administratorId"]);
                     
                     return $jobOffer;
                 }
@@ -131,12 +137,12 @@
             }
         }
 
-        public function ModifyById($jobOfferId, $title, $publishedDate, $finishDate, $task, $skills, $active, $remote, $salary)
+        public function ModifyById($jobOfferId, $title, $publishedDate, $finishDate, $task, $skills, $active, $remote, $salary, $jobPosition, $dedication, $administratorId)
         {
             {
                 try
                 {
-                    $query = "UPDATE ".$this->tableName." SET title=:title, publishedDate=:publishedDate, finishDate=:finishDate, task=:task, skills=:skills, active=:active, remote=:remote, salary=:salary
+                    $query = "UPDATE ".$this->tableName." SET title=:title, publishedDate=:publishedDate, finishDate=:finishDate, task=:task, skills=:skills, active=:active, remote=:remote, salary=:salary, jobPositionId=:jobPositionId, dedication=:dedication, administratorId=:administratorId
                     WHERE jobOfferId=:jobOfferId;";
 
                     $parameters["jobOfferId"] = $jobOfferId;
@@ -149,7 +155,9 @@
                     $parameters["remote"] = $remote;
                     $parameters["salary"] = $salary;
                     //appointment
-                    //jobPosition
+                    $parameters["jobPositionId"] = $jobPosition;
+                    $parameters["dedication"] = $dedication;
+                    $parameters["administratorId"] = $administratorId;
     
                     $this->connection = Connection::GetInstance();
     

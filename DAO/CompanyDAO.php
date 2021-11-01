@@ -15,8 +15,8 @@
         {
             try
             {
-                $query = "INSERT INTO ".$this->tableName." (name, cuit, description, website, street, number_street, aboutUs, active) 
-                    VALUES (:name, :cuit, :description, :website, :street, :number_street, :aboutUs, :active);";
+                $query = "INSERT INTO ".$this->tableName." (name, cuit, description, website, street, number_street, aboutUs, active, industry) 
+                    VALUES (:name, :cuit, :description, :website, :street, :number_street, :aboutUs, :active, :industry);";
 
                 $parameters["name"] = $company->getName();
                 $parameters["cuit"] = $company->getCuit();
@@ -26,6 +26,7 @@
                 $parameters["number_street"] = $company->getNumber();
                 $parameters["aboutUs"] = $company->getAboutUs();
                 $parameters["active"] = $company->getActive();
+                $parameters["industry"] = $company->getIndustry();
                 //industries
                 //jobOffer
                 //administrator
@@ -65,6 +66,7 @@
                         $company->setNumber($row["number_street"]);
                         $company->setAboutUs($row["aboutUs"]);
                         $company->setActive($row["active"]);
+                        $company->setIndustry($row["industry"]);
                         //industries
                         //jobOffer
                         //administrator
@@ -122,6 +124,7 @@
                     $company->setNumber($result["number_street"]);
                     $company->setAboutUs($result["aboutUs"]);
                     $company->setActive($result["active"]);
+                    $company->setIndustry($result["industry"]);
                     //industries
                     //jobOffer
                     //administrator
@@ -137,33 +140,33 @@
 
         public function ModifyById($companyId, $name, $cuit, $description, $website, $street, $number, $aboutUs, $active)
         {
+            try
             {
-                try
-                {
-                    $query = "UPDATE ".$this->tableName." SET name=:name, cuit=:cuit, description=:description, website=:website, street=:street, number_street=:number_street, aboutUs=:aboutUs, active=:active 
-                    WHERE companyId=:companyId;";
+                $query = "UPDATE ".$this->tableName." SET name=:name, cuit=:cuit, description=:description, website=:website, 
+                street=:street, number_street=:number_street, aboutUs=:aboutUs, active=:active, industry=:industry
+                WHERE companyId=:companyId;";
 
-                    $parameters["companyId"] = $companyId;
-                    $parameters["name"] = $name;
-                    $parameters["cuit"] = $cuit;
-                    $parameters["description"] = $description;
-                    $parameters["website"] = $website;
-                    $parameters["street"] = $street;
-                    $parameters["number_street"] = $number;
-                    $parameters["aboutUs"] = $aboutUs;
-                    $parameters["active"] = $active;
-                    //industries
-                    //jobOffer
-                    //administrator
-    
-                    $this->connection = Connection::GetInstance();
-    
-                    $this->connection->ExecuteNonQuery($query, $parameters);
-                }
-                catch(Exception $ex)
-                {
-                    throw $ex;
-                }
+                $parameters["companyId"] = $companyId;
+                $parameters["name"] = $name;
+                $parameters["cuit"] = $cuit;
+                $parameters["description"] = $description;
+                $parameters["website"] = $website;
+                $parameters["street"] = $street;
+                $parameters["number_street"] = $number;
+                $parameters["aboutUs"] = $aboutUs;
+                $parameters["active"] = $active;
+                $parameters["industry"] = $industry;
+                //industries
+                //jobOffer
+                //administrator
+
+                $this->connection = Connection::GetInstance();
+
+                $this->connection->ExecuteNonQuery($query, $parameters);
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
             }
         }
     }

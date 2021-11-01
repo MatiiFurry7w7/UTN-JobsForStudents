@@ -12,7 +12,9 @@
         }
 
         public function Index($message = ""){
-            $jobOfferList = $this->jobOfferDAO->getAll();
+            $jobOfferList = null;
+            
+            $jobOfferList = $this->jobOfferDAO->GetAll();
             
             require_once(VIEWS_PATH."home.php");
         }        

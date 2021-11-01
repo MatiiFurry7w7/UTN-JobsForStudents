@@ -21,38 +21,61 @@
         public function ShowListView($searchedCompany = ""){
             $companyList = $this->companyDAO->GetAll();
 
+            if(!$companyList) {
+                $companyList = new Company();
+            }
+
             require_once(VIEWS_PATH."company-list.php");
         }
 
-        public function Add($name, $cuit, $description, $website, $street, $number_street, $aboutUs, $isActive){
+        public function Add($name, $cuit, $description, $website, $street, $number_street, $aboutUs, $isActive, $industry){
             $company = new Company();
+
+            $companyExist = false;
             
             $companyList = $this->companyDAO->GetAll();
-
-            foreach($companyList as $eachCompany) {
-                if($eachCompany->getName() == $name || $eachCompany->getCuit() == $cuit){
-                    $company = $eachCompany;
-                }
-            }
-
-            if(!$company){
-                $company->setName($name);
-                $company->setCuit($cuit);
-                $company->setDescription($description);
-                $company->setWebsite($website);
-                $company->setStreet($street);
-                $company->setNumber($number_street);
-                $company->setAboutUs($aboutUs);
-                $company->setActive($isActive);
-
-                $this->companyDAO->Add($company);
-            } else {
-                ?>
-                    <script>alert('The company already exists!');</script>
-                <?php
-            }
             
+            if($companyList){
+                foreach($companyList as $eachCompany) {
+                    if($eachCompany->getName() == $name || $eachCompany->getCuit() == $cuit){
+                        $companyExist = true;
+                    }
+                }
+
+                if($companyExist == false){
+                    $company = $this->setCompany($name, $cuit, $description, $website, $street, $number_street, $aboutUs, $isActive, $industry);
+                    
+                    $this->companyDAO->Add($company);
+    
+                } else {
+                    ?>
+                        <script>alert('The company already exists!');</script>
+                    <?php
+                }
+
+            } else {
+                $company = $this->setCompany($name, $cuit, $description, $website, $street, $number_street, $aboutUs, $isActive, $industry);
+                
+                $this->companyDAO->Add($company);
+            }
+
             $this->ShowAddView();
+        }
+
+        private function setCompany($name, $cuit, $description, $website, $street, $number_street, $aboutUs, $isActive, $industry) {
+            $company = new Company();
+
+            $company->setName($name);
+            $company->setCuit($cuit);
+            $company->setDescription($description);
+            $company->setWebsite($website);
+            $company->setStreet($street);
+            $company->setNumber($number_street);
+            $company->setAboutUs($aboutUs);
+            $company->setActive($isActive);
+            $company->setIndustry($industry);
+
+            return $company;
         }
 
         public function Remove($removeId){
@@ -66,8 +89,9 @@
             require_once(VIEWS_PATH."modify-company.php");
         }
 
-        public function ModifyACompany($companyId, $name, $cuit, $description, $website, $street, $number, $aboutUs, $active){
-            $this->companyDAO->ModifyById($companyId, $name, $cuit, $description, $website, $street, $number, $aboutUs, $active);
+        public function ModifyACompany($companyId, $name, $cuit, $description, $website, $street, $number, $aboutUs, $active, $industry){
+            $isActive = $this->activeToBoolean($active);
+            $this->companyDAO->ModifyById($companyId, $name, $cuit, $description, $website, $street, $number, $aboutUs, $isActive, $industry);
             
             $this->ShowListView();
         }
@@ -100,6 +124,7 @@
               <td><?php echo $company->getStreet() ?></td>
               <td><?php echo $company->getNumber() ?></td>
               <td><?php echo $company->getAboutUs() ?></td>
+              <td><?php echo $company->getIndustry() ?></td>
             <?php
                 if($this->isAdmin()) {
                 ?>
