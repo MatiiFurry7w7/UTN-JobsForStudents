@@ -6,8 +6,7 @@
     use Models\Career;
     use Models\Student as Student;
 
-class StudentController
-    {
+    class StudentController{
         private $studentDAO;
 
         public function __construct(){
@@ -26,7 +25,7 @@ class StudentController
             //If already registered
             $found = false;
             if($studentList){
-                foreach($this->studentDAO->getAll() as $eachStudent){
+                foreach($studentList as $eachStudent){
                     if($eachStudent->getEmail() == $email){
                         $message = "You´re already registered!";
                         $found = true;
@@ -86,15 +85,6 @@ class StudentController
             $studentList = $newStudentList;
 
             require_once(VIEWS_PATH."student-list.php");
-        }
-
-        private function setIdByLastId($studentList, $student){
-            if(empty($studentList)){
-                $student->setstudentId(1); 
-             } else {
-                 $lastId = end($studentList)->getStudentId();
-                 $student->setStudentId($lastId + 1);
-             }
         }
 
         private function getStudentById($id){

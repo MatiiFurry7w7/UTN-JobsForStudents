@@ -11,7 +11,7 @@
         private $dNI;
         private $birthDate;
         private $career;
-        private $academicStatus;
+        private $fileNumber;
 
         //GET/SET
         public function getStudentId(){
@@ -94,14 +94,14 @@
             $this->career = $career;
         }
 
-        public function getAcademicStatus(){
-            return $this->academicStatus;
+        public function getFileNumber(){
+            return $this->fileNumber;
         }
-
-        public function setAcademicStatus($academicStatus){
-            $this->academicStatus = $academicStatus;
+    
+        public function setFileNumber($fileNumber){
+                $this->fileNumber = $fileNumber;
         }
-
+    
         //toString
         public function __tostring(){
             return "<br>ID: ".$this->studentId.

@@ -6,6 +6,7 @@
 
     use Models\Administrator as Administrator;
     use Models\Student as Student;
+    use Controllers\StudentController as StudentController;
 
     class LoginController{
 
