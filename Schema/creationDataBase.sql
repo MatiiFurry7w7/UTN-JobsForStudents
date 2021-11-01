@@ -83,9 +83,12 @@ use jobsforstudents;
 SELECT * FROM students;
 
 /*-- CREATION OF TABLE: APPOINTMENT
-create table appointment
+create table appointments
 (
 	appointmentId int auto_increment primary key, 
 	dateAppointment varchar(50), 
 	referenceURL varchar(100),
-);*/
+	foreign key (studentId) references students(studentId),
+	foreign key (jobOfferId) references jobOffers(jobOfferId),
+	constraint appointments primary key (studentId, jobOfferId)
+);

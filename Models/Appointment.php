@@ -2,16 +2,12 @@
 
 class Appointment{
 
-  private $cv; //<------------------ adjuntar CV por datafile
+  private $jobOfferID;//<----------------------------- se manda el ID(es la clave primaria de Appointment)
+  private $studentID;//<----------------------------- se manda el ID(es la clave primaria de Appointment)
+  private $cv; //<------------------ adjuntar CV por datafile por fileName
   private $dateAppointment;
   private $referenceURL;
-  //AGREGAR JOBOFFER Y STUDENT 
 
-  /*Public function __construct($cv, $dateAppointment, $referenceURL){
-    $this->cv= $cv;
-    $this->dateAppointment = $dateAppointment;
-    $this->referenceURL = $referenceURL;
- }*/
 
   public function getDateAppointment()
   {
@@ -49,11 +45,34 @@ class Appointment{
     return $this;
   }
 
+  public function getJobOfferId()
+  {
+    return $this->jobOffer;
+  }
+
+  public function setJobOfferId($jobOffer)
+  {
+    $this->jobOffer = $jobOffer;
+
+    return $this;
+  }
+ 
+  public function getStudentId()
+  {
+    return $this->student;
+  }
+
+  public function setStudentId($student)
+  {
+    $this->student = $student;
+
+    return $this;
+  }
+  
   public function __tostring(){
     return "<br>CV: ".$this->cv.
            "<br>Date appointment: ".$this->dateAppointment.
            "<br>Reference url: ".$this->referenceURL;
   }
 }
-
 ?>
