@@ -1,3 +1,5 @@
+<a href="#up" class="simplescrollup__button simplescrollup__button--hide"><img src="<?php echo IMG_PATH ?>uparrow.png" width="47"></a>
+<script src="<?php echo JS_PATH ?>/simplescrollup.js"></script>
 </div>
 </body>
 <div style="clear: both"></div>

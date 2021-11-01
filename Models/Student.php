@@ -12,6 +12,7 @@
         private $birthDate;
         private $career;
         private $fileNumber;
+        private $appointment;
 
         //GET/SET
         public function getStudentId(){
@@ -100,6 +101,14 @@
     
         public function setFileNumber($fileNumber){
                 $this->fileNumber = $fileNumber;
+        }
+
+        public function getAppointment(){
+            return $this->appointment;
+        }
+
+        public function setAppointment($appointment){
+            $this->appointment = $appointment;
         }
     
         //toString

@@ -5,6 +5,7 @@
     use Models\AcademicStatus as AcademicStatus;
     use Models\Career;
     use Models\Student as Student;
+    use Models\Administrator as Administrator;
 
     class StudentController{
         private $studentDAO;
@@ -69,7 +70,8 @@
         }
 
         public function ListView(){
-            $UTNAPILIST = $this->studentDAO->loadFromAPI();
+            if($_SESSION['currentUser'] instanceof Administrator){
+                $UTNAPILIST = $this->studentDAO->loadFromAPI();
             $studentList = $this->studentDAO->getAll();
             $newStudentList = array();
 
@@ -85,6 +87,9 @@
             $studentList = $newStudentList;
 
             require_once(VIEWS_PATH."student-list.php");
+            }else{
+                header("location: ".FRONT_ROOT."Home/Index");
+            }
         }
 
         private function getStudentById($id){
@@ -123,7 +128,7 @@
             $to->setFirstName($from->firstName);
             $to->setLastName($from->lastName);
             $to->setDNI($from->dni);
-            $to->setAcademicStatus($from->fileNumber);
+            $to->setFileNumber($from->fileNumber);
             $to->setPhoneNumber($from->phoneNumber);
             $to->setGender($from->gender);
             $to->setEmail($from->email);

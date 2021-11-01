@@ -2,6 +2,20 @@
     font-family: 'Arial';
 }
 
+.simplescrollup__button {
+	position: fixed;
+	bottom: 3rem;
+	right: 3rem;
+	transition: 1s all;
+	z-index: 10000;
+}
+.simplescrollup__button--show {
+	transform: translateX(0px);
+}
+.simplescrollup__button--hide {
+	transform: translateX(500px);
+}
+
 body{
     margin: 0px;
     background-image: linear-gradient(120deg, rgb(105, 105, 105), rgb(218, 218, 218), rgb(218, 218, 218));
@@ -75,7 +89,6 @@ body{
 /* -- LOG IN FORM -- */
 
 #loginForm{
-    text-align: center;
     font-size: 18px;
     width: 50%;
     height: 300px;
@@ -87,6 +100,7 @@ body{
     border-radius: 5px;
     border: 1px solid darkgrey;
     height: 40px;
+    width: 100%;
 }
 
 /* -- NAV BAR -- */
@@ -138,8 +152,15 @@ th{
     background-color: #1f1f1f;
 }
 
+#hometh{
+    text-align: left; 
+    background-color: rgba(0,100,150,1); 
+    border-radius: 0px;
+    padding: 13px;
+}
+
 td{
-    width: 82px;
+    width: 50%;
     padding: 15px 20px 10px 20px;
 }
 

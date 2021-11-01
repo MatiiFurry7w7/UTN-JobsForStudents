@@ -4,10 +4,16 @@
     use DAO\IStudentDAO as IStudentDAO;
     use Models\Student as Student;    
     use DAO\Connection as Connection;
+    use DAO\CareerDAO as CareerDAO;
 
     class StudentDAO implements IStudentDAO{
         private $connection;
         private $tableName = "students";
+        private $careerDAO;
+
+        public function __construct() {
+             $this->careerDAO = new CareerDAO();
+        }
 
         public function add(Student $student){
             try{
@@ -108,6 +114,7 @@
         //TEST
         public function loadFromAPI(){
             $apiList = array();
+            $apiCareers = $this->careerDAO->getAll();
 
             //CURL
             $url = curl_init();
@@ -120,8 +127,12 @@
             $response = curl_exec($url);
             $toJson = json_decode($response);
 
-            foreach($toJson as $each){
-                array_push($apiList, $each);
+            foreach($toJson as $eachStudent){
+                foreach($apiCareers as $eachCareer){
+                    if($eachStudent->careerId == $eachCareer->getCareerId())
+                        $eachStudent->careerId = $eachCareer->getDescription();
+                }
+                array_push($apiList, $eachStudent);
             }
             return $apiList;
         }

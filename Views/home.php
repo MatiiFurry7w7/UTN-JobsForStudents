@@ -7,7 +7,12 @@
       <?php
       foreach($jobOfferList as $jobOffer){ ?>
       <br>
-        <table style="width: 60%;">
+        <table style="width: 80%;">
+          <tr>
+            <th id="hometh" colspan="2">
+              Company
+            </th>
+          </tr>
           <tr>
             <td>Title</td>
             <td style='max-width: 230px;;'><?php echo $jobOffer->getTitle()?></td>

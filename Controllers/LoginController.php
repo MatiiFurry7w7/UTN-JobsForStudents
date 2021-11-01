@@ -52,7 +52,7 @@
                                     $eachStudent->setDNI($eachUTNStudent->dni);
                                     $eachStudent->setBirthDate($eachUTNStudent->birthDate);
                                     $eachStudent->setCareer($eachUTNStudent->careerId);
-                                    $eachStudent->setAcademicStatus($eachUTNStudent->fileNumber);
+                                    $eachStudent->setFileNumber($eachUTNStudent->fileNumber);
 
                                     $loginUser = $eachStudent;
                                 }

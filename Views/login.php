@@ -2,7 +2,6 @@
   include_once('header.php');
 ?>
 <div class="container">
-
 <center>
 <div>
   <form action="<?php echo FRONT_ROOT ?>Login/LogIn" method="POST">

@@ -38,11 +38,11 @@
         <!--  --- NOT STUDENT PERSON DATA --- -->
         <tr>
             <td><label>Career</label></td>
-            <td style="text-align: center;"><input class="inputText" type="text" value="<?php echo $student->getCareer() ?>" disabled></td>
+            <td style="text-align: center;"><input style="width: 100%;" class="inputText" type="text" value="<?php echo $student->getCareer() ?>" disabled></td>
         </tr>
         <tr>
-            <td><label>Academic status</label></td>
-            <td style="text-align: center; padding-bottom: 20px;"><input class="inputText" type="text" value="<?php echo $student->getAcademicStatus() ?>" disabled></td>
+            <td><label>File number</label></td>
+            <td style="text-align: center; padding-bottom: 20px;"><input class="inputText" type="text" value="<?php echo $student->getFileNumber() ?>" disabled></td>
         </tr>
     </table>
 </center>
