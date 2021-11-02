@@ -5,7 +5,7 @@
     use DAO\JobPositionDAO as JobPositionDAO;
     use Models\JobOffer as JobOffer;
     use Models\Dedication as Dedication;
-    use Models\Administrator as Administrator;
+    use Models\AdministratorDAO as AdministratorDAO;
 
     class JobOfferController {
         private $jobOfferDAO;
@@ -25,10 +25,11 @@
 
         public function ShowListView(){
             $jobOfferList = $this->jobOfferDAO->GetAll();
-            
             if(!$jobOfferList) {
                 $jobOfferList = new JobOffer();
             }
+            $admin = $_SESSION["currentUser"];
+            $jobPositionDAO = new JobPositionDAO();
 
             require_once(VIEWS_PATH."jobOffer-list.php");
         }

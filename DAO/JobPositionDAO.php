@@ -6,7 +6,7 @@
     use DAO\IJobPositionDAO as IJobPositionDAO;
     use Models\Career as Career;
 
-class JobPositionDAO implements IJobPositionDAO {
+    class JobPositionDAO implements IJobPositionDAO {
 
         private $connection;
         private $tableName = "jobPositions";
@@ -55,6 +55,33 @@ class JobPositionDAO implements IJobPositionDAO {
                 }
                 
                 return $jobPositionList;
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
+        }
+
+        public function FindById($jobPositionId)
+        {
+            try
+            {
+                $query = "SELECT * FROM ".$this->tableName.' WHERE (jobPositionId = :jobPositionId);';
+
+                $this->connection = Connection::GetInstance();
+                
+                $parameters["jobPositionId"] = $jobPositionId;
+
+                $result = $this->connection->Execute($query, $parameters)[0];
+
+                if($result) {
+                    $jobPosition = new JobPosition();
+                    $jobPosition->setJobPositionId($result["jobPositionId"]);
+                    $jobPosition->setCareerId($result["careerId"]);
+                    $jobPosition->setDescription($result["description"]);
+                    
+                    return $jobPosition;
+                }
             }
             catch(Exception $ex)
             {
