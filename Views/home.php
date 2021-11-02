@@ -40,7 +40,7 @@
             </table>
           <?php } 
       } else {
-        echo "There is no Job Offer to show. Please add a new Job Offer.";
+        echo "<p style='margin-top: 3vh'>There is no Job Offer to show. Please add a new Job Offer.</p>";
       } ?>
   </div>
   <button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>JobOffer/ShowAddView'" style="float: right;" >Go to Add View</button>
