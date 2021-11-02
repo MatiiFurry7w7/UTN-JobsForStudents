@@ -7,15 +7,18 @@
     use Models\Administrator as Administrator;
     use Models\Student as Student;
     use Controllers\StudentController as StudentController;
+    use DAO\CareerDAO;
 
-    class LoginController{
+class LoginController{
 
         private $studentDAO;
         private $administratorDAO;
+        private $careerDAO;
 
         public function __construct(){
             $this->studentDAO = new StudentDAO();
             $this->administratorDAO = new administratorDAO();
+            $this->careerDAO = new CareerDAO();
         }
 
         public function LogInView($message = ""){
@@ -69,6 +72,7 @@
                 $this->LogInView("Those login credentials doesn't exist in our database!");
             }else{
                 $_SESSION['currentUser'] = $loginUser;
+                $this->careerDAO->LoadFromAPI();
                 header("location: ".FRONT_ROOT."Home/Index");
             }
         }

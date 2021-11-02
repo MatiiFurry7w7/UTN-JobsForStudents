@@ -21,37 +21,6 @@
             require_once(VIEWS_PATH."career-list.php");
         }
 
-        public function Add($careerId, $title, $description, $isActive){
-            $career = new Career();
-            
-            $careerList = $this->careerDAO->GetAll();
-
-            foreach($careerList as $eachCareer) {
-                if($eachCareer->getTitle() == $title){
-                    $career = $eachCareer;
-                }
-            }
-
-            if(!$career){
-                $career->setCareerId($careerId);
-                $career->setDescription($description);
-                $career->setTitle($title);
-                $career->setActive($isActive);
-
-                $this->careerDAO->Add($career);
-            }else {
-                ?>
-                    <script>alert('The career already exists!');</script>
-                <?php
-            }
-
-            $this->ShowAddView();
-        }
-
-        public function Remove($removeId){
-            $this->careerDAO->DeleteById($removeId);
-            $this->ShowListView();
-        }
 
         //DELETES THE LIST AND FILLS WITH THE API DATA
         public function UpdateFromAPI() {
