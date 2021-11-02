@@ -14,14 +14,16 @@ create table companies
 	website varchar(50), 
 	street varchar(50), 
 	number_street char(6), 
-	aboutUs varchar(100), 
-	active boolean
+	aboutUs varchar(100),
+	active boolean,
+	industry varchar(50)
 );
 
 -- CREATION OF TABLE: JOBPOSITIONS
 create table jobPositions
 (
-	jobPositionId int, 
+	jobPositionIdFromDB int auto_increment primary key, 
+	jobPositionId int not null,
 	careerId int,
 	description varchar(100)
 );
@@ -46,7 +48,12 @@ create table jobOffers
 	skills varchar(100),
 	active boolean,
 	remote boolean,
-	salary int
+	salary int,
+	jobPositionId int not null,
+	dedication varchar(50),
+	administratorId int not null,
+	foreign key (jobPositionId) references jobPositions(jobPositionIdFromDB),
+	foreign key (administratorid) references administrators(administratorid)
 );
 
 -- CREATION OF TABLE: STUDENTS
