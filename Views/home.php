@@ -46,7 +46,7 @@
             </table>
           <?php } 
       } else {
-        echo "There is no Job Offer to show. Please add a new Job Offer.";
+        echo "<p style='margin-top: 3vh'>There is no Job Offer to show. Please add a new Job Offer.</p>";
       } ?>
   </div>
   <?php
