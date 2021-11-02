@@ -71,11 +71,11 @@
 
         public function ListView(){
             if($_SESSION['currentUser'] instanceof Administrator){
-                $UTNAPILIST = $this->studentDAO->loadFromAPI();
             $studentList = $this->studentDAO->getAll();
             $newStudentList = array();
 
             if($studentList != null){
+                $UTNAPILIST = $this->studentDAO->loadFromAPI();
                 foreach($studentList as $eachStudent){
                     foreach($UTNAPILIST as $eachUTNStudent){
                         if($eachStudent->getEmail() == $eachUTNStudent->email){

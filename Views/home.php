@@ -21,33 +21,36 @@
           $isRemote = $jobOffer->getRemote() == 1 ? "Yes" : "No";?>
           <br>
             <table style="width: 60%;">
+              <th colspan="2" id="hometh">
+                From <?php echo '$jobOffer->getCompany()->getCompanyId();' ?>
+              </th>
               <tr>
                 <td>Title</td>
-                <td style='max-width: 230px;;'><?php echo $jobOffer->getTitle()?></td>
+                <td style='max-width: 230px;'><?php echo $jobOffer->getTitle()?></td>
               </tr>  
               <tr>
                 <td>Date published</td>
-                <td style='max-width: 230px;;'><?php echo $jobOffer->getPublishedDate()?></td>
+                <td style='max-width: 230px;'><?php echo $jobOffer->getPublishedDate()?></td>
               </tr> 
               <tr>
                 <td>Until</td>
-                <td style='max-width: 230px;;'><?php echo $jobOffer->getFinishDate()?></td>
+                <td style='max-width: 230px;'><?php echo $jobOffer->getFinishDate()?></td>
               </tr> 
               <tr>
                 <td>Task</td>
-                <td style='max-width: 230px;;'><?php echo $jobOffer->getTask()?></td>
+                <td style='max-width: 230px;'><?php echo $jobOffer->getTask()?></td>
               </tr> 
               <tr>
                 <td>Active</td>
-                <td style='max-width: 230px;;'><?php echo $isActive?></td>
+                <td style='max-width: 230px;'><?php echo $isActive?></td>
               </tr> 
               <tr>
                 <td>Remote</td>
-                <td style='max-width: 230px;;'><?php echo $isRemote?></td>
+                <td style='max-width: 230px;'><?php echo $isRemote?></td>
               </tr> 
               <tr>
                 <td>Salary</td>
-                <td style='max-width: 230px;;'><?php echo $jobOffer->getSalary()?></td>
+                <td style='max-width: 230px;'>$<?php echo $jobOffer->getSalary()?></td>
               </tr>
               <tr>
                 <td></td>

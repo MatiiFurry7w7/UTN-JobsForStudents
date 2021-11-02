@@ -40,6 +40,21 @@ create table careers
 	active boolean
 );
 
+-- CREATION OF TABLE: STUDENTS
+create table students(
+	studentId int auto_increment primary key, 
+	email varchar(50), 
+	password varchar(50)
+);
+
+-- CREATION OF TABLE: ADMINISTRATOR
+create table administrators
+(
+	administratorId int auto_increment primary key, 
+	userName varchar(50), 
+	password varchar(50)
+);
+
 -- CREATION OF TABLE: JOBOFFERS
 create table jobOffers
 (
@@ -61,23 +76,6 @@ create table jobOffers
 	foreign key (administratorid) references administrators(administratorid)
 );
 
--- CREATION OF TABLE: STUDENTS
-create table students(
-	studentId int auto_increment primary key, 
-	email varchar(50), 
-	password varchar(50)
-);
-
--- CREATION OF TABLE: ADMINISTRATOR
-create table administrators
-(
-	administratorId int auto_increment primary key, 
-	userName varchar(50), 
-	password varchar(50)
-);
-
-DROP table appointments;
-
 create table appointments(
     studentId int not null, 
     jobOfferId int not null,
@@ -96,6 +94,10 @@ INSERT INTO administrators VALUES
 
 -- DELETE 
 DELETE FROM administrators WHERE administratorId > -1;
+
+-- DELETE 
+USE jobsforstudents;
+DROP TABLE joboffers;
 
 -- SELECT
 SELECT * FROM administrators;
