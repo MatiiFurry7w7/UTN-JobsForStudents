@@ -61,32 +61,44 @@
               </td>
             </tr>
             <tr>
-            <td style="width: 200px;"><label for="jobPositionId">Job Position</label></td> 
-            <td>
-                <select name="jobPositionId">">  
-                  <?php
-                    foreach($jobPositionList as $jobPosition) {
-                      ?><option value="<?php echo $jobPosition->getJobPositionId()?>" ><?php echo $jobPosition->getDescription()?></option>
-                      <?php 
-                    }
-                  ?>
-                </select>
-            </td>
-          </tr>
-          <tr>
-            <td style="width: 200px;"><label for="dedication">Dedication</label></td> 
-            <td>
-                <select name="dedication">  
-                  <?php
-                    foreach($dedicationList as $dedication) {
-                      ?><option value="<?php echo $dedication?>" ><?php echo $dedication?></option>
-                      <?php 
-                    }
-                  ?>
-                </select>
-            </td>
-          </tr>
-            
+              <td style="width: 200px;"><label for="jobPositionId">Job Position</label></td> 
+              <td>
+                  <select name="jobPositionId">">  
+                    <?php
+                      foreach($jobPositionList as $jobPosition) {
+                        ?><option value="<?php echo $jobPosition->getJobPositionId()?>" ><?php echo $jobPosition->getDescription()?></option>
+                        <?php 
+                      }
+                    ?>
+                  </select>
+              </td>
+            </tr>
+            <tr>
+              <td style="width: 200px;"><label for="dedication">Dedication</label></td> 
+              <td>
+                  <select name="dedication">  
+                    <?php
+                      foreach($dedicationList as $dedication) {
+                        ?><option value="<?php echo $dedication?>" ><?php echo $dedication?></option>
+                        <?php 
+                      }
+                    ?>
+                  </select>
+              </td>
+            </tr>
+            <tr>
+                <td style="width: 200px;"><label for="companyId">Company</label></td> 
+                <td>
+                    <select name="companyId">">  
+                      <?php
+                        foreach($companyList as $company) {
+                          ?><option value="<?php echo $company->getCompanyId()?>" ><?php echo $company->getName()?></option>
+                          <?php 
+                        }
+                      ?>
+                    </select>
+                </td>
+             </tr>
     </table>
     <div>
       <button type="submit" class="btn btn-success">Edit</button>

@@ -3,6 +3,7 @@
 
     use DAO\JobOfferDAO as JobOfferDAO;
     use DAO\JobPositionDAO as JobPositionDAO;
+    use DAO\CompanyDAO as CompanyDAO;
     use Models\JobOffer as JobOffer;
     use Models\Dedication as Dedication;
     use Models\AdministratorDAO as AdministratorDAO;
@@ -17,8 +18,13 @@
 
         public function ShowAddView(){
             $dedicationList = Dedication::GetAll();
+            
             $jobPositionDAO = new JobPositionDAO();
             $jobPositionList = $jobPositionDAO->GetAll();
+
+            $companyDAO = new CompanyDAO();
+            $companyList = $companyDAO->GetAll();
+
             $admin = $_SESSION["currentUser"];
 
             require_once(VIEWS_PATH."add-jobOffer.php");
@@ -26,16 +32,21 @@
 
         public function ShowListView(){
             $jobOfferList = $this->jobOfferDAO->GetAll();
+
             if(!$jobOfferList) {
                 $jobOfferList = new JobOffer();
             }
+
             $admin = $_SESSION["currentUser"];
+            
             $jobPositionDAO = new JobPositionDAO();
+            
+            $companyDAO = new CompanyDAO();
 
             require_once(VIEWS_PATH."jobOffer-list.php");
         }
 
-        public function Add($title, $publishedDate, $finishDate, $task, $skills, $active, $remote, $salary, $jobPositionId, $dedication, $administratorId) {
+        public function Add($title, $publishedDate, $finishDate, $task, $skills, $active, $remote, $salary, $jobPositionId, $dedication, $companyId, $administratorId) {
             $jobOffer = new JobOffer();
 
             //Validation of the dates (finishedDate can't be earlier than publishedDate)
@@ -51,6 +62,7 @@
                 //appointment
                 $jobOffer->setJobPosition($jobPositionId);
                 $jobOffer->setDedication($dedication);
+                $jobOffer->setCompanyId($companyId);
                 $jobOffer->setAdministrator($administratorId);
 
                 $jobOfferList = $this->jobOfferDAO->Add($jobOffer);
@@ -68,23 +80,33 @@
         public function ModifyView($modifyId){
             $jobOffer = $this->jobOfferDAO->FindById($modifyId);
             $dedicationList = Dedication::GetAll();
+            
             $jobPositionDAO = new JobPositionDAO();
             $jobPositionList = $jobPositionDAO->GetAll();
+            
+            $companyDAO = new CompanyDAO();
+            $companyList = $companyDAO->GetAll();
+
             $admin = $_SESSION["currentUser"];
 
             require_once(VIEWS_PATH."modify-jobOffer.php");
         }
 
-        public function ModifyAJobOffer($jobOfferId, $title, $publishedDate, $finishDate, $task, $skills, $active, $remote, $salary, $jobPositionId, $dedication, $administratorId){
-            $this->jobOfferDAO->ModifyById($jobOfferId, $title, $publishedDate, $finishDate, $task, $skills, $active, $remote, $salary, $jobPositionId, $dedication, $administratorId);
+        public function ModifyAJobOffer($jobOfferId, $title, $publishedDate, $finishDate, $task, $skills, $active, $remote, $salary, $jobPositionId, $dedication, $companyId, $administratorId){
+            $this->jobOfferDAO->ModifyById($jobOfferId, $title, $publishedDate, $finishDate, $task, $skills, $active, $remote, $salary, $jobPositionId, $dedication, $companyId, $administratorId);
             
             $this->ShowListView();
         }
 
         public function ViewDetail($jobOfferId) {
             $jobOffer = $this->jobOfferDAO->FindById($jobOfferId);
+            
             $jobPositionDAO = new JobPositionDAO();
             $jobPosition = $jobPositionDAO->FindById($jobOffer->getJobPosition());
+            
+            $companyDAO = new CompanyDAO();
+            $company = $companyDAO->FindById($jobOffer->getCompanyId());
+
             $isAdmin = $_SESSION['currentUser'] instanceof Administrator ? true : false;
 
             require_once(VIEWS_PATH."jobOffer-viewDetail.php");

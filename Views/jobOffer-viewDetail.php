@@ -42,11 +42,14 @@
         </tr>
         <tr>
           <td>Salary</td>
-          <td style='max-width: 230px;;'><?php echo $jobOffer->getSalary()?> $</td>
+          <td style='max-width: 230px;;'><?php echo '$'.$jobOffer->getSalary()?> </td>
+        </tr>
+        <tr>
+          <td>Company</td>
+          <td style='max-width: 230px;;'><?php echo $company->getName()?> </td>
         </tr> 
         <tr>
           <?php if($isAdmin) { 
-            var_dump($isAdmin);
             ?><td></td>
             <td><button class="btn btn-success" value="edit">Edit</button></td> <?php
           } else {

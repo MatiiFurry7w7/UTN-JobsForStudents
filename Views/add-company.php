@@ -18,7 +18,7 @@
         <tr>
           <td style="width: 200px;"><label for="cuit">CUIT</label></td> 
           <td>
-            <input type="text" name="cuit" required>
+            <input type="number" name="cuit" required>
           </td>
         </tr> 
         <tr>
@@ -42,7 +42,7 @@
         <tr>
           <td style="width: 200px;"><label for="number_street">Number</label></td> 
           <td>
-            <input type="text" name="number_street" required>
+            <input type="number" name="number_street" required>
           </td>
         </tr>
         <tr>

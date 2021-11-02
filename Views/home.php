@@ -4,6 +4,16 @@
 ?>
 <center>
   <div class="wrapper row3">
+    <table style="margin-top: 20px;">
+          <tr style="background-color: rgb(40, 40, 40);">
+              <td><input placeholder="Insert a Career or Job Position..." type="text" name="searchedJobOffer"></td>
+              <td><button class="btn btn-danger" type="submit">Search</button></td>
+              <?php 
+                if($searchedJobOffer != "")
+                  echo "<td style='color: white; min-width: 150px; display: inline; line-height: 63px;'>Searched: ".$searchedJobOffer."</td>";
+              ?>
+          </tr> 
+    </table>
       <?php
       if($jobOfferList){
         foreach($jobOfferList as $jobOffer){ 
@@ -11,9 +21,6 @@
           $isRemote = $jobOffer->getRemote() == 1 ? "Yes" : "No";?>
           <br>
             <table style="width: 60%;">
-            <th id="hometh" colspan="2">
-              $jobOffer->getCompany();
-            </th>
               <tr>
                 <td>Title</td>
                 <td style='max-width: 230px;;'><?php echo $jobOffer->getTitle()?></td>
@@ -40,7 +47,7 @@
               </tr> 
               <tr>
                 <td>Salary</td>
-                <td style='max-width: 230px;;'><?php echo $jobOffer->getSalary()?> $</td>
+                <td style='max-width: 230px;;'><?php echo $jobOffer->getSalary()?></td>
               </tr>
               <tr>
                 <td></td>

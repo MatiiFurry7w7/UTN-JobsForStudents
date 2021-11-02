@@ -71,6 +71,18 @@
                 </select>
             </td>
           </tr>
+          <tr>
+            <td style="width: 200px;"><label for="companyId">Company</label></td> 
+            <td>
+                <select name="companyId">  
+                  <?php
+                    foreach($companyList as $company) {
+                      ?><option value="<?php echo $company->getCompanyId()?>" ><?php echo $company->getName()?></option><?php 
+                    }
+                  ?>
+                </select>
+            </td>
+          </tr>
     </table>
     <div>
         <input type="submit" class="btn btn-success" value="Add"/>

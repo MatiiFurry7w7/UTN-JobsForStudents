@@ -54,8 +54,10 @@ create table jobOffers
 	salary int,
 	jobPositionId int not null,
 	dedication varchar(50),
+	companyId int not null,
 	administratorId int not null,
 	foreign key (jobPositionId) references jobPositions(jobPositionIdFromDB),
+	foreign key (companyId) references companies(companyId),
 	foreign key (administratorid) references administrators(administratorid)
 );
 

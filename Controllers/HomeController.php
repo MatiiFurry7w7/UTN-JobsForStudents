@@ -12,7 +12,7 @@
             $this->jobOfferDAO = new JobOfferDAO();
         }
 
-        public function Index($message = ""){
+        public function Index($message = "", $searchedJobOffer = ""){
             $jobOfferList = null;
             
             $jobOfferList = $this->jobOfferDAO->GetAll();

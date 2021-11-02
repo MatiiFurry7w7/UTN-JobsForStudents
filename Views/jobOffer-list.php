@@ -15,6 +15,7 @@
                 <td>Salary</td>
                 <td>Job Position</td>
                 <td>Dedication</td>
+                <td>Company</td>
                 <td>Administrator</td>
                 <td></td>
                 <td></td>
@@ -23,6 +24,10 @@
         foreach($jobOfferList as $jobOffer){
                 $jobPositionIdSearched = $jobOffer->getJobPosition();
                 $jobPositionSearched = $jobPositionDAO->FindById($jobPositionIdSearched);
+
+                $companyIdSearched = $jobOffer->getCompanyId();
+                $companySearched = $companyDAO->FindById($companyIdSearched);
+
                 $isActive = $jobOffer->getActive() == 1 ? "Yes" : "No";
                 $isRemote = $jobOffer->getRemote() == 1 ? "Yes" : "No";
                 ?><tr>
@@ -36,6 +41,7 @@
                         <td style='max-width: 230px;;'><?php echo $jobOffer->getSalary() ?></td>
                         <td style='max-width: 230px;;'><?php echo $jobPositionSearched->getDescription() ?></td>
                         <td style='max-width: 230px;;'><?php echo $jobOffer->getDedication() ?></td>
+                        <td style='max-width: 230px;;'><?php echo $companySearched->getName() ?></td>
                         <td style='max-width: 230px;;'><?php echo $admin->getUserName() ?></td>                
                         
                         <td><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>JobOffer/Remove?removeId=<?php echo $jobOffer->getJobOfferId() ?>'">Remove</button></td>
