@@ -25,7 +25,7 @@
             require_once(VIEWS_PATH."appointment-list.php");
         }
 
-        public function Add( $studentId, $jobOfferId, $cv, $dateAppointment, $referenceURL){
+        public function Add( $studentId, $jobOfferId, $cv, $referenceURL){
 
             $appointment = new appointment();
             
@@ -41,7 +41,7 @@
                 $appointment->setStudentId($studentId);
                 $appointment->setJobOfferId($jobOfferId);
                 $appointment->setCv($cv);
-                $appointment->setDateAppointment($dateAppointment);
+                $appointment->setDateAppointment(date("h:i:s"));
                 $appointment->setReferenceURL($referenceURL);
                 
                 $this->appointmentDAO->Add($appointment);
@@ -50,9 +50,8 @@
                     <script>alert('The student is already on a job offer or the student does not exist!');</script>
                 <?php
             }
-
-            $this->ListView();
-            //header('location: '.FRONT_ROOT.'appointment/ListView');
+            
+            header('location: '.FRONT_ROOT.'appointment/ListView');
         }
 
         public function Remove($removeId){  //<--------------------------------------- Podriamos crear una variable en student que se llame jobOfferActive para utilizarlo como booleanos y asi podes limitarlo a 1 solo jobOffer por estudiante
@@ -60,16 +59,5 @@
             $this->ListView();
         }
 
-        public function Modifyappointment($studentId, $jobOfferId, $cv, $dateAppointment, $referenceURL){
-            $this->appointmentDAO->ModifyById($studentId, $jobOfferId, $cv, $dateAppointment, $referenceURL);
-            
-            $this->ListView();
-        }
-
-        public function ModifyView($modifyId){
-            $appointment = $this->appointmentDAO->FindById($modifyId);
-
-            require_once(VIEWS_PATH."modify-appointment.php");
-        }
     }
 ?>

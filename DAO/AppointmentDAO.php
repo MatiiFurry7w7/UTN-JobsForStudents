@@ -71,7 +71,7 @@ class AppointmentDAO implements IappointmentDAO{
             }
         }
 
-        public function DeleteById($stundentId)///<------------------------- con que condicion eliminamos?
+        public function DeleteById($stundentId)
         {
             try
             {
@@ -89,32 +89,7 @@ class AppointmentDAO implements IappointmentDAO{
             }
         }
 
-        public function ModifyById( $studentId, $jobOfferId, $cv, $dateAppointment, $referenceURL)////<----------------------Controlar
-        {
-            {
-                try
-                {
-                    $query = "UPDATE ".$this->tableName." SET dateAppointment=:dateAppointment, referenceURL=:referenceURL, 
-                    WHERE studentId=:studentId;";
-
-                    $parameters["studentId"] = $studentId;
-                    $parameters["jobOfferId"] = $jobOfferId;
-                    $parameters["cv"] = $cv;
-                    $parameters["dateAppointment"] = $dateAppointment;
-                    $parameters["referenceURL"] = $referenceURL;
-    
-                    $this->connection = Connection::GetInstance();
-    
-                    $this->connection->ExecuteNonQuery($query, $parameters);
-                }
-                catch(Exception $ex)
-                {
-                    throw $ex;
-                }
-            }
-        }
-
-        public function FindById($studentId)
+        public function FindById($studentId)//<------------------ ver si lo utilizamos
         {
             try
             {

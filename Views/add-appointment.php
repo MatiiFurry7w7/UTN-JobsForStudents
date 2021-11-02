@@ -22,10 +22,6 @@
             <td><input type="text" name="cv"></td>
           </tr> 
           <tr>
-            <td><label for="dateAppointment">Date Appointment</label></td>
-            <td><input type="datetime-local" name="dateAppointment"></td>
-          </tr> 
-          <tr>
             <td><label for="referenceURL">Reference URL</label></td>
             <td><input type="text" name="referenceURL"></td>
           </tr>      

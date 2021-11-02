@@ -49,20 +49,25 @@ create table jobOffers
 	salary int
 );
 
-create table appointment(
-    studentId int not null , 
+-- CREATION OF TABLE: STUDENTS
+create table students(
+	studentId int auto_increment primary key, 
+	email varchar(50), 
+	password varchar(50)
+);
+
+DROP table appointments;
+
+create table appointments(
+    studentId int not null, 
     jobOfferId int not null,
     cv varchar(50),
     dateAppointment dateTime,
     referenceURL varchar(100),
     foreign key (studentId) references students(studentId),
     foreign key (jobOfferId) references jobOffers(jobOfferId),
-    constraint appointment primary key (studentId, jobOfferId)
+    constraint appointmentId primary key (studentId, jobOfferId)
 );
-
-INSERT INTO joboffers VALUES
-(default, "FRONTEND", "2020-03-13", "2021-04-11", "Hacer algo", "C++", true, false, 1),
-(default, "BACKEND", "2019-02-13", "2020-03-11", "Hacer bases", "Java", true, false, 10000);
 
 -- CREATION OF TABLE: ADMINISTRATOR
 create table administrators
@@ -72,19 +77,16 @@ create table administrators
 	password varchar(50)
 );
 
+INSERT INTO joboffers VALUES
+(default, "FRONTEND", "2020-03-13", "2021-04-11", "Hacer algo", "C++", true, false, 1),
+(default, "BACKEND", "2019-02-13", "2020-03-11", "Hacer bases", "Java", true, false, 10000);
+
 -- INSERT
 INSERT INTO administrators VALUES
-(default, "Matii", "mitobi");
+(default, "Mati", "tobi");
 
 -- SELECT
 SELECT * FROM administrators;
-
--- CREATION OF TABLE: STUDENTS
-create table students(
-	studentId int auto_increment primary key, 
-	email varchar(50), 
-	password varchar(50)
-);
 
 use jobsforstudents;
 SELECT * FROM students;
