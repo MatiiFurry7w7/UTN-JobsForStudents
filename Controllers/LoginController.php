@@ -39,27 +39,29 @@
             //Login if Student
             if($loginUser == null){
                 $UTNAPILIST = $this->studentDAO->loadFromAPI();
+                $studentList = $this->studentDAO->getAll();
 
-                foreach($this->studentDAO->getAll() as $eachStudent){
-                    if($eachStudent->getEmail() == $userName && $eachStudent->getPassword() == $userPassword)
-                        foreach($UTNAPILIST as $eachUTNStudent)
-                            if($eachStudent->getEmail() == $eachUTNStudent->email){
-                                if($eachUTNStudent->active == true){
-                                    $eachStudent->setFirstName($eachUTNStudent->firstName);
-                                    $eachStudent->setLastName($eachUTNStudent->lastName);
-                                    $eachStudent->setPhoneNumber($eachUTNStudent->phoneNumber);
-                                    $eachStudent->setGender($eachUTNStudent->gender);
-                                    $eachStudent->setDNI($eachUTNStudent->dni);
-                                    $eachStudent->setBirthDate($eachUTNStudent->birthDate);
-                                    $eachStudent->setCareer($eachUTNStudent->careerId);
-                                    $eachStudent->setFileNumber($eachUTNStudent->fileNumber);
-
-                                    $loginUser = $eachStudent;
+                if($studentList != null){
+                    foreach($studentList as $eachStudent){
+                        if($eachStudent->getEmail() == $userName && $eachStudent->getPassword() == $userPassword)
+                            foreach($UTNAPILIST as $eachUTNStudent)
+                                if($eachStudent->getEmail() == $eachUTNStudent->email){
+                                    if($eachUTNStudent->active == true){
+                                        $eachStudent->setFirstName($eachUTNStudent->firstName);
+                                        $eachStudent->setLastName($eachUTNStudent->lastName);
+                                        $eachStudent->setPhoneNumber($eachUTNStudent->phoneNumber);
+                                        $eachStudent->setGender($eachUTNStudent->gender);
+                                        $eachStudent->setDNI($eachUTNStudent->dni);
+                                        $eachStudent->setBirthDate($eachUTNStudent->birthDate);
+                                        $eachStudent->setCareer($eachUTNStudent->careerId);
+                                        $eachStudent->setFileNumber($eachUTNStudent->fileNumber);
+    
+                                        $loginUser = $eachStudent;
+                                    }
+                                    else
+                                        $this->LogInView("That student is not active!");
                                 }
-                                else
-                                    $this->LogInView("That student is not active!");
-
-                            }
+                    }
                 }
             }
 

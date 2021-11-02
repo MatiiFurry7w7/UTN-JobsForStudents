@@ -1,3 +1,6 @@
+-- DELETE DATABASE "JOBSFORSTUDENTS" 
+DROP DATABASE JobsForStudents;
+
 -- CREATION OF THE DATABASE "JOBSFORSTUDENTS" 
 create database JobsForStudents;
 
@@ -63,19 +66,6 @@ create table students(
 	password varchar(50)
 );
 
-DROP table appointments;
-
-create table appointments(
-    studentId int not null, 
-    jobOfferId int not null,
-    cv varchar(50),
-    dateAppointment dateTime,
-    referenceURL varchar(100),
-    foreign key (studentId) references students(studentId),
-    foreign key (jobOfferId) references jobOffers(jobOfferId),
-    constraint appointmentId primary key (studentId, jobOfferId)
-);
-
 -- CREATION OF TABLE: ADMINISTRATOR
 create table administrators
 (
@@ -84,24 +74,29 @@ create table administrators
 	password varchar(50)
 );
 
-INSERT INTO joboffers VALUES
-(default, "FRONTEND", "2020-03-13", "2021-04-11", "Hacer algo", "C++", true, false, 1),
-(default, "BACKEND", "2019-02-13", "2020-03-11", "Hacer bases", "Java", true, false, 10000);
+DROP table appointments;
+
+create table appointments(
+    studentId int not null, 
+    jobOfferId int not null,
+    cv varchar(50),
+    dateAppointment dateTime,
+    referenceURL varchar(100),
+	foreign key (jobOfferId) references joboffers(jobOfferId),
+    foreign key (studentId) references students(studentId),
+
+    constraint appointmentId primary key (studentId, jobOfferId)
+);
 
 -- INSERT
 INSERT INTO administrators VALUES
 (default, "Mati", "tobi");
+
+-- DELETE 
+DELETE FROM administrators WHERE administratorId > -1;
 
 -- SELECT
 SELECT * FROM administrators;
 
 use jobsforstudents;
 SELECT * FROM students;
-
-/*-- CREATION OF TABLE: APPOINTMENT
-create table appointment
-(
-	appointmentId int auto_increment primary key, 
-	dateAppointment varchar(50), 
-	referenceURL varchar(100),
-);*/

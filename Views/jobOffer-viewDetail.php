@@ -4,7 +4,7 @@
 ?>
 <center>
 <div style="margin-top: 20px;" class="wrapper row3">
-  <table>
+  <table style="width: 60%;">
         <tr>
           <th colspan="2"><center><h4>Job Offer Detail</h4></center></th>
         </tr>
@@ -25,10 +25,6 @@
           <td style='max-width: 230px;;'><?php echo $jobOffer->getTask()?></td>
         </tr> 
         <tr>
-          <td>Salary</td>
-          <td style='max-width: 230px;;'><?php echo $jobOffer->getSalary()?></td>
-        </tr> 
-        <tr>
           <td>Active</td>
           <td style='max-width: 230px;;'><?php $isActive = $jobOffer->getActive() == 1 ? "Yes" : "No"; echo $isActive;?></td>
         </tr> 
@@ -37,10 +33,6 @@
           <td style='max-width: 230px;;'><?php $isRemote = $jobOffer->getRemote() == 1 ? "Yes" : "No"; echo $isRemote?></td>
         </tr> 
         <tr>
-          <td>Salary</td>
-          <td style='max-width: 230px;;'><?php echo $jobOffer->getSalary()?></td>
-        </tr>
-        <tr>
           <td>Job Position</td>
           <td style='max-width: 230px;;'><?php echo $jobPosition->getDescription()?></td>
         </tr>
@@ -48,6 +40,10 @@
           <td>Dedication</td>
           <td style='max-width: 230px;;'><?php echo $jobOffer->getDedication()?></td>
         </tr>
+        <tr>
+          <td>Salary</td>
+          <td style='max-width: 230px;;'><?php echo $jobOffer->getSalary()?> $</td>
+        </tr> 
         <tr>
           <?php if($isAdmin) { 
             var_dump($isAdmin);

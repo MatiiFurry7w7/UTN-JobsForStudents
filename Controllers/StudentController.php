@@ -75,16 +75,19 @@
             $studentList = $this->studentDAO->getAll();
             $newStudentList = array();
 
-            foreach($studentList as $eachStudent){
-                foreach($UTNAPILIST as $eachUTNStudent){
-                    if($eachStudent->getEmail() == $eachUTNStudent->email){
-                        $this->APIStudentToStudent($eachUTNStudent, $eachStudent);
-                        array_push($newStudentList, $eachStudent);
+            if($studentList != null){
+                foreach($studentList as $eachStudent){
+                    foreach($UTNAPILIST as $eachUTNStudent){
+                        if($eachStudent->getEmail() == $eachUTNStudent->email){
+                            $this->APIStudentToStudent($eachUTNStudent, $eachStudent);
+                            array_push($newStudentList, $eachStudent);
+                        }
                     }
                 }
-            }
-
-            $studentList = $newStudentList;
+    
+                $studentList = $newStudentList;
+            }else
+                $studentList = new Student();
 
             require_once(VIEWS_PATH."student-list.php");
             }else{
