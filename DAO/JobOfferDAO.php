@@ -137,7 +137,7 @@
             }
         }
 
-        public function ModifyById($jobOfferId, $title, $publishedDate, $finishDate, $task, $skills, $active, $remote, $salary, $jobPosition, $dedication, $administratorId)
+        public function ModifyById($jobOfferId, $title, $publishedDate, $finishDate, $task, $skills, $active, $remote, $salary, $jobPositionId, $dedication, $administratorId)
         {
             {
                 try
@@ -155,7 +155,7 @@
                     $parameters["remote"] = $remote;
                     $parameters["salary"] = $salary;
                     //appointment
-                    $parameters["jobPositionId"] = $jobPosition;
+                    $parameters["jobPositionId"] = $jobPositionId;
                     $parameters["dedication"] = $dedication;
                     $parameters["administratorId"] = $administratorId;
     

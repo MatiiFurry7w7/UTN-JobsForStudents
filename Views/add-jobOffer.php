@@ -32,20 +32,20 @@
           <tr>
             <td style="width: 200px;"><label for="active">Active</label></td> 
             <td>
-                <input type="radio" name="active" value="true" checked required>Active
-                <input type="radio" name="active" value="false" required>Not active
+                <input type="radio" name="active" value="1" checked required>Active
+                <input type="radio" name="active" value="0" required>Not active
             </td>
           </tr>  
           <tr>
             <td style="width: 200px;"><label for="remote">Remote</label></td> 
             <td>
-                <input type="radio" name="remote" value="true" checked required>Remote
-                <input type="radio" name="remote" value="false" required>Not Remote
+                <input type="radio" name="remote" value="1" checked required>Remote
+                <input type="radio" name="remote" value="0" required>Not Remote
             </td>
           </tr>
           <tr>
             <td><label for="salary">Salary</label></td>
-            <td><input type="text" name="salary" required></td>
+            <td><input type="number" name="salary" required></td>
           </tr> 
           <tr>
             <td style="width: 200px;"><label for="jobPositionId">Job Position</label></td> 

@@ -8,7 +8,7 @@
     <input type="hidden" name="companyId" value="<?php echo $company->getCompanyId()?>">
     <table>
             <tr>
-              <th colspan="2"><center><h4>Modify</h4></center></th>
+              <th colspan="2"><center><h4>Edit View</h4></center></th>
             </tr>
             <tr>
               <td style="width: 200px;"><label for="name">Name</label></td> 
@@ -62,7 +62,7 @@
             </tr>
     </table>
     <div>
-      <button type="submit" class="btn btn-success">Modify</button>
+      <button type="submit" class="btn btn-success">Edit</button>
     </div>
   </form>
 </div>

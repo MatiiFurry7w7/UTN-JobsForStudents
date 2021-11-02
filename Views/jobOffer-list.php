@@ -16,23 +16,30 @@
                 <td>Job Position</td>
                 <td>Dedication</td>
                 <td>Administrator</td>
+                <td></td>
+                <td></td>
         </tr>
         <?php
         foreach($jobOfferList as $jobOffer){
                 $jobPositionIdSearched = $jobOffer->getJobPosition();
                 $jobPositionSearched = $jobPositionDAO->FindById($jobPositionIdSearched);
-                echo "<tr>
-                        <td style='max-width: 230px;;'>".$jobOffer->getTitle()."</td>
-                        <td style='max-width: 230px;'>".$jobOffer->getPublishedDate()."</td>
-                        <td style='max-width: 230px;;'>".$jobOffer->getFinishDate()."</td>
-                        <td style='max-width: 230px;;'>".$jobOffer->getTask()."</td>
-                        <td style='max-width: 230px;;'>".$jobOffer->getSkills()."</td>
-                        <td style='max-width: 230px;;'>".$jobOffer->getActive()."</td>
-                        <td style='max-width: 230px;;'>".$jobOffer->getRemote()."</td>
-                        <td style='max-width: 230px;;'>".$jobOffer->getSalary()."</td>
-                        <td style='max-width: 230px;;'>".$jobPositionSearched->getDescription()."</td>
-                        <td style='max-width: 230px;;'>".$jobOffer->getDedication()."</td>
-                        <td style='max-width: 230px;;'>".$admin->getUserName()."</td>"; ?>                 
+                $isActive = $jobOffer->getActive() == 1 ? "Yes" : "No";
+                $isRemote = $jobOffer->getRemote() == 1 ? "Yes" : "No";
+                ?><tr>
+                        <td style='max-width: 230px;;'><?php echo $jobOffer->getTitle() ?></td>
+                        <td style='max-width: 230px;'><?php echo $jobOffer->getPublishedDate() ?></td>
+                        <td style='max-width: 230px;;'><?php echo $jobOffer->getFinishDate() ?></td>
+                        <td style='max-width: 230px;;'><?php echo $jobOffer->getTask() ?></td>
+                        <td style='max-width: 230px;;'><?php echo $jobOffer->getSkills() ?></td>
+                        <td style='max-width: 230px;;'><?php echo $isActive ?></td>
+                        <td style='max-width: 230px;;'><?php echo $isRemote ?></td>
+                        <td style='max-width: 230px;;'><?php echo $jobOffer->getSalary() ?></td>
+                        <td style='max-width: 230px;;'><?php echo $jobPositionSearched->getDescription() ?></td>
+                        <td style='max-width: 230px;;'><?php echo $jobOffer->getDedication() ?></td>
+                        <td style='max-width: 230px;;'><?php echo $admin->getUserName() ?></td>                
+                        
+                        <td><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>JobOffer/Remove?removeId=<?php echo $jobOffer->getJobOfferId() ?>'">Remove</button></td>
+                        <td><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>JobOffer/ModifyView?modifyId=<?php echo $jobOffer->getJobOfferId() ?>'">Edit</button></td>
                 </tr>
         <?php } ?>
         </table>
