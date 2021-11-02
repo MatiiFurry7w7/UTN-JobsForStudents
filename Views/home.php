@@ -22,7 +22,7 @@
           <br>
             <table style="width: 60%;">
               <th colspan="2" id="hometh">
-                From <?php echo '$jobOffer->getCompany()->getCompanyId();' ?>
+                From <?php echo '$jobOffer->getCompany()->getName();' ?>
               </th>
               <tr>
                 <td>Title</td>
