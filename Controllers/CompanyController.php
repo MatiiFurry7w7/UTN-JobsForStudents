@@ -96,15 +96,6 @@
             $this->ShowListView();
         }
 
-        private function setIdByLastId($companyList, $company){
-            if(empty($companyList)){
-                $company->setCompanyId(1); 
-             } else {
-                 $lastId = end($companyList)->getCompanyId();
-                 $company->setCompanyId($lastId + 1);
-             }
-        }
-
         private function activeToBoolean($active){
             if($active == "true"){
                 $active = true;
@@ -129,7 +120,7 @@
                 if($this->isAdmin()) {
                 ?>
                     <td><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>Company/Remove?removeId=<?php echo $company->getCompanyId() ?>'">Remove</button></td>
-                    <td><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>Company/ModifyView?modifyId=<?php echo $company->getCompanyId() ?>'">Modify</button></td>
+                    <td><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>Company/ModifyView?modifyId=<?php echo $company->getCompanyId() ?>'">Edit</button></td>
                 <?php
                 }
                 ?>
