@@ -3,6 +3,8 @@
 
     use \Exception as Exception;
     use DAO\IJobOfferDAO as IJobOfferDAO;
+    use DAO\CompanyDAO as CompanyDAO;
+    use DAO\JobPositionDAO as JobPositionDAO;
     use Models\JobOffer as JobOffer;    
     use DAO\Connection as Connection;
 
@@ -29,7 +31,7 @@
                 //appointment
                 $parameters["jobPositionId"] = $jobOffer->getJobPosition();
                 $parameters["dedication"] = $jobOffer->getDedication();
-                $parameters["companyId"] = $jobOffer->getCompanyId();
+                $parameters["companyId"] = $jobOffer->getCompany();
                 $parameters["administratorId"] = $jobOffer->getAdministrator();
 
                 $this->connection = Connection::GetInstance();
@@ -58,6 +60,9 @@
                     foreach ($resultSet as $row)
                     {                
                         $jobOffer = new JobOffer();
+                        $companyDAO = new CompanyDAO();
+                        $jobPositionDAO = new JobPositionDAO();
+
                         $jobOffer->setJobOfferId($row["jobOfferId"]);
                         $jobOffer->setTitle($row["title"]);
                         $jobOffer->setPublishedDate($row["publishedDate"]);
@@ -68,9 +73,9 @@
                         $jobOffer->setRemote($row["remote"]);
                         $jobOffer->setSalary($row["salary"]);
                         //appointment
-                        $jobOffer->setJobPosition($row["jobPositionId"]);
+                        $jobOffer->setJobPosition($jobPositionDAO->FindById($row["jobPositionId"]));
                         $jobOffer->setDedication($row["dedication"]);
-                        $jobOffer->setCompanyId($row["companyId"]);
+                        $jobOffer->setCompany($companyDAO->FindById($row["companyId"]));
                         $jobOffer->setAdministrator($row["administratorId"]);
             
                         array_push($jobOfferList, $jobOffer);
@@ -114,6 +119,10 @@
 
                 $result = $this->connection->Execute($query, $parameters)[0];
 
+                $companyDAO = new CompanyDAO();
+                        
+                $jobPositionDAO = new JobPositionDAO();
+
                 if($result) {
                     $jobOffer = new JobOffer();
                     $jobOffer->setJobOfferId($result["jobOfferId"]);
@@ -126,9 +135,9 @@
                     $jobOffer->setRemote($result["remote"]);
                     $jobOffer->setSalary($result["salary"]);
                     //appointment
-                    $jobOffer->setJobPosition($result["jobPositionId"]);
+                    $jobOffer->setJobPosition($jobPositionDAO->FindById($result["jobPositionId"]));
                     $jobOffer->setDedication($result["dedication"]);
-                    $jobOffer->setCompanyId($result["companyId"]);
+                    $jobOffer->setCompany($companyDAO->FindById($result["companyId"]));
                     $jobOffer->setAdministrator($result["administratorId"]);
                     
                     return $jobOffer;

@@ -4,7 +4,7 @@
     use \Exception as Exception;
     use Models\JobPosition as JobPosition;
     use DAO\IJobPositionDAO as IJobPositionDAO;
-    use Models\Career as Career;
+    use DAO\CareerDAO as CareerDAO;
 
     class JobPositionDAO implements IJobPositionDAO {
 
@@ -18,7 +18,7 @@
                     VALUES (:jobPositionId, :careerId, :description);";
 
                 $parameters["jobPositionId"] = $jobPosition->getJobPositionId();
-                $parameters["careerId"] = $jobPosition->getCareerId();
+                $parameters["careerId"] = $jobPosition->getCareer();
                 $parameters["description"] = $jobPosition->getDescription();
 
                 $this->connection = Connection::GetInstance();
@@ -46,9 +46,12 @@
                 foreach ($resultSet as $row)
                 {                
                     $jobPosition = new JobPosition();
+
+                    $careerDAO = new CareerDAO();
                     
                     $jobPosition->setJobPositionId($row["jobPositionId"]);
-                    $jobPosition->setCareerId($row["careerId"]);
+                    $jobPosition->setCareer($row["careerId"]);
+                    //$jobPosition->setCareer($careerDAO->FindById($row["careerId"]));
                     $jobPosition->setDescription($row["description"]);
         
                     array_push($jobPositionList, $jobPosition);
@@ -74,10 +77,13 @@
 
                 $result = $this->connection->Execute($query, $parameters)[0];
 
+                $careerDAO = new CareerDAO();
+
                 if($result) {
                     $jobPosition = new JobPosition();
                     $jobPosition->setJobPositionId($result["jobPositionId"]);
-                    $jobPosition->setCareerId($result["careerId"]);
+                    $jobPosition->setCareer($result["careerId"]);
+                    //$jobPosition->setCareer($careerDAO->FindById($result["careerId"]));
                     $jobPosition->setDescription($result["description"]);
                     
                     return $jobPosition;
@@ -102,12 +108,13 @@
 
             $response = curl_exec($url);
             $toJson = json_decode($response);
+            
 
             foreach($toJson as $jobPosition) {
                 $newJobPosition = new JobPosition();
 
                 $newJobPosition->setJobPositionId($jobPosition->jobPositionId);
-                $newJobPosition->setCareerId($jobPosition->careerId);
+                $newJobPosition->setCareer($jobPosition->careerId);
                 $newJobPosition->setDescription($jobPosition->description);
 
                 $this->Add($newJobPosition);

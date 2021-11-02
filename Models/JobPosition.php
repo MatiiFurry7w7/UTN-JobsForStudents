@@ -3,7 +3,7 @@
 
     class jobPosition {
         private $jobPositionId;
-        private $careerId;
+        private $career;
         private $description;
 
         //CONSTRUCTOR
@@ -21,12 +21,12 @@
             $this->jobPositionId = $jobPositionId;
         }
 
-        public function getCareerId() {
+        public function getCareer() {
             return $this->careerId;
         }
 
-        public function setCareerId($careerId) {
-            $this->careerId = $careerId;
+        public function setCareer($career) {
+            $this->career = $career;
         }
 
         public function getDescription() {
@@ -40,7 +40,7 @@
         //TO STRING METHOD
         public function __toString() {
             return  "<br>ID: ".$this->jobPositionId.
-                    "<br>Career ID: ".$this->careerId.
+                    "<br>Career ID: ".$this->career.
                     "<br>Description: ".$this->description;
         }
     }

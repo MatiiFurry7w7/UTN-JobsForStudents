@@ -15,7 +15,7 @@
         private $appointment; //relation one to one
         private $jobPosition; //relation one to one
         private $dedication;
-        private $companyId;
+        private $company;
         private $administrator;
        
         //GETTERS & SETTERS
@@ -117,14 +117,14 @@
             $this->dedication = $dedication;
         }
 
-        public function getCompanyId()
+        public function getCompany()
         {
-            return $this->companyId;
+            return $this->company;
         }
 
-        public function setCompanyId($companyId)
+        public function setCompany($company)
         {
-            $this->companyId = $companyId;
+            $this->company = $company;
         }
 
         public function getAdministrator()

@@ -38,10 +38,6 @@
             }
 
             $admin = $_SESSION["currentUser"];
-            
-            $jobPositionDAO = new JobPositionDAO();
-            
-            $companyDAO = new CompanyDAO();
 
             require_once(VIEWS_PATH."jobOffer-list.php");
         }
@@ -62,7 +58,7 @@
                 //appointment
                 $jobOffer->setJobPosition($jobPositionId);
                 $jobOffer->setDedication($dedication);
-                $jobOffer->setCompanyId($companyId);
+                $jobOffer->setCompany($companyId);
                 $jobOffer->setAdministrator($administratorId);
 
                 $jobOfferList = $this->jobOfferDAO->Add($jobOffer);
@@ -100,12 +96,6 @@
 
         public function ViewDetail($jobOfferId) {
             $jobOffer = $this->jobOfferDAO->FindById($jobOfferId);
-            
-            $jobPositionDAO = new JobPositionDAO();
-            $jobPosition = $jobPositionDAO->FindById($jobOffer->getJobPosition());
-            
-            $companyDAO = new CompanyDAO();
-            $company = $companyDAO->FindById($jobOffer->getCompanyId());
 
             $isAdmin = $_SESSION['currentUser'] instanceof Administrator ? true : false;
 

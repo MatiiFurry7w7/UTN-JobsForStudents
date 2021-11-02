@@ -34,7 +34,7 @@
         </tr> 
         <tr>
           <td>Job Position</td>
-          <td style='max-width: 230px;;'><?php echo $jobPosition->getDescription()?></td>
+          <td style='max-width: 230px;;'><?php echo $jobOffer->getCompany()->getDescription()?></td>
         </tr>
         <tr>
           <td>Dedication</td>
@@ -46,12 +46,13 @@
         </tr>
         <tr>
           <td>Company</td>
-          <td style='max-width: 230px;;'><?php echo $company->getName()?> </td>
+          <td style='max-width: 230px;;'><?php echo $jobOffer->getCompany()->getName()?> </td>
         </tr> 
         <tr>
           <?php if($isAdmin) { 
-            ?><td></td>
-            <td><button class="btn btn-success" value="edit">Edit</button></td> <?php
+            ?>
+            <td><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>JobOffer/Remove?removeId=<?php echo $jobOffer->getJobOfferId() ?>'">Remove</button></td>
+            <td><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>JobOffer/ModifyView?modifyId=<?php echo $jobOffer->getJobOfferId() ?>'">Edit</button></td> <?php
           } else {
             ?>
             <td></td>
