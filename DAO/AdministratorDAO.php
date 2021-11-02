@@ -18,10 +18,9 @@ class AdministratorDAO implements IAdministratorDAO{
         public function Add(Administrator $administrator) {
             try
             {
-                $query = "INSERT INTO ".$this->tableName." (administratorId, userName, password) 
-                    VALUES (:administratorId, :userName, :password);";
+                $query = "INSERT INTO ".$this->tableName." (userName, password) 
+                    VALUES (:userName, :password);";
 
-                $parameters["administratorId"] = $administrator->getAdministratorId();
                 $parameters["userName"] = $administrator->getUserName();
                 $parameters["password"] = $administrator->getPassword();
              

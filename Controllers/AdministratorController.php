@@ -36,10 +36,8 @@
             require_once(VIEWS_PATH."administrator-list.php");
         }
 
-        public function Add($administratorId, $userName, $password){
+        public function Add($userName, $password){
 
-            $administrator = new Administrator();
-            
             $administratorList = $this->administratorDAO->GetAll();
 
             foreach($administratorList as $eachadministrator) {
@@ -48,20 +46,19 @@
                 }
             }
 
-            if(!$administrator){
-                $administrator->setAdministratorId($administratorId);
+            if(!isset($administrator)){ 
+                $administrator = new Administrator();
                 $administrator->setUserName($userName);
                 $administrator->setPassword($password);
                 
                 $this->administratorDAO->Add($administrator);
-            }else {
+            }else{
                 ?>
                     <script>alert('The administrator already exists!');</script>
                 <?php
             }
 
-            $this->ListView();
-            //header('location: '.FRONT_ROOT.'administrator/ListView');
+            header('location: '.FRONT_ROOT.'administrator/ListView');
         }
 
         public function Remove($removeId){
