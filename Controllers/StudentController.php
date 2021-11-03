@@ -6,6 +6,7 @@
     use Models\Career;
     use Models\Student as Student;
     use Models\Administrator as Administrator;
+    use Controllers\LoginController as LoginController;
 
     class StudentController{
         private $studentDAO;
@@ -59,7 +60,8 @@
                         $newStudent->setPassword($password);
         
                         $this->studentDAO->add($newStudent);
-                        $message = "Register complete!";
+                        echo "<script>alert('Register Complete!')</script>";
+                        (new LoginController)->LoginView();
                     }
                 //If UTN student does not exist
                 }else{

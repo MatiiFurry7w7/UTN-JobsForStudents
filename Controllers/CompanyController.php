@@ -132,7 +132,7 @@
             $i = 0;
             if($searchedCompany != ""){
                 foreach($companyList as $company){
-                    if(strpos($company->getName(), $searchedCompany) !== false && $company->getActive() == 0){
+                    if(strpos(strtolower($company->getName()), strtolower($searchedCompany)) !== false && $company->getActive() == 0){
                         $i++;
                         $this->showCompany($company);
                     }

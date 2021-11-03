@@ -15,7 +15,9 @@
                 <td></td>
         </tr>
         <?php
+        $i = 0;
         foreach($studentList as $eachStudent){
+                $i+=1;
                 echo "<tr>
                         <td style='min-width: 50px;'>".$eachStudent->getStudentId()."</td>
                         <td style='min-width: 150px;'>".$eachStudent->getDNI()."</td>
@@ -25,7 +27,9 @@
                         <td style='min-width: 150px;'>".$eachStudent->getEmail()."</td>"; ?>
                         <td><button class="btn btn-warning" onclick="window.location.href='<?php echo FRONT_ROOT ?>Student/ProfileView?email=<?php echo $eachStudent->getEmail()?>'">Profile</button>                     
                 </tr>
-        <?php } ?>
+        <?php } 
+        ?>
+        <p style="margin-top: 20px;">There are <?php echo $i ?> registered student/s.</p>
         </table>
         </center>
 </div>

@@ -27,7 +27,7 @@
               </div>
               <div class="column">
                 <h2 id="jfsText"> Jobs for UTN Students</h2>
-              </div>
+              </div>         
           </div>
       </header>
     </div>

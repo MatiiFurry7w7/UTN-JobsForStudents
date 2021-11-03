@@ -121,9 +121,7 @@
                    "<br>Phone: ".$this->phoneNumber.
                    "<br>Email: ".$this->email.
                    "<br>Career: ".$this->career.
-                   "<br>Academic Status".
-                   "<br>--------------------".
-                   $this->academicStatus;
+                   "<br>File number: ".$this->fileNumber;
         }
     };
 ?>

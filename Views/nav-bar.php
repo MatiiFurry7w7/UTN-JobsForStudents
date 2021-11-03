@@ -1,8 +1,8 @@
 <?php
+  use Models\Administrator; 
+  use Models\Student;
 
-use Models\Administrator;
-
-if(!isset($_SESSION['currentUser'])){
+  if(!isset($_SESSION['currentUser'])){
     header('location: '.FRONT_ROOT.'Login/LogInView');
   }
 ?>
@@ -16,10 +16,18 @@ if(!isset($_SESSION['currentUser'])){
         <a id="link" href="<?php echo FRONT_ROOT ?>Student/ListView"><li>Students List</li></a>
         <a id="link" href="<?php echo FRONT_ROOT ?>Administrator/ListView"><li>Administrators List</li></a>
       <?php }else{ ?>
-        <a id="link" href="<?php echo FRONT_ROOT ?>Student/ProfileView?email=<?php echo $_SESSION['currentUser']->getEmail(); ?>"><li>My profile</i></li></a>
-      <?php } ?>
-      <a id="link" href=""><i id="notificationBell" id="icon" class="fa fa-bell"></i></a>
-      
+        <a style="margin-top:5px;" id="link" href="<?php echo FRONT_ROOT ?>Student/ProfileView?email=<?php echo $_SESSION['currentUser']->getEmail(); ?>">
+          <li>
+            <?php 
+              if(isset($_SESSION['currentUser']) && $_SESSION['currentUser'] instanceof Student){
+                    $headerUser = $_SESSION['currentUser'];
+                    echo $headerUser->getFirstName()."'s Profile &nbsp;";
+            }?>
+            <i class="fa fa-angle-right" style="color: black;"></i>
+          </li>
+        </a>
+        <?php } ?>
+        <a id="link" href=""><i id="notificationBell" id="icon" class="fa fa-bell"></i></a>
     </ul>
   </nav>
 </div>

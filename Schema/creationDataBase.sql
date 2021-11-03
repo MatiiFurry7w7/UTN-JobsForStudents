@@ -1,6 +1,3 @@
--- DELETE DATABASE "JOBSFORSTUDENTS" 
-DROP DATABASE JobsForStudents;
-
 -- CREATION OF THE DATABASE "JOBSFORSTUDENTS" 
 create database JobsForStudents;
 
@@ -94,6 +91,8 @@ INSERT INTO administrators VALUES
 
 -- DELETE 
 DELETE FROM administrators WHERE administratorId > -1;
+DELETE FROM companies WHERE companyId > -1;
+DELETE FROM students WHERE studentId > -1;
 
 -- DELETE 
 USE jobsforstudents;

@@ -6,7 +6,7 @@
 <div style="margin-top: 20px;" class="wrapper row3">
   <table style="width: 60%;">
         <tr>
-          <th colspan="2"><center><h4>Job Offer Detail</h4></center></th>
+          <th colspan="2"><center><h4>From <b><?php echo $jobOffer->getCompany()->getName()?></b> Company</h4></center></th>
         </tr>
         <tr>
           <td>Title</td>
@@ -44,10 +44,6 @@
           <td>Salary</td>
           <td style='max-width: 230px;;'><?php echo '$'.$jobOffer->getSalary()?> </td>
         </tr>
-        <tr>
-          <td>Company</td>
-          <td style='max-width: 230px;;'><?php echo $jobOffer->getCompany()->getName()?> </td>
-        </tr> 
         <tr>
           <?php if($isAdmin) { 
             ?>
