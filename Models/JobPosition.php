@@ -40,7 +40,7 @@
         //TO STRING METHOD
         public function __toString() {
             return  "<br>ID: ".$this->jobPositionId.
-                    "<br>Career ID: ".$this->career.
+                    "<br>Career: ".$this->career.
                     "<br>Description: ".$this->description;
         }
     }

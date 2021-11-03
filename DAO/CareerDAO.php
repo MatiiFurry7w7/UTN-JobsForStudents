@@ -36,8 +36,8 @@
 
         }
 
-        public function getAll(){
-
+        public function GetAll(){
+            $this->LoadFromAPI();
             return $this->careerList;
         }
 

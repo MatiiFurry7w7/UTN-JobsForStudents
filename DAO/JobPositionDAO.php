@@ -3,6 +3,7 @@
 
     use \Exception as Exception;
     use Models\JobPosition as JobPosition;
+    use Models\Career as Career;
     use DAO\IJobPositionDAO as IJobPositionDAO;
     use DAO\CareerDAO as CareerDAO;
 
@@ -97,6 +98,8 @@
 
         public function LoadFromAPI() {
             $this->jobPositionList = array();
+            $careerDAO = new CareerDAO();
+            $apiCareers = $careerDAO->GetAll();
 
             //CURL
             $url = curl_init();
@@ -109,16 +112,26 @@
             $response = curl_exec($url);
             $toJson = json_decode($response);
             
-
             foreach($toJson as $jobPosition) {
                 $newJobPosition = new JobPosition();
+                foreach($apiCareers as $career) {
+                    if($jobPosition->careerId == $career->getCareerId()){
+                        $newCareer = new Career();
+
+                        $newCareer->setCareerId($career->getCareerId());
+                        $newCareer->setDescription($career->getDescription());
+                        $newCareer->setActive($career->getActive());
+
+                        $newJobPosition->setCareer($newCareer);
+                    }
+                }
 
                 $newJobPosition->setJobPositionId($jobPosition->jobPositionId);
-                $newJobPosition->setCareer($jobPosition->careerId);
                 $newJobPosition->setDescription($jobPosition->description);
 
-                $this->Add($newJobPosition);
+                array_push($this->jobPositionList, $newJobPosition);
             }
+            echo end($this->jobPositionList);
         }
     }
 ?>

@@ -27,9 +27,6 @@
                 $parameters["aboutUs"] = $company->getAboutUs();
                 $parameters["active"] = $company->getActive();
                 $parameters["industry"] = $company->getIndustry();
-                //industries
-                //jobOffer
-                //administrator
 
                 $this->connection = Connection::GetInstance();
 
@@ -67,9 +64,6 @@
                         $company->setAboutUs($row["aboutUs"]);
                         $company->setActive($row["active"]);
                         $company->setIndustry($row["industry"]);
-                        //industries
-                        //jobOffer
-                        //administrator
             
                         array_push($companyList, $company);
                     }
@@ -125,9 +119,6 @@
                     $company->setAboutUs($result["aboutUs"]);
                     $company->setActive($result["active"]);
                     $company->setIndustry($result["industry"]);
-                    //industries
-                    //jobOffer
-                    //administrator
                 
                     return $company;
                 }
@@ -156,9 +147,6 @@
                 $parameters["aboutUs"] = $aboutUs;
                 $parameters["active"] = $active;
                 $parameters["industry"] = $industry;
-                //industries
-                //jobOffer
-                //administrator
 
                 $this->connection = Connection::GetInstance();
 

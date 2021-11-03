@@ -49,7 +49,8 @@ class Career{
     }
 
     public function __tostring(){
-        return "<br>Description: ".$this->description.
+        return "<br>Career ID: ".$this->careerId.
+                "<br>Description: ".$this->description.
                "<br>Active: ".$this->active;
     }
 }
