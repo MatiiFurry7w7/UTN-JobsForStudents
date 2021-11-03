@@ -44,9 +44,8 @@
 
         public function Add($title, $publishedDate, $finishDate, $task, $skills, $active, $remote, $salary, $jobPositionId, $dedication, $companyId, $administratorId) {
             $jobOffer = new JobOffer();
-
-            //Validation of the dates (finishedDate can't be earlier than publishedDate)
-            if($publishedDate <= $finishDate){
+            
+            if($this->checkDates($publishedDate, $finishDate)){
                 $jobOffer->setTitle($title);
                 $jobOffer->setPublishedDate($publishedDate);
                 $jobOffer->setFinishDate($finishDate);
@@ -89,7 +88,12 @@
         }
 
         public function ModifyAJobOffer($jobOfferId, $title, $publishedDate, $finishDate, $task, $skills, $active, $remote, $salary, $jobPositionId, $dedication, $companyId, $administratorId){
-            $this->jobOfferDAO->ModifyById($jobOfferId, $title, $publishedDate, $finishDate, $task, $skills, $active, $remote, $salary, $jobPositionId, $dedication, $companyId, $administratorId);
+            if($this->checkDates($publishedDate, $finishDate)){
+                $this->jobOfferDAO->ModifyById($jobOfferId, $title, $publishedDate, $finishDate, $task, $skills, $active, $remote, $salary, $jobPositionId, $dedication, $companyId, $administratorId);
+            
+            } else {
+                ?> <script>alert('The end date cannot be earlier than published date!')</script><?php
+            }
             
             $this->ShowListView();
         }
@@ -100,6 +104,17 @@
             $isAdmin = $_SESSION['currentUser'] instanceof Administrator ? true : false;
 
             require_once(VIEWS_PATH."jobOffer-viewDetail.php");
+        }
+
+        //Validation of the dates (finishedDate can't be earlier than publishedDate)
+        private function checkDates($publishedDate, $finishDate){
+            $validDate = false;
+
+            if($publishedDate <= $finishDate){
+                $validDate = true;
+            }   
+
+            return $validDate;
         }
     }
 ?>
