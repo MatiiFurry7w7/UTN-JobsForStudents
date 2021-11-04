@@ -20,6 +20,10 @@
       <tr>
         <td><label for="referenceURL">Reference URL</label></td>
         <td><input type="text" name="referenceURL" required></td>
+      </tr> 
+      <tr>
+        <td><label for="referenceURL">Comments</label></td>
+        <td><textarea placeholder="Max 150 characters..." maxlength="150" name="comments" cols="23" rows="3"></textarea> </td>
       </tr>      
       <tr>
         <td colspan="2"><center><button type="submit" class="btn btn-success">Apply</button><center></td>

@@ -37,7 +37,7 @@ class AppointmentController
             require_once(VIEWS_PATH."appointment-list.php");
         }
 
-        public function Add($studentId, $jobOfferId, $file, $referenceURL){
+        public function Add($studentId, $jobOfferId, $file, $referenceURL, $comments){
             $found = false;
             $currentStudent = $_SESSION['currentUser'];        
             $appointmentList = $this->appointmentDAO->GetAll();
@@ -55,6 +55,7 @@ class AppointmentController
                 $appointment->setCV($file);
                 $appointment->setDateAppointment(date("c"));
                 $appointment->setReferenceURL($referenceURL);  
+                $appointment->setComments($comments);  
 
                 $this->appointmentDAO->Add($appointment);
                 $appointmentList = $this->appointmentDAO->GetAll();

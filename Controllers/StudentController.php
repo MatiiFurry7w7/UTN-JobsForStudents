@@ -20,7 +20,7 @@
             require_once(VIEWS_PATH."add-student.php");
         }
 
-        public function Add($dNI, $fileNumber, $email, $password){
+        public function Add($dNI, $fileNumber, $email, $password, $password2){
             $newStudent = NULL;
             $studentList = $this->studentDAO->getAll();
 
@@ -37,35 +37,39 @@
 
             //If not registered
             if(!$found){
-                $UTNAPILIST = $this->studentDAO->loadFromAPI();
-
-                //Check if UTN student exists..
-                foreach($UTNAPILIST as $eachUTNStudent){
-                    if($eachUTNStudent->dni == $dNI &&
-                       $eachUTNStudent->fileNumber == $fileNumber &&
-                       $eachUTNStudent->email == $email){
-                            $newStudent = $eachUTNStudent;
-                       }
-                }
-
-                //If UTN student exists
-                if($newStudent){
-                    //..but is not active
-                    if($newStudent->active == false)
-                        $message = "Can´t register!, that student is not active in UTN!";
-                    //..and if is active
-                    else{
-                        $newStudent = new Student();
-                        $newStudent->setEmail($email);
-                        $newStudent->setPassword($password);
-        
-                        $this->studentDAO->add($newStudent);
-                        echo "<script>alert('Register Complete!')</script>";
-                        (new LoginController)->LoginView();
-                    }
-                //If UTN student does not exist
+                if($password != $password2){
+                    $message = "The input passwords don't match!";
                 }else{
-                    $message = "That information doesn´t match with any UTN student!";
+                    $UTNAPILIST = $this->studentDAO->loadFromAPI();
+
+                    //Check if UTN student exists..
+                    foreach($UTNAPILIST as $eachUTNStudent){
+                        if($eachUTNStudent->dni == $dNI &&
+                           $eachUTNStudent->fileNumber == $fileNumber &&
+                           $eachUTNStudent->email == $email){
+                                $newStudent = $eachUTNStudent;
+                           }
+                    }
+    
+                    //If UTN student exists
+                    if($newStudent){
+                        //..but is not active
+                        if($newStudent->active == false)
+                            $message = "Can´t register!, that student is not active in UTN!";
+                        //..and if is active
+                        else{
+                            $newStudent = new Student();
+                            $newStudent->setEmail($email);
+                            $newStudent->setPassword($password);
+            
+                            $this->studentDAO->add($newStudent);
+                            echo "<script>alert('Register Complete!')</script>";
+                            (new LoginController)->LoginView();
+                        }
+                    //If UTN student does not exist
+                    }else{
+                        $message = "That information doesn´t match with any UTN student!";
+                    }
                 }
             }
             $this->RegisterView($message);

@@ -79,6 +79,7 @@ create table appointments(
     cv varchar(100),
     dateAppointment dateTime,
     referenceURL varchar(100),
+    comments varchar(150),
 	foreign key (jobOfferId) references joboffers(jobOfferId),
     foreign key (studentId) references students(studentId),
 
@@ -106,9 +107,6 @@ DELETE FROM companies WHERE companyId > -1;
 DELETE FROM students WHERE studentId > -1;
 DELETE FROM joboffers WHERE jobofferId > -1;
 DELETE FROM appointments WHERE jobofferId > -1;
-
-DELETE FROM appointments WHERE studentId = :studentId;
-
  
 USE jobsforstudents;
 DROP TABLE joboffers;

@@ -12,17 +12,17 @@
             </tr>
             <input type="hidden" name="studentId" value="<?php echo $_SESSION['currentUser']->getStudentId()?>">
             <tr id="tableIndex">
-                    <td style='width: 10px;'>ID</td>
                     <td>Curriculum Vitae</td>
                     <td>Date</td>
                     <td>Reference</td>
+                    <td>Comments</td>
                     <td><button type="submit" class="btn btn-danger">Remove</button>
             </tr>
             <tr>
-                    <td style='max-width: 10px; text-align: center;'><?php echo $currentStudent->getAppointment()->getJobOfferId() ?></td>
                     <td style='max-width: 100px;'><?php echo $currentStudent->getAppointment()->getCv()?></td>
                     <td style='max-width: 100px;'><?php echo $currentStudent->getAppointment()->getDateAppointment() ?></td>
                     <td style='max-width: 100px;'><?php echo $currentStudent->getAppointment()->getReferenceURL() ?></td>
+                    <td style='max-width: 100px;'><?php echo $currentStudent->getAppointment()->getComments() ?></td>
                     <td></td>
             </tr>
           </table>
