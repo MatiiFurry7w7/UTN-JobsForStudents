@@ -107,7 +107,9 @@ DELETE FROM students WHERE studentId > -1;
 DELETE FROM joboffers WHERE jobofferId > -1;
 DELETE FROM appointments WHERE jobofferId > -1;
 
--- DELETE 
+DELETE FROM appointments WHERE studentId = :studentId;
+
+ 
 USE jobsforstudents;
 DROP TABLE joboffers;
 

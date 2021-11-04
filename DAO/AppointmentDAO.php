@@ -86,20 +86,16 @@ class AppointmentDAO implements IAppointmentDAO{
             }
         }
 
-        public function DeleteById($stundentId)
-        {
-            try
-            {
-                $query = "DELETE FROM ".$this->tableName." WHERE stundentId = :stundentId;";
+        public function DeleteById($studentId){
+            try{
+                $query = "DELETE FROM ".$this->tableName." WHERE studentId = :studentId;";
 
-                $parameters["stundentId"] = $stundentId;
+                $parameters["studentId"] = $studentId;
 
                 $this->connection = Connection::GetInstance();
 
                 $this->connection->ExecuteNonQuery($query, $parameters);
-            }
-            catch(Exception $ex)
-            {
+            }catch(Exception $ex){
                 throw $ex;
             }
         }

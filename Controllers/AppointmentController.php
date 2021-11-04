@@ -1,14 +1,14 @@
 <?php
     namespace Controllers;
 
-    use DAO\appointmentDAO as appointmentDAO;
+    use DAO\AppointmentDAO as AppointmentDAO;
     use \Exception as Exception;
     use DAO\Connection as Connection;
     use DAO\JobOfferDAO;
-    use Models\appointment as appointment;
+    use Models\Appointment as Appointment;
     use Models\CV;
 
-class appointmentController
+class AppointmentController
     {
         private $appointmentDAO;
 
@@ -73,9 +73,10 @@ class appointmentController
             (new HomeController)->Index();
         }
 
-        public function Remove($removeId){  //<--------------------------------------- Podriamos crear una variable en student que se llame jobOfferActive para utilizarlo como booleanos y asi podes limitarlo a 1 solo jobOffer por estudiante
-            $this->appointmentDAO->DeleteById($removeId);
-            $this->ListView();
+        public function Remove($studentId){
+            $this->appointmentDAO->DeleteById($studentId);
+            $_SESSION['currentUser']->setAppointment(null);
+            (new HomeController)->Index();
         }
 
         public function Upload($file, $studentId, $jobOfferId)
