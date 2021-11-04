@@ -24,7 +24,11 @@
           <tr>
             <td><label for="password">Password</label></td>
             <td><input type="password" name="password"></td>
-          </tr>    
+          </tr>   
+          <tr>
+            <td><label for="password">Repeat password</label></td>
+            <td><input type="password" name="password2"></td>
+          </tr>  
           <tr>
             <td colspan="2"><button type="submit" class="btn btn-primary">Add</button></td>
           </tr> 

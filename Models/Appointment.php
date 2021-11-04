@@ -7,6 +7,7 @@ class Appointment{
   private $cv; //<------------------ adjuntar CV por datafile por fileName
   private $dateAppointment;
   private $referenceURL;
+  private $comments;
 
 
   public function getDateAppointment()
@@ -67,6 +68,13 @@ class Appointment{
     $this->student = $student;
 
     return $this;
+  }
+
+  public function getComments(){
+    return $this->comments;
+  }
+  public function setComments($comments){
+    $this->comments = $comments;
   }
   
   public function __tostring(){

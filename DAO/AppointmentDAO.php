@@ -15,16 +15,16 @@ class AppointmentDAO implements IAppointmentDAO{
         public function Add(Appointment $appointment) {
             try
             {
-                $query = "INSERT INTO ".$this->tableName." (studentId, jobOfferId, cv, dateAppointment, referenceURL) 
-                    VALUES (:studentId, :jobOfferId, :cv, :dateAppointment, :referenceURL );";
+                $query = "INSERT INTO ".$this->tableName." (studentId, jobOfferId, cv, dateAppointment, referenceURL, comments) 
+                    VALUES (:studentId, :jobOfferId, :cv, :dateAppointment, :referenceURL, :comments);";
 
                 $parameters["studentId"] = $appointment->getStudentId();
                 $parameters["jobOfferId"] = $appointment->getJobOfferId();    
                 $parameters["cv"] = $appointment->getCv();
                 $parameters["dateAppointment"] = $appointment->getDateAppointment();
                 $parameters["referenceURL"] = $appointment->getReferenceURL();
-                
-             
+                $parameters["comments"] = $appointment->getComments();
+
                 $this->connection = Connection::GetInstance();
 
                 $this->connection->ExecuteNonQuery($query, $parameters);
@@ -74,6 +74,7 @@ class AppointmentDAO implements IAppointmentDAO{
                     $appointment->setCv($row["cv"]);
                     $appointment->setDateAppointment($row["dateAppointment"]);
                     $appointment->setReferenceURL($row["referenceURL"]);
+                    $appointment->setComments($row["comments"]);
         
                     array_push($appointmentList, $appointment);
                 }
