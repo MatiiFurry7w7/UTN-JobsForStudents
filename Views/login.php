@@ -10,8 +10,8 @@
         <th colspan="2"><center><h4>Log In</h4></center></th>
       </tr>
       <tr>
-        <td><label for="userName">Email</label></td>
-        <td><input class="inputText" type="text" name="userName" required></td>
+        <td><label for="mail">Email</label></td>
+        <td><input class="inputText" type="mail" name="mail" required></td>
       </tr>
       <tr>
         <td><label for="userPassword">Password</label></td>
