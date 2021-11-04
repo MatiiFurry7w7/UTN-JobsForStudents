@@ -7,6 +7,18 @@
   <form action="<?php echo FRONT_ROOT ?>JobOffer/Add" method="POST">
     <table style="width: 55%;">
           <tr>
+            <td style="width: 200px;"><label for="companyId">Company</label></td> 
+            <td>
+                <select name="companyId">  
+                  <?php
+                    foreach($companyList as $company) {
+                      ?><option value="<?php echo $company->getCompanyId()?>" ><?php echo $company->getName()?></option><?php 
+                    }
+                  ?>
+                </select>
+            </td>
+          </tr>
+          <tr>
             <th colspan="2"><center><h4>Adding a Job Offer</h4></center></th>
           </tr>
           <tr>
@@ -66,18 +78,6 @@
                   <?php
                     foreach($dedicationList as $dedication) {
                       ?><option value="<?php echo $dedication?>" ><?php echo $dedication?></option><?php 
-                    }
-                  ?>
-                </select>
-            </td>
-          </tr>
-          <tr>
-            <td style="width: 200px;"><label for="companyId">Company</label></td> 
-            <td>
-                <select name="companyId">  
-                  <?php
-                    foreach($companyList as $company) {
-                      ?><option value="<?php echo $company->getCompanyId()?>" ><?php echo $company->getName()?></option><?php 
                     }
                   ?>
                 </select>

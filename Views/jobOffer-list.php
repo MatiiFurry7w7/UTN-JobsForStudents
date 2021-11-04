@@ -20,8 +20,10 @@ include_once('header.php');
                                         ?>   
                                                 <td>Administrator</td>   
                                                 <td></td>           
-                                                <td></td>         
+                                                <td></td>
+                                                
                                         <?php } ?>
+        <td><button class="btn btn-success" onclick="window.location.href='<?php echo FRONT_ROOT ?>Administrator/AddView'">Add</button>
         </tr>
         <?php
         foreach($jobOfferList as $jobOffer){
