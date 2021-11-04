@@ -112,10 +112,8 @@
               <td><?php echo $company->getCuit() ?></td>
               <td><?php echo $company->getDescription() ?></td>
               <td><a style="text-decoration: none; color:black;" href="<?php echo $company->getWebsite() ?>"><?php echo $company->getWebsite() ?></a></td>
-              <td><?php echo $company->getStreet() ?></td>
-              <td><?php echo $company->getNumber() ?></td>
-              <td><?php echo $company->getAboutUs() ?></td>
-              <td><?php echo $company->getIndustry() ?></td>
+              <td><?php echo $company->getStreet()." ".$company->getNumber() ?></td>
+              <td style="align='right'"><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>Company/ViewDetail?companyId=<?php echo $company->getCompanyId() ?>'">Details</button></td>
             <?php
                 if($this->isAdmin()) {
                 ?>
@@ -146,6 +144,12 @@
                 }   
             }
             echo "<br><b>There are ".$i." Result/s!</b>";
+        }
+
+        public function ViewDetail($companyId) {
+            $company = $this->companyDAO->FindById($companyId);
+
+            require_once(VIEWS_PATH."company-viewDetail.php");
         }
 
         public function isAdmin() {

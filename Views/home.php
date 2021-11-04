@@ -4,14 +4,20 @@
 ?>
 <center>
   <div class="wrapper row3">
-    <table style="margin-top: 20px;">
+    <table style="margin-top: 20px; width: 40%;">
           <tr style="background-color: rgb(40, 40, 40);">
-              <td><input placeholder="Insert a Career or Job Position..." type="text" name="searchedJobOffer"></td>
+              <td><input style="width: 40vh;" placeholder="Insert a Career or Job Position..." type="text" name="searchedJobOffer"></td>
               <td><button class="btn btn-danger" type="submit">Search</button></td>
               <?php 
                 if($searchedJobOffer != "")
                   echo "<td style='color: white; min-width: 150px; display: inline; line-height: 63px;'>Searched: ".$searchedJobOffer."</td>";
               ?>
+              
+              <?php
+              if($isAdmin){
+                ?><td><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>JobOffer/ShowAddView'" style="float: right;" >Add a Job Offer</button></td>
+              <?php } ?>
+              
           </tr> 
     </table>
       <?php
@@ -62,12 +68,6 @@
         echo "<p style='margin-top: 3vh'>There is no Job Offer to show. Please add a new Job Offer.</p>";
       } ?>
   </div>
-  <?php
-  if($isAdmin){
-    ?><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>JobOffer/ShowAddView'" style="float: right;" >Add a Job Offer</button>
-  <?php
-  }
-  ?>
 </center>
 <?php
   include_once('footer.php');

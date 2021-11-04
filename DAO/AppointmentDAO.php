@@ -1,19 +1,16 @@
 <?php
     namespace DAO;
 
-    use DAO\IappointmentDAO as IappointmentDAO;
+    use DAO\IAppointmentDAO as IAppointmentDAO;
     use Models\Appointment as Appointment;
     use \Exception as Exception;
     use DAO\Connection as Connection;
+use Models\CV;
 
-class AppointmentDAO implements IappointmentDAO{
+class AppointmentDAO implements IAppointmentDAO{
 
         private $connection;
         private $tableName = "appointments";
-
-        public function __construct(){
-            $this->dataFile = dirname(__DIR__)."\Data\appointment.json";
-        }
 
         public function Add(Appointment $appointment) {
             try
@@ -34,6 +31,24 @@ class AppointmentDAO implements IappointmentDAO{
             }
             catch(Exception $ex)
             {
+                throw $ex;
+            }
+        }
+
+        public function addCV($cv, $studentId, $jobOfferId){
+            try
+            {
+                $query = "CALL cv_add(?);";
+                
+                $parameters["name"] = $cv;
+                $parameters["stuId"] = $studentId;
+                $parameters["jobId"] = $jobOfferId;
+
+                $this->connection = Connection::GetInstance();
+
+                $this->connection->ExecuteNonQuery($query, $parameters, QueryType::StoredProcedure);
+            }
+            catch(Exception $ex){
                 throw $ex;
             }
         }

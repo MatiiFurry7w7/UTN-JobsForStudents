@@ -76,7 +76,7 @@ create table jobOffers
 create table appointments(
     studentId int not null, 
     jobOfferId int not null,
-    cv varchar(50),
+    cv varchar(100),
     dateAppointment dateTime,
     referenceURL varchar(100),
 	foreign key (jobOfferId) references joboffers(jobOfferId),
@@ -84,6 +84,17 @@ create table appointments(
 
     constraint appointmentId primary key (studentId, jobOfferId)
 );
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS cv_add $$
+CREATE PROCEDURE cv_add(IN name VARCHAR(100), IN stuId INT, IN jobId INT)
+BEGIN
+    UPDATE appointments
+    SET cv = name
+    WHERE studentId = stuId AND jobOfferId = jobId;
+END$$
+
+DELIMITER ;
 
 -- INSERT
 INSERT INTO administrators VALUES
@@ -93,6 +104,7 @@ INSERT INTO administrators VALUES
 DELETE FROM administrators WHERE administratorId > -1;
 DELETE FROM companies WHERE companyId > -1;
 DELETE FROM students WHERE studentId > -1;
+DELETE FROM joboffers WHERE jobofferId > -1;
 
 -- DELETE 
 USE jobsforstudents;
@@ -100,6 +112,8 @@ DROP TABLE joboffers;
 
 -- SELECT
 SELECT * FROM administrators;
+SELECT * FROM students;
+SELECT * FROM appointments;
 
 use jobsforstudents;
 SELECT * FROM students;

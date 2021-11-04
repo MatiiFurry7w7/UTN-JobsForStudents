@@ -5,6 +5,7 @@
 <center>
   <div class="wrapper row3">
     <form action="<?php echo FRONT_ROOT ?>Company/Add" method="post">
+      <br>
       <table>
         <tr>
           <th colspan="2"><center><h4>Add Company</h4></center></th>

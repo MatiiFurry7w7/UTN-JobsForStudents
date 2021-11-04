@@ -4,34 +4,37 @@
 ?>
 <center>
 <div style="margin-top: 20px;" class="wrapper row3">
-  <form action="<?php echo FRONT_ROOT ?>Appointment/Add" method="POST">
+  <form action="<?php echo FRONT_ROOT ?>Appointment/Add" enctype="multipart/form-data" method="POST">
     <table>
           <tr>
-            <th colspan="2"><center><h4>Adding Appointment</h4></center></th>
+            <th colspan="2"><center><h4>Applying Appointment</h4></center></th>
           </tr>
           <tr>
-            <td style="width: 200px;"><label for="studentId">ID Stundet</label></td> 
-            <td style="width: 10px;"><input type="text" name="studentId"></td>
-          </tr>            
+            <td><label for="studentId">Student ID</label></td>
+            <td><input type="text" name="studentId" value="<?php echo $_SESSION['currentUser']->getStudentId() ?>"></td>
+          </tr>
           <tr>
-            <td><label for="jobOfferId">ID Job Offer</label></td>
-            <td><input type="text" name="jobOfferId"></td>
+            <td><label for="referenceURL">Job Offer ID</label></td>
+            <td><input type="text" name="jobOfferId" value="<?php echo "0" ?>"></td>
           </tr>
           <tr>
             <td><label for="cv">Curriculum Vitae</label></td> <!-- Se manda la direccion donde se encuentra el CV-->
-            <td><input type="text" name="cv"></td>
+            <td><input type="file" name="file"></td>
           </tr> 
           <tr>
             <td><label for="referenceURL">Reference URL</label></td>
             <td><input type="text" name="referenceURL"></td>
           </tr>      
           <tr>
-            <td colspan="2"><button type="submit" class="btn btn-primary">Add</button></td>
+            <td colspan="2"><center><button type="submit" class="btn btn-success">Apply</button><center></td>
           </tr> 
     </table>
   </form>
 </div>
 </center>
+
 <?php
+
+
   include_once('footer.php');
 ?>

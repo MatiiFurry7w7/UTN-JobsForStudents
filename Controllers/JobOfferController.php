@@ -8,6 +8,7 @@
     use Models\Dedication as Dedication;
     use Models\AdministratorDAO as AdministratorDAO;
     use Models\Administrator as Administrator;
+    use Controllers\CompanyController as CompanyController;
 
     class JobOfferController {
         private $jobOfferDAO;
@@ -25,9 +26,14 @@
             $companyDAO = new CompanyDAO();
             $companyList = $companyDAO->GetAll();
 
-            $admin = $_SESSION["currentUser"];
-
-            require_once(VIEWS_PATH."add-jobOffer.php");
+            if($companyList){
+                $admin = $_SESSION["currentUser"];
+                require_once(VIEWS_PATH."add-jobOffer.php");
+            }else{
+                echo "<script>alert('There are no companies to add to the job offer!')</script>";
+                (new CompanyController())->ShowAddView();
+            }
+            
         }
 
         public function ShowListView(){

@@ -5,8 +5,9 @@
     use \Exception as Exception;
     use DAO\Connection as Connection;
     use Models\appointment as appointment;
+    use Models\CV;
 
-    class appointmentController
+class appointmentController
     {
         private $appointmentDAO;
 
@@ -25,30 +26,31 @@
             require_once(VIEWS_PATH."appointment-list.php");
         }
 
-        public function Add( $studentId, $jobOfferId, $cv, $referenceURL){
-
-            $appointment = new appointment();
+        public function Add($studentId, $jobOfferId, $file, $referenceURL){
+            $appointment = new Appointment();
             
             $appointmentList = $this->appointmentDAO->GetAll();
 
-            foreach($appointmentList as $eachappointment) {
-                if($eachappointment->getStudentId() == $studentId){
-                    $appointment = $eachappointment;
+            if($appointmentList){
+                foreach($appointmentList as $eachappointment) {
+                    if($eachappointment->getStudentId() == $studentId){
+                        $appointment = $eachappointment;
+                    }
                 }
-            }
+            
+                if(!$appointment){
+                    $appointment->setStudentId($studentId);
+                    $appointment->setJobOfferId($jobOfferId);
+                    $appointment->setDateAppointment(date("h:i:s"));
+                    $appointment->setReferenceURL($referenceURL);                
+                    $this->appointmentDAO->Add($appointment);
 
-            if(!$appointment){
-                $appointment->setStudentId($studentId);
-                $appointment->setJobOfferId($jobOfferId);
-                $appointment->setCv($cv);
-                $appointment->setDateAppointment(date("h:i:s"));
-                $appointment->setReferenceURL($referenceURL);
-                
-                $this->appointmentDAO->Add($appointment);
-            }else {
-                ?>
-                    <script>alert('The student is already on a job offer or the student does not exist!');</script>
-                <?php
+                    $this->Upload($file, $studentId, $jobOfferId);
+                }else {
+                    ?>
+                        <script>alert('The student is already on a job offer or the student does not exist!');</script>
+                    <?php
+                }
             }
             
             header('location: '.FRONT_ROOT.'appointment/ListView');
@@ -59,5 +61,32 @@
             $this->ListView();
         }
 
+        public function Upload($file, $studentId, $jobOfferId)
+        {
+            try
+            {
+                $fileName = $file["name"];
+                $tempFileName = $file["tmp_name"];
+                $type = $file["type"];
+                
+                $filePath = UPLOADS_PATH.basename($fileName);            
+
+                $fileType = strtolower(pathinfo($filePath, PATHINFO_EXTENSION));
+
+                if (move_uploaded_file($tempFileName, $filePath))
+                {
+                    $cv = new CV();
+                    $cv->setName($fileName);
+                    $this->appointmentDAO->addCV($cv, $studentId, $jobOfferId);
+                    $message = "CV successfully uploaded!";
+                }
+                else
+                    $message = "There was an error adding the CV!";
+            }
+            catch(Exception $ex)
+            {
+                $message = $ex->getMessage();
+            }
+        }    
     }
 ?>

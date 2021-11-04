@@ -21,7 +21,7 @@
             <?php 
               if(isset($_SESSION['currentUser']) && $_SESSION['currentUser'] instanceof Student){
                     $headerUser = $_SESSION['currentUser'];
-                    echo $headerUser->getFirstName()."'s Profile &nbsp;";
+                    echo $headerUser->getFirstName()."'s Profile&nbsp;";
             }?>
             <i class="fa fa-angle-right" style="color: black;"></i>
           </li>
