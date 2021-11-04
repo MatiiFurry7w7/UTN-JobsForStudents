@@ -16,7 +16,7 @@ class AppointmentDAO implements IAppointmentDAO{
             try
             {
                 $query = "INSERT INTO ".$this->tableName." (studentId, jobOfferId, cv, dateAppointment, referenceURL) 
-                    VALUES (:studentId, :jobOfferId, :userName, :password, :referenceURL );";
+                    VALUES (:studentId, :jobOfferId, :cv, :dateAppointment, :referenceURL );";
 
                 $parameters["studentId"] = $appointment->getStudentId();
                 $parameters["jobOfferId"] = $appointment->getJobOfferId();    

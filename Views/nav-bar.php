@@ -16,16 +16,20 @@
         <a id="link" href="<?php echo FRONT_ROOT ?>Student/ListView"><li>Students List</li></a>
         <a id="link" href="<?php echo FRONT_ROOT ?>Administrator/ListView"><li>Administrators List</li></a>
       <?php }else{ ?>
-        <a style="margin-top:5px;" id="link" href="<?php echo FRONT_ROOT ?>Student/ProfileView?email=<?php echo $_SESSION['currentUser']->getEmail(); ?>">
-          <li>
             <?php 
-              if(isset($_SESSION['currentUser']) && $_SESSION['currentUser'] instanceof Student){
-                    $headerUser = $_SESSION['currentUser'];
-                    echo $headerUser->getFirstName()."'s Profile&nbsp;";
-            }?>
-            <i class="fa fa-angle-right" style="color: black;"></i>
-          </li>
-        </a>
+              if(isset($_SESSION['currentUser']) && $_SESSION['currentUser'] instanceof Student){ 
+                $headerUser = $_SESSION['currentUser'];?>
+                  <a style="margin-top:5px;" id="link" href="<?php echo FRONT_ROOT ?>Student/ProfileView?email=<?php echo $_SESSION['currentUser']->getEmail(); ?>">
+                    <li>
+                    <?php echo $headerUser->getFirstName()?>'s Profile&nbsp
+                    <i class="fa fa-angle-right" style="color: black;"></i>
+                    </li>
+                  </a>
+                  <?php if($headerUser->getAppointment()){ ?>
+                    <a id="link" href="<?php echo FRONT_ROOT ?>Appointment/ViewDetails"><li>My Appointment</li></a>
+                  <?php }
+                 }?>
+
         <?php } ?>
         <a id="link" href=""><i id="notificationBell" id="icon" class="fa fa-bell"></i></a>
     </ul>

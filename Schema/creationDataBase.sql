@@ -105,6 +105,7 @@ DELETE FROM administrators WHERE administratorId > -1;
 DELETE FROM companies WHERE companyId > -1;
 DELETE FROM students WHERE studentId > -1;
 DELETE FROM joboffers WHERE jobofferId > -1;
+DELETE FROM appointments WHERE jobofferId > -1;
 
 -- DELETE 
 USE jobsforstudents;
@@ -114,6 +115,7 @@ DROP TABLE joboffers;
 SELECT * FROM administrators;
 SELECT * FROM students;
 SELECT * FROM appointments;
+SELECT * FROM joboffers;
 
 use jobsforstudents;
 SELECT * FROM students;

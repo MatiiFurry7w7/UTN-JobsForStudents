@@ -52,8 +52,7 @@
           } else {
             ?>
             <td></td>
-            <td><button class="btn btn-success" value="apply">Apply</button></td> <?php
-          }
+            <td><button class="btn btn-success" onclick="window.location.href='<?php echo FRONT_ROOT ?>Appointment/AddView?jobOfferId=<?php echo $jobOffer->getJobOfferId() ?>'">Apply</button></td> <?php          }
           ?>
         </tr>
   </table>

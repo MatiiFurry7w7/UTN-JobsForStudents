@@ -7,6 +7,7 @@
     use Models\Administrator as Administrator;
     use Models\Student as Student;
     use Controllers\StudentController as StudentController;
+    use DAO\AppointmentDAO;
     use DAO\CareerDAO;
 
 class LoginController{
@@ -45,6 +46,7 @@ class LoginController{
                 $studentList = $this->studentDAO->getAll();
 
                 if($studentList != null){
+                    $appointmentList = (new AppointmentDAO)->getAll();
                     foreach($studentList as $eachStudent){
                         if($eachStudent->getEmail() == $userName && $eachStudent->getPassword() == $userPassword)
                             foreach($UTNAPILIST as $eachUTNStudent)
@@ -58,11 +60,17 @@ class LoginController{
                                         $eachStudent->setBirthDate($eachUTNStudent->birthDate);
                                         $eachStudent->setCareer($eachUTNStudent->careerId);
                                         $eachStudent->setFileNumber($eachUTNStudent->fileNumber);
-    
+
+                                        if($appointmentList)
+                                            foreach($appointmentList as $eachAppointment)
+                                                if($eachAppointment->getStudentId() == $eachStudent->getStudentId()){
+                                                    $eachStudent->setAppointment($eachAppointment);
+                                                }
+
                                         $loginUser = $eachStudent;
                                     }
                                     else
-                                        $this->LogInView("That student is not active!");
+                                       $this->LogInView("That student is not active!");
                                 }
                     }
                 }

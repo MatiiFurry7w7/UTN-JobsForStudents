@@ -4,6 +4,7 @@
     use DAO\appointmentDAO as appointmentDAO;
     use \Exception as Exception;
     use DAO\Connection as Connection;
+    use DAO\JobOfferDAO;
     use Models\appointment as appointment;
     use Models\CV;
 
@@ -15,8 +16,18 @@ class appointmentController
             $this->appointmentDAO = new AppointmentDAO();
         }
 
-        public function AddView(){
+        public function AddView($jobOfferId){
             require_once(VIEWS_PATH."add-appointment.php");
+        }
+
+        public function ViewDetails(){
+            $currentStudent = $_SESSION['currentUser'];
+            
+            if($currentStudent->getAppointment()){
+                $jobOffer = (new JobOfferDAO)->FindById($currentStudent->getAppointment()->getJobOfferId());
+                require_once(VIEWS_PATH."appointment-viewDetail.php");
+            }else   
+                header("location:".FRONT_ROOT."Home/Index");
         }
 
         public function ListView(){
@@ -27,33 +38,39 @@ class appointmentController
         }
 
         public function Add($studentId, $jobOfferId, $file, $referenceURL){
-            $appointment = new Appointment();
-            
+            $found = false;
+            $currentStudent = $_SESSION['currentUser'];        
             $appointmentList = $this->appointmentDAO->GetAll();
 
-            if($appointmentList){
-                foreach($appointmentList as $eachappointment) {
-                    if($eachappointment->getStudentId() == $studentId){
-                        $appointment = $eachappointment;
-                    }
-                }
-            
-                if(!$appointment){
-                    $appointment->setStudentId($studentId);
-                    $appointment->setJobOfferId($jobOfferId);
-                    $appointment->setDateAppointment(date("h:i:s"));
-                    $appointment->setReferenceURL($referenceURL);                
-                    $this->appointmentDAO->Add($appointment);
+            if($appointmentList)
+                foreach($appointmentList as $eachappointment) 
+                    if($eachappointment->getStudentId() == $studentId)
+                        $found = true;
 
-                    $this->Upload($file, $studentId, $jobOfferId);
-                }else {
-                    ?>
-                        <script>alert('The student is already on a job offer or the student does not exist!');</script>
-                    <?php
-                }
+            if(!$found){
+                $appointment = new Appointment();
+
+                $appointment->setStudentId($studentId);
+                $appointment->setJobOfferId($jobOfferId);
+                $appointment->setCV($file);
+                $appointment->setDateAppointment(date("c"));
+                $appointment->setReferenceURL($referenceURL);  
+
+                $this->appointmentDAO->Add($appointment);
+                $appointmentList = $this->appointmentDAO->GetAll();
+
+                if($appointmentList)
+                    foreach($appointmentList as $eachAppointment)
+                        if($eachAppointment->getStudentId() == $currentStudent->getStudentId())
+                            $currentStudent->setAppointment($eachAppointment);
+                //$this->Upload($file, $studentId, $jobOfferId);
+            }else {
+                ?>
+                     <script>alert('The student is already on a job offer or the student does not exist!');</script>
+                 <?php
             }
             
-            header('location: '.FRONT_ROOT.'appointment/ListView');
+            (new HomeController)->Index();
         }
 
         public function Remove($removeId){  //<--------------------------------------- Podriamos crear una variable en student que se llame jobOfferActive para utilizarlo como booleanos y asi podes limitarlo a 1 solo jobOffer por estudiante
