@@ -34,6 +34,8 @@
         }   
 
         public function Filters($careerId, $jobPositionId) {
+            $isAdmin = $_SESSION['currentUser'] instanceof Administrator ? true : false;
+
             $jobOfferList = $this->jobOfferDAO->GetAll();
 
             $jobPositionList = $this->jobPositionDAO->GetAll();

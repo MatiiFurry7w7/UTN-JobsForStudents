@@ -129,7 +129,7 @@
             }
         }
 
-        public function ModifyById($companyId, $name, $cuit, $description, $website, $street, $number, $aboutUs, $active)
+        public function ModifyById($companyId, $name, $cuit, $description, $website, $street, $number, $aboutUs, $active, $industry)
         {
             try
             {

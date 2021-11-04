@@ -32,8 +32,13 @@
           </tr> 
     </table>
     </form>
-      <?php 
-      if($jobOfferList){
+    <br>
+    <?php
+      if($isAdmin){
+        ?><button style="float:right;" class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>JobOffer/ShowAddView'" style="float: right;" >Add a Job Offer</button>
+      <br><br>
+    <?php } ?>
+      <?php if($jobOfferList){
         foreach($jobOfferList as $jobOffer){ 
           $isActive = $jobOffer->getActive() == 1 ? "Yes" : "No";
           $isRemote = $jobOffer->getRemote() == 1 ? "Yes" : "No";?>

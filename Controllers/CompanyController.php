@@ -84,6 +84,7 @@
         }
 
         public function ModifyView($modifyId){
+            $industryList = Industry::GetAll();
             $company = $this->companyDAO->FindById($modifyId);
 
             require_once(VIEWS_PATH."modify-company.php");
@@ -130,14 +131,14 @@
             $i = 0;
             if($searchedCompany != ""){
                 foreach($companyList as $company){
-                    if(strpos(strtolower($company->getName()), strtolower($searchedCompany)) !== false && $company->getActive() == 0){
+                    if(strpos(strtolower($company->getName()), strtolower($searchedCompany)) !== false && $company->getActive() == 1){
                         $i++;
                         $this->showCompany($company);
                     }
                 }
             }else{
                 foreach($companyList as $company){
-                    if($company->getActive() == 0){
+                    if($company->getActive() == 1){
                         $i++;
                         $this->showCompany($company);
                     }     

@@ -10,6 +10,6 @@
         function GetAll();
         function DeleteById($companyId);
         function FindById($companyId);
-        function ModifyById($companyId, $name, $cuit, $description, $website, $street, $number, $aboutUs, $active);
+        function ModifyById($companyId, $name, $cuit, $description, $website, $street, $number, $aboutUs, $active, $industry);
     }
 ?>

@@ -12,10 +12,7 @@ include_once('header.php');
                 <td>Job Position</td>
                 <td>Career</td>
                 <td>Published Date</td>
-                <td>Until</td>
-                <td>Task</td>
                 <td>Active</td>
-                <td>Salary</td>
                 <td>Dedication</td>
                 <td></td>
                 <?php
@@ -36,10 +33,7 @@ include_once('header.php');
                         <td style='max-width: 230px;'><?php echo $jobOffer->getJobPosition()->getDescription() ?></td>
                         <td style='max-width: 230px;'><?php echo $jobOffer->getJobPosition()->getCareer()->getDescription() ?></td>  
                         <td style='max-width: 230px;'><?php echo $jobOffer->getPublishedDate() ?></td>
-                        <td style='max-width: 230px;'><?php echo $jobOffer->getFinishDate() ?></td>
-                        <td style='max-width: 230px;'><?php echo $jobOffer->getTask() ?></td>
-                        <td style='max-width: 230px;'><?php echo $isActive ?></td>
-                        <td style='max-width: 230px;'>$<?php echo $jobOffer->getSalary() ?></td>                      
+                        <td style='max-width: 230px;'><?php echo $isActive ?></td>                   
                         <td style='max-width: 230px;'><?php echo $jobOffer->getDedication() ?></td>
                         <td style="align='right'"><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>JobOffer/ViewDetail?jobOfferId=<?php echo $jobOffer->getJobOfferId() ?>'">Details</button></td>
 
