@@ -7,6 +7,9 @@
   <form action="<?php echo FRONT_ROOT ?>JobOffer/Add" method="POST">
     <table style="width: 55%;">
           <tr>
+            <th colspan="2"><center><h4>Adding a Job Offer</h4></center></th>
+          </tr>
+          <tr>
             <td style="width: 200px;"><label for="companyId">Company</label></td> 
             <td>
                 <select name="companyId">  
@@ -17,9 +20,6 @@
                   ?>
                 </select>
             </td>
-          </tr>
-          <tr>
-            <th colspan="2"><center><h4>Adding a Job Offer</h4></center></th>
           </tr>
           <tr>
             <td style="width: 150px;"><label for="title">Title</label></td> 
