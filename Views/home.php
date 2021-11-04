@@ -4,23 +4,35 @@
 ?>
 <center>
   <div class="wrapper row3">
+    <form action="<?php echo FRONT_ROOT ?>Home/Filters" method="POST">
     <table style="margin-top: 20px; width: 40%;">
           <tr style="background-color: rgb(40, 40, 40);">
-              <td><input style="width: 40vh;" placeholder="Insert a Career or Job Position..." type="text" name="searchedJobOffer"></td>
+            <td style="width: 200px; color: white;">Filter:</td> 
+            <td>
+                <select name="careerId">  
+                <option value="" >By Careers</option>
+                  <?php
+                    foreach($careerList as $career) {
+                      ?><option value="<?php echo $career->getCareerId()?>"><?php echo $career->getDescription()?></option><?php 
+                    }
+                  ?>
+                </select>
+            </td>
+            <td>
+                <select name="jobPositionId">  
+                <option value="" >By Job Positions</option>
+                  <?php
+                    foreach($jobPositionList as $jobPosition) {
+                      ?><option value="<?php echo $jobPosition->getJobPositionId()?>" ><?php echo $jobPosition->getDescription()?></option><?php 
+                    }
+                  ?>
+                </select>
+            </td>
               <td><button class="btn btn-danger" type="submit">Search</button></td>
-              <?php 
-                if($searchedJobOffer != "")
-                  echo "<td style='color: white; min-width: 150px; display: inline; line-height: 63px;'>Searched: ".$searchedJobOffer."</td>";
-              ?>
-              
-              <?php
-              if($isAdmin){
-                ?><td><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>JobOffer/ShowAddView'" style="float: right;" >Add a Job Offer</button></td>
-              <?php } ?>
-              
           </tr> 
     </table>
-      <?php
+    </form>
+      <?php 
       if($jobOfferList){
         foreach($jobOfferList as $jobOffer){ 
           $isActive = $jobOffer->getActive() == 1 ? "Yes" : "No";
@@ -65,7 +77,7 @@
             </table>
           <?php } 
       } else {
-        echo "<p style='margin-top: 3vh'>There is no Job Offer to show. Please add a new Job Offer.</p>";
+        echo "<p style='margin-top: 3vh'>There is no Job Offer to show.</p>";
       } ?>
   </div>
 </center>
