@@ -18,7 +18,7 @@
         </tr> 
         <tr>
           <td>Website</td>
-          <td style='max-width: 230p;;'><?php echo $company->getWebsite()?></td>
+          <td><a href="<?php echo $company->getWebsite() ?>"><?php echo $company->getWebsite() ?></a></td>
         </tr> 
         <tr>
           <td>Address</td>
