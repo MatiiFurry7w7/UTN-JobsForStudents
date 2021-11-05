@@ -70,7 +70,7 @@
             } else {
                 ?> <script>alert('The end date cannot be earlier than published date!')</script><?php
             }
-            $this->ShowAddView();
+            //$this->ShowAddView();
         }
 
         public function Remove($removeId){
@@ -114,11 +114,10 @@
 
         //Validation of the dates (finishedDate can't be earlier than publishedDate)
         private function checkDates($publishedDate, $finishDate){
-            $validDate = false;
+            $validDate = true;
 
-            if($publishedDate <= $finishDate){
-                $validDate = true;
-            }   
+            if($publishedDate > $finishDate || $publishedDate < date('c'))
+                $validDate = false;
 
             return $validDate;
         }
