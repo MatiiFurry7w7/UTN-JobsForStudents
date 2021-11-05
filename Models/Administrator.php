@@ -3,11 +3,11 @@
 class Administrator{
 
     private $adminId;
-    private $Email;
+    private $userName;
     private $password;
 
-    /*Public function __construct($Email, $password){
-        $this->Email= $Email;
+    /*Public function __construct($userName, $password){
+        $this->userName= $userName;
         $this->password= $password;
     }*/
 
@@ -35,21 +35,21 @@ class Administrator{
         return $this;
     }
 
-    public function getEmail()
+    public function getuserName()
     {
-        return $this->Email;
+        return $this->userName;
     }
 
-    public function setEmail($Email)
+    public function setuserName($userName)
     {
-        $this->Email = $Email;
+        $this->userName = $userName;
 
         return $this;
     }
 
     public function __tostring(){
         return "<br>ID: ".$this->adminId.
-               "<br>Email: ".$this->Email.
+               "<br>userName: ".$this->userName.
                "<br>Password: ".$this->password;
                
     }

@@ -27,7 +27,7 @@ class LoginController{
             require_once(VIEWS_PATH."login.php");
         }
 
-        public function LogIn($userName, $userPassword){
+        public function LogIn($email, $userPassword){
             session_destroy();
             session_start();
 
@@ -36,7 +36,7 @@ class LoginController{
             //Login if Admin
             foreach($this->administratorDAO->getAll() as $eachAdmin){
                 //echo "<br>".$eachAdmin->getusername()." == ".$userName."<br>";
-                if($eachAdmin->getUserName() == $userName)
+                if($eachAdmin->getUserName() == $email)
                    $loginUser = $eachAdmin;
             }
             
@@ -48,7 +48,7 @@ class LoginController{
                 if($studentList != null){
                     $appointmentList = (new AppointmentDAO)->getAll();
                     foreach($studentList as $eachStudent){
-                        if($eachStudent->getEmail() == $userName && $eachStudent->getPassword() == $userPassword)
+                        if($eachStudent->getEmail() == $email && $eachStudent->getPassword() == $userPassword)
                             foreach($UTNAPILIST as $eachUTNStudent)
                                 if($eachStudent->getEmail() == $eachUTNStudent->email){
                                     if($eachUTNStudent->active == true){
