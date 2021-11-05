@@ -43,6 +43,10 @@
                 }
 
                 if($companyExist == false){
+                    if(str_contains($website, "https://") !== true){
+                        $website = "https://".$website;
+                    }
+
                     $company = $this->setCompany($name, $cuit, $description, $website, $street, $number_street, $aboutUs, $isActive, $industry);
                     
                     $this->companyDAO->Add($company);
@@ -91,19 +95,9 @@
         }
 
         public function ModifyACompany($companyId, $name, $cuit, $description, $website, $street, $number, $aboutUs, $active, $industry){
-            $isActive = $this->activeToBoolean($active);
             $this->companyDAO->ModifyById($companyId, $name, $cuit, $description, $website, $street, $number, $aboutUs, $isActive, $industry);
             
             $this->ShowListView();
-        }
-
-        private function activeToBoolean($active){
-            if($active == "true"){
-                $active = true;
-            } else {
-                $active = false;
-            }
-            return $active;
         }
 
         private function showCompany($company) {
@@ -112,7 +106,7 @@
               <td><?php echo $company->getName() ?></td>
               <td><?php echo $company->getCuit() ?></td>
               <td><?php echo $company->getDescription() ?></td>
-              <td><a style="text-decoration: none; color:black;" href="<?php echo $company->getWebsite() ?>"><?php echo $company->getWebsite() ?></a></td>
+              <td><a href="<?php echo $company->getWebsite() ?>"><?php echo $company->getWebsite() ?></a></td>
               <td><?php echo $company->getStreet()." ".$company->getNumber() ?></td>
               <td style="align='right'"><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>Company/ViewDetail?companyId=<?php echo $company->getCompanyId() ?>'">Details</button></td>
             <?php

@@ -19,7 +19,7 @@
         <tr>
           <td style="width: 200px;"><label for="cuit">CUIT</label></td> 
           <td>
-            <input type="number" name="cuit" required>
+            <input max="999999999999" type="number" name="cuit" required>
           </td>
         </tr> 
         <tr>
@@ -67,8 +67,8 @@
         <tr>
           <td style="width: 200px;"><label for="active">Active</label></td> 
           <td>
-            <input type="radio" name="isActive" value="0" checked required>Active
-            <input type="radio" name="isActive" value="1" required>Not active
+            <input type="radio" name="isActive" value="1" checked required>Active
+            <input type="radio" name="isActive" value="0" required>Not active
           </td>
         </tr>   
       </table>
