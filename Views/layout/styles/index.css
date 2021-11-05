@@ -1,5 +1,5 @@
 *{
-    font-family: 'Arial';
+    font-family: 'Arial Unicode MS';
 }
 
 .simplescrollup__button {
@@ -17,8 +17,11 @@
 }
 
 body{
+    
     margin: 0px;
-    background-image: linear-gradient(120deg, rgb(105, 105, 105), rgb(218, 218, 218), rgb(218, 218, 218));
+    background-image: url('https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2F2.bp.blogspot.com%2F-ctccBxMhRVs%2FTjG-w31qkXI%2FAAAAAAAABhI%2F4U-7rIG7FYc%2Fs1600%2Flight%2Bblue%2Babstract%2Bbackground%2B1.jpg&f=1&nofb=1');
+    background-size: cover;
+    /*background-image: linear-gradient(120deg, rgb(105, 105, 105), rgb(218, 218, 218), rgb(218, 218, 218));*/
 }
 
 .container{

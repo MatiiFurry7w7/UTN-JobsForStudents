@@ -15,14 +15,14 @@
                 <td><button class="btn btn-primary" onclick="window.location.href='<?php echo FRONT_ROOT ?>Appointment/AddView'">Add</button>
         </tr>
         <?php
-        foreach($AppointmentList as $eachAppointment){
-                echo "<tr>
-                        <td style='max-width: 10px; text-align: center;'>".$eachAppointment->getStudentId()."</td>
-                        <td style='max-width: 10px; text-align: center;'>".$eachAppointment->getJobOfferId()."</td>
-                        <td style='max-width: 100px;'>".$eachAppointment->getCv()."</td>
-                        <td style='max-width: 100px;'>".$eachAppointment->getDateAppointment()."</td>
-                        <td style='max-width: 230px;'>".$eachAppointment->getReferenceURL()."</td>"; ?>
-                        <td><button class="btn btn-warning" onclick="window.location.href='<?php echo FRONT_ROOT ?>Appointment/ProfileView?AppointmentId=<?php echo $eachAppointment->getStudentId()?>'">Profile</button>                     
+        foreach($AppointmentList as $eachAppointment){ ?>
+                <tr>
+                        <td style='max-width: 10px; text-align: center;'><?php echo $eachAppointment->getStudentId() ?></td>
+                        <td style='max-width: 10px; text-align: center;'><?php echo $eachAppointment->getJobOfferId() ?></td>
+                        <td style='max-width: 100px;'><?php echo $eachAppointment->getCv() ?></td>
+                        <td style='max-width: 100px;'><?php echo $eachAppointment->getDateAppointment() ?></td>
+                        <td><a href="<?php echo $eachAppointment->getReferenceURL()?>"></td>
+                        <td><button class="btn btn-warning" onclick="window.location.href='<?php echo FRONT_ROOT ?>Appointment/ProfileView?AppointmentId=<?php echo $eachAppointment->getStudentId()?>'">Profile</button>               
                 </tr>
         <?php } ?>
         </table>
