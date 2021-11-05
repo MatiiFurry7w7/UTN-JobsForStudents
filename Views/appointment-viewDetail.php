@@ -21,7 +21,7 @@
             <tr>
                     <td style='max-width: 100px;'><?php echo $currentStudent->getAppointment()->getCv()?></td>
                     <td style='max-width: 100px;'><?php echo $currentStudent->getAppointment()->getDateAppointment() ?></td>
-                    <td style='max-width: 100px;'><?php echo $currentStudent->getAppointment()->getReferenceURL() ?></td>
+                    <td><a href="<?php echo $currentStudent->getAppointment()->getReferenceURL()?>"><?php echo $currentStudent->getAppointment()->getReferenceURL()?></a></td>
                     <td style='max-width: 100px;'><?php echo $currentStudent->getAppointment()->getComments() ?></td>
                     <td></td>
             </tr>

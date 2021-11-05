@@ -5,7 +5,7 @@
 <center>
 <div style="margin-top: 20px;" class="wrapper row3">
   <form action="<?php echo FRONT_ROOT ?>Appointment/Add" enctype="multipart/form-data" method="POST">
-    <table style="width: 70vh;">
+    <table style="width: 80vh;">
         <tr>
           <th style="border-radius: 0px;" colspan="2"><center><h4>From <b><?php echo $jobOffer->getCompany()->getName()?></b> Company</h4></center></th>
         </tr>
@@ -47,7 +47,7 @@
         </tr>
   </table>
   <br>
-  <table style="width: 70vh;">
+  <table style="width: 80vh;">
       <tr>
         <th colspan="2"><center><h4>Applying Appointment</h4></center></th>
       </tr>

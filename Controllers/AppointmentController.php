@@ -26,6 +26,7 @@ class AppointmentController
             
             if($currentStudent->getAppointment()){
                 $jobOffer = (new JobOfferDAO)->FindById($currentStudent->getAppointment()->getJobOfferId());
+                
                 require_once(VIEWS_PATH."appointment-viewDetail.php");
             }else   
                 header("location:".FRONT_ROOT."Home/Index");
@@ -55,6 +56,11 @@ class AppointmentController
                 $appointment->setJobOfferId($jobOfferId);
                 $appointment->setCV($file);
                 $appointment->setDateAppointment(date("c"));
+
+                if(str_contains($referenceURL, "https://") !== true){
+                    $referenceURL = "https://".$referenceURL;
+                }
+
                 $appointment->setReferenceURL($referenceURL);  
                 $appointment->setComments($comments);  
 
