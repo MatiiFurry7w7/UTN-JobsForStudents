@@ -70,7 +70,7 @@
             } else {
                 ?> <script>alert('The end date cannot be earlier than published date!')</script><?php
             }
-            //$this->ShowAddView();
+            $this->ShowAddView();
         }
 
         public function Remove($removeId){
