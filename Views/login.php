@@ -21,7 +21,10 @@
         <td colspan="2"><center><button id="buttonSubmit" type="submit" class="btn btn-primary">Log In</button></center></td>
       </tr>
     </table>
-    <br><a href="<?php echo FRONT_ROOT ?>Student/RegisterView">New here? - Register Now!</a>
+    <br>
+    <div id="newHereText">
+      <a style="color: white;" href="<?php echo FRONT_ROOT ?>Student/RegisterView">New here? - Register Now!</a>
+    </div>
     <?php
       if($message != "")
         echo "<p id='errorMessage'>Error: ".$message." </p>";

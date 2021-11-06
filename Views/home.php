@@ -7,7 +7,7 @@
     <form action="<?php echo FRONT_ROOT ?>Home/Filters" method="POST">
     <table style="margin-top: 20px; width: 40%;">
           <tr style="background-color: rgb(40, 40, 40);">
-            <td style="width: 200px; color: white;">Filter:</td> 
+            <td style="width: 200px; color: white; ">Filter:</td> 
             <td>
                 <select name="careerId">  
                 <option value="" >By Careers</option>
@@ -43,7 +43,7 @@
           $isActive = $jobOffer->getActive() == 1 ? "Yes" : "No";
           $isRemote = $jobOffer->getRemote() == 1 ? "Yes" : "No";?>
           <br>
-            <table style="width: 60%;">
+            <table id="jobOfferTable" style="width: 60%;">
               <th colspan="2" id="hometh">
                 From <?php echo $jobOffer->getCompany()->getName(); ?>
               </th>

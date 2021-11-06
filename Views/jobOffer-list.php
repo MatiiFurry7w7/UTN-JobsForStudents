@@ -14,7 +14,6 @@ include_once('header.php');
                 <td>Published Date</td>
                 <td>Active</td>
                 <td>Dedication</td>
-                <td></td>
                 <?php
                                 if($admin instanceof Administrator){
                                         ?>   

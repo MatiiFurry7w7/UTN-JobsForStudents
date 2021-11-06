@@ -67,14 +67,18 @@
         <tr>
           <td style="width: 200px;"><label for="active">Active<abbr title="required" aria-label="required">*</abbr></label></td> 
           <td>
-            <input type="radio" name="isActive" value="1" checked required>Active
-            <input type="radio" name="isActive" value="0" required>Not active
+          Active: <input type="radio" name="isActive" value="1" checked required>
+          Not active:  <input type="radio" name="isActive" value="0" required>
           </td>
         </tr>   
+        <tr>
+          <td colspan="2">
+            <center>
+              <input type="submit" class="btn btn-success" value="Add"/>
+            </center>
+          </td>
+        </tr>
       </table>
-      <div>
-        <input type="submit" class="btn btn-success" value="Add"/>
-      </div>
     </form>
   </div>
 </center>

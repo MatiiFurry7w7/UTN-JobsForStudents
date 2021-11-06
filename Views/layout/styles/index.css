@@ -3,12 +3,16 @@
 }
 
 .simplescrollup__button {
+    background-color: rgba(0,0,0,0.4);
+    padding: 15px;
+    border-radius: 50%;
 	position: fixed;
 	bottom: 3rem;
 	right: 3rem;
 	transition: 1s all;
 	z-index: 10000;
 }
+
 .simplescrollup__button--show {
 	transform: translateX(0px);
 }
@@ -17,7 +21,6 @@
 }
 
 body{
-    
     margin: 0px;
     background-image: url('https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2F2.bp.blogspot.com%2F-ctccBxMhRVs%2FTjG-w31qkXI%2FAAAAAAAABhI%2F4U-7rIG7FYc%2Fs1600%2Flight%2Bblue%2Babstract%2Bbackground%2B1.jpg&f=1&nofb=1');
     background-size: cover;
@@ -57,6 +60,53 @@ body{
     height: 90px;
 }
 
+button:hover{
+    font-size: 18px;
+    transition: all 0.5s;
+}
+
+select {
+    display: block;
+    font-size: 16px;
+    font-family: 'Arial', sans-serif;
+    font-weight: 400;
+    color: #444;
+    line-height: 1.3;
+    padding: .2em;
+    width: 180px;
+    max-width: 100%; 
+    box-sizing: border-box;
+    margin: 0;
+    border: 1px solid #aaa;
+    box-shadow: 0 1px 0 1px rgba(0,0,0,.03);
+    border-radius: .3em;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #fff;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'),
+      linear-gradient(to bottom, #ffffff 0%,#f7f7f7 100%);
+    background-repeat: no-repeat, repeat;
+    background-position: right .7em top 50%, 0 0;
+    background-size: .65em auto, 100%;
+}
+
+select::-ms-expand {
+ display: none;
+}
+
+select:hover {
+ border-color: #888;
+}
+
+select:focus {
+ border-color: #aaa;
+ box-shadow: 0 0 1px 3px rgba(59, 153, 252, .7);
+ box-shadow: 0 0 0 3px -moz-mac-focusring;
+ color: #222; 
+ outline: none;
+}
+
 .row{
     line-height: 0.2;
     display: flex;
@@ -73,6 +123,13 @@ body{
 #tiltedLogo{
     margin: 5px 0px 0px 10vh;
     width: 80px;
+    transition: all 0.5s;
+}
+
+#tiltedLogo:hover{
+    margin: 5px 0px 0px 10vh;
+    width: 85px;
+    transition: all 0.5s;
 }
 
 #vLine{
@@ -99,6 +156,12 @@ body{
     padding: 200px;
 }
 
+#newHereText{
+    padding: 5px; background-color: rgba(0,0,0,0.5); 
+    border-radius: 3px; 
+    width: 30vh; 
+}
+
 .inputText{
     border-radius: 5px;
     border: 1px solid darkgrey;
@@ -109,7 +172,8 @@ body{
 /* -- NAV BAR -- */
 #navbar{
     width: 100%;
-    background-color: rgb(223, 223, 223);
+    background-image: url('../../imgs/nav-barbg.jpg');
+    background-size: cover;
     height: 40px;
 }
 
@@ -124,11 +188,27 @@ li{
     color: #404040;
     padding: 9px;
     display:inline; 
+    transition: all 0.4s;
 }      
 
 li:hover{
-    background-color: #cccccc;
-    transition-duration: 0.4s;
+    font-size: 18px;
+    background-color: rgba(0,0,0,0);
+    transition: all 0.4s;
+}
+
+input{
+    border-radius: 3px;
+    border: 0.5px solid darkgray;
+}
+
+input[type="radio"]{
+    width: 30px;
+    padding: 20px;
+}
+
+input[type="date"]{
+    padding: 4px;
 }
 
 #notificationBell{
@@ -147,8 +227,13 @@ li:hover{
     margin-top: 20px;
 }
 
+table{
+    background-image: url('../../imgs/tablebg.jpg');
+    background-size: cover;
+}
+
 th{
-    border-radius: 10px 10px 0px 0px;
+    background-image: linear-gradient(to right, rgb(40,40,40), rgb(40,40,40), rgb(5, 5, 5)); 
     margin-bottom: 20px;
     color: rgb(211, 211, 211);
     padding: 10px 100px;
@@ -157,9 +242,10 @@ th{
 
 #hometh{
     text-align: left; 
-    background-color: rgba(0,100,150,1); 
+    background-image: linear-gradient(to right, rgb(40,40,40), rgb(40,40,40), rgb(5, 5, 5)); 
     border-radius: 0px;
     padding: 13px;
+    font-size: 22px;
 }
 
 td{
@@ -168,11 +254,12 @@ td{
 }
 
 tr{
-    background-color: white;
+    background-color: rgba(255,255,255,0.6);
 }
 
 #tableIndex{
-    background-color: rgb(14, 77, 114);
+    background-image: linear-gradient(to right, rgb(40,40,40), rgb(40,40,40), rgb(5, 5, 5)); 
+
     color: white;
 }
 

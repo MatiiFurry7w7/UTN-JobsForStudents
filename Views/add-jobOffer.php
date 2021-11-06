@@ -44,15 +44,15 @@
           <tr>
             <td style="width: 200px;"><label for="active">Active</label></td> 
             <td>
-                <input type="radio" name="active" value="1" checked required>Active
-                <input type="radio" name="active" value="0" required>Not active
+              Active: <input type="radio" name="active" value="1" checked required>
+              Not active: <input type="radio" name="active" value="0" required>
             </td>
           </tr>  
           <tr>
             <td style="width: 200px;"><label for="remote">Remote</label></td> 
             <td>
-                <input type="radio" name="remote" value="1" checked required>Remote
-                <input type="radio" name="remote" value="0" required>Not Remote
+            Remote: <input type="radio" name="remote" value="1" checked required>
+            Not Remote: <input type="radio" name="remote" value="0" required>
             </td>
           </tr>
           <tr>
@@ -83,10 +83,14 @@
                 </select>
             </td>
           </tr>
+          <tr>
+            <td colspan="2">
+              <center>
+            <input type="submit" class="btn btn-success" value="Add"/>
+                  </center>
+            </td>
+          </tr>
     </table>
-    <div>
-        <input type="submit" class="btn btn-success" value="Add"/>
-    </div>
     <input type="hidden" name="administratorId" value="<?php echo $admin->getAdministratorId() ?>">
   </form>
 </div>
