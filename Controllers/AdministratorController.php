@@ -36,29 +36,34 @@
             require_once(VIEWS_PATH."administrator-list.php");
         }
 
-        public function Add($userName, $password){
+        public function Add($userName, $password, $checkPassword){
 
             $administratorList = $this->administratorDAO->GetAll();
 
-            foreach($administratorList as $eachadministrator) {
-                if($eachadministrator->getUserName() == $userName){
-                    $administrator = $eachadministrator;
+            if(strcmp($checkPassword, $password) != 0) {
+                ?>
+                    <script>alert("The input passwords don't match!");</script>
+                <?php
+            } else {
+                foreach($administratorList as $eachadministrator) {
+                    if($eachadministrator->getUserName() == $userName){
+                        $administrator = $eachadministrator;
+                    }
+                }
+    
+                if(!isset($administrator)){ 
+                    $administrator = new Administrator();
+                    $administrator->setUserName($userName);
+                    $administrator->setPassword($password);
+                    
+                    $this->administratorDAO->Add($administrator);
+                }else{
+                    ?>
+                        <script>alert('The administrator already exists!');</script>
+                    <?php
                 }
             }
-
-            if(!isset($administrator)){ 
-                $administrator = new Administrator();
-                $administrator->setUserName($userName);
-                $administrator->setPassword($password);
-                
-                $this->administratorDAO->Add($administrator);
-            }else{
-                ?>
-                    <script>alert('The administrator already exists!');</script>
-                <?php
-            }
-
-            header('location: '.FRONT_ROOT.'administrator/ListView');
+            $this->AddView();
         }
 
         public function Remove($removeId){
