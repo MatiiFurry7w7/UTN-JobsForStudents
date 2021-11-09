@@ -19,16 +19,11 @@
                 </select>
             </td>
             <td>
-                <select name="jobPositionId">  
-                <option value="" >By Job Positions</option>
-                  <?php
-                    foreach($jobPositionList as $jobPosition) {
-                      ?><option value="<?php echo $jobPosition->getJobPositionId()?>" ><?php echo $jobPosition->getDescription()?></option><?php 
-                    }
-                  ?>
-                </select>
+              <label for="jobPosition"></label><input type="text" name="jobPositionSearch" placeholder="Job Position...">
             </td>
-              <td><button class="btn btn-danger" type="submit">Search</button></td>
+            <td>
+              <button class="btn btn-danger" type="submit">Search</button>
+            </td>
           </tr> 
     </table>
     </form>
@@ -38,7 +33,9 @@
         ?><button style="float:right;" class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>JobOffer/ShowAddView'" style="float: right;" >Add a Job Offer</button>
       <br><br>
     <?php } ?>
-      <?php if($jobOfferList){
+      <?php 
+      echo "<b>There are ".$i." Result/s!</b>";
+      if($jobOfferList){
         foreach($jobOfferList as $jobOffer){ 
           $isActive = $jobOffer->getActive() == 1 ? "Yes" : "No";
           $isRemote = $jobOffer->getRemote() == 1 ? "Yes" : "No";?>
@@ -82,7 +79,11 @@
             </table>
           <?php } 
       } else {
-        echo "<p style='margin-top: 3vh'>There is no Job Offer to show.</p>";
+        if (!$careerId){
+          echo "<p style='margin-top: 3vh'>Please choose a Career to filter.</p>";
+        } else {
+          echo "<p style='margin-top: 3vh'>There is no Job Offer to show.</p>";
+        }
       } ?>
   </div>
 </center>
