@@ -4,6 +4,7 @@
     use DAO\JobOfferDAO as JobOfferDAO;
     use DAO\JobPositionDAO as JobPositionDAO;
     use DAO\CompanyDAO as CompanyDAO;
+    use DAO\CareerDAO as CareerDAO;
     use Models\JobOffer as JobOffer;
     use Models\Dedication as Dedication;
     use Models\AdministratorDAO as AdministratorDAO;
@@ -17,11 +18,22 @@
             $this->jobOfferDAO = new JobOfferDAO();
         }
 
-        public function ShowAddView(){
-            $dedicationList = Dedication::GetAll();
-            
+        public function ShowAddView($careerId = ""){
+            $careerDAO = new CareerDAO();
+            $careerList = $careerDAO->GetAll();
+
             $jobPositionDAO = new JobPositionDAO();
-            $jobPositionList = $jobPositionDAO->GetAll();
+            $allJobPositionList = $jobPositionDAO->GetAll();
+            $jobPositionList = [];
+
+            if($careerId) {
+                foreach($allJobPositionList as $jobPosition) {
+                    if($jobPosition->getCareer()->getCareerId() == $careerId){
+                        array_push($jobPositionList, $jobPosition);
+                    }
+                }
+            }
+            $dedicationList = Dedication::GetAll();
 
             $companyDAO = new CompanyDAO();
             $companyList = $companyDAO->GetAll();
@@ -48,10 +60,12 @@
             require_once(VIEWS_PATH."jobOffer-list.php");
         }
 
-        public function Add($title, $publishedDate, $finishDate, $task, $skills, $active, $remote, $salary, $jobPositionId, $dedication, $companyId, $administratorId) {
+        public function Add($jobPositionId, $companyId, $title, $publishedDate, $finishDate, $task, $skills, $active, $remote, $salary, $dedication, $administratorId) {
             $jobOffer = new JobOffer();
             
             if($this->checkDates($publishedDate, $finishDate)){
+                $jobOffer->setJobPosition($jobPositionId);
+                $jobOffer->setCompany($companyId);
                 $jobOffer->setTitle($title);
                 $jobOffer->setPublishedDate($publishedDate);
                 $jobOffer->setFinishDate($finishDate);
@@ -60,10 +74,7 @@
                 $jobOffer->setActive($active);
                 $jobOffer->setRemote($remote);
                 $jobOffer->setSalary($salary);
-                //appointment
-                $jobOffer->setJobPosition($jobPositionId);
                 $jobOffer->setDedication($dedication);
-                $jobOffer->setCompany($companyId);
                 $jobOffer->setAdministrator($administratorId);
 
                 $jobOfferList = $this->jobOfferDAO->Add($jobOffer);
@@ -116,7 +127,7 @@
         private function checkDates($publishedDate, $finishDate){
             $validDate = true;
 
-            if($publishedDate > $finishDate || $publishedDate < date('c'))
+            if($publishedDate > $finishDate)
                 $validDate = false;
 
             return $validDate;

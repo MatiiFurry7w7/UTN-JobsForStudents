@@ -3,11 +3,49 @@
   include_once('nav-bar.php');
 ?>
 <center>
-<div style="margin-top: 20px;" class="wrapper row3">
-  <form action="<?php echo FRONT_ROOT ?>JobOffer/Add" method="POST">
+<div style="margin-top: 20px; " class="wrapper row3">
+  <form action="<?php echo FRONT_ROOT ?>JobOffer/ShowAddView" method="POST">
     <table style="width: 55%;">
           <tr>
             <th colspan="2"><center><h4>Adding a Job Offer</h4></center></th>
+          </tr>
+          <tr>
+            <td style="width: 200px;"><label for="careerId">Career</label></td> 
+            <td>
+                <select name="careerId" required>  
+                  <?php
+                    foreach($careerList as $career) {
+                      ?><option value="<?php echo $career->getCareerId()?>" ><?php echo $career->getDescription()?></option><?php 
+                    }
+                  ?>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <center>
+                <input type="submit" class="btn btn-success" value="Set Career" />
+              </center>
+            </td>
+          </tr>
+    </table>
+  </form>
+</div>
+<form action="<?php echo FRONT_ROOT ?>JobOffer/Add" method="POST">
+  <table style="width: 55%;">
+        <?php
+        if($careerId != "") { ?>
+          <tr>
+            <td style="width: 200px;"><label for="jobPositionId">Job Position</label></td> 
+            <td>
+                <select name="jobPositionId">  
+                  <?php
+                    foreach($jobPositionList as $jobPosition) {
+                        ?><option value="<?php echo $jobPosition->getJobPositionId()?>" ><?php echo $jobPosition->getDescription()?></option><?php 
+                    }
+                  ?>
+                </select>
+            </td>
           </tr>
           <tr>
             <td style="width: 200px;"><label for="companyId">Company</label></td> 
@@ -60,18 +98,6 @@
             <td><input type="number" name="salary" required></td>
           </tr> 
           <tr>
-            <td style="width: 200px;"><label for="jobPositionId">Job Position</label></td> 
-            <td>
-                <select name="jobPositionId">  
-                  <?php
-                    foreach($jobPositionList as $jobPosition) {
-                      ?><option value="<?php echo $jobPosition->getJobPositionId()?>" ><?php echo $jobPosition->getDescription()?></option><?php 
-                    }
-                  ?>
-                </select>
-            </td>
-          </tr>
-          <tr>
             <td style="width: 200px;"><label for="dedication">Dedication</label></td> 
             <td>
                 <select name="dedication">  
@@ -82,18 +108,20 @@
                   ?>
                 </select>
             </td>
-          </tr>
+          </tr> 
           <tr>
             <td colspan="2">
               <center>
-            <input type="submit" class="btn btn-success" value="Add"/>
-                  </center>
+                <input type="submit" class="btn btn-success" value="Add"/>
+              </center>
             </td>
-          </tr>
-    </table>
-    <input type="hidden" name="administratorId" value="<?php echo $admin->getAdministratorId() ?>">
-  </form>
-</div>
+          </tr> 
+        <?php
+        }
+        ?>
+  </table>
+  <input type="hidden" name="administratorId" value="<?php echo $admin->getAdministratorId() ?>">
+</form>
 </center>
 <?php
   include_once('footer.php');

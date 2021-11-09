@@ -17,9 +17,11 @@
         {
             try
             {
-                $query = "INSERT INTO ".$this->tableName." (title, publishedDate, finishDate, task, skills, active, remote, salary, jobPositionId, dedication, companyId, administratorId) 
-                    VALUES (:title, :publishedDate, :finishDate, :task, :skills, :active, :remote, :salary, :jobPositionId, :dedication, :companyId, :administratorId);";
+                $query = "INSERT INTO ".$this->tableName." (jobPositionId, companyId, title, publishedDate, finishDate, task, skills, active, remote, salary, dedication, administratorId) 
+                    VALUES (:jobPositionId, :companyId, :title, :publishedDate, :finishDate, :task, :skills, :active, :remote, :salary, :dedication, :administratorId);";
 
+                $parameters["jobPositionId"] = $jobOffer->getJobPosition();
+                $parameters["companyId"] = $jobOffer->getCompany();
                 $parameters["title"] = $jobOffer->getTitle();
                 $parameters["publishedDate"] = $jobOffer->getPublishedDate();
                 $parameters["finishDate"] = $jobOffer->getFinishDate();
@@ -28,10 +30,7 @@
                 $parameters["active"] = $jobOffer->getActive();
                 $parameters["remote"] = $jobOffer->getRemote();
                 $parameters["salary"] = $jobOffer->getSalary();
-                //appointment
-                $parameters["jobPositionId"] = $jobOffer->getJobPosition();
                 $parameters["dedication"] = $jobOffer->getDedication();
-                $parameters["companyId"] = $jobOffer->getCompany();
                 $parameters["administratorId"] = $jobOffer->getAdministrator();
 
                 $this->connection = Connection::GetInstance();

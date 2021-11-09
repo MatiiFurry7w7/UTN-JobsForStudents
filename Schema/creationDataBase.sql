@@ -86,6 +86,23 @@ create table appointments(
     constraint appointmentId primary key (studentId, jobOfferId)
 );
 
+create table roles(
+	roleId int primary key,
+	userRole varchar(50)
+);
+
+insert into roles (roleId, userRole) values 
+(1,'admin'),
+(2,'student');
+
+create table users(
+	userId int auto_increment primary key,
+	email varchar(50), 
+	password varchar(50),
+	roleId int not null, 
+	foreign key (roleId) references roles(roleId)
+);
+
 DELIMITER $$
 DROP PROCEDURE IF EXISTS cv_add $$
 CREATE PROCEDURE cv_add(IN name VARCHAR(100), IN stuId INT, IN jobId INT)
