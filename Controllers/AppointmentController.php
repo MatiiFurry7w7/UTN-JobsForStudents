@@ -21,14 +21,15 @@ class AppointmentController
             require_once(VIEWS_PATH."add-appointment.php");
         }
 
-        public function ViewDetails(){
+        public function ViewDetails($jobOfferId){
             $currentStudent = $_SESSION['currentUser'];
             
             if($currentStudent->getAppointment()){
-                $jobOffer = (new JobOfferDAO)->FindById($currentStudent->getAppointment()->getJobOfferId());
-                
+                $appointment = $this->appointmentDAO->FindById($currentStudent->getStudentId(), $jobOfferId);
+                $jobOffer = (new JobOfferDAO)->FindById($jobOfferId);
+
                 require_once(VIEWS_PATH."appointment-viewDetail.php");
-            }else   
+            }else 
                 header("location:".FRONT_ROOT."Home/Index");
         }
 
@@ -40,45 +41,40 @@ class AppointmentController
         }
 
         public function Add($studentId, $jobOfferId, $file, $referenceURL, $comments){
-            $found = false;
             $currentStudent = $_SESSION['currentUser'];        
             $appointmentList = $this->appointmentDAO->GetAll();
 
-            if($appointmentList)
-                foreach($appointmentList as $eachappointment) 
-                    if($eachappointment->getStudentId() == $studentId)
-                        $found = true;
+            $appointment = new Appointment();
 
-            if(!$found){
-                $appointment = new Appointment();
+            $appointment->setStudentId($studentId);
+            $appointment->setJobOfferId($jobOfferId);
+            $appointment->setCV($file);
+            $appointment->setDateAppointment(date("c"));
 
-                $appointment->setStudentId($studentId);
-                $appointment->setJobOfferId($jobOfferId);
-                $appointment->setCV($file);
-                $appointment->setDateAppointment(date("c"));
-
-                if(str_contains($referenceURL, "https://") !== true){
-                    $referenceURL = "https://".$referenceURL;
-                }
-
-                $appointment->setReferenceURL($referenceURL);  
-                $appointment->setComments($comments);  
-
-                $this->appointmentDAO->Add($appointment);
-                $appointmentList = $this->appointmentDAO->GetAll();
-
-                if($appointmentList)
-                    foreach($appointmentList as $eachAppointment)
-                        if($eachAppointment->getStudentId() == $currentStudent->getStudentId())
-                            $currentStudent->setAppointment($eachAppointment);
-                //$this->Upload($file, $studentId, $jobOfferId);
-            }else {
-                ?>
-                     <script>alert('The student is already on a job offer or the student does not exist!');</script>
-                 <?php
+            if(str_contains($referenceURL, "https://") !== true){
+                $referenceURL = "https://".$referenceURL;
             }
+
+            $appointment->setReferenceURL($referenceURL);  
+            $appointment->setComments($comments);  
+
+            $this->appointmentDAO->Add($appointment);
+            $appointmentList = $this->appointmentDAO->GetAll();
+
+            if($appointmentList)
+                foreach($appointmentList as $eachAppointment)
+                    if($eachAppointment->getStudentId() == $currentStudent->getStudentId())
+                        $currentStudent->setAppointment($eachAppointment);
+            //$this->Upload($file, $studentId, $jobOfferId);
             
             (new HomeController)->Index();
+        }
+
+        public function HistoryView(){
+            $studentId = $_SESSION['currentUser']->getStudentId();
+            $appointmentList = $this->appointmentDAO->HistoryById($studentId);
+            
+            require_once(VIEWS_PATH."appointment-list.php");
         }
 
         public function Remove($studentId){

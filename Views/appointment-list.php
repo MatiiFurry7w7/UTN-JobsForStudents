@@ -1,28 +1,34 @@
-<?php 
-        include_once('header.php');
+<?php
+
+use Models\Administrator;
+
+include_once('header.php');
         include_once('nav-bar.php');
 ?>
 <center>
+        <br>
 <div class="wrapper row3">
-<table id="AppointmentsTable">
+<table id="studentsTable" style="width: 90vh;">
         <tr id="tableIndex">
-                <td style='width: 10px;'>ID</td>
-                <td>Student</td>
+                <td>ID</td>
                 <td>Job Offer</td>
                 <td>Curriculum Vitae</td>
                 <td>Date Appointment</td>
                 <td>Reference URL</td>
-                <td><button class="btn btn-primary" onclick="window.location.href='<?php echo FRONT_ROOT ?>Appointment/AddView'">Add</button>
+                <td><?php if($_SESSION['currentUser'] instanceof Administrator){ ?>
+                        <button class="btn btn-primary" onclick="window.location.href='<?php echo FRONT_ROOT ?>Appointment/AddView'">Add</button>
+                    <?php } ?>
+                </td>
         </tr>
         <?php
-        foreach($AppointmentList as $eachAppointment){ ?>
+        foreach($appointmentList as $eachAppointment){ ?>
                 <tr>
-                        <td style='max-width: 10px; text-align: center;'><?php echo $eachAppointment->getStudentId() ?></td>
-                        <td style='max-width: 10px; text-align: center;'><?php echo $eachAppointment->getJobOfferId() ?></td>
-                        <td style='max-width: 100px;'><?php echo $eachAppointment->getCv() ?></td>
-                        <td style='max-width: 100px;'><?php echo $eachAppointment->getDateAppointment() ?></td>
-                        <td><a href="<?php echo $eachAppointment->getReferenceURL()?>"></td>
-                        <td><button class="btn btn-warning" onclick="window.location.href='<?php echo FRONT_ROOT ?>Appointment/ProfileView?AppointmentId=<?php echo $eachAppointment->getStudentId()?>'">Profile</button>               
+                        <td><?php echo $eachAppointment->getStudentId() ?></td>
+                        <td><?php echo $eachAppointment->getJobOfferId() ?></td>
+                        <td><?php echo $eachAppointment->getCv() ?></td>
+                        <td><?php echo $eachAppointment->getDateAppointment() ?></td>
+                        <td><a href="<?php echo $eachAppointment->getReferenceURL()?>"><?php echo $eachAppointment->getReferenceURL()?></a></td>
+                        <td><button class="btn btn-warning" onclick="window.location.href='<?php echo FRONT_ROOT ?>Appointment/ViewDetails?AppointmentId=<?php echo $eachAppointment->getJobOfferId()?>'">Details</button>               
                 </tr>
         <?php } ?>
         </table>

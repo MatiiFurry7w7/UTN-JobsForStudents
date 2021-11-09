@@ -50,7 +50,7 @@
             {
                 $jobOfferList = array();
 
-                $query = "SELECT * FROM ".$this->tableName;
+                $query = "SELECT * FROM ".$this->tableName." ORDER BY publishedDate DESC";
 
                 $this->connection = Connection::GetInstance();
 

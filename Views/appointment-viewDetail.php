@@ -19,10 +19,10 @@
                     <td><button type="submit" class="btn btn-danger">Remove</button>
             </tr>
             <tr>
-                    <td style='max-width: 100px;'><?php echo $currentStudent->getAppointment()->getCv()?></td>
-                    <td style='max-width: 100px;'><?php echo $currentStudent->getAppointment()->getDateAppointment() ?></td>
-                    <td><a href="<?php echo $currentStudent->getAppointment()->getReferenceURL()?>"><?php echo $currentStudent->getAppointment()->getReferenceURL()?></a></td>
-                    <td style='max-width: 100px;'><?php echo $currentStudent->getAppointment()->getComments() ?></td>
+                    <td style='max-width: 100px;'><?php echo $appointment->getCv()?></td>
+                    <td style='max-width: 100px;'><?php echo $appointment->getDateAppointment() ?></td>
+                    <td><a href="<?php echo $appointment->getReferenceURL()?>"><?php echo $currentStudent->getAppointment()->getReferenceURL()?></a></td>
+                    <td style='max-width: 100px;'><?php echo $appointment->getComments() ?></td>
                     <td></td>
             </tr>
           </table>

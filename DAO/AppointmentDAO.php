@@ -6,6 +6,7 @@
     use \Exception as Exception;
     use DAO\Connection as Connection;
 use Models\CV;
+use Models\JobOffer;
 
 class AppointmentDAO implements IAppointmentDAO{
 
@@ -87,6 +88,67 @@ class AppointmentDAO implements IAppointmentDAO{
             }
         }
 
+        public function GetHistoryById($studentId)
+        {
+            try
+            {
+                $appointmentList = array();
+
+                $query = "SELECT * FROM ".$this->tableName." WHERE studentd = :studentId";
+
+                $this->connection = Connection::GetInstance();
+
+                $resultSet = $this->connection->Execute($query);
+                
+                foreach ($resultSet as $row)
+                {                
+                    $appointment = new Appointment();
+                    
+                    $appointment->setStudentId($row["studentId"]);
+                    $appointment->setJobOfferId($row["jobOfferId"]);
+                    $appointment->setCv($row["cv"]);
+                    $appointment->setDateAppointment($row["dateAppointment"]);
+                    $appointment->setReferenceURL($row["referenceURL"]);
+                    $appointment->setComments($row["comments"]);
+        
+                    array_push($appointmentList, $appointment);
+                }
+                
+                return $appointmentList;
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
+        }
+
+        public function FindById($studentId, $jobOfferId){
+            try{
+                $query = "SELECT * FROM ".$this->tableName." WHERE studentId =:studentId AND jobOfferId =:jobOfferId;";
+
+                $parameters["studentId"] = $studentId;
+                $parameters["jobOfferId"] = $jobOfferId;
+                
+                $this->connection = Connection::GetInstance();
+
+                $resultSet = $this->connection->Execute($query, $parameters)[0];
+                if($resultSet){
+                    $appointment = new Appointment();
+                    
+                    $appointment->setStudentId($resultSet["studentId"]);
+                    $appointment->setJobOfferId($resultSet["jobOfferId"]);
+                    $appointment->setCv($resultSet["cv"]);
+                    $appointment->setDateAppointment($resultSet["dateAppointment"]);
+                    $appointment->setReferenceURL($resultSet["referenceURL"]);
+                    $appointment->setComments($resultSet["comments"]);
+
+                    return $appointment;
+                }
+            }catch(Exception $ex){
+                throw $ex;
+            }
+        }
+
         public function DeleteById($studentId){
             try{
                 $query = "DELETE FROM ".$this->tableName." WHERE studentId = :studentId;";
@@ -101,7 +163,7 @@ class AppointmentDAO implements IAppointmentDAO{
             }
         }
 
-        public function FindById($studentId)//<------------------ ver si lo utilizamos
+        public function HistoryById($studentId)//<------------------ ver si lo utilizamos
         {
             try
             {
@@ -111,17 +173,21 @@ class AppointmentDAO implements IAppointmentDAO{
                 
                 $parameters["studentId"] = $studentId;
 
-                $result = $this->connection->Execute($query, $parameters)[0];
+                $result = $this->connection->Execute($query, $parameters);
 
-                if($result) {
-                    $appointment = new Appointment();
-                    $appointment->setStudentId($result["studentId"]);
-                    $appointment->setJobOfferId($result["jobOfferId"]);
-                    $appointment->setCv($result["cv"]);
-                    $appointment->setDateAppointment($result["dateAppointment"]);
-                    $appointment->setReferenceURL($result["referenceURL"]);
-                
-                    return $appointment;
+                if($result){ 
+                    $historyList = array(); 
+                    foreach($result as $eachResult) {
+                        $appointment = new Appointment();
+                        $appointment->setStudentId($eachResult["studentId"]);
+                        $appointment->setJobOfferId($eachResult["jobOfferId"]);
+                        $appointment->setCv($eachResult["cv"]);
+                        $appointment->setDateAppointment($eachResult["dateAppointment"]);
+                        $appointment->setReferenceURL($eachResult["referenceURL"]);  
+                        
+                        array_push($historyList, $appointment);                     
+                    }
+                return $historyList;
                 }
             }
             catch(Exception $ex)

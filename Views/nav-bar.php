@@ -26,7 +26,7 @@
                     </li>
                   </a>
                   <?php if($headerUser->getAppointment()){ ?>
-                    <a id="link" href="<?php echo FRONT_ROOT ?>Appointment/ViewDetails"><li>My Appointment</li></a>
+                    <a id="link" href="<?php echo FRONT_ROOT ?>Appointment/HistoryView<?php ?>"><li>My Appointments</li></a>
                   <?php }
                  }?>
 
