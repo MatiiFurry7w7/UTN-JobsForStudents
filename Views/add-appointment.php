@@ -52,7 +52,7 @@
         <th colspan="2"><center><h4>Applying Appointment</h4></center></th>
       </tr>
       <tr>
-        <input type="hidden" name="studentId" value="<?php echo $_SESSION['currentUser']->getStudentId() ?>">
+        <input type="hidden" name="studentId" value="<?php echo (new SessionHelper())->getCurrentUser()->getStudentId() ?>">
         <input type="hidden" name="jobOfferId" value="<?php echo $jobOfferId; ?>">
       </tr>
       <tr>

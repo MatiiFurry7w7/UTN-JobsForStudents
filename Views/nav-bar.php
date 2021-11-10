@@ -1,8 +1,11 @@
 <?php
   use Models\Administrator; 
   use Models\Student;
-
-  if(!isset($_SESSION['currentUser'])){
+  use Helpers\SessionHelper;
+  
+  $currentUser = (new SessionHelper())->getCurrentUser();
+  
+  if(!isset($currentUser)){
     header('location: '.FRONT_ROOT.'Login/LogInView');
   }
 ?>
@@ -11,14 +14,14 @@
     <ul>
       <a id="link" href="<?php echo FRONT_ROOT ?>Login/LogInView"><li><i class="fa fa-share"></i></li></a>
       <a id="link" href="<?php echo FRONT_ROOT ?>Company/ShowListView"><li>Companies</li></a>
-      <?php if($_SESSION['currentUser'] instanceof Administrator) { ?>  
+      <?php if($currentUser) { ?>  
         <a id="link" href="<?php echo FRONT_ROOT ?>JobOffer/ShowListView"><li>Job Offers</li></a>
         <a id="link" href="<?php echo FRONT_ROOT ?>Student/ListView"><li>Students List</li></a>
         <a id="link" href="<?php echo FRONT_ROOT ?>Administrator/ListView"><li>Administrators List</li></a>
       <?php }else{ ?>
             <?php 
-              if(isset($_SESSION['currentUser']) && $_SESSION['currentUser'] instanceof Student){ 
-                $headerUser = $_SESSION['currentUser'];?>
+              if(isset($currentUser) && $currentUser instanceof Student){ 
+                $headerUser = $currentUser;?>
                   <a style="margin-top:5px;" id="link" href="<?php echo FRONT_ROOT ?>Student/ProfileView?email=<?php echo $_SESSION['currentUser']->getEmail(); ?>">
                     <li>
                     <?php echo $headerUser->getFirstName()?>'s Profile&nbsp
