@@ -60,7 +60,7 @@ class AppointmentDAO implements IAppointmentDAO{
             {
                 $query = "CALL cv_add(?);";
                 
-                $parameters["name"] = $cv;
+                $parameters["name"] = $cv->getName();
                 $parameters["stuId"] = $studentId;
                 $parameters["jobId"] = $jobOfferId;
 
@@ -219,5 +219,6 @@ class AppointmentDAO implements IAppointmentDAO{
                 throw $ex;
             }
         }
+    
     }
 ?>
