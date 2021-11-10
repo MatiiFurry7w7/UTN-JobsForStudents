@@ -2,7 +2,7 @@
     namespace Controllers;
 
     use DAO\AdministratorDAO as AdministratorDAO;
-    
+    use Helpers\SessionHelper as SessionHelper;
     use Models\Administrator as Administrator;
 
     class AdministratorController
@@ -13,95 +13,78 @@
             $this->administratorDAO = new AdministratorDAO();
         }
 
-        public function LogInView(){
-            session_destroy();
-            require_once(VIEWS_PATH."login.php");
-        }
-
-        public function LogIn($userName){
-            
-                $_SESSION['currentUser'] = $userName;
-            
-            header('location: '.FRONT_ROOT.'Home/Index');
-        }
-
         public function AddView(){
-            require_once(VIEWS_PATH."add-administrator.php");
+            if((new SessionHelper)->isAdmin()) {
+                require_once(VIEWS_PATH."add-administrator.php");
+            } else 
+                (new HomeController())->Index();
         }
 
         public function ListView(){
-            
-            $administratorList = $this->administratorDAO->getAll();
+            if((new SessionHelper)->isAdmin()) {
+                $administratorList = $this->administratorDAO->getAll();
 
-            require_once(VIEWS_PATH."administrator-list.php");
+                require_once(VIEWS_PATH."administrator-list.php");
+            } else 
+                (new HomeController())->Index();
         }
 
         public function Add($userName, $password, $checkPassword){
+            if((new SessionHelper)->isAdmin()) {
+                $administratorList = $this->administratorDAO->GetAll();
 
-            $administratorList = $this->administratorDAO->GetAll();
-
-            if(strcmp($checkPassword, $password) != 0) {
-                ?>
-                    <script>alert("The input passwords don't match!");</script>
-                <?php
-            } else {
-                foreach($administratorList as $eachadministrator) {
-                    if($eachadministrator->getUserName() == $userName){
-                        $administrator = $eachadministrator;
+                if(strcmp($checkPassword, $password) != 0) {
+                    ?>
+                        <script>alert("The input passwords don't match!");</script>
+                    <?php
+                } else {
+                    foreach($administratorList as $eachadministrator) {
+                        if($eachadministrator->getUserName() == $userName){
+                            $administrator = $eachadministrator;
+                        }
+                    }
+        
+                    if(!isset($administrator)){ 
+                        $administrator = new Administrator();
+                        $administrator->setUserName($userName);
+                        $administrator->setPassword($password);
+                        
+                        $this->administratorDAO->Add($administrator);
+                    }else{
+                        ?>
+                            <script>alert('The administrator already exists!');</script>
+                        <?php
                     }
                 }
-    
-                if(!isset($administrator)){ 
-                    $administrator = new Administrator();
-                    $administrator->setUserName($userName);
-                    $administrator->setPassword($password);
-                    
-                    $this->administratorDAO->Add($administrator);
-                }else{
-                    ?>
-                        <script>alert('The administrator already exists!');</script>
-                    <?php
-                }
-            }
-            $this->AddView();
+                $this->AddView();
+            } else 
+                (new HomeController())->Index();
         }
 
         public function Remove($removeId){
-            $this->administratorDAO->DeleteById($removeId);
-            $this->ListView();
+            if((new SessionHelper)->isAdmin()) {
+                $this->administratorDAO->DeleteById($removeId);
+                $this->ListView();
+            } else 
+                (new HomeController())->Index();
         }
 
         public function ModifyAdministrator($administratorId, $userName, $password){
-            $this->administratorDAO->ModifyById($administratorId, $userName, $password);
+            if((new SessionHelper)->isAdmin()) {
+                $this->administratorDAO->ModifyById($administratorId, $userName, $password);
             
-            $this->ListView();
+                $this->ListView();
+            } else 
+                (new HomeController())->Index();
         }
 
         public function ModifyView($modifyId){
-            $administrator = $this->administratorDAO->FindById($modifyId);
+            if((new SessionHelper)->isAdmin()) {
+                $administrator = $this->administratorDAO->FindById($modifyId);
 
-            require_once(VIEWS_PATH."modify-administrator.php");
+                require_once(VIEWS_PATH."modify-administrator.php");
+            } else 
+                (new HomeController())->Index();
         }
-
-        /*public function Add($userName, $password){
-            $newAdministrator = new Administrator($userName, $password);
-
-            $administratorList = $this->administratorDAO->getAll();
-            $this->setIdByLastId($administratorList, $newAdministrator);
-
-            $this->administratorDAO->add($newAdministrator);
-
-            header('location: '.FRONT_ROOT.'administrator/ListView');
-        }
-
-        private function setIdByLastId($administratorList, $administrator){
-            if(empty($administratorList)){
-                $administrator->setAdministratorId(1); 
-             } else {
-                 $lastId = end($administratorList)->getAdministratorId();
-                 $administrator->setAdministratorId($lastId + 1);
-             }
-        }
-        */
     }
 ?> 

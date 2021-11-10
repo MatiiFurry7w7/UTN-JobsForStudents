@@ -6,6 +6,7 @@
     use Models\Career;
     use Models\Student as Student;
     use Models\Administrator as Administrator;
+    use Helpers\SessionHelper as SessionHelper;
     use Controllers\LoginController as LoginController;
 
     class StudentController{
@@ -76,7 +77,7 @@
         }
 
         public function ListView(){
-            if($_SESSION['currentUser'] instanceof Administrator){
+            if((new SessionHelper())->isAdmin()) {
             $studentList = $this->studentDAO->getAll();
             $newStudentList = array();
 
@@ -96,7 +97,7 @@
                 $studentList = new Student();
 
             require_once(VIEWS_PATH."student-list.php");
-            }else{
+            } else {
                 header("location: ".FRONT_ROOT."Home/Index");
             }
         }

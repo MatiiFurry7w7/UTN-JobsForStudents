@@ -4,6 +4,7 @@
     use DAO\JobOfferDAO as JobOfferDAO;
     use DAO\JobPositionDAO as JobPositionDAO;
     use DAO\CareerDAO as CareerDAO;
+    use Helpers\SessionHelper as SessionHelper;
     use Models\Administrator as Administrator;
     use Models\JobOffer as JobOffer;
 
@@ -30,13 +31,13 @@
 
             $careerList = $this->careerDAO->GetAll();
 
-            $isAdmin = $_SESSION['currentUser'] instanceof Administrator ? true : false;
-            
+            $isAdmin = (new SessionHelper())->isAdmin();   
+                     
             require_once(VIEWS_PATH."home.php");
         }   
 
         public function Filters($careerId, $jobPositionSearch = "") {
-            $isAdmin = $_SESSION['currentUser'] instanceof Administrator ? true : false;
+            $isAdmin = (new SessionHelper())->isAdmin();
 
             $jobOfferList = $this->jobOfferDAO->GetAll();
 

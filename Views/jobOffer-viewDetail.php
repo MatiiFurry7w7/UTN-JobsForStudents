@@ -34,7 +34,7 @@
         </tr> 
         <tr>
           <td>Job Position</td>
-          <td style='max-width: 230px;;'><?php echo $jobOffer->getCompany()->getDescription()?></td>
+          <td style='max-width: 230px;;'><?php echo $jobOffer->getJobPosition()->getDescription()?></td>
         </tr>
         <tr>
           <td>Dedication</td>

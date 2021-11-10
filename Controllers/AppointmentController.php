@@ -5,6 +5,7 @@
     use \Exception as Exception;
     use DAO\Connection as Connection;
     use DAO\JobOfferDAO;
+    use Helpers\SessionHelper as SessionHelper;
     use Models\Appointment as Appointment;
     use Models\CV;
 
@@ -22,9 +23,8 @@ class AppointmentController
         }
 
         public function ViewDetails($jobOfferId){
-            $currentStudent = $_SESSION['currentUser'];
-            
-            if($currentStudent->getAppointment()){
+
+            if((new SessionHelper())->getCurrentUser()->getAppointment()){
                 $appointment = $this->appointmentDAO->FindById($currentStudent->getStudentId(), $jobOfferId);
                 $jobOffer = (new JobOfferDAO)->FindById($jobOfferId);
 
@@ -41,7 +41,7 @@ class AppointmentController
         }
 
         public function Add($studentId, $jobOfferId, $file, $referenceURL, $comments){
-            $currentStudent = $_SESSION['currentUser'];        
+            $currentStudent = (new SessionHelper)->getCurrentUser();        
             $appointmentList = $this->appointmentDAO->GetAll();
 
             $appointment = new Appointment();
@@ -71,7 +71,7 @@ class AppointmentController
         }
 
         public function HistoryView(){
-            $studentId = $_SESSION['currentUser']->getStudentId();
+            $studentId = (new SessionHelper)->getCurrentUser()->getStudentId();
             $appointmentList = $this->appointmentDAO->HistoryById($studentId);
             
             require_once(VIEWS_PATH."appointment-list.php");
@@ -79,7 +79,7 @@ class AppointmentController
 
         public function Remove($studentId){
             $this->appointmentDAO->DeleteById($studentId);
-            $_SESSION['currentUser']->setAppointment(null);
+            (new SessionHelper)->getCurrentUser()->setAppointment(null);
             (new HomeController)->Index();
         }
 

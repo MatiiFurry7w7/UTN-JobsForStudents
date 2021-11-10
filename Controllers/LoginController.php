@@ -6,6 +6,7 @@
 
     use Models\Administrator as Administrator;
     use Models\Student as Student;
+    use Helpers\SessionHelper as SessionHelper;
     use Controllers\StudentController as StudentController;
     use DAO\AppointmentDAO;
     use DAO\CareerDAO;
@@ -28,8 +29,7 @@ class LoginController{
         }
 
         public function LogIn($email, $userPassword){
-            session_destroy();
-            session_start();
+            (new SessionHelper())->sessionRestart();
 
             $loginUser = null;
 
@@ -79,7 +79,7 @@ class LoginController{
             if($loginUser == null){
                 $this->LogInView("Those login credentials doesn't exist in our database!");
             }else{
-                $_SESSION['currentUser'] = $loginUser;
+                (new SessionHelper())->setCurrentUser($loginUser);
                 $this->careerDAO->LoadFromAPI();
                 header("location: ".FRONT_ROOT."Home/Index");
             }
