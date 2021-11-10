@@ -37,7 +37,7 @@
       echo "<b>There are ".$i." Result/s!</b>";
       if($jobOfferList){
         foreach($jobOfferList as $jobOffer){ 
-          $isActive = $jobOffer->getActive() == 1 ? "Yes" : "No";
+          if($jobOffer->getActive()){
           $isRemote = $jobOffer->getRemote() == 1 ? "Yes" : "No";?>
           <br>
             <table id="jobOfferTable" style="width: 60%;">
@@ -61,10 +61,6 @@
                 <td style='max-width: 230px;'><?php echo $jobOffer->getTask()?></td>
               </tr> 
               <tr>
-                <td>Active</td>
-                <td style='max-width: 230px;'><?php echo $isActive?></td>
-              </tr> 
-              <tr>
                 <td>Remote</td>
                 <td style='max-width: 230px;'><?php echo $isRemote?></td>
               </tr> 
@@ -77,7 +73,7 @@
                 <td align="right"><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>JobOffer/ViewDetail?jobOfferId=<?php echo $jobOffer->getJobOfferId() ?>'">View More</button></td>
               </tr>
             </table>
-          <?php } 
+          <?php }} 
       } else {
         if (!isset($careerId)){
           echo "<p style='margin-top: 3vh'>Please choose a Career to filter.</p>";

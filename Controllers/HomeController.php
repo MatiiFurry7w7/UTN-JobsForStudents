@@ -22,11 +22,12 @@
 
         public function Index($message = ""){
             $jobOfferList = $this->jobOfferDAO->GetAll();
-
+            $i = 0;
+            
             if($jobOfferList)
-                $i = count($jobOfferList);
-            else    
-                $i = 0;
+                foreach($jobOfferList as $eachJobOffer)
+                    if($eachJobOffer->getActive())
+                        $i++;
 
             $jobPositionList = $this->jobPositionDAO->GetAll();
             $careerList = $this->careerDAO->GetAll();

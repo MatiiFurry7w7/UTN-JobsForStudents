@@ -25,6 +25,7 @@
     <table id="studentsTable">
       <thead>
         <tr id="tableIndex">
+            <td>Active</td>
             <td>Name</td>
             <td>CUIT</td>
             <td>Description</td>
@@ -47,10 +48,11 @@
           $i = 0;
           if($searchedCompany != ""){
               foreach($companyList as $company){
-                  if(strpos(strtolower($company->getName()), strtolower($searchedCompany)) !== false && $company->getActive() == 1){
+                  if(strpos(strtolower($company->getName()), strtolower($searchedCompany)) !== false){
                       $i++;
-                      ?>
-                      <tr>
+                     ?>
+                      <tr> 
+                        <td><?php echo $company->getActive() == 1 ? "Yes" : "No" ?></td>
                         <td><?php echo $company->getName() ?></td>
                         <td><?php echo $company->getCuit() ?></td>
                         <td><?php echo $company->getDescription() ?></td>
@@ -71,10 +73,10 @@
               }
           }else{
               foreach($companyList as $company){
-                  if($company->getActive() == 1){
                       $i++;
                       ?>
                       <tr>
+                        <td><?php echo $company->getActive() == 1 ? "Yes" : "No" ?></td>
                         <td><?php echo $company->getName() ?></td>
                         <td><?php echo $company->getCuit() ?></td>
                         <td><?php echo $company->getDescription() ?></td>
@@ -90,8 +92,7 @@
                           }
                           ?>
                       </tr>
-                      <?php
-                  }     
+                      <?php   
               }   
           }
           echo "<br><b>There are ".$i." Result/s!</b>";
