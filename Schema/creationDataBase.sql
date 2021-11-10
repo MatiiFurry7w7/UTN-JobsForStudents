@@ -1,8 +1,16 @@
 -- CREATION OF THE DATABASE "JOBSFORSTUDENTS" 
-create database JobsForStudents;
+CREATE DATABASE JobsForStudents;
 
 -- TO USE THIS DATABASE
 use JobsForStudents;
+
+drop table careers;
+drop table appointments;
+drop table joboffers;
+drop table companies;
+drop table jobpositions;
+drop table joboffers;
+drop table companies;
 
 -- CREATION OF TABLE: COMPANIES
 create table companies
@@ -22,8 +30,7 @@ create table companies
 -- CREATION OF TABLE: JOBPOSITIONS
 create table jobPositions
 (
-	jobPositionIdFromDB int auto_increment primary key, 
-	jobPositionId int not null,
+	jobPositionId int not null primary key,
 	careerId int,
 	description varchar(100)
 );
@@ -35,14 +42,6 @@ create table careers
 	title varchar(50), 
 	description varchar(100),
 	active boolean
-);
-
--- CREATION OF TABLE: ADMINISTRATOR
-create table administrators
-(
-	administratorId int auto_increment primary key, 
-	userName varchar(50), 
-	password varchar(50)
 );
 
 -- CREATION OF TABLE: JOBOFFERS
@@ -61,9 +60,8 @@ create table jobOffers
 	dedication varchar(50),
 	companyId int not null,
 	administratorId int not null,
-	foreign key (jobPositionId) references jobPositions(jobPositionIdFromDB),
 	foreign key (companyId) references companies(companyId),
-	foreign key (administratorid) references administrators(administratorid)
+	foreign key (administratorid) references users(userId)
 );
 
 create table appointments(
@@ -109,23 +107,18 @@ END$$
 DELIMITER ;
 
 -- INSERT
-INSERT INTO administrators VALUES
-(default, "Mati", "tobi");
+INSERT INTO users VALUES
+(default, "Mati@gmail.com", "123", 1);
 
 -- DELETE 
-DELETE FROM administrators WHERE administratorId > -1;
 DELETE FROM companies WHERE companyId > -1;
 DELETE FROM joboffers WHERE jobofferId > -1;
 DELETE FROM appointments WHERE jobofferId > -1;
- 
-USE jobsforstudents;
-DROP TABLE joboffers;
+DELETE FROM users WHERE userId > -1;
 
 -- SELECT
 SELECT * FROM administrators;
 SELECT * FROM users;
 SELECT * FROM appointments;
 SELECT * FROM joboffers;
-
-use jobsforstudents;
-SELECT * FROM students;
+SELECT * FROM companies;

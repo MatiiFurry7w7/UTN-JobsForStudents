@@ -4,7 +4,7 @@
     use \Exception as Exception;
     use DAO\IJobOfferDAO as IJobOfferDAO;
     use DAO\CompanyDAO as CompanyDAO;
-    use DAO\JobPositionDAO as JobPositionDAO;
+    use DAO\APIJobPositionDAO as APIJobPositionDAO;
     use Models\JobOffer as JobOffer;    
     use DAO\Connection as Connection;
 
@@ -60,7 +60,7 @@
                     {                
                         $jobOffer = new JobOffer();
                         $companyDAO = new CompanyDAO();
-                        $jobPositionDAO = new JobPositionDAO();
+                        $jobPositionDAO = new APIJobPositionDAO();
 
                         $jobOffer->setJobOfferId($row["jobOfferId"]);
                         $jobOffer->setTitle($row["title"]);
@@ -120,7 +120,7 @@
 
                 $companyDAO = new CompanyDAO();
                         
-                $jobPositionDAO = new JobPositionDAO();
+                $jobPositionDAO = new APIJobPositionDAO();
 
                 if($result) {
                     $jobOffer = new JobOffer();

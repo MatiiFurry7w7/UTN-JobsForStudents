@@ -9,7 +9,7 @@
         </th>
         <tr>
             <td><label>ID</label></td>
-            <td style="text-align: center;"><input class="inputText" type="text" value="<?php echo $student->getStudentId() ?>" disabled></td>
+            <td style="text-align: center;"><input class="inputText" type="text" value="<?php echo $student->getUserId() ?>" disabled></td>
         </tr>
         <tr>
             <td><label>DNI</label></td>

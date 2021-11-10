@@ -4,7 +4,7 @@
     use DAO\IStudentDAO as IStudentDAO;
     use Models\Student as Student;    
     use DAO\Connection as Connection;
-    use DAO\CareerDAO as CareerDAO;
+    use DAO\APICareerDAO as APICareerDAO;
 
     class StudentDAO implements IStudentDAO{
         private $connection;
@@ -12,7 +12,7 @@
         private $careerDAO;
 
         public function __construct() {
-             $this->careerDAO = new CareerDAO();
+             $this->careerDAO = new APICareerDAO();
         }
 
         public function add(Student $student){
@@ -44,7 +44,7 @@
                 if($resultSet){
                     foreach ($resultSet as $row){                
                         $student = new Student();
-                        $student->setStudentId($row["userId"]);
+                        $student->setUserId($row["userId"]);
                         $student->setEmail($row["email"]);
                         $student->setPassword($row["password"]);
             
@@ -59,9 +59,9 @@
 
         public function deleteById($studentId){
             try{
-                $query = "DELETE FROM ".$this->tableName." WHERE studentId = :studentId; AND roleId = 2";
+                $query = "DELETE FROM ".$this->tableName." WHERE userId = :userId; AND roleId = 2";
 
-                $parameters["studentId"] = $studentId;
+                $parameters["userId"] = $studentId;
 
                 $this->connection = Connection::GetInstance();
 
@@ -73,7 +73,7 @@
 
         public function FindById($studentId){
             try{
-                $query = "SELECT * FROM ".$this->tableName.' WHERE userId = :studentId AND roleId = 2;';
+                $query = "SELECT * FROM ".$this->tableName.' WHERE userId = :userId AND roleId = 2;';
 
                 $this->connection = Connection::GetInstance();
                 
@@ -83,7 +83,7 @@
 
                 if($result){
                     $student = new Student();
-                    $student->setStudentId($result["userId"]);
+                    $student->setUserId($result["userId"]);
                     $student->setEmail($result["email"]);
                     $student->setPassword($result["password"]);
                 
@@ -97,7 +97,7 @@
         public function modifyById($studentId, $password, $email){
             try{
                 $query = "UPDATE ".$this->tableName." SET password=:password, email=:email
-                WHERE userId=:studentId AND roleId = 2;";
+                WHERE userId=:userId AND roleId = 2;";
 
                 $parameters["userId"] = $studentId;
                 $parameters["email"] = $email;
@@ -109,32 +109,6 @@
             }catch(Exception $ex){
                 throw $ex;
             }
-        }
-
-        //TEST
-        public function loadFromAPI(){
-            $apiList = array();
-            $apiCareers = $this->careerDAO->getAll();
-
-            //CURL
-            $url = curl_init();
-            //Sets URL
-            curl_setopt($url, CURLOPT_URL, 'https://utn-students-api.herokuapp.com/api/Student');
-            //Sets Header key
-            curl_setopt($url, CURLOPT_HTTPHEADER, array('x-api-key:4f3bceed-50ba-4461-a910-518598664c08'));
-            curl_setopt($url, CURLOPT_RETURNTRANSFER, 1);
-
-            $response = curl_exec($url);
-            $toJson = json_decode($response);
-
-            foreach($toJson as $eachStudent){
-                foreach($apiCareers as $eachCareer){
-                    if($eachStudent->careerId == $eachCareer->getCareerId())
-                        $eachStudent->careerId = $eachCareer->getDescription();
-                }
-                array_push($apiList, $eachStudent);
-            }
-            return $apiList;
         }
     }
 ?>

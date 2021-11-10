@@ -120,7 +120,7 @@
         }
         ?>
   </table>
-  <input type="hidden" name="administratorId" value="<?php echo $admin->getAdministratorId() ?>">
+  <input type="hidden" name="administratorId" value="<?php echo $admin->getUserId() ?>">
 </form>
 </center>
 <?php

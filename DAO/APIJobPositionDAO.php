@@ -7,7 +7,7 @@
     use DAO\IJobPositionDAO as IJobPositionDAO;
     use DAO\CareerDAO as CareerDAO;
 
-    class JobPositionDAO implements IJobPositionDAO {
+    class APIJobPositionDAO implements IJobPositionDAO {
         private $jobPositionList;
 
         public function GetAll(){
@@ -31,7 +31,7 @@
 
         public function LoadFromAPI() {
             $this->jobPositionList = array();
-            $careerDAO = new CareerDAO();
+            $careerDAO = new APICareerDAO();
             $apiCareers = $careerDAO->GetAll();
 
             //CURL

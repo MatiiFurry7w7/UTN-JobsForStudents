@@ -9,18 +9,21 @@
     use Helpers\SessionHelper as SessionHelper;
     use Controllers\StudentController as StudentController;
     use DAO\AppointmentDAO;
-    use DAO\CareerDAO;
+    use DAO\APICareerDAO;
+    use DAO\UTNAPIStudentDAO;
 
 class LoginController{
 
         private $studentDAO;
+        private $UTNAPIDAO;
         private $administratorDAO;
         private $careerDAO;
 
         public function __construct(){
+            $this->UTNAPIDAO = new UTNAPIStudentDAO();
             $this->studentDAO = new StudentDAO();
             $this->administratorDAO = new administratorDAO();
-            $this->careerDAO = new CareerDAO();
+            $this->careerDAO = new APICareerDAO();
         }
 
         public function LogInView($message = ""){
@@ -36,13 +39,13 @@ class LoginController{
             //Login if Admin
             foreach($this->administratorDAO->getAll() as $eachAdmin){
                 //echo "<br>".$eachAdmin->getusername()." == ".$userName."<br>";
-                if($eachAdmin->getUserName() == $email)
+                if($eachAdmin->getEmail() == $email)
                    $loginUser = $eachAdmin;
             }
             
             //Login if Student
             if($loginUser == null){
-                $UTNAPILIST = $this->studentDAO->loadFromAPI();
+                $UTNAPILIST = $this->UTNAPIDAO->loadFromAPI();
                 $studentList = $this->studentDAO->getAll();
 
                 if($studentList != null){
@@ -63,7 +66,7 @@ class LoginController{
 
                                         if($appointmentList)
                                             foreach($appointmentList as $eachAppointment)
-                                                if($eachAppointment->getStudentId() == $eachStudent->getStudentId()){
+                                                if($eachAppointment->getUserId() == $eachStudent->getUserId()){
                                                     $eachStudent->setAppointment($eachAppointment);
                                                 }
 

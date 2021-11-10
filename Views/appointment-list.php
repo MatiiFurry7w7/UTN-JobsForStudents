@@ -16,7 +16,7 @@ include_once('header.php');
                 <td>Date Appointment</td>
                 <td>Reference URL</td>
                 <td>Active</td>
-                <td><?php if((new SessionHelper())->isAdmin()){ ?>
+                <td><?php if($isAdmin){ ?>
                         <button class="btn btn-primary" onclick="window.location.href='<?php echo FRONT_ROOT ?>Appointment/AddView'">Add</button>
                     <?php } ?>
                 </td>

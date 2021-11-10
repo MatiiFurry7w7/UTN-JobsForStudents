@@ -19,7 +19,7 @@
         foreach($studentList as $eachStudent){
                 $i+=1;
                 echo "<tr>
-                        <td style='min-width: 50px;'>".$eachStudent->getStudentId()."</td>
+                        <td style='min-width: 50px;'>".$eachStudent->getUserId()."</td>
                         <td style='min-width: 150px;'>".$eachStudent->getDNI()."</td>
                         <td style='min-width: 150px;'>".$eachStudent->getFirstName()."</td>
                         <td style='min-width: 150px;'>".$eachStudent->getlastName()."</td>

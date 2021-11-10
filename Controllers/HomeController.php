@@ -2,8 +2,8 @@
     namespace Controllers;
 
     use DAO\JobOfferDAO as JobOfferDAO;
-    use DAO\JobPositionDAO as JobPositionDAO;
-    use DAO\CareerDAO as CareerDAO;
+    use DAO\APIJobPositionDAO as APIJobPositionDAO;
+    use DAO\APICareerDAO as APICareerDAO;
     use Helpers\SessionHelper as SessionHelper;
     use Models\Administrator as Administrator;
     use Models\JobOffer as JobOffer;
@@ -16,19 +16,19 @@
 
         public function __construct(){
             $this->jobOfferDAO = new JobOfferDAO();
-            $this->jobPositionDAO = new JobPositionDAO();
-            $this->careerDAO = new CareerDAO();
+            $this->jobPositionDAO = new APIJobPositionDAO();
+            $this->careerDAO = new APICareerDAO();
         }
 
         public function Index($message = ""){
-            $jobOfferList = null;
-
             $jobOfferList = $this->jobOfferDAO->GetAll();
 
-            $i = count($jobOfferList);
+            if($jobOfferList)
+                $i = count($jobOfferList);
+            else    
+                $i = 0;
 
             $jobPositionList = $this->jobPositionDAO->GetAll();
-
             $careerList = $this->careerDAO->GetAll();
 
             $isAdmin = (new SessionHelper())->isAdmin();   
@@ -46,15 +46,17 @@
             $careerList = $this->careerDAO->GetAll();
 
             $newJOList = []; 
-            
-            foreach($jobOfferList as $jobOffer){
-                if(strpos(strtolower($jobOffer->getJobPosition()->getDescription()), strtolower($jobPositionSearch)) !== false && 
-                    $jobOffer->getJobPosition()->getCareer()->getCareerId() == $careerId){
-                    array_push($newJOList, $jobOffer);
-                }
-            }
 
-            $i = count($newJOList);
+            if($jobOfferList){
+                foreach($jobOfferList as $jobOffer){
+                    if(strpos(strtolower($jobOffer->getJobPosition()->getDescription()), strtolower($jobPositionSearch)) !== false && 
+                        $jobOffer->getJobPosition()->getCareer()->getCareerId() == $careerId){
+                        array_push($newJOList, $jobOffer);
+                    }
+                }
+                $i = count($newJOList);
+            }else
+                $i = 0;  
 
             if($newJOList) { 
                 $jobOfferList = $newJOList;

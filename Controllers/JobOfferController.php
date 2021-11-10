@@ -2,9 +2,9 @@
     namespace Controllers;
 
     use DAO\JobOfferDAO as JobOfferDAO;
-    use DAO\JobPositionDAO as JobPositionDAO;
+    use DAO\APIJobPositionDAO as APIJobPositionDAO;
     use DAO\CompanyDAO as CompanyDAO;
-    use DAO\CareerDAO as CareerDAO;
+    use DAO\APICareerDAO as APICareerDAO;
     use Models\JobOffer as JobOffer;
     use Models\Dedication as Dedication;
     use Models\AdministratorDAO as AdministratorDAO;
@@ -21,10 +21,10 @@
 
         public function ShowAddView($careerId = "") {
             if((new SessionHelper)->isAdmin()) {
-                $careerDAO = new CareerDAO();
+                $careerDAO = new APICareerDAO();
                 $careerList = $careerDAO->GetAll();
     
-                $jobPositionDAO = new JobPositionDAO();
+                $jobPositionDAO = new APIJobPositionDAO();
                 $allJobPositionList = $jobPositionDAO->GetAll();
                 $jobPositionList = [];
     
@@ -103,7 +103,7 @@
                 $jobOffer = $this->jobOfferDAO->FindById($modifyId);
                 $dedicationList = Dedication::GetAll();
                 
-                $jobPositionDAO = new JobPositionDAO();
+                $jobPositionDAO = new APIJobPositionDAO();
                 $jobPositionList = $jobPositionDAO->GetAll();
                 
                 $companyDAO = new CompanyDAO();

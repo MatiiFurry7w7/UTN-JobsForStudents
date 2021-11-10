@@ -25,6 +25,7 @@
 
         public function ShowListView($searchedCompany = ""){
             $companyList = $this->companyDAO->GetAll();
+            $isAdmin = (new SessionHelper)->isAdmin();
 
             if(!$companyList) {
                 $companyList = new Company();

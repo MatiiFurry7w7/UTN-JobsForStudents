@@ -4,7 +4,7 @@
     use Models\Career as Career;
     use DAO\ICareerDAO as ICareerDAO;
 
-    class CareerDAO implements ICareerDAO{
+    class APICareerDAO implements ICareerDAO{
 
         private $careerList;
 

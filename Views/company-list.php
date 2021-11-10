@@ -16,7 +16,7 @@
     </table>
   </form>
   <?php
-      if($this->isAdmin()) {
+      if($isAdmin) {
       ?>
         <button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>Company/ShowAddView'" style="float: right;">Add</button>
       <?php
@@ -33,7 +33,7 @@
             <td></td>
             <!--solo ver boton remove/modify sólo para administradores-->
             <?php
-              if($this->isAdmin()) {
+              if($isAdmin) {
               ?>
                 <td></td>
                 <td></td>
@@ -58,7 +58,7 @@
                         <td><?php echo $company->getStreet()." ".$company->getNumber() ?></td>
                         <td style="align='right'"><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>Company/ViewDetail?companyId=<?php echo $company->getCompanyId() ?>'">Details</button></td>
                       <?php
-                          if($this->isAdmin()) {
+                          if($isAdmin) {
                           ?>
                               <td><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>Company/Remove?removeId=<?php echo $company->getCompanyId() ?>'">Remove</button></td>
                               <td><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>Company/ModifyView?modifyId=<?php echo $company->getCompanyId() ?>'">Edit</button></td>
@@ -82,7 +82,7 @@
                         <td><?php echo $company->getStreet()." ".$company->getNumber() ?></td>
                         <td style="align='right'"><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>Company/ViewDetail?companyId=<?php echo $company->getCompanyId() ?>'">Details</button></td>
                       <?php
-                          if($this->isAdmin()) {
+                          if($isAdmin) {
                           ?>
                               <td><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>Company/Remove?removeId=<?php echo $company->getCompanyId() ?>'">Remove</button></td>
                               <td><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>Company/ModifyView?modifyId=<?php echo $company->getCompanyId() ?>'">Edit</button></td>

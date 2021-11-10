@@ -79,7 +79,7 @@
             </table>
           <?php } 
       } else {
-        if (!$careerId){
+        if (!isset($careerId)){
           echo "<p style='margin-top: 3vh'>Please choose a Career to filter.</p>";
         } else {
           echo "<p style='margin-top: 3vh'>There is no Job Offer to show.</p>";

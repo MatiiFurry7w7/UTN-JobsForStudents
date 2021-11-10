@@ -8,12 +8,15 @@
     use Models\Administrator as Administrator;
     use Helpers\SessionHelper as SessionHelper;
     use Controllers\LoginController as LoginController;
+    use DAO\UTNAPIStudentDAO;
 
-    class StudentController{
+class StudentController{
+        private $UTNAPIDAO;
         private $studentDAO;
 
         public function __construct(){
             $this->studentDAO = new StudentDAO();
+            $this->UTNAPIDAO = new UTNAPIStudentDAO();
         }
         
         public function RegisterView($message = ""){
@@ -41,7 +44,7 @@
                 if($password != $password2){
                     $message = "The input passwords don't match!";
                 }else{
-                    $UTNAPILIST = $this->studentDAO->loadFromAPI();
+                    $UTNAPILIST = $this->UTNAPIDAO->loadFromAPI();
 
                     //Check if UTN student exists..
                     foreach($UTNAPILIST as $eachUTNStudent){
@@ -82,7 +85,7 @@
             $newStudentList = array();
 
             if($studentList != null){
-                $UTNAPILIST = $this->studentDAO->loadFromAPI();
+                $UTNAPILIST = $this->UTNAPIDAO->loadFromAPI();
                 foreach($studentList as $eachStudent){
                     foreach($UTNAPILIST as $eachUTNStudent){
                         if($eachStudent->getEmail() == $eachUTNStudent->email){
@@ -108,7 +111,7 @@
             $student = null;
 
             foreach($studentList as $eachStudent){
-                if($eachStudent->getStudentId() == $id)
+                if($eachStudent->getUserId() == $id)
                     $student = $eachStudent;
             }
 
@@ -116,7 +119,7 @@
         }
 
         public function ProfileView($email){
-            $UTNAPILIST = $this->studentDAO->loadFromAPI();
+            $UTNAPILIST = $this->UTNAPIDAO->loadFromAPI();
             $studentList = $this->studentDAO->getAll();
 
             $student = new Student();
@@ -125,7 +128,7 @@
                 foreach($UTNAPILIST as $eachUTNStudent){
                     if($email == $eachUTNStudent->email && $eachUTNStudent->email == $eachStudent->getEmail()){
                         $this->APIStudentToStudent($eachUTNStudent, $student);
-                        $student->setStudentId($eachStudent->getStudentId());
+                        $student->setUserId($eachStudent->getUserId());
                     }
                 }
             }

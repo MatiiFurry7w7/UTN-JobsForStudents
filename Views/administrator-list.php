@@ -13,8 +13,8 @@
         <?php
         foreach($administratorList as $eachAdministrator){
                 echo "<tr>
-                        <td style='max-width: 10px; text-align: center;'>".$eachAdministrator->getAdministratorId()."</td>
-                        <td style='max-width: 100px;'>".$eachAdministrator->getUserName()."</td>"; ?>
+                        <td style='max-width: 10px; text-align: center;'>".$eachAdministrator->getUserId()."</td>
+                        <td style='max-width: 100px;'>".$eachAdministrator->getEmail()."</td>"; ?>
                         <td></td>                    
                 </tr>
         <?php } ?>

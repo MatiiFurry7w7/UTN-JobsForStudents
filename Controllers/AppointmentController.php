@@ -28,7 +28,7 @@ class AppointmentController
             $currentStudent = (new SessionHelper())->getCurrentUser();
 
             if($currentStudent->getAppointment()){
-                $appointment = $this->appointmentDAO->FindById($currentStudent->getStudentId(), $jobOfferId);
+                $appointment = $this->appointmentDAO->FindById($currentStudent->getUserId(), $jobOfferId);
                 $jobOffer = (new JobOfferDAO)->FindById($jobOfferId);
 
                 require_once(VIEWS_PATH."appointment-viewDetail.php");
@@ -37,10 +37,10 @@ class AppointmentController
         }
 
         public function ListView(){
-            
+            $isAdmin = (new SessionHelper())->isAdmin();
             $appointmentList = $this->appointmentDAO->getAll();
 
-            require_once(VIEWS_PATH."appointment-list.php");
+            //require_once(VIEWS_PATH."appointment-list.php");
         }
 
         public function Add($studentId, $jobOfferId, $file, $referenceURL, $comments){
@@ -73,11 +73,8 @@ class AppointmentController
     
                 $this->appointmentDAO->Add($appointment);
                 $appointmentList = $this->appointmentDAO->GetAll();
-    
-                if($appointmentList)
-                    foreach($appointmentList as $eachAppointment)
-                        if($eachAppointment->getStudentId() == $currentStudent->getStudentId())
-                            $currentStudent->setAppointment($eachAppointment);
+
+                $currentStudent->setAppointment($appointment);
                 //$this->Upload($file, $studentId, $jobOfferId);
             }else
                 ?> <script>alert('You´re already registered for this job offer!')</script> <?php           
@@ -86,7 +83,8 @@ class AppointmentController
         }
 
         public function HistoryView(){
-            $studentId = (new SessionHelper)->getCurrentUser()->getStudentId();
+            $studentId = (new SessionHelper)->getCurrentUser()->getUserId();
+            $isAdmin = (new SessionHelper())->isAdmin();
             $appointmentList = $this->appointmentDAO->HistoryById($studentId);
             
             require_once(VIEWS_PATH."appointment-list.php");

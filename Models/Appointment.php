@@ -74,6 +74,7 @@ class Appointment{
   public function getComments(){
     return $this->comments;
   }
+  
   public function setComments($comments){
     $this->comments = $comments;
   }

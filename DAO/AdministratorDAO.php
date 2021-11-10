@@ -9,19 +9,15 @@
 class AdministratorDAO implements IAdministratorDAO{
 
         private $connection;
-        private $tableName = "administrators";
-
-        public function __construct(){
-            $this->dataFile = dirname(__DIR__)."\Data\administrator.json";
-        }
+        private $tableName = "users";
 
         public function Add(Administrator $administrator) {
             try
             {
-                $query = "INSERT INTO ".$this->tableName." (userName, password) 
-                    VALUES (:userName, :password);";
+                $query = "INSERT INTO ".$this->tableName." (email, password, roleId) 
+                    VALUES (:email, :password, 1);";
 
-                $parameters["userName"] = $administrator->getUserName();
+                $parameters["email"] = $administrator->getEmail();
                 $parameters["password"] = $administrator->getPassword();
              
                 $this->connection = Connection::GetInstance();
@@ -40,7 +36,7 @@ class AdministratorDAO implements IAdministratorDAO{
             {
                 $administratorList = array();
 
-                $query = "SELECT * FROM ".$this->tableName;
+                $query = "SELECT * FROM ".$this->tableName." WHERE roleId = 1";
 
                 $this->connection = Connection::GetInstance();
 
@@ -50,8 +46,8 @@ class AdministratorDAO implements IAdministratorDAO{
                 {                
                     $administrator = new administrator();
                     
-                    $administrator->setAdministratorId($row["administratorId"]);
-                    $administrator->setUserName($row["userName"]);
+                    $administrator->setUserId($row["userId"]);
+                    $administrator->setEmail($row["email"]);
                     $administrator->setPassword($row["password"]);
         
                     array_push($administratorList, $administrator);
@@ -69,9 +65,9 @@ class AdministratorDAO implements IAdministratorDAO{
         {
             try
             {
-                $query = "DELETE FROM ".$this->tableName." WHERE administratorId = :administratorId;";
+                $query = "DELETE FROM ".$this->tableName." WHERE userId = :userId AND WHERE roleId = 1;";
 
-                $parameters["administratorId"] = $administratorId;
+                $parameters["userId"] = $administratorId;
 
                 $this->connection = Connection::GetInstance();
 
@@ -83,16 +79,16 @@ class AdministratorDAO implements IAdministratorDAO{
             }
         }
 
-        public function ModifyById($administratorId, $userName, $password)
+        public function ModifyById($administratorId, $email, $password)
         {
             {
                 try
                 {
-                    $query = "UPDATE ".$this->tableName." SET userName=:userName, password=:password
-                    WHERE administratorId=:administratorId;";
+                    $query = "UPDATE ".$this->tableName." SET email=:email, password=:password
+                    WHERE userId=:userId AND roleId = 1;";
 
-                    $parameters["administratorId"] = $administratorId;
-                    $parameters["userName"] = $userName;
+                    $parameters["userId"] = $administratorId;
+                    $parameters["email"] = $email;
                     $parameters["password"] = $password;
     
                     $this->connection = Connection::GetInstance();
@@ -110,18 +106,18 @@ class AdministratorDAO implements IAdministratorDAO{
         {
             try
             {
-                $query = "SELECT * FROM ".$this->tableName.' WHERE (administratorId = :administratorId);';
+                $query = "SELECT * FROM ".$this->tableName.' WHERE userId = :userId AND roleId = 1;';
 
                 $this->connection = Connection::GetInstance();
                 
-                $parameters["administratorId"] = $administratorId;
+                $parameters["userId"] = $administratorId;
 
                 $result = $this->connection->Execute($query, $parameters)[0];
 
                 if($result) {
                     $administrator = new administrator();
-                    $administrator->setadministratorId($result["administratorId"]);
-                    $administrator->setUserName($result["userName"]);
+                    $administrator->setUserId($result["userId"]);
+                    $administrator->setEmail($result["email"]);
                     $administrator->setPassword($result["password"]);
                 
                     return $administrator;

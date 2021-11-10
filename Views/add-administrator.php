@@ -10,8 +10,8 @@
             <th colspan="2"><center><h4>Adding Administrator</h4></center></th>
           </tr>
           <tr>
-            <td style="width: 200px;"><label for="username">E-mail *</label></td> 
-            <td style="width: 10px;"><input type="text" name="userName" requiered></td>
+            <td style="width: 200px;"><label for="email">E-mail *</label></td> 
+            <td style="width: 10px;"><input type="email" name="email" requiered></td>
           </tr>            
           <tr>
             <td><label for="password">Password *</label></td>

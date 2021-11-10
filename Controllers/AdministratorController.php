@@ -29,7 +29,7 @@
                 (new HomeController())->Index();
         }
 
-        public function Add($userName, $password, $checkPassword){
+        public function Add($email, $password, $checkPassword){
             if((new SessionHelper)->isAdmin()) {
                 $administratorList = $this->administratorDAO->GetAll();
 
@@ -39,14 +39,14 @@
                     <?php
                 } else {
                     foreach($administratorList as $eachadministrator) {
-                        if($eachadministrator->getUserName() == $userName){
+                        if($eachadministrator->getEmail() == $email){
                             $administrator = $eachadministrator;
                         }
                     }
         
                     if(!isset($administrator)){ 
                         $administrator = new Administrator();
-                        $administrator->setUserName($userName);
+                        $administrator->setEmail($email);
                         $administrator->setPassword($password);
                         
                         $this->administratorDAO->Add($administrator);
@@ -69,9 +69,9 @@
                 (new HomeController())->Index();
         }
 
-        public function ModifyAdministrator($administratorId, $userName, $password){
+        public function ModifyAdministrator($administratorId, $email, $password){
             if((new SessionHelper)->isAdmin()) {
-                $this->administratorDAO->ModifyById($administratorId, $userName, $password);
+                $this->administratorDAO->ModifyById($administratorId, $email, $password);
             
                 $this->ListView();
             } else 

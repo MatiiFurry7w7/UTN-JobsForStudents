@@ -1,11 +1,10 @@
 <?php   namespace Models;
 
-    class Student{
-        private $studentId;
+    use Models\User;
+
+    class Student extends User{
         private $firstName;
         private $lastName;
-        private $email;
-        private $password;
         private $phoneNumber;
         private $gender;
         private $dNI;
@@ -14,15 +13,7 @@
         private $fileNumber;
         private $appointment;
 
-        //GET/SET
-        public function getStudentId(){
-            return $this->studentId;
-        }
-
-        public function setStudentId($studentId){
-            $this->studentId = $studentId;
-        }
-        
+        //GET/SET        
         public function getFirstName(){
             return $this->firstName;
         }
@@ -38,23 +29,7 @@
         public function setLastName($lastName){
             $this->lastName = $lastName;
         }
-
-        public function getEmail(){
-                return $this->email;
-        }
-
-        public function setEmail($email){
-            $this->email = $email;
-        }
-
-        public function getPassword(){
-            return $this->password;
-        }
-
-        public function setPassword($password){
-            $this->password = $password;
-        }
-
+        
         public function getPhoneNumber(){
             return $this->phoneNumber;
         }
@@ -119,7 +94,6 @@
                    "<br>Born in ".$this->birthDate.
                    "<br>Gender: ".$this->gender.
                    "<br>Phone: ".$this->phoneNumber.
-                   "<br>Email: ".$this->email.
                    "<br>Career: ".$this->career.
                    "<br>File number: ".$this->fileNumber.
                    "<br>Appointment<br>---------------------".$this->appointment;
