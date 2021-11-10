@@ -3,7 +3,6 @@
     use Models\Administrator as Administrator;
 
     class SessionHelper {
-
         public function sessionRestart() {
             session_destroy();
             session_start();

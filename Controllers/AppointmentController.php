@@ -18,6 +18,7 @@ class AppointmentController
         }
 
         public function AddView($jobOfferId){
+            $currentUser = (new SessionHelper())->getCurrentUser();
             $jobOffer = (new JobOfferDAO)->FindById($jobOfferId);
             require_once(VIEWS_PATH."add-appointment.php");
         }

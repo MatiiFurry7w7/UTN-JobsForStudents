@@ -131,7 +131,6 @@
         }
 
         public function ViewDetail($jobOfferId) {
-
             $jobOffer = $this->jobOfferDAO->FindById($jobOfferId);
 
             $isAdmin = (new SessionHelper)->isAdmin();

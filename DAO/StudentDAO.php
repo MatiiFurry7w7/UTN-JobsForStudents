@@ -8,7 +8,7 @@
 
     class StudentDAO implements IStudentDAO{
         private $connection;
-        private $tableName = "students";
+        private $tableName = "users";
         private $careerDAO;
 
         public function __construct() {
@@ -17,8 +17,8 @@
 
         public function add(Student $student){
             try{
-                $query = "INSERT INTO ".$this->tableName." (email, password) 
-                VALUES (:email, :password);";
+                $query = "INSERT INTO ".$this->tableName." (email, password, roleId) 
+                VALUES (:email, :password, 2);";
 
                 $parameters["email"] = $student->getEmail();
                 $parameters["password"] = $student->getPassword();
@@ -35,7 +35,7 @@
             try{
                 $companyList = array();
 
-                $query = "SELECT * FROM ".$this->tableName;
+                $query = "SELECT * FROM ".$this->tableName." WHERE roleId = 2";
 
                 $this->connection = Connection::GetInstance();
 
@@ -44,7 +44,7 @@
                 if($resultSet){
                     foreach ($resultSet as $row){                
                         $student = new Student();
-                        $student->setStudentId($row["studentId"]);
+                        $student->setStudentId($row["userId"]);
                         $student->setEmail($row["email"]);
                         $student->setPassword($row["password"]);
             
@@ -59,7 +59,7 @@
 
         public function deleteById($studentId){
             try{
-                $query = "DELETE FROM ".$this->tableName." WHERE studentId = :studentId;";
+                $query = "DELETE FROM ".$this->tableName." WHERE studentId = :studentId; AND roleId = 2";
 
                 $parameters["studentId"] = $studentId;
 
@@ -73,17 +73,17 @@
 
         public function FindById($studentId){
             try{
-                $query = "SELECT * FROM ".$this->tableName.' WHERE (studentId = :studentId);';
+                $query = "SELECT * FROM ".$this->tableName.' WHERE userId = :studentId AND roleId = 2;';
 
                 $this->connection = Connection::GetInstance();
                 
-                $parameters["studentId"] = $studentId;
+                $parameters["userId"] = $studentId;
 
                 $result = $this->connection->Execute($query, $parameters)[0];
 
                 if($result){
                     $student = new Student();
-                    $student->setStudentId($result["studentId"]);
+                    $student->setStudentId($result["userId"]);
                     $student->setEmail($result["email"]);
                     $student->setPassword($result["password"]);
                 
@@ -97,9 +97,9 @@
         public function modifyById($studentId, $password, $email){
             try{
                 $query = "UPDATE ".$this->tableName." SET password=:password, email=:email
-                WHERE studentId=:studentId;";
+                WHERE userId=:studentId AND roleId = 2;";
 
-                $parameters["studentId"] = $studentId;
+                $parameters["userId"] = $studentId;
                 $parameters["email"] = $email;
                 $parameters["password"] = $password;
     

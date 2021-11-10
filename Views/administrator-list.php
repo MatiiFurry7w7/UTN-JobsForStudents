@@ -4,7 +4,7 @@
 ?>
 <center>
 <div class="wrapper row3">
-<table id="studentsTable" style="width: 60%;">
+<table id="studentsTable" style="width: 50%;">
         <tr id="tableIndex">
                 <td style='max-width: 10px;'>ID</td>
                 <td>UserName</td>
