@@ -81,7 +81,7 @@
         {
             try
             {
-                $query = "DELETE FROM ".$this->tableName." WHERE companyId = :companyId;";
+                $query = "UPDATE ".$this->tableName." SET active = 0 WHERE companyId = :companyId;";
 
                 $parameters["companyId"] = $companyId;
 
@@ -129,7 +129,7 @@
             }
         }
 
-        public function ModifyById($companyId, $name, $cuit, $description, $website, $street, $number, $aboutUs, $active, $industry)
+        public function ModifyById($addingCompany)
         {
             try
             {
@@ -137,16 +137,16 @@
                 street=:street, number_street=:number_street, aboutUs=:aboutUs, active=:active, industry=:industry
                 WHERE companyId=:companyId;";
 
-                $parameters["companyId"] = $companyId;
-                $parameters["name"] = $name;
-                $parameters["cuit"] = $cuit;
-                $parameters["description"] = $description;
-                $parameters["website"] = $website;
-                $parameters["street"] = $street;
-                $parameters["number_street"] = $number;
-                $parameters["aboutUs"] = $aboutUs;
-                $parameters["active"] = $active;
-                $parameters["industry"] = $industry;
+                $parameters["companyId"] = $addingCompany->getCompanyId();
+                $parameters["name"] = $addingCompany->getName();
+                $parameters["cuit"] = $addingCompany->getCuit();
+                $parameters["description"] = $addingCompany->getDescription();
+                $parameters["website"] = $addingCompany->getWebsite();
+                $parameters["street"] = $addingCompany->getStreet();
+                $parameters["number_street"] = $addingCompany->getNumber();
+                $parameters["aboutUs"] = $addingCompany->getAboutUs();
+                $parameters["active"] = $addingCompany->getActive() == true ? 1 : 0;
+                $parameters["industry"] = $addingCompany->getIndustry();
 
                 $this->connection = Connection::GetInstance();
 

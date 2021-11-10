@@ -92,7 +92,7 @@
         {
             try
             {
-                $query = "DELETE FROM ".$this->tableName." WHERE jobOfferId = :jobOfferId;";
+                $query = "UPDATE ".$this->tableName." SET active = 0 WHERE jobOfferId = :jobOfferId;";
 
                 $parameters["jobOfferId"] = $jobOfferId;
 

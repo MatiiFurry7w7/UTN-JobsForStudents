@@ -109,13 +109,27 @@
                 (new HomeController())->Index();
         }
 
-        public function ModifyACompany($companyId, $name, $cuit, $description, $website, $street, $number, $aboutUs, $active, $industry){
+        public function ModifyACompany($companyId, $name, $cuit, $description, $website, $street, $number, $aboutUs,$active, $industry){
             if((new SessionHelper)->isAdmin()) {   
-                $this->companyDAO->ModifyById($companyId, $name, $cuit, $description, $website, $street, $number, $aboutUs, $active, $industry);
-            
+                $addingCompany = new Company();
+                $addingCompany->setCompanyId($companyId);
+                $addingCompany->setName($name);
+                $addingCompany->setCuit($cuit);
+                $addingCompany->setDescription($description);
+                $addingCompany->setWebsite($website);
+                $addingCompany->setStreet($street);
+                $addingCompany->setNumber($number);
+                $addingCompany->setAboutUs($aboutUs);
+                $addingCompany->setActive($active);
+                $addingCompany->setIndustry($industry);
+
+                $this->companyDAO->ModifyById($addingCompany);
+                
                 $this->ShowListView();
-            } else 
-                (new HomeController())->Index();
+            } else {
+
+            }
+                //(new HomeController())->Index();
         }
 
         public function ViewDetail($companyId) {
