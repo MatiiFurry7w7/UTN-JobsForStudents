@@ -5,8 +5,8 @@
     use Models\Appointment as Appointment;
     use \Exception as Exception;
     use DAO\Connection as Connection;
-use Models\CV;
-use Models\JobOffer;
+    use Models\CV;
+    use Models\JobOffer;
 
 class AppointmentDAO implements IAppointmentDAO{
 
@@ -14,10 +14,11 @@ class AppointmentDAO implements IAppointmentDAO{
         private $tableName = "appointments";
 
         public function Add(Appointment $appointment) {
+            $this->setInactive($appointment->getStudentId());
             try
             {
-                $query = "INSERT INTO ".$this->tableName." (studentId, jobOfferId, cv, dateAppointment, referenceURL, comments) 
-                    VALUES (:studentId, :jobOfferId, :cv, :dateAppointment, :referenceURL, :comments);";
+                $query = "INSERT INTO ".$this->tableName." (studentId, jobOfferId, cv, dateAppointment, referenceURL, comments, active) 
+                    VALUES (:studentId, :jobOfferId, :cv, :dateAppointment, :referenceURL, :comments, :active);";
 
                 $parameters["studentId"] = $appointment->getStudentId();
                 $parameters["jobOfferId"] = $appointment->getJobOfferId();    
@@ -25,6 +26,24 @@ class AppointmentDAO implements IAppointmentDAO{
                 $parameters["dateAppointment"] = $appointment->getDateAppointment();
                 $parameters["referenceURL"] = $appointment->getReferenceURL();
                 $parameters["comments"] = $appointment->getComments();
+                $parameters["active"] = $appointment->getActive();
+
+                $this->connection = Connection::GetInstance();
+
+                $this->connection->ExecuteNonQuery($query, $parameters);
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
+        }
+
+        private function setInactive($studentId) {
+            try
+            {
+                $query = "UPDATE ".$this->tableName." SET active = 0 WHERE studentId =:studentId";
+
+                $parameters["studentId"] = $studentId;
 
                 $this->connection = Connection::GetInstance();
 
@@ -76,6 +95,7 @@ class AppointmentDAO implements IAppointmentDAO{
                     $appointment->setDateAppointment($row["dateAppointment"]);
                     $appointment->setReferenceURL($row["referenceURL"]);
                     $appointment->setComments($row["comments"]);
+                    $appointment->setActive($row["active"]);
         
                     array_push($appointmentList, $appointment);
                 }
@@ -110,6 +130,7 @@ class AppointmentDAO implements IAppointmentDAO{
                     $appointment->setDateAppointment($row["dateAppointment"]);
                     $appointment->setReferenceURL($row["referenceURL"]);
                     $appointment->setComments($row["comments"]);
+                    $appointment->setActive($row["active"]);
         
                     array_push($appointmentList, $appointment);
                 }
@@ -141,6 +162,7 @@ class AppointmentDAO implements IAppointmentDAO{
                     $appointment->setDateAppointment($resultSet["dateAppointment"]);
                     $appointment->setReferenceURL($resultSet["referenceURL"]);
                     $appointment->setComments($resultSet["comments"]);
+                    $appointment->setActive($resultSet["active"]);
 
                     return $appointment;
                 }
@@ -149,11 +171,12 @@ class AppointmentDAO implements IAppointmentDAO{
             }
         }
 
-        public function DeleteById($studentId){
+        public function CancelApplyById($studentId, $jobOfferId){
             try{
-                $query = "DELETE FROM ".$this->tableName." WHERE studentId = :studentId;";
+                $query = "UPDATE ".$this->tableName." SET active = 0 WHERE studentId = :studentId; AND jobOfferId = :jobOfferId";
 
                 $parameters["studentId"] = $studentId;
+                $parameters["jobOfferId"] = $jobOfferId;
 
                 $this->connection = Connection::GetInstance();
 
@@ -184,6 +207,7 @@ class AppointmentDAO implements IAppointmentDAO{
                         $appointment->setCv($eachResult["cv"]);
                         $appointment->setDateAppointment($eachResult["dateAppointment"]);
                         $appointment->setReferenceURL($eachResult["referenceURL"]);  
+                        $appointment->setActive($eachResult["active"]);  
                         
                         array_push($historyList, $appointment);                     
                     }

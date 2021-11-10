@@ -8,9 +8,6 @@
     use DAO\CareerDAO as CareerDAO;
 
     class JobPositionDAO implements IJobPositionDAO {
-
-        private $connection;
-        private $tableName = "jobPositions";
         private $jobPositionList;
 
         public function GetAll(){
@@ -18,8 +15,7 @@
             return $this->jobPositionList;
         }
 
-        public function FindById($jobPositionId)
-        {
+        public function FindById($jobPositionId) {
             $jobPositionList = $this->GetAll();
             
             $jobPositionSearch = null;

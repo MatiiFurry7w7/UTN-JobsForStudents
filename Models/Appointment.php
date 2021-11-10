@@ -8,6 +8,7 @@ class Appointment{
   private $dateAppointment;
   private $referenceURL;
   private $comments;
+  private $active;
 
 
   public function getDateAppointment()
@@ -76,7 +77,15 @@ class Appointment{
   public function setComments($comments){
     $this->comments = $comments;
   }
-  
+
+  public function getActive(){
+    return $this->active;
+  }
+
+  public function setActive($active){
+    $this->active = $active;
+  }
+
   public function __tostring(){
     return "<br>CV: ".$this->cv.
            "<br>Date appointment: ".$this->dateAppointment.

@@ -14,8 +14,6 @@
         //DELETES THE LIST AND FILLS WITH THE API DATA
         public function UpdateFromAPI() {
             $this->careerDAO->LoadFromAPI();
-
-            $this->ShowListView();
         }
     }
 ?>  

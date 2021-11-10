@@ -4,6 +4,6 @@
     use Models\CV as CV;
 
     interface ICVDAO{
-        function Add(CV $cv);
+        function addCV(CV $cv);
     }
 ?>

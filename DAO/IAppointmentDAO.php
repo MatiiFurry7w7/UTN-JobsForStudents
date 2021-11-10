@@ -7,6 +7,6 @@
     {
         public function Add(Appointment $appointment);
         public function GetAll();
-        public function DeleteById($id);
+        public function CancelApplyById($studentId, $jobOfferId);
     }
 ?>

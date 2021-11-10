@@ -2,7 +2,6 @@
     namespace DAO;
 
     use Models\JobOffer as JobOffer;
-    use DAO\Connection as Connection;
 
     interface IJobOfferDAO
     {

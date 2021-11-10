@@ -80,6 +80,7 @@ create table appointments(
     dateAppointment dateTime,
     referenceURL varchar(100),
     comments varchar(150),
+    active boolean,
 	foreign key (jobOfferId) references joboffers(jobOfferId),
     foreign key (studentId) references students(studentId),
 
@@ -87,13 +88,13 @@ create table appointments(
 );
 
 create table roles(
-	roleId int primary key,
+	roleId int auto_increment primary key,
 	userRole varchar(50)
 );
 
-insert into roles (roleId, userRole) values 
-(1,'admin'),
-(2,'student');
+insert into roles (userRole) values 
+('admin'),
+('student');
 
 create table users(
 	userId int auto_increment primary key,

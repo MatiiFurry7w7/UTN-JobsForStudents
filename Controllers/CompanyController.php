@@ -110,7 +110,7 @@
 
         public function ModifyACompany($companyId, $name, $cuit, $description, $website, $street, $number, $aboutUs, $active, $industry){
             if((new SessionHelper)->isAdmin()) {   
-                $this->companyDAO->ModifyById($companyId, $name, $cuit, $description, $website, $street, $number, $aboutUs, $isActive, $industry);
+                $this->companyDAO->ModifyById($companyId, $name, $cuit, $description, $website, $street, $number, $aboutUs, $active, $industry);
             
                 $this->ShowListView();
             } else 
