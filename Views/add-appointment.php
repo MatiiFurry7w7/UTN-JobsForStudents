@@ -57,7 +57,7 @@
       </tr>
       <tr>
         <td><label for="cv">Curriculum Vitae</label></td>
-        <td><input type="text" name="file" value="" required></td>
+        <td><input type="file" name="file" value="" required></td>
       </tr>
       <tr>
         <td><label for="referenceURL">Reference URL</label></td>

@@ -3,7 +3,7 @@
 
     class CV
     {
-        private $cv;
+        private $name;
         
         public function getName()
         {

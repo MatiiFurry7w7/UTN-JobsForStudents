@@ -60,7 +60,7 @@ class AppointmentController
 
                 $appointment->setStudentId($studentId);
                 $appointment->setJobOfferId($jobOfferId);
-                $appointment->setCV($file);
+                //$appointment->setCV($file);
                 $appointment->setDateAppointment(date("c"));
     
                 if(str_contains($referenceURL, "https://") !== true){
@@ -75,7 +75,7 @@ class AppointmentController
                 $appointmentList = $this->appointmentDAO->GetAll();
 
                 $currentStudent->setAppointment($appointment);
-                //$this->Upload($file, $studentId, $jobOfferId);
+                $this->Upload($file, $studentId, $jobOfferId);
             }else
                 ?> <script>alert('You´re already registered for this job offer!')</script> <?php           
 
