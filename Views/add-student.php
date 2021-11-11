@@ -10,29 +10,30 @@
             <th colspan="2"><center><h4>Register</h4></center></th>
           </tr>
           <tr>
-            <td style="width: 200px;"><label for="dNI">DNI</label></td> 
-            <td style="width: 10px;"><input type="text" name="dNI" placeholder="XX-XXX-XXXX"></td>
+            <td style="width: 200px;"><label for="dNI">DNI *</label></td> 
+            <td style="width: 10px;"><input type="text" name="dNI" placeholder="XX-XXX-XXXX" required></td>
           </tr>            
           <tr>
-            <td><label for="fileNumber">File number</label></td>
-            <td><input type="text" name="fileNumber" placeholder="XX-XXX-XXXX"></td>
+            <td><label for="fileNumber">File number *</label></td>
+            <td><input type="text" name="fileNumber" placeholder="XX-XXX-XXXX" required></td>
           </tr>   
           <tr>
-            <td><label for="email">E-mail</label></td>
-            <td><input type="text" name="email"></td>
+            <td><label for="email">E-mail *</label></td>
+            <td><input type="text" name="email" required></td>
           </tr>   
           <tr>
-            <td><label for="password">Password</label></td>
-            <td><input type="password" name="password"></td>
+            <td><label for="password">Password *</label></td>
+            <td><input type="password" name="password" required></td>
           </tr>   
           <tr>
-            <td><label for="password">Repeat password</label></td>
-            <td><input type="password" name="password2"></td>
+            <td><label for="password">Repeat password *</label></td>
+            <td><input type="password" name="password2" required></td>
           </tr>  
           <tr>
             <td colspan="2"><button type="submit" class="btn btn-primary">Add</button></td>
           </tr> 
     </table>
+    <font size="3" color="red">* required fields</font>
     <?php
       if($message != "")
         echo "<p id='errorMessage'>".$message." </p>";

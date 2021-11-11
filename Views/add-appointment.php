@@ -52,7 +52,7 @@
         <th colspan="2"><center><h4>Applying Appointment</h4></center></th>
       </tr>
       <tr>
-        <td><label for="cv">Curriculum Vitae</label></td>
+        <td><label for="cv">Curriculum Vitae *</label></td>
         <td><input type="file" name="file" id="file" class="form-control-file" required></td>
       </tr>
       <tr>
@@ -68,7 +68,7 @@
         <input type="hidden" name="jobOfferId" value="<?php echo $jobOfferId; ?>">
       </tr>
       <tr>
-        <td><label for="referenceURL">Reference URL</label></td>
+        <td><label for="referenceURL">Reference URL *</label></td>
         <td><input type="text" name="referenceURL" required></td>
       </tr> 
       <tr>
@@ -79,6 +79,7 @@
         <td colspan="2"><center><button type="submit" class="btn btn-success">Apply</button><center></td>
       </tr> 
     </table>
+    <font size="3" color="red">* required fields</font>
   </form>
 </div>
 </center>
