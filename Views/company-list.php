@@ -22,6 +22,7 @@
       <?php
       }
     ?>
+    <br>
     <table id="studentsTable">
       <thead>
         <tr id="tableIndex">

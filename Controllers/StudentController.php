@@ -118,7 +118,6 @@ class StudentController{
             return $student;
         }
 
-        //HORRIBLE ESTO PERO YA NO TENEMOS TIEMPO TIO
         public function ViewStudentDetails($studentId){
             $UTNAPILIST = $this->UTNAPIDAO->loadFromAPI();
             $studentList = $this->studentDAO->getAll();

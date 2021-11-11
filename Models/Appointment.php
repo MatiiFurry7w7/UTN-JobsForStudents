@@ -2,9 +2,9 @@
 
 class Appointment{
 
-  private $jobOfferID;//<----------------------------- se manda el ID(es la clave primaria de Appointment)
-  private $studentID;//<----------------------------- se manda el ID(es la clave primaria de Appointment)
-  private $cv; //<------------------ adjuntar CV por datafile por fileName
+  private $jobOfferID;
+  private $studentID;
+  private $cv; 
   private $dateAppointment;
   private $referenceURL;
   private $comments;
