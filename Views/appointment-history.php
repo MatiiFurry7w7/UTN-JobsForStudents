@@ -23,7 +23,7 @@ include_once('header.php');
         </tr>
         <?php
         foreach($appointmentList as $eachAppointment){ 
-                if($eachAppointment->getActive() == 1) {?>
+                if($eachAppointment->getActive() == 0) {?>
                 <tr>
                         <td><?php echo $eachAppointment->getStudentId() ?></td>
                         <td><?php echo $eachAppointment->getJobOfferId() ?></td>
@@ -37,11 +37,11 @@ include_once('header.php');
                         </td>
                         <td><button class="btn btn-warning" onclick="window.location.href='<?php echo FRONT_ROOT ?>Appointment/ViewDetails?AppointmentId=<?php echo $eachAppointment->getJobOfferId()?>'">Details</button>               
                 </tr>
-        <?php   } 
+        <?php   }
         } ?>
         </table>
         <br>
-        <button class="btn btn-success" onclick="window.location.href='<?php echo FRONT_ROOT ?>Appointment/HistoryView?AppointmentId=<?php echo $eachAppointment->getStudentId()?>'">View History</button>
+        <button class="btn btn-success" onclick="window.location.href='<?php echo FRONT_ROOT ?>Appointment/AppointmentView?AppointmentId=<?php echo $eachAppointment->getStudentId()?>'">Back to Appointment</button>
 </div>
 </center>
 <?php

@@ -43,7 +43,7 @@ class AppointmentController
             //require_once(VIEWS_PATH."appointment-list.php");
         }
 
-        public function Add($studentId, $jobOfferId, $referenceURL, $comments){
+        public function Add($studentId, $jobOfferId, $file, $referenceURL, $comments){
             $currentStudent = (new SessionHelper)->getCurrentUser();        
             $appointmentList = $this->appointmentDAO->GetAll();
 
@@ -60,7 +60,7 @@ class AppointmentController
 
                 $appointment->setStudentId($studentId);
                 $appointment->setJobOfferId($jobOfferId);
-                //$appointment->setCV($file);
+                $appointment->setCV($file);
                 $appointment->setDateAppointment(date("c"));
     
                 if(str_contains($referenceURL, "https://") !== true){
@@ -75,13 +75,14 @@ class AppointmentController
                 $appointmentList = $this->appointmentDAO->GetAll();
 
                 $currentStudent->setAppointment($appointment);
+                //$this->Upload($file, $studentId, $jobOfferId);
             }else
                 ?> <script>alert('You´re already registered for this job offer!')</script> <?php           
 
             (new HomeController)->Index();
         }
 
-        public function HistoryView(){
+        public function AppointmentView(){
             $studentId = (new SessionHelper)->getCurrentUser()->getUserId();
             $isAdmin = (new SessionHelper())->isAdmin();
             $appointmentList = $this->appointmentDAO->HistoryById($studentId);
@@ -89,14 +90,21 @@ class AppointmentController
             require_once(VIEWS_PATH."appointment-list.php");
         }
 
+        public function HistoryView(){
+            $studentId = (new SessionHelper)->getCurrentUser()->getUserId();
+            $isAdmin = (new SessionHelper())->isAdmin();
+            $appointmentList = $this->appointmentDAO->HistoryById($studentId);
+            
+            require_once(VIEWS_PATH."appointment-history.php");
+        }
+
         public function Remove($studentId, $jobOfferId){
             $this->appointmentDAO->CancelApplyById($studentId, $jobOfferId);
             (new HomeController)->Index();
         }
 
-        public function Upload($file)
+        public function Upload($file, $studentId, $jobOfferId)
         {
-            var_dump($file);
             try
             {
                 $fileName = $file["name"];
@@ -109,7 +117,9 @@ class AppointmentController
 
                 if (move_uploaded_file($tempFileName, $filePath))
                 {
-                    $this->appointmentDAO->addCV($fileName);
+                    $cv = new CV();
+                    $cv->setName($fileName);
+                    $this->appointmentDAO->addCV($cv, $studentId, $jobOfferId);
                     $message = "CV successfully uploaded!";
                 }
                 else

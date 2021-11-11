@@ -3,7 +3,7 @@
 
     class JobOffer {
 
-        private $JobOfferId;
+        private $jobOfferId;
         private $title;
         private $publishedDate;
         private $finishDate;
@@ -12,10 +12,9 @@
         private $active;
         private $remote;
         private $salary;
-        private $appointment; //relation one to one
         private $jobPosition; //relation one to one
         private $dedication;
-        private $company;
+        private $company; //relation one to one
         private $administrator;
        
         //GETTERS & SETTERS
@@ -89,14 +88,6 @@
 
         public function setSalary($salary) {
             $this->salary = $salary;
-        }
-
-        public function getAppointment() {
-            return $this->appointment;
-        }
-
-        public function setAppointment($appointment) {
-            $this->appointment = $appointment;
         }
 
         public function getJobPosition() {

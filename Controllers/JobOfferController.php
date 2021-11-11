@@ -68,8 +68,12 @@
                 $jobOffer = new JobOffer();
                 
                 if($this->checkDates($publishedDate, $finishDate)){
-                    $jobOffer->setJobPosition($jobPositionId);
-                    $jobOffer->setCompany($companyId);
+
+                    $jobPositionDAO = new APIJobPositionDAO();
+                    $companyDAO = new CompanyDAO();
+
+                    $jobOffer->setJobPosition($jobPositionDAO->FindById($jobPositionId));
+                    $jobOffer->setCompany($companyDAO->FindById($companyId));
                     $jobOffer->setTitle($title);
                     $jobOffer->setPublishedDate($publishedDate);
                     $jobOffer->setFinishDate($finishDate);
@@ -105,6 +109,7 @@
                 
                 $jobPositionDAO = new APIJobPositionDAO();
                 $jobPositionList = $jobPositionDAO->GetAll();
+                $careerId = $jobOffer->getJobPosition()->getCareer()->getCareerId();
                 
                 $companyDAO = new CompanyDAO();
                 $companyList = $companyDAO->GetAll();
@@ -119,8 +124,28 @@
         public function ModifyAJobOffer($jobOfferId, $title, $publishedDate, $finishDate, $task, $skills, $active, $remote, $salary, $jobPositionId, $dedication, $companyId, $administratorId){
             if((new SessionHelper)->isAdmin()) {
                 if($this->checkDates($publishedDate, $finishDate)){
-                $this->jobOfferDAO->ModifyById($jobOfferId, $title, $publishedDate, $finishDate, $task, $skills, $active, $remote, $salary, $jobPositionId, $dedication, $companyId, $administratorId);
-            
+
+                    $jobOffer = new JobOffer();
+                    $jobPositionDAO = new APIJobPositionDAO();
+                    $companyDAO = new CompanyDAO();
+
+                    $jobOffer->setJobOfferId($jobOfferId);
+                    $jobOffer->setJobPosition($jobPositionDAO->FindById($jobPositionId));
+                    $jobOffer->setCompany($companyDAO->FindById($companyId));
+                    $jobOffer->setTitle($title);
+                    $jobOffer->setPublishedDate($publishedDate);
+                    $jobOffer->setFinishDate($finishDate);
+                    $jobOffer->setTask($task);
+                    $jobOffer->setSkills($skills);
+                    $jobOffer->setActive($active);
+                    $jobOffer->setRemote($remote);
+                    $jobOffer->setSalary($salary);
+                    $jobOffer->setDedication($dedication);
+                    $jobOffer->setAdministrator($administratorId);
+
+                    $jobOfferList = $this->jobOfferDAO->Modify($jobOffer);
+
+                    $this->jobOfferDAO->Modify($jobOffer);
                 } else {
                     ?> <script>alert('Invalid date!')</script><?php
                 }

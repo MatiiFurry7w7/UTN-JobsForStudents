@@ -9,6 +9,6 @@
         function GetAll();
         function DeleteById($jobOfferId);
         function FindById($jobOfferId);
-        function ModifyById($jobOfferId, $title, $publishedDate, $finishDate, $task, $skills, $active, $remote, $salary, $jobPositionId, $dedication, $companyId, $administratorId);
+        function Modify($jobOffer);
     }
 ?>

@@ -71,7 +71,13 @@
 
         public function ModifyAdministrator($administratorId, $email, $password){
             if((new SessionHelper)->isAdmin()) {
-                $this->administratorDAO->ModifyById($administratorId, $email, $password);
+                $administrator = new Administrator();
+
+                $administrator->setAdministratorId();
+                $administrator->setEmail();
+                $administrator->setPassword();
+                
+                $this->administratorDAO->Modify($administrator);
             
                 $this->ListView();
             } else 

@@ -66,8 +66,10 @@
                   <select name="jobPositionId">">  
                     <?php
                       foreach($jobPositionList as $jobPosition) {
-                        ?><option value="<?php echo $jobPosition->getJobPositionId()?>" ><?php echo $jobPosition->getDescription()?></option>
-                        <?php 
+                        if($jobPosition->getCareer()->getCareerId() == $careerId){
+                          ?><option value="<?php echo $jobPosition->getJobPositionId()?>" ><?php echo $jobPosition->getDescription()?></option>
+                          <?php 
+                        }
                       }
                     ?>
                   </select>

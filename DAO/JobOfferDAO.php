@@ -20,8 +20,8 @@
                 $query = "INSERT INTO ".$this->tableName." (jobPositionId, companyId, title, publishedDate, finishDate, task, skills, active, remote, salary, dedication, administratorId) 
                     VALUES (:jobPositionId, :companyId, :title, :publishedDate, :finishDate, :task, :skills, :active, :remote, :salary, :dedication, :administratorId);";
 
-                $parameters["jobPositionId"] = $jobOffer->getJobPosition();
-                $parameters["companyId"] = $jobOffer->getCompany();
+                $parameters["jobPositionId"] = $jobOffer->getJobPosition()->getJobPositionId();
+                $parameters["companyId"] = $jobOffer->getCompany()->getCompanyId();
                 $parameters["title"] = $jobOffer->getTitle();
                 $parameters["publishedDate"] = $jobOffer->getPublishedDate();
                 $parameters["finishDate"] = $jobOffer->getFinishDate();
@@ -71,7 +71,6 @@
                         $jobOffer->setActive($row["active"]);
                         $jobOffer->setRemote($row["remote"]);
                         $jobOffer->setSalary($row["salary"]);
-                        //appointment
                         $jobOffer->setJobPosition($jobPositionDAO->FindById($row["jobPositionId"]));
                         $jobOffer->setDedication($row["dedication"]);
                         $jobOffer->setCompany($companyDAO->FindById($row["companyId"]));
@@ -133,7 +132,6 @@
                     $jobOffer->setActive($result["active"]);
                     $jobOffer->setRemote($result["remote"]);
                     $jobOffer->setSalary($result["salary"]);
-                    //appointment
                     $jobOffer->setJobPosition($jobPositionDAO->FindById($result["jobPositionId"]));
                     $jobOffer->setDedication($result["dedication"]);
                     $jobOffer->setCompany($companyDAO->FindById($result["companyId"]));
@@ -148,37 +146,35 @@
             }
         }
 
-        public function ModifyById($jobOfferId, $title, $publishedDate, $finishDate, $task, $skills, $active, $remote, $salary, $jobPositionId, $dedication, $companyId, $administratorId)
+        public function Modify($jobOffer)
         {
+            
+            try
             {
-                try
-                {
-                    $query = "UPDATE ".$this->tableName." SET title=:title, publishedDate=:publishedDate, finishDate=:finishDate, task=:task, skills=:skills, active=:active, remote=:remote, salary=:salary, jobPositionId=:jobPositionId, dedication=:dedication, companyId=:companyId, administratorId=:administratorId
-                    WHERE jobOfferId=:jobOfferId;";
+                $query = "UPDATE ".$this->tableName." SET title=:title, publishedDate=:publishedDate, finishDate=:finishDate, task=:task, skills=:skills, active=:active, remote=:remote, salary=:salary, jobPositionId=:jobPositionId, dedication=:dedication, companyId=:companyId, administratorId=:administratorId
+                WHERE jobOfferId=:jobOfferId;";
 
-                    $parameters["jobOfferId"] = $jobOfferId;
-                    $parameters["title"] = $title;
-                    $parameters["publishedDate"] = $publishedDate;
-                    $parameters["finishDate"] = $finishDate;
-                    $parameters["task"] = $task;
-                    $parameters["skills"] = $skills;
-                    $parameters["active"] = $active;
-                    $parameters["remote"] = $remote;
-                    $parameters["salary"] = $salary;
-                    //appointment
-                    $parameters["jobPositionId"] = $jobPositionId;
-                    $parameters["dedication"] = $dedication;
-                    $parameters["companyId"] = $companyId;
-                    $parameters["administratorId"] = $administratorId;
-    
-                    $this->connection = Connection::GetInstance();
-    
-                    $this->connection->ExecuteNonQuery($query, $parameters);
-                }
-                catch(Exception $ex)
-                {
-                    throw $ex;
-                }
+                $parameters["jobOfferId"] = $jobOffer->getJobOfferId();
+                $parameters["title"] = $jobOffer->getTitle();
+                $parameters["publishedDate"] = $jobOffer->getPublishedDate();
+                $parameters["finishDate"] = $jobOffer->getFinishDate();
+                $parameters["task"] = $jobOffer->getTask();
+                $parameters["skills"] = $jobOffer->getSkills();
+                $parameters["active"] = $jobOffer->getActive();
+                $parameters["remote"] = $jobOffer->getRemote();
+                $parameters["salary"] = $jobOffer->getSalary();
+                $parameters["jobPositionId"] = $jobOffer->getJobPosition()->getJobPositionId();
+                $parameters["dedication"] = $jobOffer->getDedication();
+                $parameters["companyId"] = $jobOffer->getCompany()->getCompanyId();
+                $parameters["administratorId"] = $jobOffer->getAdministrator();
+
+                $this->connection = Connection::GetInstance();
+
+                $this->connection->ExecuteNonQuery($query, $parameters);
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
             }
         }
     }
