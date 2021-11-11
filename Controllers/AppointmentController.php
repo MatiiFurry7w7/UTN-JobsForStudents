@@ -74,9 +74,9 @@ class AppointmentController
 
                 $currentStudent->setAppointment($appointment);
                 //$this->Upload($file, $studentId, $jobOfferId);
-            }else
-                ?> <script>alert('You´re already registered for this job offer!')</script> <?php           
-
+            } else{
+                ?> <script>alert('You´re already registered for this job offer!')</script> <?php   
+            }
             (new HomeController)->Index();
         }
 

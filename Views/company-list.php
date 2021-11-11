@@ -28,6 +28,7 @@
             <td>Active</td>
             <td>Name</td>
             <td>CUIT</td>
+            <td>Website</td>
             <td>Description</td>
             <td>Address</td>
             <td></td>
@@ -55,6 +56,7 @@
                         <td><?php echo $company->getActive() == 1 ? "Yes" : "No" ?></td>
                         <td><?php echo $company->getName() ?></td>
                         <td><?php echo $company->getCuit() ?></td>
+                        <td><a href='<?php echo $company->getWebsite()?>'><?php echo $company->getWebsite()?></a></td>
                         <td><?php echo $company->getDescription() ?></td>
                         <td><?php echo $company->getStreet()." ".$company->getNumber() ?></td>
                         <td style="align='right'"><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>Company/ViewDetail?companyId=<?php echo $company->getCompanyId() ?>'">Details</button></td>
@@ -73,20 +75,23 @@
               }
           }else{
               foreach($companyList as $company){
-                      $i++;
                       if($isAdmin || $company->getActive() == 1) {
                       ?>
                       <tr>
                         <td><?php echo $company->getActive() == 1 ? "Yes" : "No" ?></td>
                         <td><?php echo $company->getName() ?></td>
                         <td><?php echo $company->getCuit() ?></td>
+                        <td><a href='<?php echo $company->getWebsite()?>'><?php echo $company->getWebsite()?></a></td>
                         <td><?php echo $company->getDescription() ?></td>
                         <td><?php echo $company->getStreet()." ".$company->getNumber() ?></td>
                         <td style="align='right'"><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>Company/ViewDetail?companyId=<?php echo $company->getCompanyId() ?>'">Details</button></td>
                         <td style="align='right'"><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>JobOffer/JobOffersFromCompany?companyId=<?php echo $company->getCompanyId() ?>'">Job Offers</button></td>
 
                       <?php
-                         } if($isAdmin) {
+                         } else {
+                          $i++;
+                         }
+                         if($isAdmin) {
                           ?>
                               <td><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>Company/Remove?removeId=<?php echo $company->getCompanyId() ?>'">Inactive</button></td>
                               <td><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>Company/ModifyView?modifyId=<?php echo $company->getCompanyId() ?>'">Edit</button></td>
@@ -97,7 +102,6 @@
                       <?php   
               }   
           }
-          echo "<br><b>There are ".$i." Result/s!</b>";
         ?>
       </tbody>
     </table>

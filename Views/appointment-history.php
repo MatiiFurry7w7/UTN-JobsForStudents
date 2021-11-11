@@ -40,10 +40,6 @@ include_once('header.php');
         <?php   }
         } ?>
         </table>
-        <br>
-        <?php if(!$isAdmin){ ?>
-                <button class="btn btn-success" onclick="window.location.href='<?php echo FRONT_ROOT ?>Appointment/AppointmentView?AppointmentId=<?php echo $eachAppointment->getStudentId()?>'">Back to Appointment</button>
-        <?php } ?>
 </div>
 </center>
 <?php

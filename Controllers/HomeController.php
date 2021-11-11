@@ -50,7 +50,7 @@
 
             if($jobOfferList){
                 foreach($jobOfferList as $jobOffer){
-                    if(strpos(strtolower($jobOffer->getJobPosition()->getDescription()), strtolower($jobPositionSearch)) !== false && 
+                    if(strpos(strtolower($jobOffer->getJobPosition()->getDescription()), strtolower($jobPositionSearch)) !== false || 
                         $jobOffer->getJobPosition()->getCareer()->getCareerId() == $careerId){
                         array_push($newJOList, $jobOffer);
                     }

@@ -54,8 +54,16 @@
                             $website = "https://".$website;
                         }
 
-                        $company = $this->setCompany($name, $cuit, $description, $website, $street, $number_street, $aboutUs, $isActive, $industry);
-                        
+                        $company->setName($name);
+                        $company->setCuit($cuit);
+                        $company->setDescription($description);
+                        $company->setWebsite($website);
+                        $company->setStreet($street);
+                        $company->setNumber($number_street);
+                        $company->setAboutUs($aboutUs);
+                        $company->setActive($isActive);
+                        $company->setIndustry($industry);
+
                         $this->companyDAO->Add($company);
         
                     } else {
@@ -65,30 +73,22 @@
                     }
 
                 } else {
-                    $company = $this->setCompany($name, $cuit, $description, $website, $street, $number_street, $aboutUs, $isActive, $industry);
-                    
-                    $this->companyDAO->Add($company);
+                        $company->setName($name);
+                        $company->setCuit($cuit);
+                        $company->setDescription($description);
+                        $company->setWebsite($website);
+                        $company->setStreet($street);
+                        $company->setNumber($number_street);
+                        $company->setAboutUs($aboutUs);
+                        $company->setActive($isActive);
+                        $company->setIndustry($industry);
+                        
+                        $this->companyDAO->Add($company);
                 }
 
                 $this->ShowAddView();
             } else 
                 (new HomeController())->Index();
-        }
-
-        private function setCompany($name, $cuit, $description, $website, $street, $number_street, $aboutUs, $isActive, $industry) {
-            $company = new Company();
-
-            $company->setName($name);
-            $company->setCuit($cuit);
-            $company->setDescription($description);
-            $company->setWebsite($website);
-            $company->setStreet($street);
-            $company->setNumber($number_street);
-            $company->setAboutUs($aboutUs);
-            $company->setActive($isActive);
-            $company->setIndustry($industry);
-
-            return $company;
         }
 
         public function Remove($removeId){
@@ -112,6 +112,11 @@
         public function ModifyACompany($companyId, $name, $cuit, $description, $website, $street, $number, $aboutUs,$active, $industry){
             if((new SessionHelper)->isAdmin()) {   
                 $addingCompany = new Company();
+                
+                if(str_contains($website, "https://") !== true){
+                    $website = "https://".$website;
+                }
+
                 $addingCompany->setCompanyId($companyId);
                 $addingCompany->setName($name);
                 $addingCompany->setCuit($cuit);
