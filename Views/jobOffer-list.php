@@ -10,21 +10,18 @@ include_once('header.php');
         <tr id="tableIndex">
                 <td>Title</td>
                 <td>Job Position</td>
-                <td>Career</td>
                 <td>Published Date</td>
                 <td>Active</td>
-                <td>Dedication</td>
+                <td>Company</td>
                 <?php
-                                if($admin instanceof Administrator){
+                                if($isAdmin){
                                         ?>   
-                                                <td>Administrator</td>   
+                                                <td></td>   
                                                 <td></td>           
                                                 <td></td>
-                                                
-                                        <?php } ?>
-        <td><button class="btn btn-success" onclick="window.location.href='<?php echo FRONT_ROOT ?>Joboffer/ShowAddView'">Add</button>
+                                                <td><button class="btn btn-success" onclick="window.location.href='<?php echo FRONT_ROOT ?>Joboffer/ShowAddView'">Add</button>
         </tr>
-        <?php
+        <?php }else {?> <td></td> <?php }
         foreach($jobOfferList as $jobOffer){
 
                 $isActive = $jobOffer->getActive() == 1 ? "Yes" : "No";
@@ -32,17 +29,17 @@ include_once('header.php');
                 ?><tr>
                         <td style='max-width: 230px;'><?php echo $jobOffer->getTitle() ?></td>
                         <td style='max-width: 230px;'><?php echo $jobOffer->getJobPosition()->getDescription() ?></td>
-                        <td style='max-width: 230px;'><?php echo $jobOffer->getJobPosition()->getCareer()->getDescription() ?></td>  
                         <td style='max-width: 230px;'><?php echo $jobOffer->getPublishedDate() ?></td>
                         <td style='max-width: 230px;'><?php echo $isActive ?></td>                   
-                        <td style='max-width: 230px;'><?php echo $jobOffer->getDedication() ?></td>
+                        <td style='max-width: 230px;'><?php echo $jobOffer->getCompany()->getName() ?></td>
                         <td style="align='right'"><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>JobOffer/ViewDetail?jobOfferId=<?php echo $jobOffer->getJobOfferId() ?>'">Details</button></td>
 
                         <?php
-                                if($admin instanceof Administrator){
+                                if($isAdmin){
                                         ?>                    
-                                                <td style='max-width: 230px;'><?php echo $admin->getEmail() ?></td>                
-                                                <td><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>JobOffer/Remove?removeId=<?php echo $jobOffer->getJobOfferId() ?>'">Remove</button></td>
+                                                <!--<td style='max-width: 230px;'><?php //echo $admin->getEmail() ?></td>-->  
+                                                <td><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>Appointment/AppointmentsOfJobOffer?jobOfferId=<?php echo $jobOffer->getJobOfferId() ?>'">See Appointments</button></td>           
+                                                <td><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>JobOffer/Remove?removeId=<?php echo $jobOffer->getJobOfferId() ?>'">Inactive</button></td>
                                                 <td><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>JobOffer/ModifyView?modifyId=<?php echo $jobOffer->getJobOfferId() ?>'">Edit</button></td>
                                        <?php
                                 }
@@ -54,5 +51,3 @@ include_once('header.php');
 <?php
         include_once('footer.php');
 ?>
-
-

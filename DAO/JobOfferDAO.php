@@ -146,6 +146,50 @@
             }
         }
 
+        public function getJobOffersOfCompany($company){
+            try
+            {
+                $query = "SELECT * FROM ".$this->tableName.' WHERE companyId = :companyId;';
+
+                $this->connection = Connection::GetInstance();
+                
+                $parameters["companyId"] = $company->getCompanyId();
+
+                $result = $this->connection->Execute($query, $parameters);
+
+                $companyDAO = new CompanyDAO();           
+                $jobPositionDAO = new APIJobPositionDAO();
+
+                $jobOfferList = array();
+
+                if($result)
+                    foreach($result as $eachResult) {
+                        $jobOffer = new JobOffer();
+                        $jobOffer->setJobOfferId($eachResult["jobOfferId"]);
+                        $jobOffer->setTitle($eachResult["title"]);
+                        $jobOffer->setPublishedDate($eachResult["publishedDate"]);
+                        $jobOffer->setFinishDate($eachResult["finishDate"]);
+                        $jobOffer->setTask($eachResult["task"]);
+                        $jobOffer->setSkills($eachResult["skills"]);
+                        $jobOffer->setActive($eachResult["active"]);
+                        $jobOffer->setRemote($eachResult["remote"]);
+                        $jobOffer->setSalary($eachResult["salary"]);
+                        $jobOffer->setJobPosition($jobPositionDAO->FindById($eachResult["jobPositionId"]));
+                        $jobOffer->setDedication($eachResult["dedication"]);
+                        $jobOffer->setCompany($companyDAO->FindById($eachResult["companyId"]));
+                        $jobOffer->setAdministrator($eachResult["administratorId"]);
+                        
+                        array_push($jobOfferList, $jobOffer);
+                    }
+
+                return $jobOfferList;
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
+        }
+
         public function Modify($jobOffer)
         {
             

@@ -29,8 +29,8 @@
             <td>Name</td>
             <td>CUIT</td>
             <td>Description</td>
-            <td>Website</td>
             <td>Address</td>
+            <td></td>
             <td></td>
             <!--solo ver boton remove/modify sólo para administradores-->
             <?php
@@ -56,13 +56,13 @@
                         <td><?php echo $company->getName() ?></td>
                         <td><?php echo $company->getCuit() ?></td>
                         <td><?php echo $company->getDescription() ?></td>
-                        <td><a href="<?php echo $company->getWebsite() ?>"><?php echo $company->getWebsite() ?></a></td>
                         <td><?php echo $company->getStreet()." ".$company->getNumber() ?></td>
                         <td style="align='right'"><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>Company/ViewDetail?companyId=<?php echo $company->getCompanyId() ?>'">Details</button></td>
+                        <td style="align='right'"><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>JobOffer/JobOffersFromCompany?companyId=<?php echo $company->getCompanyId() ?>'">Job Offers</button></td>
                       <?php
                           if($isAdmin) {
                           ?>
-                              <td><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>Company/Remove?removeId=<?php echo $company->getCompanyId() ?>'">Remove</button></td>
+                              <td><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>Company/Remove?removeId=<?php echo $company->getCompanyId() ?>'">Inactive</button></td>
                               <td><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>Company/ModifyView?modifyId=<?php echo $company->getCompanyId() ?>'">Edit</button></td>
                           <?php
                           }
@@ -74,19 +74,21 @@
           }else{
               foreach($companyList as $company){
                       $i++;
+                      if($isAdmin || $company->getActive() == 1) {
                       ?>
                       <tr>
                         <td><?php echo $company->getActive() == 1 ? "Yes" : "No" ?></td>
                         <td><?php echo $company->getName() ?></td>
                         <td><?php echo $company->getCuit() ?></td>
                         <td><?php echo $company->getDescription() ?></td>
-                        <td><a href="<?php echo $company->getWebsite() ?>"><?php echo $company->getWebsite() ?></a></td>
                         <td><?php echo $company->getStreet()." ".$company->getNumber() ?></td>
                         <td style="align='right'"><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>Company/ViewDetail?companyId=<?php echo $company->getCompanyId() ?>'">Details</button></td>
+                        <td style="align='right'"><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>JobOffer/JobOffersFromCompany?companyId=<?php echo $company->getCompanyId() ?>'">Job Offers</button></td>
+
                       <?php
-                          if($isAdmin) {
+                         } if($isAdmin) {
                           ?>
-                              <td><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>Company/Remove?removeId=<?php echo $company->getCompanyId() ?>'">Remove</button></td>
+                              <td><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>Company/Remove?removeId=<?php echo $company->getCompanyId() ?>'">Inactive</button></td>
                               <td><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>Company/ModifyView?modifyId=<?php echo $company->getCompanyId() ?>'">Edit</button></td>
                           <?php
                           }

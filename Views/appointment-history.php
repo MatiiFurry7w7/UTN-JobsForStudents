@@ -10,23 +10,23 @@ include_once('header.php');
 <div class="wrapper row3">
 <table id="studentsTable" style="width: 90vh;">
         <tr id="tableIndex">
-                <td>ID</td>
+                <?php if($isAdmin){ ?>
+                        <td>Student</td>
+                <?php } ?>
                 <td>Job Offer</td>
                 <td>Curriculum Vitae</td>
                 <td>Date Appointment</td>
                 <td>Reference URL</td>
                 <td>Active</td>
-                <td><?php if($isAdmin){ ?>
-                        <button class="btn btn-primary" onclick="window.location.href='<?php echo FRONT_ROOT ?>Appointment/AddView'">Add</button>
-                    <?php } ?>
-                </td>
         </tr>
         <?php
         foreach($appointmentList as $eachAppointment){ 
                 if($eachAppointment->getActive() == 0) {?>
                 <tr>
-                        <td><?php echo $eachAppointment->getStudentId() ?></td>
-                        <td><?php echo $eachAppointment->getJobOfferId() ?></td>
+                        <?php if($isAdmin){ ?>
+                                <td><button class="btn btn-success" onclick="window.location.href='<?php echo FRONT_ROOT ?>Student/ViewStudentDetails?studentId=<?php echo $eachAppointment->getStudentId()?>'">See Student</button></td>
+                        <?php } ?>
+                        <td> <button class="btn btn-success" onclick="window.location.href='<?php echo FRONT_ROOT ?>JobOffer/ViewDetail?jobOfferId=<?php echo $eachAppointment->getJobOfferId()?>'">See Job Offer</button></td>
                         <td><?php echo $eachAppointment->getCv() ?></td>
                         <td><?php echo $eachAppointment->getDateAppointment() ?></td>
                         <td><a href="<?php echo $eachAppointment->getReferenceURL()?>"><?php echo $eachAppointment->getReferenceURL()?></a></td>
@@ -35,13 +35,15 @@ include_once('header.php');
                                         echo $eachAppointment->getActive() == 1 ? "Yes" : "No";
                                 ?>
                         </td>
-                        <td><button class="btn btn-warning" onclick="window.location.href='<?php echo FRONT_ROOT ?>Appointment/ViewDetails?AppointmentId=<?php echo $eachAppointment->getJobOfferId()?>'">Details</button>               
+                        
                 </tr>
         <?php   }
         } ?>
         </table>
         <br>
-        <button class="btn btn-success" onclick="window.location.href='<?php echo FRONT_ROOT ?>Appointment/AppointmentView?AppointmentId=<?php echo $eachAppointment->getStudentId()?>'">Back to Appointment</button>
+        <?php if(!$isAdmin){ ?>
+                <button class="btn btn-success" onclick="window.location.href='<?php echo FRONT_ROOT ?>Appointment/AppointmentView?AppointmentId=<?php echo $eachAppointment->getStudentId()?>'">Back to Appointment</button>
+        <?php } ?>
 </div>
 </center>
 <?php

@@ -24,16 +24,14 @@ class AppointmentController
         }
 
         public function ViewDetails($jobOfferId){
-
             $currentStudent = (new SessionHelper())->getCurrentUser();
-
             if($currentStudent->getAppointment()){
                 $appointment = $this->appointmentDAO->FindById($currentStudent->getUserId(), $jobOfferId);
                 $jobOffer = (new JobOfferDAO)->FindById($jobOfferId);
-
                 require_once(VIEWS_PATH."appointment-viewDetail.php");
             }else 
                 header("location:".FRONT_ROOT."Home/Index");
+
         }
 
         public function ListView(){
@@ -43,7 +41,7 @@ class AppointmentController
             //require_once(VIEWS_PATH."appointment-list.php");
         }
 
-        public function Add($studentId, $jobOfferId, $file, $referenceURL, $comments){
+        public function Add($studentId, $jobOfferId, $referenceURL, $comments){
             $currentStudent = (new SessionHelper)->getCurrentUser();        
             $appointmentList = $this->appointmentDAO->GetAll();
 
@@ -60,7 +58,7 @@ class AppointmentController
 
                 $appointment->setStudentId($studentId);
                 $appointment->setJobOfferId($jobOfferId);
-                $appointment->setCV($file);
+                //$appointment->setCV($file);
                 $appointment->setDateAppointment(date("c"));
     
                 if(str_contains($referenceURL, "https://") !== true){
@@ -99,31 +97,65 @@ class AppointmentController
         }
 
         public function Remove($studentId, $jobOfferId){
-            $this->appointmentDAO->CancelApplyById($studentId, $jobOfferId);
-            (new HomeController)->Index();
+                $this->appointmentDAO->CancelApplyById($studentId, $jobOfferId);
+                (new HomeController)->Index();           
         }
 
-        public function Upload($file, $studentId, $jobOfferId)
-        {
+        public function AppointmentsOfJobOffer($jobOfferId){
+            $allAppointments = $this->appointmentDAO->getAll();
+
+            $appointmentList = array();
+            $isAdmin = (new SessionHelper())->isAdmin();
+
+            if($allAppointments)
+                foreach($allAppointments as $eachAppointment)
+                    if($eachAppointment->getJobOfferId() == $jobOfferId)
+                        array_push($appointmentList, $eachAppointment);
+                    
+            require_once(VIEWS_PATH."appointment-history.php");
+        }
+
+        public function AppointmentsOfStudent($studentId){
+            $allAppointments = $this->appointmentDAO->getAll();
+
+            $appointmentList = array();
+            $isAdmin = (new SessionHelper())->isAdmin();
+
+            if($allAppointments)
+                foreach($allAppointments as $eachAppointment)
+                    if($eachAppointment->getStudentId() == $studentId)
+                        array_push($appointmentList, $eachAppointment);
+                    
+            require_once(VIEWS_PATH."appointment-history.php");
+        }
+
+        public function Upload($file){
             try
             {
+                $neededExtension = "pdf";
                 $fileName = $file["name"];
                 $tempFileName = $file["tmp_name"];
                 $type = $file["type"];
-                
+                                   
                 $filePath = UPLOADS_PATH.basename($fileName);            
-
                 $fileType = strtolower(pathinfo($filePath, PATHINFO_EXTENSION));
 
-                if (move_uploaded_file($tempFileName, $filePath))
-                {
-                    $cv = new CV();
-                    $cv->setName($fileName);
-                    $this->appointmentDAO->addCV($cv, $studentId, $jobOfferId);
-                    $message = "CV successfully uploaded!";
+                if ($fileType == $neededExtension){  
+                    if (move_uploaded_file($tempFileName, $filePath))
+                    {
+                        $cv = new CV();
+                        $cv->setName($fileName);
+                        $this->appointmentDAO->addCV($cv);
+                        $message = "CV successfully uploaded!";
+                    }
+                    else
+                        $message = "There was an error adding the CV!";
+                }else{
+                    ?>
+                    <script>alert('The CV must be in PDF format!')</script>
+                <?php
                 }
-                else
-                    $message = "There was an error adding the CV!";
+                (new HomeController)->Index();        
             }
             catch(Exception $ex)
             {

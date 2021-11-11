@@ -60,11 +60,6 @@ body{
     height: 90px;
 }
 
-button:hover{
-    font-size: 18px;
-    transition: all 0.5s;
-}
-
 select {
     display: block;
     font-size: 16px;

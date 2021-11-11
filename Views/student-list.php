@@ -12,7 +12,7 @@
                 <td>Surname</td>
                 <td>Phone</td>
                 <td>Email</td>
-                <td></td>
+                <td colspan="2"></td>
         </tr>
         <?php
         $i = 0;
@@ -26,6 +26,8 @@
                         <td style='min-width: 150px;'>".$eachStudent->getPhoneNumber()."</td>
                         <td style='min-width: 150px;'>".$eachStudent->getEmail()."</td>"; ?>
                         <td><button class="btn btn-warning" onclick="window.location.href='<?php echo FRONT_ROOT ?>Student/ProfileView?email=<?php echo $eachStudent->getEmail()?>'">Profile</button>                     
+                        <td><button class="btn btn-warning" onclick="window.location.href='<?php echo FRONT_ROOT ?>Appointment/AppointmentsOfStudent?studentId=<?php echo $eachStudent->getUserId()?>'">Appointments</button>                     
+
                 </tr>
         <?php } 
         ?>

@@ -52,7 +52,7 @@
         <th colspan="2"><center><h4>Applying Appointment</h4></center></th>
       </tr>
       <tr>
-        <td><label for="cv">Curriculum Vitae *</label></td>
+        <td><label for="cv">Curriculum Vitae * (PDF)</label></td>
         <td><input type="file" name="file" id="file" class="form-control-file" required></td>
       </tr>
       <tr>

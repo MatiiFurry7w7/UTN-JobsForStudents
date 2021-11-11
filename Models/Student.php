@@ -88,7 +88,7 @@
     
         //toString
         public function __tostring(){
-            return "<br>ID: ".$this->studentId.
+            return "<br>ID: ".parent::getUserId().
                    "<br>DNI: ".$this->dNI.
                    "<br>Full name: ".$this->firstName." ".$this->lastName.
                    "<br>Born in ".$this->birthDate.

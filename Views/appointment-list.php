@@ -16,14 +16,11 @@ include_once('header.php');
                 <td>Date Appointment</td>
                 <td>Reference URL</td>
                 <td>Active</td>
-                <td><?php if($isAdmin){ ?>
-                        <button class="btn btn-primary" onclick="window.location.href='<?php echo FRONT_ROOT ?>Appointment/AddView'">Add</button>
-                    <?php } ?>
-                </td>
+                <td></td>
         </tr>
         <?php
         foreach($appointmentList as $eachAppointment){ 
-                if($eachAppointment->getActive() == 1) {?>
+                if($isAdmin || $eachAppointment->getActive() == 1) {?>
                 <tr>
                         <td><?php echo $eachAppointment->getStudentId() ?></td>
                         <td><?php echo $eachAppointment->getJobOfferId() ?></td>

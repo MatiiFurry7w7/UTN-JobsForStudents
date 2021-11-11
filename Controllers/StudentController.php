@@ -118,6 +118,25 @@ class StudentController{
             return $student;
         }
 
+        //HORRIBLE ESTO PERO YA NO TENEMOS TIEMPO TIO
+        public function ViewStudentDetails($studentId){
+            $UTNAPILIST = $this->UTNAPIDAO->loadFromAPI();
+            $studentList = $this->studentDAO->getAll();
+
+            $student = new Student();
+
+            foreach($studentList as $eachStudent){
+                foreach($UTNAPILIST as $eachUTNStudent){
+                    if($studentId == $eachStudent->getUserId() && $eachUTNStudent->email == $eachStudent->getEmail()){
+                        $this->APIStudentToStudent($eachUTNStudent, $student);
+                        $student->setUserId($eachStudent->getUserId());
+                    }
+                }
+            }
+
+            require_once(VIEWS_PATH."student-profile.php");
+        }
+
         public function ProfileView($email){
             $UTNAPILIST = $this->UTNAPIDAO->loadFromAPI();
             $studentList = $this->studentDAO->getAll();

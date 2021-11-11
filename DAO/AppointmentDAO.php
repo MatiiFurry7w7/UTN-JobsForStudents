@@ -55,12 +55,12 @@ class AppointmentDAO implements IAppointmentDAO{
             }
         }
 
-        public function addCV($fileName){
+        public function addCV($cv){
             try
             {
                 $query = "CALL cv_add(?);";
                 
-                $parameters["name"] = $fileName;
+                $parameters["name"] = $cv->getName();
 
                 $this->connection = Connection::GetInstance();
 
@@ -218,5 +218,44 @@ class AppointmentDAO implements IAppointmentDAO{
             }
         }
     
+        public function getAppointmentsOfJobOffer($jobOffer){
+            try
+            {
+                $query = "SELECT * FROM ".$this->tableName.' WHERE jobOfferId = :jobOfferId;';
+
+                $this->connection = Connection::GetInstance();
+                
+                $parameters["jobOfferId"] = $jobOffer->getJobOfferId();
+
+                $result = $this->connection->Execute($query, $parameters);
+
+                $companyDAO = new CompanyDAO();           
+                $jobPositionDAO = new APIJobPositionDAO();
+
+                $appointmentList = array();
+
+                if($result) 
+                    foreach($result as $eachResult) {
+                        $appointment = new Appointment();
+                
+                        $appointment->setStudentId($eachResult["studentId"]);
+                        $appointment->setJobOfferId($eachResult["jobOfferId"]);
+                        $appointment->setCv($eachResult["cv"]);
+                        $appointment->setDateAppointment($eachResult["dateAppointment"]);
+                        $appointment->setReferenceURL($eachResult["referenceURL"]);
+                        $appointment->setComments($eachResult["comments"]);
+                        $appointment->setActive($eachResult["active"]);
+                        
+                        array_push($appointmentList, $appointment);
+                    }
+
+                return $appointmentList;
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
+        }
+
     }
 ?>

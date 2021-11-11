@@ -58,7 +58,8 @@
                 $jobOfferList = new JobOffer();
             }
 
-            $admin = (new SessionHelper)->getCurrentUser();
+            //$admin = (new SessionHelper)->getCurrentUser();
+            $isAdmin = (new SessionHelper)->isAdmin();
 
             require_once(VIEWS_PATH."jobOffer-list.php");
         }
@@ -96,7 +97,7 @@
 
         public function Remove($removeId){
             if((new SessionHelper)->isAdmin()) {
-                $this->jobOfferDAO->DeleteById($removeId);
+                $this->jobOfferDAO->DeleteById($removeId);  
                 $this->ShowListView();
             } else 
                 (new HomeController())->Index();
@@ -171,6 +172,18 @@
                 $validDate = false;
 
             return $validDate;
+        }
+
+        public function JobOffersFromCompany($companyId){
+            $isAdmin = (new SessionHelper)->isAdmin();
+
+            $jobOfferList = $this->jobOfferDAO->getJobOffersOfCompany((new CompanyDAO)->FindById($companyId));
+
+            if(!isset($jobOfferList))
+                    $jobOfferList = new JobOffer();
+            
+            require_once(VIEWS_PATH."jobOffer-list.php");
+    
         }
     }
 ?>
