@@ -4,7 +4,6 @@
 ?>
 <center>
 <div style="margin-top: 20px;" class="wrapper row3">
-  <form action="<?php echo FRONT_ROOT ?>Appointment/Add" enctype="multipart/form-data" method="POST">
     <table style="width: 80vh;">
         <tr>
           <th style="border-radius: 0px;" colspan="2"><center><h4>From <b><?php echo $jobOffer->getCompany()->getName()?></b> Company</h4></center></th>
@@ -47,24 +46,33 @@
         </tr>
   </table>
   <br>
-  <table style="width: 80vh;">
+  <form action="<?php echo FRONT_ROOT ?>Appointment/Upload" method="POST" enctype="multipart/form-data">
+    <table style="width: 80vh;">
       <tr>
         <th colspan="2"><center><h4>Applying Appointment</h4></center></th>
       </tr>
       <tr>
-        <input type="hidden" name="studentId" value="<?php echo $currentUser->getUserId() ?>">
-        <input type="hidden" name="jobOfferId" value="<?php echo $jobOfferId; ?>">
+        <td><label for="cv">Curriculum Vitae</label></td>
+        <td><input type="file" name="file" id="file" class="form-control-file" required></td>
       </tr>
       <tr>
-        <td><label for="cv">Curriculum Vitae</label></td>
-        <td><input type="file" name="file" value="" required></td>
+        <td colspan="2"><center><button type="submit" class="btn btn-success">Upload</button><center></td>
+      </tr> 
+    </table>
+  </form>
+  <br>
+  <form action="<?php echo FRONT_ROOT ?>Appointment/Add" method="POST">
+    <table style="width: 80vh;">
+      <tr>
+        <input type="hidden" name="studentId" value="<?php echo $currentUser->getUserId() ?>">
+        <input type="hidden" name="jobOfferId" value="<?php echo $jobOfferId; ?>">
       </tr>
       <tr>
         <td><label for="referenceURL">Reference URL</label></td>
         <td><input type="text" name="referenceURL" required></td>
       </tr> 
       <tr>
-        <td><label for="referenceURL">Comments</label></td>
+        <td><label for="comments">Comments</label></td>
         <td><textarea placeholder="Max 150 characters..." maxlength="150" name="comments" cols="23" rows="3"></textarea> </td>
       </tr>      
       <tr>

@@ -95,15 +95,21 @@ create table users(
 	foreign key (roleId) references roles(roleId)
 );
 
-DELIMITER $$
-DROP PROCEDURE IF EXISTS cv_add $$
-CREATE PROCEDURE cv_add(IN name VARCHAR(100), IN stuId INT, IN jobId INT)
-BEGIN
-    UPDATE appointments
-    SET cv = name
-    WHERE studentId = stuId AND jobOfferId = jobId;
-END$$
+CREATE TABLE cvs
+(
+    cvId INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name NVARCHAR(100) NOT NULL
+)Engine=InnoDB;
 
+DELIMITER $$
+CREATE PROCEDURE cv_add(IN Name VARCHAR(100))
+BEGIN
+    INSERT INTO cvs
+        (name)
+    VALUES
+        (name);
+
+END$$
 DELIMITER ;
 
 -- INSERT
@@ -124,3 +130,4 @@ SELECT * FROM users;
 SELECT * FROM appointments;
 SELECT * FROM joboffers;
 SELECT * FROM companies;
+SELECT * FROM cvs;

@@ -55,14 +55,12 @@ class AppointmentDAO implements IAppointmentDAO{
             }
         }
 
-        public function addCV($cv, $studentId, $jobOfferId){
+        public function addCV($fileName){
             try
             {
                 $query = "CALL cv_add(?);";
                 
-                $parameters["name"] = $cv->getName();
-                $parameters["stuId"] = $studentId;
-                $parameters["jobId"] = $jobOfferId;
+                $parameters["name"] = $fileName;
 
                 $this->connection = Connection::GetInstance();
 

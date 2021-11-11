@@ -43,7 +43,7 @@ class AppointmentController
             //require_once(VIEWS_PATH."appointment-list.php");
         }
 
-        public function Add($studentId, $jobOfferId, $file, $referenceURL, $comments){
+        public function Add($studentId, $jobOfferId, $referenceURL, $comments){
             $currentStudent = (new SessionHelper)->getCurrentUser();        
             $appointmentList = $this->appointmentDAO->GetAll();
 
@@ -75,7 +75,6 @@ class AppointmentController
                 $appointmentList = $this->appointmentDAO->GetAll();
 
                 $currentStudent->setAppointment($appointment);
-                $this->Upload($file, $studentId, $jobOfferId);
             }else
                 ?> <script>alert('You´re already registered for this job offer!')</script> <?php           
 
@@ -95,8 +94,9 @@ class AppointmentController
             (new HomeController)->Index();
         }
 
-        public function Upload($file, $studentId, $jobOfferId)
+        public function Upload($file)
         {
+            var_dump($file);
             try
             {
                 $fileName = $file["name"];
@@ -109,9 +109,7 @@ class AppointmentController
 
                 if (move_uploaded_file($tempFileName, $filePath))
                 {
-                    $cv = new CV();
-                    $cv->setName($fileName);
-                    $this->appointmentDAO->addCV($cv, $studentId, $jobOfferId);
+                    $this->appointmentDAO->addCV($fileName);
                     $message = "CV successfully uploaded!";
                 }
                 else
