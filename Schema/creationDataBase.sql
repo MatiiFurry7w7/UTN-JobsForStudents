@@ -1,9 +1,4 @@
--- CREATION OF THE DATABASE "JOBSFORSTUDENTS" 
-CREATE DATABASE JobsForStudents;
-
--- TO USE THIS DATABASE
-use JobsForStudents;
-
+DROP DATABASE JobsForStudents;
 drop table careers;
 drop table appointments;
 drop table joboffers;
@@ -11,6 +6,12 @@ drop table companies;
 drop table jobpositions;
 drop table joboffers;
 drop table companies;
+
+-- CREATION OF THE DATABASE "JOBSFORSTUDENTS" 
+CREATE DATABASE JobsForStudents;
+
+-- TO USE THIS DATABASE
+use JobsForStudents;
 
 -- CREATION OF TABLE: COMPANIES
 create table companies
@@ -42,6 +43,20 @@ create table careers
 	title varchar(50), 
 	description varchar(100),
 	active boolean
+);
+-- CREATION OF TABLE: Roles
+create table roles(
+	roleId int auto_increment primary key,
+	userRole varchar(50)
+);
+
+-- CREATION OF TABLE: users
+create table users(
+	userId int auto_increment primary key,
+	email varchar(50), 
+	password varchar(50),
+	roleId int not null, 
+	foreign key (roleId) references roles(roleId)
 );
 
 -- CREATION OF TABLE: JOBOFFERS
@@ -78,23 +93,6 @@ create table appointments(
     constraint appointmentId primary key (studentId, jobOfferId)
 );
 
-create table roles(
-	roleId int auto_increment primary key,
-	userRole varchar(50)
-);
-
-insert into roles (userRole) values 
-('admin'),
-('student');
-
-create table users(
-	userId int auto_increment primary key,
-	email varchar(50), 
-	password varchar(50),
-	roleId int not null, 
-	foreign key (roleId) references roles(roleId)
-);
-
 CREATE TABLE cvs
 (
     cvId INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -113,8 +111,12 @@ END$$
 DELIMITER ;
 
 -- INSERT
+insert into roles (userRole) values 
+('admin'),
+('student');
+
 INSERT INTO users VALUES
-(default, "Mati@gmail.com", "123", 1);
+(default, "Franco@gmail.com", "123", 1);
 
 -- DELETE 
 DELETE FROM companies WHERE companyId > -1;
@@ -125,7 +127,6 @@ DELETE FROM cvs WHERE cvId > -1;
 
 update companies set active = 1 where companyId  = 1;
 update appointments set active = 1 where studentid  > 0;
-
 
 -- SELECT
 SELECT * FROM administrators;
