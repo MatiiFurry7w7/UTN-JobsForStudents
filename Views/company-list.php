@@ -26,7 +26,7 @@
     <table id="studentsTable">
       <thead>
         <tr id="tableIndex">
-            <td>Active</td>
+            <td>Status</td>
             <td>Name</td>
             <td>CUIT</td>
             <td>Website</td>
@@ -54,7 +54,7 @@
                       $i++;
                      ?>
                       <tr> 
-                        <td><?php echo $company->getActive() == 1 ? "Yes" : "No" ?></td>
+                        <td><?php echo $company->getActive() == 1 ? "Active" : "Inactive" ?></td>
                         <td><?php echo $company->getName() ?></td>
                         <td><?php echo $company->getCuit() ?></td>
                         <td><a href='<?php echo $company->getWebsite()?>'><?php echo $company->getWebsite()?></a></td>
@@ -79,7 +79,7 @@
                       if($isAdmin || $company->getActive() == 1) {
                       ?>
                       <tr>
-                        <td><?php echo $company->getActive() == 1 ? "Yes" : "No" ?></td>
+                        <td><?php echo $company->getActive() == 1 ? "Active" : "Inactive" ?></td>
                         <td><?php echo $company->getName() ?></td>
                         <td><?php echo $company->getCuit() ?></td>
                         <td><a href='<?php echo $company->getWebsite()?>'><?php echo $company->getWebsite()?></a></td>
@@ -94,7 +94,7 @@
                          }
                          if($isAdmin) {
                           ?>
-                              <td><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>Company/Remove?removeId=<?php echo $company->getCompanyId() ?>'">Inactive</button></td>
+                              <td><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>Company/Remove?removeId=<?php echo $company->getCompanyId() ?>'">Change Status</button></td>
                               <td><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>Company/ModifyView?modifyId=<?php echo $company->getCompanyId() ?>'">Edit</button></td>
                           <?php
                           }

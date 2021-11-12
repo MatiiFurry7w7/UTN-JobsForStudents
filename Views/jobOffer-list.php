@@ -11,7 +11,7 @@ include_once('header.php');
                 <td>Title</td>
                 <td>Job Position</td>
                 <td>Published Date</td>
-                <td>Active</td>
+                <td>Status</td>
                 <td>Company</td>
                 <?php
                                 if($isAdmin){
@@ -24,7 +24,7 @@ include_once('header.php');
         <?php }else {?> <td></td> <?php }
         foreach($jobOfferList as $jobOffer){
 
-                $isActive = $jobOffer->getActive() == 1 ? "Yes" : "No";
+                $isActive = $jobOffer->getActive() == 1 ? "Active" : "Inactive";
                 $isRemote = $jobOffer->getRemote() == 1 ? "Yes" : "No";
                 ?><tr>
                         <td style='max-width: 230px;'><?php echo $jobOffer->getTitle() ?></td>
@@ -39,7 +39,7 @@ include_once('header.php');
                                         ?>                    
                                                 <!--<td style='max-width: 230px;'><?php //echo $admin->getEmail() ?></td>-->  
                                                 <td><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>Appointment/AppointmentsOfJobOffer?jobOfferId=<?php echo $jobOffer->getJobOfferId() ?>'">See Appointments</button></td>           
-                                                <td><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>JobOffer/Remove?removeId=<?php echo $jobOffer->getJobOfferId() ?>'">Inactive</button></td>
+                                                <td><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>JobOffer/Remove?removeId=<?php echo $jobOffer->getJobOfferId() ?>'">Change Status</button></td>
                                                 <td><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>JobOffer/ModifyView?modifyId=<?php echo $jobOffer->getJobOfferId() ?>'">Edit</button></td>
                                        <?php
                                 }

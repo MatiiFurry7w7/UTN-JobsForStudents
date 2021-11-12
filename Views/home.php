@@ -45,6 +45,14 @@
                 From <?php echo $jobOffer->getCompany()->getName(); ?>
               </th>
               <tr>
+                <td>Career</td>
+                <td style='max-width: 230px;'><?php echo $jobOffer->getJobPosition()->getCareer()->getDescription()?></td>
+              </tr> 
+              <tr>
+                <td>Job Position</td>
+                <td style='max-width: 230px;'><?php echo $jobOffer->getJobPosition()->getDescription()?></td>
+              </tr> 
+              <tr>
                 <td>Title</td>
                 <td style='max-width: 230px;'><?php echo $jobOffer->getTitle()?></td>
               </tr>  

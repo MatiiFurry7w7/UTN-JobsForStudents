@@ -65,7 +65,7 @@
           </td>
         </tr> 
             <tr>
-              <td style="width: 200px;"><label for="active">Active</label></td> 
+              <td style="width: 200px;"><label for="active">Status</label></td> 
               <td>
                 <input type="radio" name="active" value="true" checked required>Active
                 <input type="radio" name="active" value="false" required>Not active

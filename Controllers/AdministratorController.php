@@ -3,6 +3,7 @@
 
     use DAO\AdministratorDAO as AdministratorDAO;
     use Helpers\SessionHelper as SessionHelper;
+    use Helpers\MessageHelper as MessageHelper;
     use Models\Administrator as Administrator;
 
     class AdministratorController
@@ -13,7 +14,7 @@
             $this->administratorDAO = new AdministratorDAO();
         }
 
-        public function AddView(){
+        public function AddView($message = ""){
             if((new SessionHelper)->isAdmin()) {
                 require_once(VIEWS_PATH."add-administrator.php");
             } else 
@@ -34,9 +35,7 @@
                 $administratorList = $this->administratorDAO->GetAll();
 
                 if(strcmp($checkPassword, $password) != 0) {
-                    ?>
-                        <script>alert("The input passwords don't match!");</script>
-                    <?php
+                    $message = MessageHelper::PASSWORD_DONT_MATCH;
                 } else {
                     foreach($administratorList as $eachadministrator) {
                         if($eachadministrator->getEmail() == $email){
@@ -51,14 +50,12 @@
                         
                         $this->administratorDAO->Add($administrator);
                     }else{
-                        ?>
-                            <script>alert('The administrator already exists!');</script>
-                        <?php
+                        $message = MessageHelper::ADMINISTRATOR_EXISTS;
                     }
                 }
-                $this->AddView();
+                $this->AddView($message);
             } else 
-                (new HomeController())->Index();
+                (new HomeController())->Index($message);
         }
 
         public function Remove($removeId){

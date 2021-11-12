@@ -80,7 +80,7 @@
             <td><input type="text" name="skills" required></td>
           </tr>   
           <tr>
-            <td style="width: 200px;"><label for="active">Active *</label></td> 
+            <td style="width: 200px;"><label for="active">Status *</label></td> 
             <td>
               Active: <input type="radio" name="active" value="1" checked required>
               Not active: <input type="radio" name="active" value="0" required>

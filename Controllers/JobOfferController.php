@@ -10,6 +10,7 @@
     use Models\AdministratorDAO as AdministratorDAO;
     use Models\Administrator as Administrator;
     use Helpers\SessionHelper as SessionHelper;
+    use Helpers\MessageHelper as MessageHelper;
     use Controllers\CompanyController as CompanyController;
 
     class JobOfferController {
@@ -19,7 +20,7 @@
             $this->jobOfferDAO = new JobOfferDAO();
         }
 
-        public function ShowAddView($careerId = "") {
+        public function ShowAddView($careerId = "", $message = "") {
             if((new SessionHelper)->isAdmin()) {
                 $careerDAO = new APICareerDAO();
                 $careerList = $careerDAO->GetAll();
@@ -44,14 +45,14 @@
                     $admin = (new SessionHelper)->getCurrentUser();
                     require_once(VIEWS_PATH."add-jobOffer.php");
                 }else{
-                    echo "<script>alert('There are no companies to add to the job offer!')</script>";
-                    (new CompanyController())->ShowAddView();
+                    $message = MessageHelper::NO_COMPANY;
+                    (new CompanyController())->ShowAddView($message);
                 }
             } else 
                 (new HomeController())->Index();
         }
 
-        public function ShowListView(){
+        public function ShowListView($message = ""){
             $jobOfferList = $this->jobOfferDAO->GetAll();
 
             if(!$jobOfferList) {
@@ -88,9 +89,9 @@
 
                     $jobOfferList = $this->jobOfferDAO->Add($jobOffer);
                 } else {
-                    ?> <script>alert('Invalid date!')</script><?php
+                    $message = MessageHelper::INVALID_DATE;
                 }
-                $this->ShowAddView();
+                $this->ShowAddView($message);
             } else 
                 (new HomeController())->Index();
         }
@@ -148,10 +149,10 @@
 
                     $this->jobOfferDAO->Modify($jobOffer);
                 } else {
-                    ?> <script>alert('Invalid date!')</script><?php
+                    $message = MessageHelper::INVALID_DATE;
                 }
                 
-                $this->ShowListView();
+                $this->ShowListView($message);
             } else 
                 (new HomeController())->Index();
         }

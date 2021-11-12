@@ -25,8 +25,8 @@
           <td style='max-width: 230px;;'><?php echo $jobOffer->getTask()?></td>
         </tr> 
         <tr>
-          <td>Active</td>
-          <td style='max-width: 230px;;'><?php $isActive = $jobOffer->getActive() == 1 ? "Yes" : "No"; echo $isActive;?></td>
+          <td>Status</td>
+          <td style='max-width: 230px;;'><?php $isActive = $jobOffer->getActive() == 1 ? "Active" : "Inactive"; echo $isActive;?></td>
         </tr> 
         <tr>
           <td>Remote</td>
@@ -47,7 +47,7 @@
         <tr>
           <?php if($isAdmin) { 
             ?>
-            <td><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>JobOffer/Remove?removeId=<?php echo $jobOffer->getJobOfferId() ?>'">Inactive</button></td>
+            <td><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>JobOffer/Remove?removeId=<?php echo $jobOffer->getJobOfferId() ?>'">Change Status</button></td>
             <td><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>JobOffer/ModifyView?modifyId=<?php echo $jobOffer->getJobOfferId() ?>'">Edit</button></td> <?php
           } else {
             ?>
