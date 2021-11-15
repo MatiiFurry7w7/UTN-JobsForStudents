@@ -120,6 +120,11 @@
         }
         ?>
   </table>
+  <?php if(isset($message)){ ?>
+    <script>
+      alert(<?php echo $message?>);
+    </script>
+  <?php}?>
   <font size="3" color="red">* required fields</font>
   <input type="hidden" name="administratorId" value="<?php echo $admin->getUserId() ?>">
 </form>
