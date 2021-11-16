@@ -91,7 +91,7 @@
                 } else {
                     $message = MessageHelper::INVALID_DATE;
                 }
-                $this->ShowAddView($message);
+                $this->ShowAddView("", $message);
             } else 
                 (new HomeController())->Index();
         }

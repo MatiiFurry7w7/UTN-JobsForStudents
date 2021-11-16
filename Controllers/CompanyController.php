@@ -4,6 +4,7 @@
     use DAO\CompanyDAO as CompanyDAO;
     use Models\Company as Company;
     use Helpers\SessionHelper as SessionHelper;
+    use Helpers\MessageHelper as MessageHelper;
     use Models\Administrator as Administrator;
     use Models\Industry as Industry;
 
@@ -14,13 +15,13 @@
             $this->companyDAO = new CompanyDAO();
         }
 
-        public function ShowAddView(){
+        public function ShowAddView($message = ""){
             if((new SessionHelper)->isAdmin()) {   
                 $industryList = Industry::GetAll();
                 require_once(VIEWS_PATH."add-company.php");
 
             } else 
-                (new HomeController())->Index();
+                (new HomeController())->Index($message);
         }
 
         public function ShowListView($searchedCompany = ""){
@@ -67,9 +68,7 @@
                         $this->companyDAO->Add($company);
         
                     } else {
-                        ?>
-                            <script>alert('The company already exists!');</script>
-                        <?php
+                        $message = MessageHelper::ALREADY_EXISTS_COMPANY;
                     }
 
                 } else {
@@ -86,9 +85,9 @@
                         $this->companyDAO->Add($company);
                 }
 
-                $this->ShowAddView();
+                $this->ShowAddView($message);
             } else 
-                (new HomeController())->Index();
+                (new HomeController())->Index($message);
         }
 
         public function Remove($removeId){

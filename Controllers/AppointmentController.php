@@ -6,6 +6,7 @@
     use DAO\Connection as Connection;
     use DAO\JobOfferDAO;
     use Helpers\SessionHelper as SessionHelper;
+    USE Helpers\MessageHelper as MessageHelper;
     use Models\Appointment as Appointment;
     use Models\CV;
 
@@ -75,9 +76,9 @@ class AppointmentController
                 $currentStudent->setAppointment($appointment);
                 //$this->Upload($file, $studentId, $jobOfferId);
             } else{
-                ?> <script>alert('You´re already registered for this job offer!')</script> <?php   
+                $message = MessageHelper::ALREADY_REGISTERED_JO;   
             }
-            (new HomeController)->Index();
+            (new HomeController)->Index($message);
         }
 
         public function AppointmentView(){
@@ -146,16 +147,13 @@ class AppointmentController
                         $cv = new CV();
                         $cv->setName($fileName);
                         $this->appointmentDAO->addCV($cv);
-                        $message = "CV successfully uploaded!";
+                        $message = MessageHelper::CV_UPLOADED;
                     }
                     else
-                        $message = "There was an error adding the CV!";
+                        $message = MessageHelper::ERROR_CV;
                 }else{
-                    ?>
-                    <script>alert('The CV must be in PDF format!')</script>
-                <?php
+                    $message = MessageHelper::PDF_FORMAT;
                 }
-                (new HomeController)->Index();        
             }
             catch(Exception $ex)
             {

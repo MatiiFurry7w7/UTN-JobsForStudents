@@ -6,6 +6,11 @@
         public const ADMINISTRATOR_EXISTS = 'The administrator already exists!';
         public const NO_COMPANY = 'There are no companies to add to the job offer!';
         public const INVALID_DATE = 'Invalid date!';
-
+        public const PDF_FORMAT = 'The CV must be in PDF format!';
+        public const ERROR_CV = "There was an error adding the CV!";
+        public const CV_UPLOADED = "CV successfully uploaded!";
+        public const ALREADY_REGISTERED_JO = 'You´re already registered for this job offer!';
+        public const ALREADY_EXISTS_COMPANY = 'The company already exists!';
+        public const REGISTER_COMPLETE = 'Register Complete!';
     }
 ?>

@@ -67,8 +67,8 @@ class StudentController{
                             $newStudent->setPassword($password);
             
                             $this->studentDAO->add($newStudent);
-                            echo "<script>alert('Register Complete!')</script>";
-                            (new LoginController)->LoginView();
+                            $message = MessageHelper::REGISTER_COMPLETE;
+                            (new LoginController)->LoginView($message);
                         }
                     //If UTN student does not exist
                     }else{
