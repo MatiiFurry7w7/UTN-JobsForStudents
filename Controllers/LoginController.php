@@ -1,29 +1,28 @@
 <?php
     namespace Controllers;
 
-    use DAO\AdministratorDAO as AdministratorDAO;
-    use DAO\StudentDAO as StudentDAO;
-
     use Models\Administrator as Administrator;
     use Models\Student as Student;
     use Helpers\SessionHelper as SessionHelper;
-    use Controllers\StudentController as StudentController;
     use DAO\AppointmentDAO;
     use DAO\APICareerDAO;
+    use DAO\CompanyDAO;
+    use DAO\UserDAO;
     use DAO\UTNAPIStudentDAO;
+    use Models\CompanyUser;
 
 class LoginController{
 
-        private $studentDAO;
+        private $userDAO;
         private $UTNAPIDAO;
-        private $administratorDAO;
         private $careerDAO;
+        private $companyDAO;
 
         public function __construct(){
             $this->UTNAPIDAO = new UTNAPIStudentDAO();
-            $this->studentDAO = new StudentDAO();
-            $this->administratorDAO = new administratorDAO();
+            $this->userDAO = new UserDAO();
             $this->careerDAO = new APICareerDAO();
+            $this->companyDAO = new CompanyDAO();
         }
 
         public function LogInView($message = ""){
@@ -36,52 +35,66 @@ class LoginController{
 
             $loginUser = null;
 
-            //Login if Admin
-            foreach($this->administratorDAO->getAll() as $eachAdmin){
-                //echo "<br>".$eachAdmin->getusername()." == ".$userName."<br>";
-                if($eachAdmin->getEmail() == $email)
-                   $loginUser = $eachAdmin;
-            }
-            
-            //Login if Student
-            if($loginUser == null){
-                $UTNAPILIST = $this->UTNAPIDAO->loadFromAPI();
-                $studentList = $this->studentDAO->getAll();
+            //Login
+            foreach($this->userDAO->getAll() as $eachUser)
+                if($eachUser->getEmail() == $email && $eachUser->getPassword() == $userPassword){
+                    $active = null;
+                    switch($eachUser->getRole()){
+                        case("company"):
+                            $user = new CompanyUser();
+                            $company = ($this->companyDAO)->getCompanyByCompanyUserId($eachUser->getUserId());
+                            if($company)
+                                $user->setCompany($company);
+                            $active = true;
+                            break;
+                        case("admin"):
+                            $user = new Administrator();
+                            $active = true;
+                            break;
+                        case("student"):
+                            $user = new Student();
 
-                if($studentList != null){
-                    $appointmentList = (new AppointmentDAO)->getAll();
-                    foreach($studentList as $eachStudent){
-                        if($eachStudent->getEmail() == $email && $eachStudent->getPassword() == $userPassword)
-                            foreach($UTNAPILIST as $eachUTNStudent)
-                                if($eachStudent->getEmail() == $eachUTNStudent->email){
-                                    if($eachUTNStudent->active == true){
-                                        $eachStudent->setFirstName($eachUTNStudent->firstName);
-                                        $eachStudent->setLastName($eachUTNStudent->lastName);
-                                        $eachStudent->setPhoneNumber($eachUTNStudent->phoneNumber);
-                                        $eachStudent->setGender($eachUTNStudent->gender);
-                                        $eachStudent->setDNI($eachUTNStudent->dni);
-                                        $eachStudent->setBirthDate($eachUTNStudent->birthDate);
-                                        $eachStudent->setCareer($eachUTNStudent->careerId);
-                                        $eachStudent->setFileNumber($eachUTNStudent->fileNumber);
+                                foreach($this->UTNAPIDAO->loadFromAPI() as $eachUTNStudent)
+                                    if($eachUser->getEmail() == $eachUTNStudent->email){
+                                        if($eachUTNStudent->active == true){
+                                            $user->setFirstName($eachUTNStudent->firstName);
+                                            $user->setLastName($eachUTNStudent->lastName);
+                                            $user->setPhoneNumber($eachUTNStudent->phoneNumber);
+                                            $user->setGender($eachUTNStudent->gender);
+                                            $user->setDNI($eachUTNStudent->dni);
+                                            $user->setBirthDate($eachUTNStudent->birthDate);
+                                            $user->setCareer($eachUTNStudent->careerId);
+                                            $user->setFileNumber($eachUTNStudent->fileNumber);
+                                        
+                                            $appointmentList = (new AppointmentDAO)->getAll();
 
-                                        if($appointmentList)
-                                            foreach($appointmentList as $eachAppointment)
-                                                if($eachAppointment->getStudent() == $eachStudent->getUserId()){
-                                                    $eachStudent->setAppointment($eachAppointment);
-                                                }
-
-                                        $loginUser = $eachStudent;
+                                            if($appointmentList)
+                                                foreach($appointmentList as $eachAppointment)
+                                                    if($eachAppointment->getStudent() == $eachUser->getUserId())
+                                                        $user->setAppointment($eachAppointment);
+                                            $active = true;
+                                        }
+                                        else{
+                                            $this->LogInView("That student is not active!");
+                                            $active = false;
+                                        }
                                     }
-                                    else
-                                       $this->LogInView("That student is not active!");
-                                }
+                            break;
+                    }
+
+                    if($active == true){
+                        $user->setUserId($eachUser->getUserId());
+                        $user->setEmail($eachUser->getEmail());
+                        $user->setPassword($eachUser->getPassword());
+                        $user->setRole($eachUser->getRole());
+    
+                        $loginUser = $user;
                     }
                 }
-            }
 
-            if($loginUser == null){
+            if($loginUser == null)
                 $this->LogInView("Those login credentials doesn't exist in our database!");
-            }else{
+            else{
                 (new SessionHelper())->setCurrentUser($loginUser);
                 $this->careerDAO->LoadFromAPI();
                 header("location: ".FRONT_ROOT."Home/Index");

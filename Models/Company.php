@@ -14,6 +14,7 @@
         private $industry; //relation one to many
         private $jobOffer; //relation one to many
         private $administrator; //relation one to one
+        private $companyUser;
 
         //CONSTRUCTOR
         // public function __construct($name, $cuit, $description, $website, $address, $aboutUs, $active) {
@@ -123,6 +124,14 @@
             $this->administrator = $administrator;
         }
 
+        public function getCompanyUser(){
+            return $this->companyUser;
+        }
+
+        public function setCompanyUser($companyUser){
+            $this->companyUser = $companyUser;
+        }
+
         //TO STRING METHOD
         public function __toString() {
             return  "<br>ID: ".$this->companyId.
@@ -130,11 +139,8 @@
                     "<br>CUIT: ".$this->cuit.
                     "<br>Description: ".$this->description.
                     "<br>Web Site: ".$this->website.
-                    "<br>Address: ".$this->address.
                     "<br>About us: ".$this->aboutUs.
                     "<br>Active: ".$this->active.
-                    "<br>Industries: ".
-                    "<br>-------------------------------".$this->industries.
                     "<br>Job Offer: ".
                     "<br>-------------------------------".$this->jobOffer.
                     "<br>Administrator: ".

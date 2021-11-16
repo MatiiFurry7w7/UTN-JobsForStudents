@@ -1,6 +1,6 @@
 <?php namespace Models;
 
-abstract class User{
+class User{
     private $userId;
     private $email; 
     private $password; 

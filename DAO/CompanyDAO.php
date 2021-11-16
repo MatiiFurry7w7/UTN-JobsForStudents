@@ -15,8 +15,8 @@
         {
             try
             {
-                $query = "INSERT INTO ".$this->tableName." (name, cuit, description, website, street, number_street, aboutUs, active, industry) 
-                    VALUES (:name, :cuit, :description, :website, :street, :number_street, :aboutUs, :active, :industry);";
+                $query = "INSERT INTO ".$this->tableName." (name, cuit, description, website, street, number_street, aboutUs, active, industry, companyUserId) 
+                    VALUES (:name, :cuit, :description, :website, :street, :number_street, :aboutUs, :active, :industry, :companyUserId);";
 
                 $parameters["name"] = $company->getName();
                 $parameters["cuit"] = $company->getCuit();
@@ -27,6 +27,7 @@
                 $parameters["aboutUs"] = $company->getAboutUs();
                 $parameters["active"] = $company->getActive();
                 $parameters["industry"] = $company->getIndustry();
+                $parameters["companyUserId"] = $company->getCompanyUser()->getUserId();
 
                 $this->connection = Connection::GetInstance();
 
@@ -64,6 +65,7 @@
                         $company->setAboutUs($row["aboutUs"]);
                         $company->setActive($row["active"]);
                         $company->setIndustry($row["industry"]);
+                        $company->setCompanyUser((new UserDAO)->FindById($row["companyUserId"]));
             
                         array_push($companyList, $company);
                     }
@@ -119,6 +121,7 @@
                     $company->setAboutUs($result["aboutUs"]);
                     $company->setActive($result["active"]);
                     $company->setIndustry($result["industry"]);
+                    $company->setCompanyUser((new UserDAO)->FindById($result["companyUserId"]));
                 
                     return $company;
                 }
@@ -128,6 +131,41 @@
                 throw $ex;
             }
         }
+
+        public function getCompanyByCompanyUserId($companyUserId)
+        {
+            try
+            {
+                $query = "SELECT * FROM ".$this->tableName.' WHERE (companyUserId = :companyUserId);';
+
+                $this->connection = Connection::GetInstance();
+                
+                $parameters["companyUserId"] = $companyUserId;
+
+                $result = $this->connection->Execute($query, $parameters)[0];
+
+                if($result) {
+                    $company = new Company();
+                    $company->setCompanyId($result["companyId"]);
+                    $company->setName($result["name"]);
+                    $company->setCuit($result["cuit"]);
+                    $company->setDescription($result["description"]);
+                    $company->setWebsite($result["website"]);
+                    $company->setStreet($result["street"]);
+                    $company->setNumber($result["number_street"]);
+                    $company->setAboutUs($result["aboutUs"]);
+                    $company->setActive($result["active"]);
+                    $company->setIndustry($result["industry"]);
+                
+                    return $company;
+                }
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
+        }
+
 
         public function ModifyById($addingCompany)
         {

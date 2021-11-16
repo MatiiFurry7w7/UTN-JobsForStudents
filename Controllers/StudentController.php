@@ -7,6 +7,7 @@
     use Models\Student as Student;
     use Models\Administrator as Administrator;
     use Helpers\SessionHelper as SessionHelper;
+    use Helpers\MessageHelper as MessageHelper;
     use Controllers\LoginController as LoginController;
     use DAO\UTNAPIStudentDAO;
 
@@ -80,7 +81,7 @@ class StudentController{
         }
 
         public function ListView(){
-            if((new SessionHelper())->isAdmin()) {
+            if((new SessionHelper())->isAdmin() || (new SessionHelper)->isCompany()) {
             $studentList = $this->studentDAO->getAll();
             $newStudentList = array();
 

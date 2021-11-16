@@ -16,7 +16,7 @@
         }
 
         public function ShowAddView($message = ""){
-            if((new SessionHelper)->isAdmin()) {   
+            if((new SessionHelper)->isAdmin() || (new SessionHelper)->isCompany()) {   
                 $industryList = Industry::GetAll();
                 require_once(VIEWS_PATH."add-company.php");
 
@@ -36,8 +36,9 @@
         }
 
         public function Add($name, $cuit, $description, $website, $street, $number_street, $aboutUs, $isActive, $industry){
-            if((new SessionHelper)->isAdmin()) {   
+            if((new SessionHelper)->isAdmin() || (new SessionHelper)->isCompany()) {   
                 $company = new Company();
+                $currentUser = (new SessionHelper)->getCurrentUser();
 
                 $companyExist = false;
                 
@@ -64,9 +65,14 @@
                         $company->setAboutUs($aboutUs);
                         $company->setActive($isActive);
                         $company->setIndustry($industry);
+                        if((new SessionHelper)->isCompany()){
+                            $company->setCompanyUser($currentUser);
+                        }
 
                         $this->companyDAO->Add($company);
-        
+                        if((new SessionHelper)->isCompany())
+                            $currentUser->setCompany(($this->companyDAO)->getCompanyByCompanyUserId($currentUser->getUserId()));     
+                        
                     } else {
                         $message = MessageHelper::ALREADY_EXISTS_COMPANY;
                     }
@@ -81,17 +87,21 @@
                         $company->setAboutUs($aboutUs);
                         $company->setActive($isActive);
                         $company->setIndustry($industry);
+
+                        if((new SessionHelper)->isCompany()){
+                            $company->setCompanyUser($currentUser);
+                        }
                         
                         $this->companyDAO->Add($company);
+                        if((new SessionHelper)->isCompany())
+                            $currentUser->setCompany(($this->companyDAO)->getCompanyByCompanyUserId($currentUser->getUserId()));               
                 }
-
-                $this->ShowAddView($message);
-            } else 
                 (new HomeController())->Index($message);
+            }
         }
 
         public function Remove($removeId){
-            if((new SessionHelper)->isAdmin()) {   
+            if((new SessionHelper)->isAdmin() || (new SessionHelper)->isCompany()) {   
                 $this->companyDAO->DeleteById($removeId);
                 $this->ShowListView();
             } else 
@@ -99,7 +109,7 @@
         }
 
         public function ModifyView($modifyId){
-            if((new SessionHelper)->isAdmin()) {   
+            if((new SessionHelper)->isAdmin() || (new SessionHelper)->isCompany()) {   
                 $industryList = Industry::GetAll();
                 $company = $this->companyDAO->FindById($modifyId);
 
@@ -109,7 +119,7 @@
         }
 
         public function ModifyACompany($companyId, $name, $cuit, $description, $website, $street, $number, $aboutUs,$active, $industry){
-            if((new SessionHelper)->isAdmin()) {   
+            if((new SessionHelper)->isAdmin() || (new SessionHelper)->isCompany()) {   
                 $addingCompany = new Company();
                 
                 if(str_contains($website, "https://") !== true){
@@ -126,6 +136,8 @@
                 $addingCompany->setAboutUs($aboutUs);
                 $addingCompany->setActive($active);
                 $addingCompany->setIndustry($industry);
+                if((new SessionHelper)->isCompany())
+                    $addingCompany->setCompanyUser((new SessionHelper)->getCurrentUser());
 
                 $this->companyDAO->ModifyById($addingCompany);
                 

@@ -21,7 +21,7 @@
         }
 
         public function ShowAddView($careerId = "", $message = "") {
-            if((new SessionHelper)->isAdmin()) {
+            if((new SessionHelper)->isAdmin() || (new SessionHelper)->isCompany()) {
                 $careerDAO = new APICareerDAO();
                 $careerList = $careerDAO->GetAll();
     
@@ -66,7 +66,7 @@
         }
 
         public function Add($jobPositionId, $companyId, $title, $publishedDate, $finishDate, $task, $skills, $active, $remote, $salary, $dedication, $administratorId) {
-            if((new SessionHelper)->isAdmin()) {
+            if((new SessionHelper)->isAdmin() || (new SessionHelper)->isCompany()) {
                 $jobOffer = new JobOffer();
                 
                 if($this->checkDates($publishedDate, $finishDate)){
@@ -97,7 +97,7 @@
         }
 
         public function Remove($removeId){
-            if((new SessionHelper)->isAdmin()) {
+            if((new SessionHelper)->isAdmin() || (new SessionHelper)->isCompany()) {
                 $this->jobOfferDAO->DeleteById($removeId);  
                 $this->ShowListView();
             } else 
@@ -105,7 +105,7 @@
         }
 
         public function ModifyView($modifyId){
-            if((new SessionHelper)->isAdmin()) {
+            if((new SessionHelper)->isAdmin() || (new SessionHelper)->isCompany()) {
                 $jobOffer = $this->jobOfferDAO->FindById($modifyId);
                 $dedicationList = Dedication::GetAll();
                 
@@ -124,7 +124,7 @@
         }
 
         public function ModifyAJobOffer($jobOfferId, $title, $publishedDate, $finishDate, $task, $skills, $active, $remote, $salary, $jobPositionId, $dedication, $companyId, $administratorId){
-            if((new SessionHelper)->isAdmin()) {
+            if((new SessionHelper)->isAdmin() || (new SessionHelper)->isCompany()) {
                 if($this->checkDates($publishedDate, $finishDate)){
 
                     $jobOffer = new JobOffer();

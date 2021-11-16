@@ -3,12 +3,14 @@
 
     //use DAO\IUserDAO as IUserDAO;
     use DAO\RoleDAO;
+    use DAO\IUserDAO;
+    use Models\User;
     use Models\Student;
     use Models\Administrator as Administrator;
     use \Exception as Exception;
     use DAO\Connection as Connection;
 
-    class UserDAO /*IMPLEMENTS IUSERDAO*/{
+class UserDAO implements IUserDAO{
 
         private $connection;
         private $tableName = "users";
@@ -47,7 +49,40 @@
                 throw $ex;
             }
         }
+
+        //To login
+        public function getAll(){
+            try
+            {
+                $userList = array();
+
+                $query = "SELECT * FROM ".$this->tableName.";";
+
+                $this->connection = Connection::GetInstance();
+
+                $resultSet = $this->connection->Execute($query);
+                
+                foreach ($resultSet as $row)
+                {                
+                    $administrator = new User();
+                    
+                    $administrator->setUserId($row["userId"]);
+                    $administrator->setEmail($row["email"]);
+                    $administrator->setPassword($row["password"]);
+                    $administrator->setRole((new RoleDAO)->getRoleById($row["roleId"]));
+        
+                    array_push($userList, $administrator);
+                }
+                
+                return $userList;
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
+        }
  
+        //to list, not to LOG IN
         public function GetAllAdmins(){
             try
             {
@@ -78,6 +113,7 @@
             }
         }
 
+        //to list, not to LOG IN
         public function GetAllStudents(){
             try{
                 $companyList = array();
@@ -94,7 +130,7 @@
                         $student->setUserId($row["userId"]);
                         $student->setEmail($row["email"]);
                         $student->setPassword($row["password"]);
-            
+                        
                         array_push($companyList, $student);
                     }
                     return $companyList;

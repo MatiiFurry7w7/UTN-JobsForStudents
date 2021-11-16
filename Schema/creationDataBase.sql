@@ -119,6 +119,7 @@ insert into roles (userRole) values
 ('company');
 
 INSERT INTO users VALUES
+(default, "Company@gmail.com", "123", 3),
 (default, "Mati@gmail.com", "123", 1);
 
 -- DELETE 
@@ -129,8 +130,8 @@ DELETE FROM users WHERE userId > -1;
 DELETE FROM cvs WHERE cvId > -1;
 DELETE FROM roles WHERE roleId > 2;
 
-update companies set active = 1 where companyId  = 1;
-update appointments set active = 1 where studentid  > 0;
+ALTER TABLE companies ADD
+FOREIGN KEY (companyUserId) REFERENCES users (userId);
 
 -- SELECT
 SELECT * FROM roles;
