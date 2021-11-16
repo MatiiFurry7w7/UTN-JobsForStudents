@@ -11,7 +11,7 @@
               <th style="border-radius: 0px;" colspan="5"><center><h4>My Appointment</h4></center></th>
             </tr>
             <input type="hidden" name="studentId" value="<?php echo $currentStudent->getUserId()?>">
-            <input type="hidden" name="jobOfferId" value="<?php echo $appointment->getJobOfferId()?>">
+            <input type="hidden" name="jobOfferId" value="<?php echo $appointment->getJobOffer()->getJobOfferId() ?>">
             <tr id="tableIndex">
                     <td>Date</td>
                     <td>Reference</td>

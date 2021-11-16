@@ -5,6 +5,7 @@
     use \Exception as Exception;
     use DAO\Connection as Connection;
     use DAO\JobOfferDAO;
+    use DAO\UserDAO;
     use Helpers\SessionHelper as SessionHelper;
     USE Helpers\MessageHelper as MessageHelper;
     use Models\Appointment as Appointment;
@@ -49,16 +50,18 @@ class AppointmentController
             $found = false;
 
             foreach($appointmentList as $eachAppointment){
-                if($eachAppointment->getStudentId() == $studentId &&
-                   $eachAppointment->getJobOfferId() == $jobOfferId)
+                if($eachAppointment->getStudent()->getUserId() == $studentId &&
+                   $eachAppointment->getJobOffer()->getJobOfferId() == $jobOfferId)
                     $found = true;
             }
 
             if(!$found){
                 $appointment = new Appointment();
+                $userDAO = new UserDAO();
+                $jobOfferDAO = new JobOfferDAO();
 
-                $appointment->setStudentId($studentId);
-                $appointment->setJobOfferId($jobOfferId);
+                $appointment->setStudent($userDAO->FindById($studentId));
+                $appointment->setJobOffer($jobOfferDAO->FindById($jobOfferId));
                 $appointment->setDateAppointment(date("c"));
     
                 if(str_contains($referenceURL, "https://") !== true){
@@ -108,10 +111,11 @@ class AppointmentController
 
             $appointmentList = array();
             $isAdmin = (new SessionHelper())->isAdmin();
+            $jobOfferDAO = new JobOfferDAO();
 
             if($allAppointments)
                 foreach($allAppointments as $eachAppointment)
-                    if($eachAppointment->getJobOfferId() == $jobOfferId)
+                    if($eachAppointment->getJobOffer($jobOfferDAO->FindById($jobOfferId))->getJobOfferId() == $jobOfferId)
                         array_push($appointmentList, $eachAppointment);
                     
             require_once(VIEWS_PATH."appointment-history.php");
@@ -122,10 +126,11 @@ class AppointmentController
 
             $appointmentList = array();
             $isAdmin = (new SessionHelper())->isAdmin();
+            $userDAO = new UserDAO();
 
             if($allAppointments)
                 foreach($allAppointments as $eachAppointment)
-                    if($eachAppointment->getStudentId() == $studentId)
+                    if($eachAppointment->getStudent($userDAO->FindById($studentId))->getUserId() == $studentId)
                         array_push($appointmentList, $eachAppointment);
                     
             require_once(VIEWS_PATH."appointment-history.php");
@@ -153,7 +158,7 @@ class AppointmentController
                         $currentUser = (new SessionHelper())->getCurrentUser();
                         $cv->setUser($currentUser);
                         $this->appointmentDAO->addCV($cv);
-                        
+
                         $message = MessageHelper::CV_UPLOADED;
                     }
                     else

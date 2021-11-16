@@ -23,9 +23,9 @@ include_once('header.php');
                 if($eachAppointment->getActive() == 0) {?>
                 <tr>
                         <?php if($isAdmin){ ?>
-                                <td><button class="btn btn-success" onclick="window.location.href='<?php echo FRONT_ROOT ?>Student/ViewStudentDetails?studentId=<?php echo $eachAppointment->getStudentId()?>'">See Student</button></td>
+                                <td><button class="btn btn-success" onclick="window.location.href='<?php echo FRONT_ROOT ?>Student/ViewStudentDetails?studentId=<?php echo $eachAppointment->getStudent()->getUserId() ?>'">See Student</button></td>
                         <?php } ?>
-                        <td> <button class="btn btn-success" onclick="window.location.href='<?php echo FRONT_ROOT ?>JobOffer/ViewDetail?jobOfferId=<?php echo $eachAppointment->getJobOfferId()?>'">See Job Offer</button></td>
+                        <td> <button class="btn btn-success" onclick="window.location.href='<?php echo FRONT_ROOT ?>JobOffer/ViewDetail?jobOfferId=<?php echo $eachAppointment->getJobOffer()->getJobOfferId() ?>'">See Job Offer</button></td>
                         <td><?php echo $eachAppointment->getDateAppointment() ?></td>
                         <td><a href="<?php echo $eachAppointment->getReferenceURL()?>"><?php echo $eachAppointment->getReferenceURL()?></a></td>
                         <td>

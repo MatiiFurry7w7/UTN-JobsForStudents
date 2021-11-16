@@ -2,8 +2,8 @@
 
 class Appointment{
 
-  private $jobOfferID;
-  private $studentID;
+  private $jobOffer;
+  private $student;
   private $cv; 
   private $dateAppointment;
   private $referenceURL;
@@ -47,24 +47,24 @@ class Appointment{
     return $this;
   }
 
-  public function getJobOfferId()
+  public function getJobOffer()
   {
     return $this->jobOffer;
   }
 
-  public function setJobOfferId($jobOffer)
+  public function setJobOffer($jobOffer)
   {
     $this->jobOffer = $jobOffer;
 
     return $this;
   }
  
-  public function getStudentId()
+  public function getStudent()
   {
     return $this->student;
   }
 
-  public function setStudentId($student)
+  public function setStudent($student)
   {
     $this->student = $student;
 

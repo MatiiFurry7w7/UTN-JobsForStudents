@@ -66,7 +66,7 @@ class LoginController{
 
                                         if($appointmentList)
                                             foreach($appointmentList as $eachAppointment)
-                                                if($eachAppointment->getStudentId() == $eachStudent->getUserId()){
+                                                if($eachAppointment->getStudent() == $eachStudent->getUserId()){
                                                     $eachStudent->setAppointment($eachAppointment);
                                                 }
 
