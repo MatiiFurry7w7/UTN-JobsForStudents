@@ -113,10 +113,11 @@ DELIMITER ;
 -- INSERT
 insert into roles (userRole) values 
 ('admin'),
-('student');
+('student'),
+('company');
 
 INSERT INTO users VALUES
-(default, "Franco@gmail.com", "123", 1);
+(default, "Mati@gmail.com", "123", 1);
 
 -- DELETE 
 DELETE FROM companies WHERE companyId > -1;
@@ -124,12 +125,13 @@ DELETE FROM joboffers WHERE jobofferId > -1;
 DELETE FROM appointments WHERE jobofferId > -1;
 DELETE FROM users WHERE userId > -1;
 DELETE FROM cvs WHERE cvId > -1;
+DELETE FROM roles WHERE roleId > 2;
 
 update companies set active = 1 where companyId  = 1;
 update appointments set active = 1 where studentid  > 0;
 
 -- SELECT
-SELECT * FROM administrators;
+SELECT * FROM roles;
 SELECT * FROM users;
 SELECT * FROM appointments;
 SELECT * FROM joboffers;

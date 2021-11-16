@@ -4,6 +4,7 @@ abstract class User{
     private $userId;
     private $email; 
     private $password; 
+    private $role;
 
     //GET/SET
     public function getUserId(){
@@ -28,5 +29,13 @@ abstract class User{
 
     public function setPassword($password){
         $this->password = $password;
+    }
+
+    public function getRole(){
+        return $this->role;
+    }
+
+    public function setRole($role){
+        $this->role = $role;
     }
 }
