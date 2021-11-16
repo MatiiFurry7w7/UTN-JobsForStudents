@@ -46,23 +46,11 @@
         </tr>
   </table>
   <br>
-  <form action="<?php echo FRONT_ROOT ?>Appointment/Upload" method="POST" enctype="multipart/form-data">
+  <form action="<?php echo FRONT_ROOT ?>Appointment/Add" method="POST">
     <table style="width: 80vh;">
       <tr>
         <th colspan="2"><center><h4>Applying Appointment</h4></center></th>
       </tr>
-      <tr>
-        <td><label for="cv">Curriculum Vitae * (PDF)</label></td>
-        <td><input type="file" name="file" id="file" class="form-control-file" required></td>
-      </tr>
-      <tr>
-        <td colspan="2"><center><button type="submit" class="btn btn-success">Upload</button><center></td>
-      </tr> 
-    </table>
-  </form>
-  <br>
-  <form action="<?php echo FRONT_ROOT ?>Appointment/Add" method="POST">
-    <table style="width: 80vh;">
       <tr>
         <input type="hidden" name="studentId" value="<?php echo $currentUser->getUserId() ?>">
         <input type="hidden" name="jobOfferId" value="<?php echo $jobOfferId; ?>">

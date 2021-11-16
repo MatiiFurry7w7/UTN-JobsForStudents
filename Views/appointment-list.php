@@ -12,7 +12,6 @@ include_once('header.php');
         <tr id="tableIndex">
                 <td>ID</td>
                 <td>Job Offer</td>
-                <td>Curriculum Vitae</td>
                 <td>Date Appointment</td>
                 <td>Reference URL</td>
                 <td>Active</td>
@@ -25,7 +24,6 @@ include_once('header.php');
                         <tr>
                                 <td><?php echo $eachAppointment->getStudentId() ?></td>
                                 <td><?php echo $eachAppointment->getJobOfferId() ?></td>
-                                <td><?php echo $eachAppointment->getCv() ?></td>
                                 <td><?php echo $eachAppointment->getDateAppointment() ?></td>
                                 <td><a href="<?php echo $eachAppointment->getReferenceURL()?>"><?php echo $eachAppointment->getReferenceURL()?></a></td>
                                 <td>

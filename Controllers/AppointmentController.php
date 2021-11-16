@@ -59,7 +59,6 @@ class AppointmentController
 
                 $appointment->setStudentId($studentId);
                 $appointment->setJobOfferId($jobOfferId);
-                //$appointment->setCV($file);
                 $appointment->setDateAppointment(date("c"));
     
                 if(str_contains($referenceURL, "https://") !== true){
@@ -74,11 +73,13 @@ class AppointmentController
                 $appointmentList = $this->appointmentDAO->GetAll();
 
                 $currentStudent->setAppointment($appointment);
-                //$this->Upload($file, $studentId, $jobOfferId);
+                
+                $this->AddCv();
             } else{
                 $message = MessageHelper::ALREADY_REGISTERED_JO;   
+
+                (new HomeController)->Index($message);
             }
-            (new HomeController)->Index($message);
         }
 
         public function AppointmentView(){
@@ -130,6 +131,9 @@ class AppointmentController
             require_once(VIEWS_PATH."appointment-history.php");
         }
 
+        public function AddCv($message = "") {
+            require_once(VIEWS_PATH."add-cv.php");
+        }
         public function Upload($file){
             try
             {
@@ -146,7 +150,10 @@ class AppointmentController
                     {
                         $cv = new CV();
                         $cv->setName($fileName);
+                        $currentUser = (new SessionHelper())->getCurrentUser();
+                        $cv->setUser($currentUser);
                         $this->appointmentDAO->addCV($cv);
+                        
                         $message = MessageHelper::CV_UPLOADED;
                     }
                     else
@@ -159,6 +166,7 @@ class AppointmentController
             {
                 $message = $ex->getMessage();
             }
+            (new HomeController)->Index($message);
         }    
     }
 ?>

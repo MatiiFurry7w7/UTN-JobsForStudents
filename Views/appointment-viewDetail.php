@@ -13,7 +13,6 @@
             <input type="hidden" name="studentId" value="<?php echo $currentStudent->getUserId()?>">
             <input type="hidden" name="jobOfferId" value="<?php echo $appointment->getJobOfferId()?>">
             <tr id="tableIndex">
-                    <td>Curriculum Vitae</td>
                     <td>Date</td>
                     <td>Reference</td>
                     <td>Comments</td>
@@ -23,7 +22,6 @@
                     
             </tr>
             <tr>
-                    <td style='max-width: 100px;'><?php echo $appointment->getCv()?></td>
                     <td style='max-width: 100px;'><?php echo $appointment->getDateAppointment() ?></td>
                     <td><a href="<?php echo $appointment->getReferenceURL()?>"><?php echo $currentStudent->getAppointment()->getReferenceURL()?></a></td>
                     <td style='max-width: 100px;'><?php echo $appointment->getComments() ?></td>

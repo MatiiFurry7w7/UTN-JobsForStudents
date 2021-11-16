@@ -58,13 +58,14 @@ class AppointmentDAO implements IAppointmentDAO{
         public function addCV($cv){
             try
             {
-                $query = "CALL cv_add(?);";
-                
+                $query = "INSERT INTO cvs (name, studentId) VALUES (:name, :studentId);";
+
                 $parameters["name"] = $cv->getName();
+                $parameters["studentId"] = $cv->getUser()->getUserId();
 
                 $this->connection = Connection::GetInstance();
 
-                $this->connection->ExecuteNonQuery($query, $parameters, QueryType::StoredProcedure);
+                $this->connection->ExecuteNonQuery($query, $parameters);
             }
             catch(Exception $ex){
                 throw $ex;

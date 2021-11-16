@@ -14,7 +14,6 @@ include_once('header.php');
                         <td>Student</td>
                 <?php } ?>
                 <td>Job Offer</td>
-                <td>Curriculum Vitae</td>
                 <td>Date Appointment</td>
                 <td>Reference URL</td>
                 <td>Active</td>
@@ -27,7 +26,6 @@ include_once('header.php');
                                 <td><button class="btn btn-success" onclick="window.location.href='<?php echo FRONT_ROOT ?>Student/ViewStudentDetails?studentId=<?php echo $eachAppointment->getStudentId()?>'">See Student</button></td>
                         <?php } ?>
                         <td> <button class="btn btn-success" onclick="window.location.href='<?php echo FRONT_ROOT ?>JobOffer/ViewDetail?jobOfferId=<?php echo $eachAppointment->getJobOfferId()?>'">See Job Offer</button></td>
-                        <td><?php echo $eachAppointment->getCv() ?></td>
                         <td><?php echo $eachAppointment->getDateAppointment() ?></td>
                         <td><a href="<?php echo $eachAppointment->getReferenceURL()?>"><?php echo $eachAppointment->getReferenceURL()?></a></td>
                         <td>

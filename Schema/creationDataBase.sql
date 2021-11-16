@@ -96,7 +96,9 @@ create table appointments(
 CREATE TABLE cvs
 (
     cvId INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    name NVARCHAR(100) NOT NULL
+    name NVARCHAR(100) NOT null,
+    studentId int,
+    foreign key (studentId) references users(userId)
 )Engine=InnoDB;
 
 DELIMITER $$
