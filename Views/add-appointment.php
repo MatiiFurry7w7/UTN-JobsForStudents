@@ -71,9 +71,9 @@
   </form>
 </div>
 </center>
-
+<?php if($message) { ?>
+    <script> alert('<?php echo $message?>'); </script>
+<?php } ?>
 <?php
-
-
   include_once('footer.php');
 ?>

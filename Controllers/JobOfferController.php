@@ -66,6 +66,7 @@
         }
 
         public function Add($jobPositionId, $companyId, $title, $publishedDate, $finishDate, $task, $skills, $active, $remote, $salary, $dedication, $administratorId) {
+            $message = MessageHelper::SUCCESSFULLY_CREATED;
             if((new SessionHelper)->isAdmin() || (new SessionHelper)->isCompany()) {
                 $jobOffer = new JobOffer();
                 

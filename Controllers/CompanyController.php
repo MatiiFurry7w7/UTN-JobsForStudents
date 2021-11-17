@@ -36,6 +36,7 @@
         }
 
         public function Add($name, $cuit, $description, $website, $street, $number_street, $aboutUs, $isActive, $industry){
+            $message = "";
             if((new SessionHelper)->isAdmin() || (new SessionHelper)->isCompany()) {   
                 $company = new Company();
                 $currentUser = (new SessionHelper)->getCurrentUser();

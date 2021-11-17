@@ -27,7 +27,7 @@
     </div>
     <?php
       if($message != "")
-        echo "<p id='errorMessage'>Error: ".$message." </p>";
+        echo "<p id='errorMessage'>".$message." </p>";
     ?>
   </form>
 </div>

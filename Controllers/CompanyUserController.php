@@ -31,6 +31,7 @@ class CompanyUserController
         }
 
         public function Add($email, $password, $checkPassword){
+            $message = "";
             if((new SessionHelper)->isAdmin()) {
                 $companyUserList = $this->userDAO->GetAll();
 
@@ -50,7 +51,7 @@ class CompanyUserController
                         
                         $this->userDAO->AddCompanyUser($companyUser);
                     }else{
-                        $message = MessageHelper::ADMINISTRATOR_EXISTS;
+                        $message = MessageHelper::COMPANY_USER_EXISTS;
                     }
                 }
                 $this->AddView($message);

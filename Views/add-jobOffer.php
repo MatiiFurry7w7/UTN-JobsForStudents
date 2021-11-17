@@ -133,7 +133,7 @@ include_once('header.php');
 </form>
 <?php if($message) { ?>
     <script> alert('<?php echo $message?>'); </script>
-  <?php } ?>
+<?php } ?>
 </center>
 <?php
   include_once('footer.php');
