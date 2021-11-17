@@ -88,8 +88,8 @@ class AppointmentDAO implements IAppointmentDAO{
                 {                
                     $appointment = new Appointment();
                     
-                    $appointment->setStudent($row["studentId"]);
-                    $appointment->setJobOffer($row["jobOfferId"]);
+                    $appointment->setStudent((new StudentDAO)->FindById($row["studentId"]));
+                    $appointment->setJobOffer((new JobOfferDAO)->FindById($row["jobOfferId"]));
                     $appointment->setCv($row["cv"]);
                     $appointment->setDateAppointment($row["dateAppointment"]);
                     $appointment->setReferenceURL($row["referenceURL"]);
@@ -123,8 +123,8 @@ class AppointmentDAO implements IAppointmentDAO{
                 {                
                     $appointment = new Appointment();
                     
-                    $appointment->setStudent($row["studentId"]);
-                    $appointment->setJobOffer($row["jobOfferId"]);
+                    $appointment->setStudent((new StudentDAO)->FindById($row["studentId"]));
+                    $appointment->setJobOffer((new JobOfferDAO)->FindById($row["jobOfferId"]));
                     $appointment->setCv($row["cv"]);
                     $appointment->setDateAppointment($row["dateAppointment"]);
                     $appointment->setReferenceURL($row["referenceURL"]);
@@ -155,8 +155,8 @@ class AppointmentDAO implements IAppointmentDAO{
                 if($resultSet){
                     $appointment = new Appointment();
                     
-                    $appointment->setStudent($resultSet["studentId"]);
-                    $appointment->setJobOffer($resultSet["jobOfferId"]);
+                    $appointment->setStudent((new StudentDAO)->FindById($resultSet["studentId"]));
+                    $appointment->setJobOffer((new JobOfferDAO)->FindById($resultSet["jobOfferId"]));
                     $appointment->setCv($resultSet["cv"]);
                     $appointment->setDateAppointment($resultSet["dateAppointment"]);
                     $appointment->setReferenceURL($resultSet["referenceURL"]);
@@ -201,8 +201,8 @@ class AppointmentDAO implements IAppointmentDAO{
                     $historyList = array(); 
                     foreach($result as $eachResult) {
                         $appointment = new Appointment();
-                        $appointment->setStudent($eachResult["studentId"]);
-                        $appointment->setJobOffer($eachResult["jobOfferId"]);
+                        $appointment->setStudent((new StudentDAO)->FindById($eachResult["studentId"]));
+                        $appointment->setJobOffer((new JobOfferDAO)->FindById($eachResult["jobOfferId"]));
                         $appointment->setCv($eachResult["cv"]);
                         $appointment->setDateAppointment($eachResult["dateAppointment"]);
                         $appointment->setReferenceURL($eachResult["referenceURL"]);  
@@ -226,7 +226,7 @@ class AppointmentDAO implements IAppointmentDAO{
 
                 $this->connection = Connection::GetInstance();
                 
-                $parameters["jobOfferId"] = $jobOffer->getJobOffer()->getJobOfferId();
+                $parameters["jobOfferId"] = $jobOffer->getJobOfferId();
 
                 $result = $this->connection->Execute($query, $parameters);
 
@@ -239,8 +239,8 @@ class AppointmentDAO implements IAppointmentDAO{
                     foreach($result as $eachResult) {
                         $appointment = new Appointment();
                 
-                        $appointment->setStudent($eachResult["studentId"]);
-                        $appointment->setJobOffer($eachResult["jobOfferId"]);
+                        $appointment->setStudent((new StudentDAO)->FindById($eachResult["studentId"]));
+                        $appointment->setJobOffer((new JobOfferDAO)->FindById($eachResult["jobOfferId"]));
                         $appointment->setCv($eachResult["cv"]);
                         $appointment->setDateAppointment($eachResult["dateAppointment"]);
                         $appointment->setReferenceURL($eachResult["referenceURL"]);

@@ -60,7 +60,7 @@
             }
 
             //$admin = (new SessionHelper)->getCurrentUser();
-            $isAdmin = (new SessionHelper)->isAdmin();
+            $isAdmin = (new SessionHelper)->isAdmin() || (new SessionHelper)->isCompany();
 
             require_once(VIEWS_PATH."jobOffer-list.php");
         }
@@ -116,14 +116,14 @@
                 $companyDAO = new CompanyDAO();
                 $companyList = $companyDAO->GetAll();
 
-                $admin = (new SessionHelper)->getCurrentUser();
+                $admin = (new SessionHelper)->getCurrentUser() || (new SessionHelper)->isCompany();
 
                 require_once(VIEWS_PATH."modify-jobOffer.php");
             } else 
                 (new HomeController())->Index();
         }
 
-        public function ModifyAJobOffer($jobOfferId, $title, $publishedDate, $finishDate, $task, $skills, $active, $remote, $salary, $jobPositionId, $dedication, $companyId, $administratorId){
+        public function ModifyAJobOffer($jobOfferId, $title, $publishedDate, $finishDate, $task, $skills, $active, $remote, $salary, $jobPositionId, $dedication, $companyId, $administratorId = ""){
             if((new SessionHelper)->isAdmin() || (new SessionHelper)->isCompany()) {
                 if($this->checkDates($publishedDate, $finishDate)){
 
@@ -160,7 +160,7 @@
         public function ViewDetail($jobOfferId) {
             $jobOffer = $this->jobOfferDAO->FindById($jobOfferId);
 
-            $isAdmin = (new SessionHelper)->isAdmin();
+            $isAdmin = (new SessionHelper)->isAdmin() || (new SessionHelper)->isCompany();
 
             require_once(VIEWS_PATH."jobOffer-viewDetail.php");
         }
@@ -176,7 +176,7 @@
         }
 
         public function JobOffersFromCompany($companyId){
-            $isAdmin = (new SessionHelper)->isAdmin();
+            $isAdmin = (new SessionHelper)->isAdmin() || (new SessionHelper)->isCompany();
 
             $jobOfferList = $this->jobOfferDAO->getJobOffersOfCompany((new CompanyDAO)->FindById($companyId));
 

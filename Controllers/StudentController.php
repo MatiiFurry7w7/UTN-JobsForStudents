@@ -9,7 +9,8 @@
     use Helpers\SessionHelper as SessionHelper;
     use Helpers\MessageHelper as MessageHelper;
     use Controllers\LoginController as LoginController;
-    use DAO\UTNAPIStudentDAO;
+use DAO\UserDAO;
+use DAO\UTNAPIStudentDAO;
 
 class StudentController{
         private $UTNAPIDAO;
@@ -153,6 +154,18 @@ class StudentController{
             }
 
             require_once(VIEWS_PATH."student-profile.php");
+        }
+
+        public function getStudentsByAppointment($appointment){
+            $studentList = $this->studentDAO->getAll();
+            $appliedStudents = array();
+
+            foreach($studentList as $eachStudent){
+                if($eachStudent->getUserId() == $appointment->getStudent()->getUserId())
+                    array_push($appliedStudents, $eachStudent);
+            }
+
+            return $appliedStudents;
         }
 
         private function APIStudentToStudent($from, Student $to){

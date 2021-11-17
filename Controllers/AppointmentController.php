@@ -139,6 +139,7 @@ class AppointmentController
         public function AddCv($message = "") {
             require_once(VIEWS_PATH."add-cv.php");
         }
+        
         public function Upload($file){
             try
             {

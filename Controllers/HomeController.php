@@ -4,7 +4,9 @@
     use DAO\JobOfferDAO as JobOfferDAO;
     use DAO\APIJobPositionDAO as APIJobPositionDAO;
     use DAO\APICareerDAO as APICareerDAO;
-    use Helpers\SessionHelper as SessionHelper;
+use DAO\AppointmentDAO;
+use DAO\StudentDAO;
+use Helpers\SessionHelper as SessionHelper;
     use Models\Administrator as Administrator;
     use Models\JobOffer as JobOffer;
 
@@ -21,18 +23,51 @@
         }
 
         public function Index($message = ""){
-            $jobOfferList = $this->jobOfferDAO->GetAll();
-            $i = 0;
+            $getAll = $this->jobOfferDAO->GetAll();
+            $jobOfferList = array();
             
-            if($jobOfferList)
-                foreach($jobOfferList as $eachJobOffer)
-                    if($eachJobOffer->getActive())
-                        $i++;
+            //Bring active ones to jobOfferList
+            if($getAll)
+                foreach($getAll as $eachJobOffer)
+                    if($eachJobOffer->getActive()){
+                        array_push($jobOfferList, $eachJobOffer);
+                    }
+            
+            //For each jobboffer...
+            foreach($jobOfferList as $eachJobOffer)
+                //If caducated...
+                if(date('c') > $eachJobOffer->getFinishDate()){
+                    $offerAppointments = (new AppointmentDAO)->getAppointmentsOfJobOffer($eachJobOffer);
+                    //For each appointment of that caducated offer...
+                    foreach($offerAppointments as $eachAppointment){
+                        $appliedStudents = (new StudentController)->getStudentsByAppointment($eachAppointment);
+                        //For each applied student for an appointment of that caducated offer.
+                        foreach($appliedStudents as $eachAppliedStudent){
+                            //Send the email
+                            (new EmailController)->sendEmail($eachAppliedStudent->getEmail(), "From the company ".$eachJobOffer->getCompany()->getName()." - Thank you!", "The applying for the offer <b>".$eachJobOffer->getTitle()."</b> from <b>".$eachJobOffer->getCompany()->getName()."</b> has ended.<br>Thanks for your apply!");
+                            //And a copy to mine to see if it works
+                            (new EmailController)->sendEmail("carlosmercado--@hotmail.com", "From the company ".$eachJobOffer->getCompany()->getName()." - Thank you!", "<b>".$eachAppliedStudent->getEmail()."</b><br><br>The applying for the offer <b>".$eachJobOffer->getTitle()."</b> from <b>".$eachJobOffer->getCompany()->getName()."</b> has ended.<br>Thanks for your apply!");
+                        }
+                    }                   
+                }
+            //And set them inactive
+            $this->jobOfferDAO->setInactiveFinishedOffers();
+
+            //Bring the new active ones to jobOfferList once again
+            $getAll = $this->jobOfferDAO->GetAll();
+            $jobOfferList = array();
+            $i = 0;
+            if($getAll)
+            foreach($getAll as $eachJobOffer)
+                if($eachJobOffer->getActive()){
+                    array_push($jobOfferList, $eachJobOffer);
+                    $i++;
+                }
 
             $jobPositionList = $this->jobPositionDAO->GetAll();
             $careerList = $this->careerDAO->GetAll();
 
-            $isAdmin = (new SessionHelper())->isAdmin();   
+            $isAdmin = (new SessionHelper())->isAdmin() || (new SessionHelper)->isCompany();  
                      
             require_once(VIEWS_PATH."home.php");
         }   

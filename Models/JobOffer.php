@@ -130,17 +130,14 @@
 
         //TO STRING METHOD
         public function __toString() {
-            return  "<br>ID: ".$this->idJobPosition.
-                    "<br>Title: ".$this->title.
+            return  "<br>Title: ".$this->title.
                     "<br>Published: ".$this->publishedDate.
-                    "<br>Finished Date: ".$this->finishedDate.
+                    "<br>Finished Date: ".$this->finishDate.
                     "<br>Task: ".$this->task.
                     "<br>Skills: ".$this->skills.
                     "<br>Active: ".$this->active.
                     "<br>Remote: ".$this->remote.
                     "<br>Salary: ".$this->salary.
-                    "<br>Appointment: ".
-                    "<br>-------------------------------".$this->appointment.
                     "<br>Job Position: ".
                     "<br>-------------------------------".$this->jobPosition;
         }

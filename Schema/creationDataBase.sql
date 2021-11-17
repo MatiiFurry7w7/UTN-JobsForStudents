@@ -122,6 +122,11 @@ INSERT INTO users VALUES
 (default, "Company@gmail.com", "123", 3),
 (default, "Mati@gmail.com", "123", 1);
 
+update joboffers set finishDate = '2019-03-20' where jobOfferId > 0;
+update joboffers set finishDate = '2022-03-20' where jobOfferId > 0;
+
+update joboffers set active = 1 where jobOfferId > 0;
+
 -- DELETE 
 DELETE FROM companies WHERE companyId > -1;
 DELETE FROM joboffers WHERE jobofferId > -1;
@@ -129,6 +134,7 @@ DELETE FROM appointments WHERE jobofferId > -1;
 DELETE FROM users WHERE userId > -1;
 DELETE FROM cvs WHERE cvId > -1;
 DELETE FROM roles WHERE roleId > 2;
+
 
 ALTER TABLE companies ADD
 FOREIGN KEY (companyUserId) REFERENCES users (userId);

@@ -43,6 +43,21 @@
             }
         }
 
+        public function setInactiveFinishedOffers(){
+            try
+            {
+                $query = "UPDATE ".$this->tableName." SET active = 0 WHERE CURDATE() > finishDate;";
+
+                $this->connection = Connection::GetInstance();
+
+                $this->connection->ExecuteNonQuery($query);
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
+        }
+
         public function GetAll()
         {
             try
@@ -191,8 +206,7 @@
         }
 
         public function Modify($jobOffer)
-        {
-            
+        { 
             try
             {
                 $query = "UPDATE ".$this->tableName." SET title=:title, publishedDate=:publishedDate, finishDate=:finishDate, task=:task, skills=:skills, active=:active, remote=:remote, salary=:salary, jobPositionId=:jobPositionId, dedication=:dedication, companyId=:companyId, administratorId=:administratorId

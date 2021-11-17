@@ -1,6 +1,6 @@
 <?php 
     namespace Helpers;
-
+    
     class MessageHelper {
         public const PASSWORD_DONT_MATCH = "The input passwords don't match!";
         public const ADMINISTRATOR_EXISTS = 'The administrator already exists!';
@@ -12,5 +12,7 @@
         public const ALREADY_REGISTERED_JO = 'You´re already registered for this job offer!';
         public const ALREADY_EXISTS_COMPANY = 'The company already exists!';
         public const REGISTER_COMPLETE = 'Register Complete!';
+        public const EMAILSENT = 'Email has been sent!';
+        public const EMAILNOTSENT = 'Email has not been sent!: ';
     }
 ?>

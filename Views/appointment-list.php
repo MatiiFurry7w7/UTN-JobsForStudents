@@ -10,7 +10,6 @@ include_once('header.php');
 <div class="wrapper row3">
 <table id="studentsTable" style="width: 90vh;">
         <tr id="tableIndex">
-                <td>ID</td>
                 <td>Job Offer</td>
                 <td>Date Appointment</td>
                 <td>Reference URL</td>
@@ -22,8 +21,7 @@ include_once('header.php');
                 foreach($appointmentList as $eachAppointment){ 
                         if($isAdmin || $eachAppointment->getActive() == 1) {?>
                         <tr>
-                                <td><?php echo $eachAppointment->getStudent() ?></td>
-                                <td><?php echo $eachAppointment->getJobOffer() ?></td>
+                                <td><?php echo $eachAppointment->getJobOffer()->getTitle() ?></td>
                                 <td><?php echo $eachAppointment->getDateAppointment() ?></td>
                                 <td><a href="<?php echo $eachAppointment->getReferenceURL()?>"><?php echo $eachAppointment->getReferenceURL()?></a></td>
                                 <td>
