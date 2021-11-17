@@ -60,9 +60,7 @@ create table jobOffers
 	jobPositionId int not null,
 	dedication varchar(50),
 	companyId int not null,
-	administratorId int not null,
-	foreign key (companyId) references companies(companyId),
-	foreign key (administratorid) references users(userId)
+	foreign key (companyId) references companies(companyId)
 );
 
 create table appointments(
