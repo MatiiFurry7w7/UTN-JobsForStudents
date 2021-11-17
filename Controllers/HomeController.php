@@ -4,9 +4,9 @@
     use DAO\JobOfferDAO as JobOfferDAO;
     use DAO\APIJobPositionDAO as APIJobPositionDAO;
     use DAO\APICareerDAO as APICareerDAO;
-use DAO\AppointmentDAO;
-use DAO\StudentDAO;
-use Helpers\SessionHelper as SessionHelper;
+    use DAO\AppointmentDAO;
+    use DAO\StudentDAO;
+    use Helpers\SessionHelper as SessionHelper;
     use Models\Administrator as Administrator;
     use Models\JobOffer as JobOffer;
 

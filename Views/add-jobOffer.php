@@ -1,5 +1,8 @@
-<?php 
-  include_once('header.php');
+<?php
+
+use Helpers\SessionHelper;
+
+include_once('header.php');
   include_once('nav-bar.php');
 ?>
 <center>
@@ -48,6 +51,7 @@
             </td>
           </tr>
           <tr>
+            <?php if((new SessionHelper)->isAdmin()){ ?>
             <td style="width: 200px;"><label for="companyId">Company *</label></td> 
             <td>
                 <select name="companyId" required>  
@@ -58,6 +62,10 @@
                   ?>
                 </select>
             </td>
+            <?php } else{?>
+              <input type="hidden" name="companyId" value="<?php echo (new SessionHelper)->getCurrentUser()->getCompany()->getCompanyId()?>">
+            <?php } ?>
+
           </tr>
           <tr>
             <td style="width: 150px;"><label for="title">Title *</label></td> 

@@ -36,8 +36,8 @@ $headerUser = (new SessionHelper())->getCurrentUser();
           <a id="link" href="<?php echo FRONT_ROOT ?>Company/ShowAddView"><li>Add my company</li></a>
         <?php }else{ ?>
           <a id="link" href="<?php echo FRONT_ROOT ?>Company/ViewDetail?companyId=<?php echo (new SessionHelper)->getCurrentUser()->getCompany()->getCompanyId() ?>"><li>My Company</li></a>
+          <a id="link" href="<?php echo FRONT_ROOT ?>JobOffer/JobOffersFromCompany?companyId=<?php echo (new SessionHelper)->getCurrentUser()->getCompany()->getCompanyId() ?>"><li>Job Offers</li></a>
         <?php } ?>
-        <a id="link" href="<?php echo FRONT_ROOT ?>JobOffer/ShowListView"><li>Job Offers</li></a>
         <a id="link" href="<?php echo FRONT_ROOT ?>Student/ListView"><li>Students List</li></a>
       <?php } ?>
     </ul>

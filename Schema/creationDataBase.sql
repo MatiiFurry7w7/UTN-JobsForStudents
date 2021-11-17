@@ -120,6 +120,7 @@ insert into roles (userRole) values
 
 INSERT INTO users VALUES
 (default, "Company@gmail.com", "123", 3),
+(default, "Company2@gmail.com", "123", 3),
 (default, "Mati@gmail.com", "123", 1);
 
 update joboffers set finishDate = '2019-03-20' where jobOfferId > 0;
