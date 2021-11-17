@@ -13,6 +13,21 @@ CREATE DATABASE JobsForStudents;
 -- TO USE THIS DATABASE
 use JobsForStudents;
 
+-- CREATION OF TABLE: Roles
+create table roles(
+	roleId int auto_increment primary key,
+	userRole varchar(50)
+);
+
+-- CREATION OF TABLE: users
+create table users(
+	userId int auto_increment primary key,
+	email varchar(50), 
+	password varchar(50),
+	roleId int not null, 
+	foreign key (roleId) references roles(roleId)
+);
+
 -- CREATION OF TABLE: COMPANIES
 create table companies
 (
@@ -28,37 +43,6 @@ create table companies
 	industry varchar(50),
     companyUserId int,
     foreign key (companyUserId) references users (userId)
-);
-
--- CREATION OF TABLE: JOBPOSITIONS
-create table jobPositions
-(
-	jobPositionId int not null primary key,
-	careerId int,
-	description varchar(100)
-);
-
--- CREATION OF TABLE: CAREERS
-create table careers
-(
-	careerId int auto_increment primary key, 
-	title varchar(50), 
-	description varchar(100),
-	active boolean
-);
--- CREATION OF TABLE: Roles
-create table roles(
-	roleId int auto_increment primary key,
-	userRole varchar(50)
-);
-
--- CREATION OF TABLE: users
-create table users(
-	userId int auto_increment primary key,
-	email varchar(50), 
-	password varchar(50),
-	roleId int not null, 
-	foreign key (roleId) references roles(roleId)
 );
 
 -- CREATION OF TABLE: JOBOFFERS
