@@ -25,7 +25,9 @@ create table companies
 	number_street char(6), 
 	aboutUs varchar(100),
 	active boolean,
-	industry varchar(50)
+	industry varchar(50),
+    companyUserId int,
+    foreign key (companyUserId) references users (userId)
 );
 
 -- CREATION OF TABLE: JOBPOSITIONS
@@ -135,10 +137,6 @@ DELETE FROM appointments WHERE jobofferId > -1;
 DELETE FROM users WHERE userId > -1;
 DELETE FROM cvs WHERE cvId > -1;
 DELETE FROM roles WHERE roleId > 2;
-
-
-ALTER TABLE companies ADD
-FOREIGN KEY (companyUserId) REFERENCES users (userId);
 
 -- SELECT
 SELECT * FROM roles;

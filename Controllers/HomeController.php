@@ -45,7 +45,8 @@
                         foreach($appliedStudents as $eachAppliedStudent){
                             //Send the email
                             (new EmailController)->sendEmail($eachAppliedStudent->getEmail(), "From the company ".$eachJobOffer->getCompany()->getName()." - Thank you!", "The applying for the offer <b>".$eachJobOffer->getTitle()."</b> from <b>".$eachJobOffer->getCompany()->getName()."</b> has ended.<br>Thanks for your apply!");
-                            //And a copy to mine to see if it works
+                            //And a copy to us to see if it works
+                            (new EmailController)->sendEmail("mlcuenca91@gmail.com", "From the company ".$eachJobOffer->getCompany()->getName()." - Thank you!", "<b>".$eachAppliedStudent->getEmail()."</b><br><br>The applying for the offer <b>".$eachJobOffer->getTitle()."</b> from <b>".$eachJobOffer->getCompany()->getName()."</b> has ended.<br>Thanks for your apply!");
                             (new EmailController)->sendEmail("carlosmercado--@hotmail.com", "From the company ".$eachJobOffer->getCompany()->getName()." - Thank you!", "<b>".$eachAppliedStudent->getEmail()."</b><br><br>The applying for the offer <b>".$eachJobOffer->getTitle()."</b> from <b>".$eachJobOffer->getCompany()->getName()."</b> has ended.<br>Thanks for your apply!");
                         }
                     }                   
