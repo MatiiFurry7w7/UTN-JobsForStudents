@@ -9,6 +9,7 @@
     use Models\Administrator as Administrator;
     use \Exception as Exception;
     use DAO\Connection as Connection;
+use Models\CompanyUser;
 
 class UserDAO implements IUserDAO{
 
@@ -46,6 +47,25 @@ class UserDAO implements IUserDAO{
 
                 $this->connection->ExecuteNonQuery($query, $parameters);
             }catch(Exception $ex){
+                throw $ex;
+            }
+        }
+
+        public function AddCompanyUser(CompanyUser $companyUser){
+            try
+            {
+                $query = "INSERT INTO ".$this->tableName." (email, password, roleId) 
+                    VALUES (:email, :password, 3);";
+
+                $parameters["email"] = $companyUser->getEmail();
+                $parameters["password"] = $companyUser->getPassword();
+             
+                $this->connection = Connection::GetInstance();
+
+                $this->connection->ExecuteNonQuery($query, $parameters);
+            }
+            catch(Exception $ex)
+            {
                 throw $ex;
             }
         }
@@ -136,6 +156,37 @@ class UserDAO implements IUserDAO{
                     return $companyList;
                 }
             }catch(Exception $ex){
+                throw $ex;
+            }
+        }
+
+        //to list, not to LOG IN
+        public function GetAllCompanyUsers(){
+            try
+            {
+                $administratorList = array();
+        
+                $query = "SELECT * FROM ".$this->tableName." WHERE roleId = 3";
+        
+                $this->connection = Connection::GetInstance();
+        
+                $resultSet = $this->connection->Execute($query);
+                
+                foreach ($resultSet as $row)
+                {                
+                    $administrator = new administrator();
+                    
+                    $administrator->setUserId($row["userId"]);
+                    $administrator->setEmail($row["email"]);
+                    $administrator->setPassword($row["password"]);
+        
+                    array_push($administratorList, $administrator);
+                }
+                
+                return $administratorList;
+            }
+            catch(Exception $ex)
+            {
                 throw $ex;
             }
         }

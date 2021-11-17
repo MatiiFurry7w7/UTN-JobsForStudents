@@ -19,6 +19,7 @@ $headerUser = (new SessionHelper())->getCurrentUser();
         <a id="link" href="<?php echo FRONT_ROOT ?>JobOffer/ShowListView"><li>Job Offers</li></a>
         <a id="link" href="<?php echo FRONT_ROOT ?>Student/ListView"><li>Students List</li></a>
         <a id="link" href="<?php echo FRONT_ROOT ?>Administrator/ListView"><li>Administrators List</li></a>
+        <a id="link" href="<?php echo FRONT_ROOT ?>CompanyUser/ListView"><li>Company Users List</li></a>
       <?php }if($headerUser instanceof Student){ ?>
         <a id="link" href="<?php echo FRONT_ROOT ?>Company/ShowListView"><li>Companies</li></a>
               <a style="margin-top:5px;" id="link" href="<?php echo FRONT_ROOT ?>Student/ProfileView?email=<?php echo $_SESSION['currentUser']->getEmail(); ?>">

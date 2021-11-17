@@ -66,20 +66,6 @@
                 (new HomeController())->Index();
         }
 
-        public function ModifyAdministrator($administratorId, $email, $password){
-            if((new SessionHelper)->isAdmin()) {
-                $administrator = new Administrator();
-
-                $administrator->setAdministratorId();
-                $administrator->setEmail();
-                $administrator->setPassword();
-                
-                $this->administratorDAO->Modify($administrator);
-            
-                $this->ListView();
-            } else 
-                (new HomeController())->Index();
-        }
 
         public function ModifyView($modifyId){
             if((new SessionHelper)->isAdmin()) {
