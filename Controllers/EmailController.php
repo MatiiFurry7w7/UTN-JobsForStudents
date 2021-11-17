@@ -3,8 +3,8 @@
 
     require 'vendor/autoload.php';
 
-use Helpers\MessageHelper;
-use PHPMailer\PHPMailer\PHPMailer;
+    use Helpers\MessageHelper;
+    use PHPMailer\PHPMailer\PHPMailer;
 
     class EmailController{
         private $email;
