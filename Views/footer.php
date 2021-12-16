@@ -18,7 +18,7 @@
           <div id="footerColumn" class="column">
             <h5>Contact Us</h5>
             <h6>(0223) 480 - 5049</h6>
-            <h6>campus@mdp.utn.edu.a</h6>
+            <h6>campus@mdp.utn.edu.ar</h6>
             <h6>Calle Buque Pesquero Dorrego Nº 281</h6>
           </div>
         </div>
