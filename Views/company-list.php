@@ -29,7 +29,6 @@
             <td>Status</td>
             <td>Name</td>
             <td>CUIT</td>
-            <td>Website</td>
             <td>Description</td>
             <td>Address</td>
             <td></td>
@@ -57,7 +56,6 @@
                         <td><?php echo $company->getActive() == 1 ? "Active" : "Inactive" ?></td>
                         <td><?php echo $company->getName() ?></td>
                         <td><?php echo $company->getCuit() ?></td>
-                        <td><a href='<?php echo $company->getWebsite()?>'><?php echo $company->getWebsite()?></a></td>
                         <td><?php echo $company->getDescription() ?></td>
                         <td><?php echo $company->getStreet()." ".$company->getNumber() ?></td>
                         <td style="align='right'"><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>Company/ViewDetail?companyId=<?php echo $company->getCompanyId() ?>'">Details</button></td>
@@ -82,7 +80,6 @@
                         <td><?php echo $company->getActive() == 1 ? "Active" : "Inactive" ?></td>
                         <td><?php echo $company->getName() ?></td>
                         <td><?php echo $company->getCuit() ?></td>
-                        <td><a href='<?php echo $company->getWebsite()?>'><?php echo $company->getWebsite()?></a></td>
                         <td><?php echo $company->getDescription() ?></td>
                         <td><?php echo $company->getStreet()." ".$company->getNumber() ?></td>
                         <td style="align='right'"><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>Company/ViewDetail?companyId=<?php echo $company->getCompanyId() ?>'">Details</button></td>

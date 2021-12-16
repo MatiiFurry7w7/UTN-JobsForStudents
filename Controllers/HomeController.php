@@ -25,14 +25,15 @@
         public function Index($message = ""){
             $getAll = $this->jobOfferDAO->GetAll();
             $jobOfferList = array();
-            
+            $isCompany = (new SessionHelper())->isCompany();
+
             //Bring active ones to jobOfferList
             if($getAll)
                 foreach($getAll as $eachJobOffer)
-                    if($eachJobOffer->getActive()){
-                        array_push($jobOfferList, $eachJobOffer);
-                    }
-            
+                    if($eachJobOffer->getActive())
+                        if($isCompany && $eachJobOffer->getCompany()->getCompanyId() == (new SessionHelper())->getCurrentUser()->getCompany()->getCompanyId())
+                            array_push($jobOfferList, $eachJobOffer);
+
             //For each jobboffer...
             foreach($jobOfferList as $eachJobOffer)
                 //If caducated...
@@ -51,6 +52,8 @@
                         }
                     }                   
                 }
+            
+
             //And set them inactive
             $this->jobOfferDAO->setInactiveFinishedOffers();
 
@@ -60,10 +63,11 @@
             $i = 0;
             if($getAll)
             foreach($getAll as $eachJobOffer)
-                if($eachJobOffer->getActive()){
-                    array_push($jobOfferList, $eachJobOffer);
-                    $i++;
-                }
+                if($eachJobOffer->getActive())
+                    if(($isCompany && $eachJobOffer->getCompany()->getCompanyId() == (new SessionHelper())->getCurrentUser()->getCompany()->getCompanyId()) || !$isCompany){
+                        array_push($jobOfferList, $eachJobOffer);
+                        $i++;
+                    }
 
             $jobPositionList = $this->jobPositionDAO->GetAll();
             $careerList = $this->careerDAO->GetAll();
@@ -75,6 +79,7 @@
 
         public function Filters($careerId, $jobPositionSearch = "") {
             $isAdmin = (new SessionHelper())->isAdmin();
+            $isCompany = (new SessionHelper())->isCompany();
 
             $jobOfferList = $this->jobOfferDAO->GetAll();
 
@@ -86,10 +91,9 @@
 
             if($jobOfferList){
                 foreach($jobOfferList as $jobOffer){
-                    if(strpos(strtolower($jobOffer->getJobPosition()->getDescription()), strtolower($jobPositionSearch)) !== false || 
-                        $jobOffer->getJobPosition()->getCareer()->getCareerId() == $careerId){
-                        array_push($newJOList, $jobOffer);
-                    }
+                    if((strpos(strtolower($jobOffer->getJobPosition()->getDescription()), strtolower($jobPositionSearch)) !== false && $jobPositionSearch != "") || $jobOffer->getJobPosition()->getCareer()->getCareerId() == $careerId)
+                        if(($isCompany && $jobOffer->getCompany()->getCompanyId() == (new SessionHelper())->getCurrentUser()->getCompany()->getCompanyId()) || !$isCompany)
+                            array_push($newJOList, $jobOffer);
                 }
                 $i = count($newJOList);
             }else
@@ -100,6 +104,8 @@
             } else {
                 $jobOfferList = null;
             }
+
+            $message = "";
             
             require_once(VIEWS_PATH."home.php");
         }
