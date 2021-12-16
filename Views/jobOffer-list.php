@@ -19,7 +19,7 @@ include_once('header.php');
                                                 <td></td>   
                                                 <td></td>           
                                                 <td></td>
-                                                <td><button class="btn btn-success" onclick="window.location.href='<?php echo FRONT_ROOT ?>Joboffer/ShowAddView'">Add</button>
+                                                <td><button class="btn btn-primary" onclick="window.location.href='<?php echo FRONT_ROOT ?>Joboffer/ShowAddView'">Add</button>
         </tr>
         <?php }else {?> <td></td> <?php }
         foreach($jobOfferList as $jobOffer){

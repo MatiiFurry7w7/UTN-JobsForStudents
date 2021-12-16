@@ -102,7 +102,7 @@
                 </td>
              </tr>
              <tr>
-              <td></td><td><button type="submit" class="btn btn-success">Edit</button></td>
+              <td></td><td><button type="submit" class="btn btn-primary">Edit</button></td>
              </tr>
     </table>
   </form>

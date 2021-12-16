@@ -14,7 +14,7 @@
         <td><input type="file" name="file" id="file" class="form-control-file" required></td>
       </tr>
       <tr>
-        <td colspan="2"><center><button type="submit" class="btn btn-success">Upload</button><center></td>
+        <td colspan="2"><center><button type="submit" class="btn btn-primary">Upload</button><center></td>
       </tr> 
     </table>
   </form>

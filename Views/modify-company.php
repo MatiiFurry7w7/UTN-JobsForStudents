@@ -73,7 +73,7 @@
             </tr>
     </table>
     <div>
-      <button type="submit" class="btn btn-success">Edit</button>
+      <button type="submit" class="btn btn-primary">Edit</button>
     </div>
   </form>
 </div>

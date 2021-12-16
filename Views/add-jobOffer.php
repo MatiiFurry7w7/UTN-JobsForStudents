@@ -27,7 +27,7 @@ include_once('header.php');
           <tr>
             <td colspan="2">
               <center>
-                <input type="submit" class="btn btn-success" value="Set Career" />
+                <input type="submit" class="btn btn-primary" value="Set Career" />
               </center>
             </td>
           </tr>
@@ -120,7 +120,7 @@ include_once('header.php');
           <tr>
             <td colspan="2">
               <center>
-                <input type="submit" class="btn btn-success" value="Add"/>
+                <input type="submit" class="btn btn-primary" value="Add"/>
               </center>
             </td>
           </tr> 

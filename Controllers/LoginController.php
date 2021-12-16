@@ -11,8 +11,7 @@
     use DAO\UTNAPIStudentDAO;
     use Models\CompanyUser;
 
-class LoginController{
-
+    class LoginController{
         private $userDAO;
         private $UTNAPIDAO;
         private $careerDAO;
@@ -69,9 +68,11 @@ class LoginController{
                                             $appointmentList = (new AppointmentDAO)->getAll();
 
                                             if($appointmentList)
-                                                foreach($appointmentList as $eachAppointment)
-                                                    if($eachAppointment->getStudent() == $eachUser->getUserId())
+                                                foreach($appointmentList as $eachAppointment){
+                                                    if($eachAppointment->getStudent()->getUserId() == $eachUser->getUserId())
                                                         $user->setAppointment($eachAppointment);
+                                                }
+                                                    
                                             $active = true;
                                         }
                                         else{

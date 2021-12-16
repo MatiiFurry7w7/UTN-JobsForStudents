@@ -35,7 +35,7 @@ include_once('header.php');
                 } ?>
         </table>
         <br>
-        <button class="btn btn-success" onclick="window.location.href='<?php echo FRONT_ROOT ?>Appointment/HistoryView?AppointmentId=<?php echo $eachAppointment->getStudent()->getUserId()?>'">View History</button>
+        <button class="btn btn-primary" onclick="window.location.href='<?php echo FRONT_ROOT ?>Appointment/HistoryView?AppointmentId=<?php echo $eachAppointment->getStudent()->getUserId()?>'">View History</button>
 </div>
 </center>
 <?php

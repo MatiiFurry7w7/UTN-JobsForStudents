@@ -115,6 +115,7 @@ class AppointmentController
 
             $appointmentList = array();
             $isAdmin = (new SessionHelper())->isAdmin();
+            $isCompany =  (new SessionHelper())->isCompany();
             $jobOfferDAO = new JobOfferDAO();
 
             if($allAppointments)

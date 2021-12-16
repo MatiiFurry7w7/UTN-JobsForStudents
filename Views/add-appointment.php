@@ -64,7 +64,7 @@
         <td><textarea placeholder="Max 150 characters..." maxlength="150" name="comments" cols="23" rows="3"></textarea> </td>
       </tr>      
       <tr>
-        <td colspan="2"><center><button type="submit" class="btn btn-success">Apply</button><center></td>
+        <td colspan="2"><center><button type="submit" class="btn btn-primary">Apply</button><center></td>
       </tr> 
     </table>
     <font size="3" color="red">* required fields</font>
