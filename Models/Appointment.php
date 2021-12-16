@@ -89,7 +89,9 @@ class Appointment{
 
   public function __tostring(){
     return "<br>CV: ".$this->cv.
+           "<br>Student: ".$this->student.
            "<br>Date appointment: ".$this->dateAppointment.
+           "<br>Comments: ".$this->comments.
            "<br>Reference url: ".$this->referenceURL;
   }
 }

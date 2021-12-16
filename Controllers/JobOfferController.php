@@ -153,7 +153,7 @@
                     $message = MessageHelper::INVALID_DATE;
                 }
                 
-                $this->ShowListView($message);
+                $this->ShowListView();
             } else 
                 (new HomeController())->Index();
         }

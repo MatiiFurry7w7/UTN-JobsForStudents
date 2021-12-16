@@ -37,7 +37,7 @@
             //CURL
             $url = curl_init();
             //Sets URL
-            curl_setopt($url, CURLOPT_URL, 'https://utn-students-api.herokuapp.com/api/jobPosition');
+            curl_setopt($url, CURLOPT_URL, 'https://utn-students-api2.herokuapp.com/api/jobPosition');
             //Sets Header key
             curl_setopt($url, CURLOPT_HTTPHEADER, array('x-api-key:4f3bceed-50ba-4461-a910-518598664c08'));
             curl_setopt($url, CURLOPT_RETURNTRANSFER, 1);

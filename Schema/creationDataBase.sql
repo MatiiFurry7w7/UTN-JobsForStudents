@@ -5,7 +5,6 @@ drop table joboffers;
 drop table companies;
 drop table jobpositions;
 drop table joboffers;
-drop table companies;
 
 -- CREATION OF THE DATABASE "JOBSFORSTUDENTS" 
 CREATE DATABASE JobsForStudents;
@@ -103,8 +102,6 @@ insert into roles (userRole) values
 ('company');
 
 INSERT INTO users VALUES
-(default, "Company@gmail.com", "123", 3),
-(default, "Company2@gmail.com", "123", 3),
 (default, "Mati@gmail.com", "123", 1);
 
 update joboffers set finishDate = '2019-03-20' where jobOfferId > 0;

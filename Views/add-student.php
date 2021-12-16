@@ -30,8 +30,10 @@
             <td><input type="password" name="password2" required></td>
           </tr>  
           <tr>
-            <td colspan="2"><button type="submit" class="btn btn-primary">Add</button></td>
+            <td><button class="btn btn-primary" onclick="window.location.href='<?php echo FRONT_ROOT ?>Login/LoginView'">Login</button></td>
+            <td><button type="submit" class="btn btn-primary">Register</button></td>
           </tr> 
+          
     </table>
     <font size="3" color="red">* required fields</font>
     <?php

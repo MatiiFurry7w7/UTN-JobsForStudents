@@ -101,11 +101,10 @@
                     </select>
                 </td>
              </tr>
+             <tr>
+              <td></td><td><button type="submit" class="btn btn-success">Edit</button></td>
+             </tr>
     </table>
-    <div>
-      <button type="submit" class="btn btn-success">Edit</button>
-    </div>
-    <input type="hidden" name="administratorId" value="<?php echo $admin->getUserId() ?>">
   </form>
 </div>
 </center>

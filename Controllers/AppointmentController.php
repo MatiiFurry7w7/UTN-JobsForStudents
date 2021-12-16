@@ -2,6 +2,7 @@
     namespace Controllers;
 
     use DAO\AppointmentDAO as AppointmentDAO;
+    use Plugins\FPDF as FPDF;
     use \Exception as Exception;
     use DAO\Connection as Connection;
     use DAO\JobOfferDAO;
@@ -10,6 +11,7 @@
     USE Helpers\MessageHelper as MessageHelper;
     use Models\Appointment as Appointment;
     use Models\CV;
+use Models\JobOffer;
 
 class AppointmentController
     {
@@ -97,6 +99,8 @@ class AppointmentController
             $studentId = (new SessionHelper)->getCurrentUser()->getUserId();
             $isAdmin = (new SessionHelper())->isAdmin();
             $appointmentList = $this->appointmentDAO->HistoryById($studentId);
+
+            $download = false;
             
             require_once(VIEWS_PATH."appointment-history.php");
         }
@@ -117,6 +121,8 @@ class AppointmentController
                 foreach($allAppointments as $eachAppointment)
                     if($eachAppointment->getJobOffer($jobOfferDAO->FindById($jobOfferId))->getJobOfferId() == $jobOfferId)
                         array_push($appointmentList, $eachAppointment);
+
+            $download = true;
                     
             require_once(VIEWS_PATH."appointment-history.php");
         }
@@ -132,6 +138,8 @@ class AppointmentController
                 foreach($allAppointments as $eachAppointment)
                     if($eachAppointment->getStudent($userDAO->FindById($studentId))->getUserId() == $studentId)
                         array_push($appointmentList, $eachAppointment);
+
+            $download = false;
                     
             require_once(VIEWS_PATH."appointment-history.php");
         }
@@ -174,5 +182,24 @@ class AppointmentController
             }
             (new HomeController)->Index($message);
         }    
+
+        public function DownloadPDF($jobOfferId){
+            $allAppointments = $this->appointmentDAO->getAll();
+            
+            $appointmentList = array();
+            $jobOfferDAO = new JobOfferDAO();
+            $jobOffer = new JobOffer();
+
+            if($allAppointments)
+                foreach($allAppointments as $eachAppointment){
+                    $eachJobOffer = $eachAppointment->getJobOffer($jobOfferDAO->FindById($jobOfferId));
+                    if($eachJobOffer->getJobOfferId() == $jobOfferId){
+                        array_push($appointmentList, $eachAppointment);
+                        $jobOffer = $eachJobOffer;
+                    }
+                }
+        
+            (new PDFController)->Download($jobOffer, $appointmentList);
+        }
     }
 ?>

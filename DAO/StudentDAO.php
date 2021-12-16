@@ -1,5 +1,6 @@
 <?php namespace DAO;
 
+    use Controllers\StudentController as StudentController;
     use \Exception as Exception;
     use DAO\IStudentDAO as IStudentDAO;
     use Models\Student as Student;    
@@ -81,12 +82,18 @@
 
                 $result = $this->connection->Execute($query, $parameters)[0];
 
+                $apiList = (new UTNAPIStudentDAO)->loadFromAPI();
+
                 if($result){
                     $student = new Student();
                     $student->setUserId($result["userId"]);
                     $student->setEmail($result["email"]);
                     $student->setPassword($result["password"]);
-                
+
+                    foreach($apiList as $eachUTN)
+                        if($student->getEmail() == $eachUTN->email)
+                            (new StudentController)->APIStudentToStudent($eachUTN, $student);
+                    
                     return $student;
                 }
             }catch(Exception $ex){

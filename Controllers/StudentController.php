@@ -22,7 +22,8 @@ class StudentController{
         }
         
         public function RegisterView($message = ""){
-            session_destroy();
+            if(isset($_SESSION['currentUser']))
+                session_destroy();
             require_once(VIEWS_PATH."add-student.php");
         }
 
@@ -70,7 +71,7 @@ class StudentController{
             
                             $this->studentDAO->add($newStudent);
                             $message = MessageHelper::REGISTER_COMPLETE;
-                            (new LoginController)->LoginView($message);
+                            header("location:".FRONT_ROOT."Login/LoginView?message=".$message);
                         }
                     //If UTN student does not exist
                     }else{
@@ -168,7 +169,7 @@ class StudentController{
             return $appliedStudents;
         }
 
-        private function APIStudentToStudent($from, Student $to){
+        public function APIStudentToStudent($from, Student $to){
             $to->setCareer($from->careerId);
             $to->setFirstName($from->firstName);
             $to->setLastName($from->lastName);

@@ -17,10 +17,13 @@ include_once('header.php');
                 <td>Date Appointment</td>
                 <td>Reference URL</td>
                 <td>Active</td>
+                <?php if(count($appointmentList) > 0 && $download){ ?>
+                <td><button class="btn btn-primary" onclick="window.location.href='<?php echo FRONT_ROOT ?>Appointment/DownloadPDF?jobOfferId=<?php echo $eachAppointment->getJobOffer()->getJobOfferId() ?>'">Download PDF List</button></td>
+                <?php } ?>
         </tr>
         <?php
         foreach($appointmentList as $eachAppointment){ 
-                if($eachAppointment->getActive() == 0) {?>
+                if($eachAppointment->getActive() == 1) {?>
                 <tr>
                         <?php if($isAdmin){ ?>
                                 <td><button class="btn btn-success" onclick="window.location.href='<?php echo FRONT_ROOT ?>Student/ViewStudentDetails?studentId=<?php echo $eachAppointment->getStudent()->getUserId() ?>'">See Student</button></td>
@@ -33,6 +36,9 @@ include_once('header.php');
                                         echo $eachAppointment->getActive() == 1 ? "Yes" : "No";
                                 ?>
                         </td>
+                        <?php if(count($appointmentList) > 0 && $download){ ?>
+                        <td></td>
+                        <?php } ?>
                         
                 </tr>
         <?php   }

@@ -9,7 +9,7 @@ class UTNAPIStudentDAO{
             //CURL
             $url = curl_init();
             //Sets URL
-            curl_setopt($url, CURLOPT_URL, 'https://utn-students-api.herokuapp.com/api/Student');
+            curl_setopt($url, CURLOPT_URL, 'https://utn-students-api2.herokuapp.com/api/Student');
             //Sets Header key
             curl_setopt($url, CURLOPT_HTTPHEADER, array('x-api-key:4f3bceed-50ba-4461-a910-518598664c08'));
             curl_setopt($url, CURLOPT_RETURNTRANSFER, 1);
