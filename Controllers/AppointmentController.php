@@ -11,9 +11,9 @@
     USE Helpers\MessageHelper as MessageHelper;
     use Models\Appointment as Appointment;
     use Models\CV;
-use Models\JobOffer;
+    use Models\JobOffer;
 
-class AppointmentController
+    class AppointmentController
     {
         private $appointmentDAO;
 
@@ -103,6 +103,26 @@ class AppointmentController
             $download = false;
             
             require_once(VIEWS_PATH."appointment-history.php");
+        }
+
+        public function Decline($studentId, $jobOfferId){
+            $allAppointments = $this->appointmentDAO->getAll();
+            $jobOfferDAO = new JobOfferDAO();
+
+            if($allAppointments)
+                foreach($allAppointments as $eachAppointment)
+                    if($eachAppointment->getJobOffer($jobOfferDAO->FindById($jobOfferId))->getJobOfferId() == $jobOfferId && $eachAppointment->getStudent()->getUserId() == $studentId)
+                        $found = $eachAppointment;
+
+            if(isset($found)){
+                (new EmailController)->sendEmail($found->getStudent()->getEmail(), "From the company ".$found->getJobOffer()->getCompany()->getName()." - Thank you!", "Regarding the applying for the offer <b>".$found->getJobOffer()->getTitle()."</b> from <b>".$found->getJobOffer()->getCompany()->getName()."</b>.<br>We're sorry to inform you that you were not selected for this job offer.<br>We hope we may see you in another job position of our company!");
+                (new EmailController)->sendEmail("carlosmercado--@hotmail.com", "From the company ".$found->getJobOffer()->getCompany()->getName()." - Thank you ".$found->getStudent()->getEmail()."!", "Regarding the applying for the offer <b>".$found->getJobOffer()->getTitle()."</b> from <b>".$found->getJobOffer()->getCompany()->getName()."</b>.<br>We're sorry to inform you that you were not selected for this job offer.<br>We hope we may see you in another job position of our company!");
+                $this->Remove($studentId, $jobOfferId);
+                $message = MessageHelper::SUCCESS;
+            }else
+                $message = "Appointment not found!";
+
+            (new HomeController)->Index($message);
         }
 
         public function Remove($studentId, $jobOfferId){

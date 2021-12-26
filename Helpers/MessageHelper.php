@@ -16,5 +16,6 @@
         public const EMAILSENT = 'Email has been sent!';
         public const EMAILNOTSENT = 'Email has not been sent!: ';
         public const SUCCESSFULLY_CREATED = "Successfully created!";
+        public const SUCCESS = "Successfully!";
     }
 ?>
