@@ -9,8 +9,9 @@
     use Helpers\SessionHelper as SessionHelper;
     use Helpers\MessageHelper as MessageHelper;
     use Controllers\LoginController as LoginController;
-use DAO\UserDAO;
-use DAO\UTNAPIStudentDAO;
+    use DAO\UserDAO;
+    use DAO\UTNAPIStudentDAO;
+    use DAO\AppointmentDAO;
 
 class StudentController{
         private $UTNAPIDAO;
@@ -136,6 +137,8 @@ class StudentController{
                 }
             }
 
+            $userCV = (new AppointmentDAO)->getCVByUserId($student->getUserId());
+
             require_once(VIEWS_PATH."student-profile.php");
         }
 
@@ -153,6 +156,8 @@ class StudentController{
                     }
                 }
             }
+
+            $userCV = (new AppointmentDAO)->getCVByUserId($student->getUserId());
 
             require_once(VIEWS_PATH."student-profile.php");
         }

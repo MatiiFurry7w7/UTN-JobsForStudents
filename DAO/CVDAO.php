@@ -8,8 +8,6 @@
 
     class CVDAO implements ICVDAO
     {
-        private $tableName = "appointments";
-
         public function addCV(CV $cv){
             try
             {

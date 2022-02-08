@@ -57,6 +57,16 @@
 
             if(!$jobOfferList) {
                 $jobOfferList = new JobOffer();
+            }else{
+                if((new SessionHelper)->isCompany()){
+                    $filteredList = array();
+                    foreach($jobOfferList as $eachOffer){
+                        if($eachOffer->getCompany()->getCompanyId() == (new SessionHelper)->getCurrentUser()->getCompany()->getCompanyId())
+                            array_push($filteredList, $eachOffer);
+                    }
+
+                    $jobOfferList = $filteredList;
+                }
             }
 
             //$admin = (new SessionHelper)->getCurrentUser();

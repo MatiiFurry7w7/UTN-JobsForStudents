@@ -50,10 +50,12 @@ class CompanyUserController
                         $companyUser->setPassword($password);
                         
                         $this->userDAO->AddCompanyUser($companyUser);
+                        $message = "Company user registered!";
                     }else{
                         $message = MessageHelper::COMPANY_USER_EXISTS;
                     }
                 }
+                
                 $this->AddView($message);
             } else 
                 (new HomeController())->Index($message);

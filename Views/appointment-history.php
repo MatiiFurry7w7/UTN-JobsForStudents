@@ -13,6 +13,7 @@
                 <td>Job Offer</td>
                 <td>Date Appointment</td>
                 <td>Reference URL</td>
+                <td>Comments</td>
                 <td>Active</td>
                 <?php if(count($appointmentList) > 0 && $download){ ?>
                 <td><button class="btn btn-primary" onclick="window.location.href='<?php echo FRONT_ROOT ?>Appointment/DownloadPDF?jobOfferId=<?php echo $eachAppointment->getJobOffer()->getJobOfferId() ?>'">Download PDF List</button></td>
@@ -27,6 +28,7 @@
                         <td> <button class="btn btn-primary" onclick="window.location.href='<?php echo FRONT_ROOT ?>JobOffer/ViewDetail?jobOfferId=<?php echo $eachAppointment->getJobOffer()->getJobOfferId() ?>'">See Job Offer</button></td>
                         <td><?php echo $eachAppointment->getDateAppointment() ?></td>
                         <td><a href="<?php echo $eachAppointment->getReferenceURL()?>"><?php echo $eachAppointment->getReferenceURL()?></a></td>
+                        <td><?php echo $eachAppointment->getComments() ?></td>
                         <td>
                                 <?php
                                         echo $eachAppointment->getActive() == 1 ? "Yes" : "No";

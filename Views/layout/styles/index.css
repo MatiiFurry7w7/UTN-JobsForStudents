@@ -228,7 +228,6 @@ table{
 }
 
 th{
-    background-image: linear-gradient(to right, rgb(40,40,40), rgb(40,40,40), rgb(5, 5, 5)); 
     margin-bottom: 20px;
     color: rgb(211, 211, 211);
     padding: 10px 100px;

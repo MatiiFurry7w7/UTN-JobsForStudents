@@ -18,7 +18,6 @@ include_once('header.php');
                                         ?>   
                                                 <td></td>   
                                                 <td></td>           
-                                                <td></td>
                                                 <td><button class="btn btn-primary" onclick="window.location.href='<?php echo FRONT_ROOT ?>Joboffer/ShowAddView'">Add</button>
         </tr>
         <?php }else {?> <td></td> <?php }
@@ -39,7 +38,7 @@ include_once('header.php');
                                         ?>                    
                                                 <!--<td style='max-width: 230px;'><?php //echo $admin->getEmail() ?></td>-->  
                                                 <td><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>Appointment/AppointmentsOfJobOffer?jobOfferId=<?php echo $jobOffer->getJobOfferId() ?>'">See Appointments</button></td>           
-                                                <td><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>JobOffer/Remove?removeId=<?php echo $jobOffer->getJobOfferId() ?>'">Change Status</button></td>
+
                                                 <td><button class="btn btn-danger" onclick="window.location.href='<?php echo FRONT_ROOT ?>JobOffer/ModifyView?modifyId=<?php echo $jobOffer->getJobOfferId() ?>'">Edit</button></td>
                                        <?php
                                 }

@@ -11,15 +11,15 @@
           </tr>
           <tr>
             <td style="width: 200px;"><label for="email">E-mail *</label></td> 
-            <td style="width: 10px;"><input type="email" name="email" requiered></td>
+            <td style="width: 10px;"><input value="" type="email" name="email" required></td>
           </tr>            
           <tr>
             <td><label for="password">Password *</label></td>
-            <td><input type="password" name="password" requiered></td>
+            <td><input value="" type="password" name="password" required></td>
           </tr>
           <tr>
             <td><label for="password">Repeat password *</label></td>
-            <td><input type="password" name="checkPassword" requiered></td>
+            <td><input value="" type="password" name="checkPassword" required></td>
           </tr>   
           <tr>
             <td colspan="2"><button type="submit" class="btn btn-primary">Add</button></td>

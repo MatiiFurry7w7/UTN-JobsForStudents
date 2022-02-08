@@ -14,7 +14,7 @@ class AppointmentDAO implements IAppointmentDAO{
         private $tableName = "appointments";
 
         public function Add(Appointment $appointment) {
-            $this->setInactive($appointment->getStudent());
+            $this->setInactive($appointment->getStudent()->getUserId());
             try
             {
                 $query = "INSERT INTO ".$this->tableName." (studentId, jobOfferId, cv, dateAppointment, referenceURL, comments, active) 
@@ -68,6 +68,49 @@ class AppointmentDAO implements IAppointmentDAO{
                 $this->connection->ExecuteNonQuery($query, $parameters);
             }
             catch(Exception $ex){
+                throw $ex;
+            }
+        }
+
+        public function updateCV($cv){
+            try
+            {
+                $query = "UPDATE cvs set name=:name WHERE studentId =:studentId;";
+
+                $parameters["name"] = $cv->getName();
+                $parameters["studentId"] = $cv->getUser()->getUserId();
+
+                $this->connection = Connection::GetInstance();
+
+                $this->connection->ExecuteNonQuery($query, $parameters);
+            }
+            catch(Exception $ex){
+                throw $ex;
+            }
+        }
+
+        public function getCVByUserId($studentId){
+            try
+            {
+                $query = "SELECT * FROM ".'cvs WHERE (studentId = :studentId);';
+
+                $this->connection = Connection::GetInstance();
+                
+                $parameters["studentId"] = $studentId;
+
+                $result = $this->connection->Execute($query, $parameters);
+
+                if($result){ 
+                    foreach($result as $eachResult) {
+                        $cv = new CV();
+                        $cv->setName($eachResult["name"]);
+                        $cv->setUser((new StudentDAO)->FindById($eachResult["studentId"]));                    
+                    }
+                    return $cv;
+                }
+            }
+            catch(Exception $ex)
+            {
                 throw $ex;
             }
         }

@@ -187,7 +187,11 @@
                         $cv->setName($fileName);
                         $currentUser = (new SessionHelper())->getCurrentUser();
                         $cv->setUser($currentUser);
-                        $this->appointmentDAO->addCV($cv);
+
+                        if(!$this->appointmentDAO->getCVByUserId((new SessionHelper())->getCurrentUser()->getUserId()))
+                            $this->appointmentDAO->addCV($cv);
+                        else
+                            $this->appointmentDAO->updateCV($cv);
 
                         $message = MessageHelper::CV_UPLOADED;
                     }
@@ -202,7 +206,7 @@
                 $message = $ex->getMessage();
             }
             (new HomeController)->Index($message);
-        }    
+        } 
 
         public function DownloadPDF($jobOfferId){
             $allAppointments = $this->appointmentDAO->getAll();

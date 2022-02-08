@@ -49,13 +49,14 @@
                         $administrator->setPassword($password);
                         
                         $this->administratorDAO->Add($administrator);
+                        $message = "Admin registered!";
                     }else{
                         $message = MessageHelper::ADMINISTRATOR_EXISTS;
                     }
                 }
                 $this->AddView($message);
             } else 
-                (new HomeController())->Index($message);
+                (new HomeController())->Index();
         }
 
         public function Remove($removeId){
