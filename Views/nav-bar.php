@@ -28,9 +28,11 @@ $headerUser = (new SessionHelper())->getCurrentUser();
                 <i class="fa fa-angle-right" style="color: black;"></i>
                 </li>
               </a>
+              <a id="link" href="<?php echo FRONT_ROOT ?>Appointment/AddCV<?php ?>"><li>Upload CV</li></a>
               <?php if($headerUser->getAppointment()){ ?>
                 <a id="link" href="<?php echo FRONT_ROOT ?>Appointment/AppointmentView<?php ?>"><li>My Appointments</li></a>
               <?php }
+              
             }?>
       <?php if($headerUser instanceof CompanyUser) { 
         if(!$headerUser->getCompany()){?>  

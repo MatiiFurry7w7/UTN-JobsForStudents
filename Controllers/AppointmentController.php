@@ -205,7 +205,10 @@
             {
                 $message = $ex->getMessage();
             }
-            (new HomeController)->Index($message);
+            if($message != MessageHelper::CV_UPLOADED)
+                $this->AddCv($message);
+            else
+                (new HomeController)->Index($message);
         } 
 
         public function DownloadPDF($jobOfferId){

@@ -30,11 +30,14 @@
             //Bring active ones to jobOfferList
             if($getAll)
                 foreach($getAll as $eachJobOffer)
-                    if($eachJobOffer->getActive())
+                    if($eachJobOffer->getActive()){
                         if($isCompany && (new SessionHelper())->getCurrentUser()->getCompany()){
                             if($eachJobOffer->getCompany()->getCompanyId() == (new SessionHelper())->getCurrentUser()->getCompany()->getCompanyId())
                             array_push($jobOfferList, $eachJobOffer);
+                        }else{
+                            array_push($jobOfferList, $eachJobOffer);
                         }
+                    }
 
             //For each jobboffer...
             foreach($jobOfferList as $eachJobOffer)
@@ -64,20 +67,23 @@
             $jobOfferList = array();
             $i = 0;
             if($getAll)
-            foreach($getAll as $eachJobOffer)
-            if((new SessionHelper())->getCurrentUser()->getCompany()){
-                if($eachJobOffer->getActive()){
-                    if(($isCompany && $eachJobOffer->getCompany()->getCompanyId() == (new SessionHelper())->getCurrentUser()->getCompany()->getCompanyId()) || !$isCompany){
+                foreach($getAll as $eachJobOffer)
+                    if($isCompany && (new SessionHelper())->getCurrentUser()->getCompany()){
+                        if($eachJobOffer->getActive()){
+                            if(($isCompany && $eachJobOffer->getCompany()->getCompanyId() == (new SessionHelper())->getCurrentUser()->getCompany()->getCompanyId()) || !$isCompany){
+                                array_push($jobOfferList, $eachJobOffer);
+                                $i++;
+                            }
+                        }
+                    }else{
                         array_push($jobOfferList, $eachJobOffer);
-                        $i++;
                     }
-                }
-            }
+                    
             $jobPositionList = $this->jobPositionDAO->GetAll();
             $careerList = $this->careerDAO->GetAll();
 
             $isAdmin = (new SessionHelper())->isAdmin() || (new SessionHelper)->isCompany();  
-                     
+
             require_once(VIEWS_PATH."home.php");
         }   
 
