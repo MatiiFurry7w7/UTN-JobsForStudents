@@ -129,6 +129,7 @@
 
                 $admin = (new SessionHelper)->getCurrentUser() || (new SessionHelper)->isCompany();
 
+                $user = (new SessionHelper)->getCurrentUser();
                 require_once(VIEWS_PATH."modify-jobOffer.php");
             } else 
                 (new HomeController())->Index();
@@ -191,7 +192,7 @@
 
             $jobOfferList = $this->jobOfferDAO->getJobOffersOfCompany((new CompanyDAO)->FindById($companyId));
 
-            if(!isset($jobOfferList))
+            if(!$jobOfferList)
                     $jobOfferList = new JobOffer();
             
             require_once(VIEWS_PATH."jobOffer-list.php");

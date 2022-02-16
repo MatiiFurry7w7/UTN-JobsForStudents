@@ -94,7 +94,7 @@
                     <select name="companyId">">  
                       <?php
                         foreach($companyList as $company) {
-                          ?><option value="<?php echo $company->getCompanyId()?>" ><?php echo $company->getName()?></option>
+                          ?><option value="<?php echo $user->getCompany()->getCompanyId(); ?>" ><?php echo $company->getName()?></option>
                           <?php 
                         }
                       ?>
