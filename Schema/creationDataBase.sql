@@ -112,10 +112,10 @@ update joboffers set active = 1 where jobOfferId > 0;
 UPDATE appointments set active = 1 where jobOfferId > 0;
 
 -- DELETE 
-DELETE FROM companies WHERE companyId > -1;
-DELETE FROM joboffers WHERE jobofferId > -1;
+DELETE FROM companies WHERE companyId > 3;
+DELETE FROM joboffers WHERE jobofferId > 12;
 DELETE FROM appointments WHERE jobofferId > -1;
-DELETE FROM users WHERE userId > -1;
+DELETE FROM users WHERE userId > 20;
 DELETE FROM cvs WHERE cvId > -1;
 DELETE FROM roles WHERE roleId > 2;
 

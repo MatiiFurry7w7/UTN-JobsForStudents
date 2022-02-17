@@ -101,6 +101,8 @@
             $appointmentList = $this->appointmentDAO->HistoryById($studentId);
 
             $download = false;
+
+            
             
             require_once(VIEWS_PATH."appointment-history.php");
         }

@@ -89,21 +89,11 @@
               </td>
             </tr>
             <tr>
-                <td style="width: 200px;"><label for="companyId">Company</label></td> 
-                <td>
-                    <select name="companyId">">  
-                      <?php
-                        foreach($companyList as $company) {
-                          ?><option value="<?php echo $user->getCompany()->getCompanyId(); ?>" ><?php echo $company->getName()?></option>
-                          <?php 
-                        }
-                      ?>
-                    </select>
-                </td>
-             </tr>
-             <tr>
+                  <input hidden name="companyId" value="<?php echo $user->getCompany()->getCompanyId(); ?>" >
+            </tr>
+            <tr>
               <td></td><td><button type="submit" class="btn btn-primary">Edit</button></td>
-             </tr>
+            </tr>
     </table>
   </form>
 </div>
